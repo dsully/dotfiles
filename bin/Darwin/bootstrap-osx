@@ -120,9 +120,9 @@ sudo launchctl unload -w /System/Library/LaunchAgents/com.apple.gamed.plist 2> /
 
 # Sleep the computer after 15 minutes if we're a laptop. Otherwise never.
 if [[ $(sysctl -n hw.model | grep -cE "(iMac|MacPro|MacMini)") == 1 ]]; then
-    sudo systemsetup -setcomputersleep 0
+    sudo systemsetup -setcomputersleep 0 >/dev/null 2>&1
 else
-    sudo systemsetup -setcomputersleep 15
+    sudo systemsetup -setcomputersleep 15 >/dev/null 2>&1
 fi
 
 # Disable hibernation (speeds up entering sleep mode)
@@ -715,17 +715,14 @@ LOGIN_ITEMS=(
     "1Password 7.app"
     "Alfred 4.app"
     "AutoMounter.app"
-    "AppCleaner.app"
     "Bartender 3.app"
     "Dropbox.app"
-    "Fantastical.app"
     "Magnet.app"
     "OpenInTerminal.app"
     "Numi.app"
     "SoundSource.app"
     "The Clock.app"
     "WiFi Signal.app"
-    "WireGuard.app"
     "Yoink.app"
 )
 
@@ -735,7 +732,7 @@ for APP in $LOGIN_ITEMS; do
     local APP_PATH="/Applications/$APP"
 
     if [ -e "$APP_PATH" ]; then
-        osascript 2>/dev/null <<END
+        osascript >/dev/null 2>&1 <<END
             tell application "System Events" to make login item at end with properties {name:"${APP_NAME}", path:"${APP_PATH}", hidden:true}
 END
     fi
