@@ -1,0 +1,14 @@
+(?d).DS_Store
+(?d).gradle
+(?d)__pycache__
+(?d).mypy_cache
+(?d).cache
+(?d)node_modules/
+(?d)python-elr/venv/
+(?d)build/
+(?d)*.pyc
+(?d)*.iml
+(?d)*.ipr
+(?d)*.iws
+(?d).*.swp
+!mint/mint/test/data/**/build/
