@@ -1,0 +1,74 @@
+[general]
+max-entries = 5
+threads = 32
+
+[pocket]
+access_token = "78e813c2-e3ac-d9d7-6b98-4fb864"
+consumer_key = "89522-8e7d7d749268336376f6cac1"
+
+[subscriptions]
+Apple = [
+    "https://furbo.org/feed/",
+    "https://www.panic.com/blog/feed/",
+    "https://daringfireball.net/feeds/main",
+    "https://reverse.put.as/feed/",
+    "https://homekit.blog/feed/",
+    "https://www.macrumors.com/macrumors.xml",
+    "https://www.macstories.net/?feed=articles-only",
+    "https://www.marco.org/rss"
+]
+Design = [
+    "http://feeds.feedburner.com/contemporist"
+]
+Disney = [
+    "http://andreasdeja.blogspot.com/feeds/posts/default",
+    "http://www.pixarpost.com/feeds/posts/default"
+]
+Food = [
+    "http://blog.ideasinfood.com/ideas_in_food/atom.xml",
+    "http://shapeof.com/pizzalab/rss.xml",
+    "http://www.eastbayexpress.com/oakland/Rss.xml?section=1063828",
+    "http://www.foodgal.com/feed/",
+    "http://nomnompaleo.com/rss"
+]
+Kids = [
+    "http://www.goingoutsidekids.com/feeds/posts/default",
+    "http://www.510families.com/feed"
+]
+Photography = [
+    "http://photographylife.com/feed"
+]
+Productivity = [
+    "http://feeds.feedburner.com/thesimpledollar"
+]
+Tech = [
+    "http://purgatory.org/feed",
+    "http://feeds2.feedburner.com/codahale",
+    "http://lucumr.pocoo.org/feed.atom",
+    "https://electrek.co/feed/",
+    "http://feeds.feedburner.com/thechangelog",
+    "http://perspectives.mvdirona.com/SyndicationService.asmx/GetRss",
+    "http://flatpanelshd.com/rss/news.xml",
+    "http://stratechery.com/feed/",
+    "https://github.blog/feed/",
+    "http://elan.plexapp.com/feed/",
+    "http://www.mondaynote.com/feed/",
+    "http://danluu.com/atom.xml",
+    "http://feeds.feedburner.com/twistedsifter",
+    "https://500ish.com/feed",
+    "https://this-week-in-rust.org/atom.xml"
+]
+Watches = [
+    "http://www.ablogtowatch.com/feed/",
+    "https://www.hodinkee.com/articles/rss.xml"
+]
+
+[filters]
+"https://daringfireball.net/feeds/main" = ["my thanks to", "[Sponsor]", "the talk show:", "Daring Fireball Weekly Sponsorships"]
+"http://feeds.feedburner.com/thechangelog" = ["JS Party"]
+"http://feeds.feedburner.com/thesimpledollar" = ["Insurance Review", "Renters Insurance"]
+"http://feeds.feedburner.com/twistedsifter" = ["The Shirk Report"]
+"https://electrek.co/feed/" = ["podcast", "motorcyle", "bike", "scooter", "climate crisis weekly", "moped", "bicycle"]
+"https://www.hodinkee.com/articles/rss.xml" = ["The Grey NATO", "HODINKEE Radio", "Weekend Round"]
+"http://www.ablogtowatch.com/feed/" = ["BEST FROM", "weekly news roundup"]
+"https://www.macstories.net/?feed=articles-only" = ["Top Stories:", "[Sponsor]"]

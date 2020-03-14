@@ -1,0 +1,145 @@
+tap "buo/cask-upgrade"
+tap "cjbassi/ytop"
+tap "fabianishere/personal"
+tap "guoxbin/guoxbin"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+tap "homebrew/core"
+tap "homebrew/services"
+tap "mistertea/et"
+brew "bandwhich"
+brew "bat"
+brew "direnv"
+brew "dust"
+brew "fd"
+brew "fish"
+brew "fzf"
+brew "gettext"
+brew "git"
+brew "git-delta"
+brew "git-quick-stats"
+brew "gh"
+brew "gnu-tar"
+brew "hyperfine"
+brew "jadx"
+brew "jq"
+brew "loc"
+brew "lsd"
+brew "mas"
+brew "mtr"
+brew "mysql@5.7", restart_service: true
+brew "ncdu"
+brew "netcat6"
+brew "p7zip"
+brew "ripgrep"
+brew "rsync"
+brew "rustup-init"
+brew "sd"
+brew "syncthing", restart_service: true
+brew "telnet"
+brew "tree"
+brew "unrar"
+brew "unzip"
+brew "watch"
+brew "cjbassi/ytop"
+brew "fabianishere/personal/pam_reattach"
+brew "mistertea/et/et"
+cask "1password"
+cask "1password-cli"
+cask "alfred"
+cask "anylist"
+cask "appcleaner"
+cask "bartender"
+cask "blue-jeans"
+cask "blueharvest"
+cask "cisco-proximity"
+cask "cutter"
+cask "daisydisk"
+cask "dash"
+cask "discord"
+cask "displaperture"
+cask "downie"
+cask "dropbox"
+cask "electorrent"
+cask "fantastical"
+cask "font-hack-nerd-font"
+cask "font-jetbrains-mono"
+cask "gifox"
+cask "github"
+cask "google-chrome"
+cask "google-drive-file-stream"
+cask "graphiql"
+cask "hex-fiend"
+cask "iterm2"
+cask "itsycal"
+cask "macdive"
+cask "mactracker"
+cask "mediainfo"
+cask "meta"
+cask "monodraw"
+cask "movist-pro"
+cask "numi"
+cask "omnigraffle"
+cask "openinterminal"
+cask "paw"
+cask "pdfpen"
+cask "proxyman"
+cask "pynsource"
+cask "qlcolorcode"
+cask "qlmarkdown"
+cask "qlprettypatch"
+cask "qlstephen"
+cask "querious"
+cask "quicken"
+cask "quicklook-json"
+cask "roon"
+cask "screens"
+cask "sensei"
+cask "soulseek"
+cask "soulver"
+cask "soundsource"
+cask "stay"
+cask "superduper"
+cask "the-unarchiver"
+cask "timing"
+cask "tower"
+cask "transmit"
+cask "unshaky"
+cask "visual-studio-code"
+cask "waltr"
+cask "wireshark"
+mas "Adobe Lightroom", id: 1451544217
+mas "Apple Configurator 2", id: 1037126344
+mas "AutoMounter", id: 1160435653
+mas "Calendar 366 II", id: 1265895169
+mas "Deliveries", id: 924726344
+mas "Discovery", id: 1381004916
+mas "DuckDuckGo Privacy Essentials", id: 1482920575
+mas "Ghostery Lite", id: 1436953057
+mas "HomeAtmo", id: 1359795390
+mas "iMovie", id: 408981434
+mas "JSONPeep", id: 1458969831
+mas "Keynote", id: 409183694
+mas "Magnet", id: 441258766
+mas "Marked 2", id: 890031187
+mas "MindNode – Mind Map", id: 1289197285
+mas "Numbers", id: 409203825
+mas "Open In Webmail", id: 1451552749
+mas "Pages", id: 409201541
+mas "Paprika Recipe Manager 3", id: 1303222628
+mas "Pastebot", id: 1179623856
+mas "Pocket", id: 568494494
+mas "Reeder", id: 1449412482
+mas "Right Click", id: 1364038646
+mas "Save to Pocket", id: 1477385213
+mas "SessionRestore", id: 1463334954
+mas "Slack", id: 803453959
+mas "StopTheMadness", id: 1376402589
+mas "The Clock", id: 488764545
+mas "Tweetbot", id: 1384080005
+mas "WiFi Explorer", id: 494803304
+mas "WiFi Signal", id: 525912054
+mas "Wipr", id: 1320666476
+mas "WireGuard", id: 1451685025
+mas "Yoink", id: 457622435

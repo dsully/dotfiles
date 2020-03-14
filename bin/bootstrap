@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+[ -n "$1" ] && echo <<-END
+    bootstrap: Create a git repo in the destination directory with a separate git dir in $HOME/.config/repos.
+
+    Usage:
+      bootstrap [GIT_REPO]
+
+    GIT_REPO:     A remote git repo URI
+END
+
+DEFAULT_URL="https://github.com/dsully/dotfiles.git"
+
+URL="${1:-$DEFAULT_URL}"
+REPO="${URL##*/}"
+REPO="${REPO%.*}"
+REPO_PATH="$HOME/.config/repos"
+REPO_TEMP="$HOME/.config/repos/temp"
+
+rm -rf "$HOME/.git"
+rm -rf "$REPO_TEMP"
+
+git clone --separate-git-dir "$REPO_PATH/$REPO" "$URL" --no-checkout "$REPO_TEMP"
+mv $REPO_TEMP/.git $HOME
+rm -rf "$REPO_TEMP"
+
+env GITDIR="$REPO_PATH/$REPO" git config --local status.showUntrackedFiles no
+
+git fetch
+git reset --mixed HEAD

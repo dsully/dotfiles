@@ -1,0 +1,15 @@
+##
+# Host Database
+#
+# localhost is used to configure the loopback interface
+# when the system is booting.  Do not change this entry.
+##
+127.0.0.1	localhost
+255.255.255.255	broadcasthost
+::1             localhost
+
+0.0.0.0 albert.apple.com
+0.0.0.0 iprofiles.apple.com
+0.0.0.0 mdmenrollment.apple.com
+0.0.0.0 deviceenrollment.apple.com
+0.0.0.0 gdmf.apple.com
