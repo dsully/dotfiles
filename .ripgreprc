@@ -1,0 +1,8 @@
+# Because who cares about case!?
+--smart-case
+
+# --sort=path
+
+# Don't let ripgrep vomit really long lines to my terminal, and show a preview.
+--max-columns=150
+--max-columns-preview

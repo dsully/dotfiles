@@ -1,0 +1,3 @@
+#!/bin/sh
+
+sshuttle --dns -r server 0/0

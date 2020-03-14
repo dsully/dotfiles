@@ -1,0 +1,6 @@
+venv/
+**/test/data
+*.iws
+*.iml
+*.ipr
+*.egg-info
