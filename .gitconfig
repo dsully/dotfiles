@@ -35,7 +35,8 @@
     autosquash = true
 [status]
     relativePaths = true
-[includeIf "gitdir:~/src/"]
-    path = .gitconfig-github
+
+[include]
+    path = ~/.gitconfig-private
 [includeIf "gitdir:~/dev/linkedin/"]
-    path = .gitconfig-linkedin
+    path = ~/.gitconfig-linkedin
