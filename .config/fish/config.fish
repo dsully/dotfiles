@@ -25,8 +25,13 @@ set -Ux RIPGREP_CONFIG_PATH $HOME/.ripgreprc
 bind --all \t complete
 # https://github.com/fish-shell/fish-shell/issues/3299
 
-#set -gx JAVA_HOME (/usr/libexec/java_home -v 1.8)
-#set -x DYLD_LIBRARY_PATH /usr/local/lib
+if test -e "$HOME/.config/fish/lib/github.fish"
+    source "$HOME/.config/fish/lib/github.fish"
+end
+
+if test -e "$HOME/.config/fish/lib/linkedin.fish"
+    source "$HOME/.config/fish/lib/linkedin.fish"
+end
 
 if test -z "$fish_user_paths"
     addpath \
@@ -34,9 +39,11 @@ if test -z "$fish_user_paths"
         "$HOME/bin/$OS" \
         "$HOME/.cargo/bin" \
         "$HOME/.poetry/bin" \
+        "$HOME/bin/Sites/LinkedIn" \
         "$HOME/.local/bin" \
         /usr/local/bin \
         /usr/local/sbin \
+        /usr/local/linkedin/bin \
         /export/apps/python/3.7/bin \
         /export/apps/xtools/bin \
         /export/apps/mysql/5.7/bin \
@@ -52,7 +59,7 @@ set -gx PATH $fish_user_paths
 set -gx MANPATH /usr/share/man:/usr/local/share/man
 
 # https://github.com/ajeetdsouza/zoxide
-set -gx _ZO_DATA $HOME/.local/state/zoxide
+set -gx _ZO_DATA $HOME/.local/zoxide
 
 # 3rd party.
 if status --is-interactive
