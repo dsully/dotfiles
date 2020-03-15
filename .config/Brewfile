@@ -22,7 +22,6 @@ brew "git-quick-stats"
 brew "gh"
 brew "gnu-tar"
 brew "hyperfine"
-brew "jadx"
 brew "jq"
 brew "loc"
 brew "lsd"
@@ -42,23 +41,20 @@ brew "tree"
 brew "unrar"
 brew "unzip"
 brew "watch"
-brew "cjbassi/ytop"
+brew "cjbassi/ytop/ytop"
 brew "fabianishere/personal/pam_reattach"
 brew "mistertea/et/et"
 cask "1password"
-cask "1password-cli"
 cask "alfred"
 cask "anylist"
 cask "appcleaner"
 cask "bartender"
 cask "blue-jeans"
-cask "blueharvest"
 cask "cisco-proximity"
 cask "cutter"
 cask "daisydisk"
 cask "dash"
 cask "discord"
-cask "displaperture"
 cask "downie"
 cask "dropbox"
 cask "electorrent"
@@ -72,7 +68,6 @@ cask "google-drive-file-stream"
 cask "graphiql"
 cask "hex-fiend"
 cask "iterm2"
-cask "itsycal"
 cask "macdive"
 cask "mactracker"
 cask "mediainfo"
@@ -112,7 +107,6 @@ cask "wireshark"
 mas "Adobe Lightroom", id: 1451544217
 mas "Apple Configurator 2", id: 1037126344
 mas "AutoMounter", id: 1160435653
-mas "Calendar 366 II", id: 1265895169
 mas "Deliveries", id: 924726344
 mas "Discovery", id: 1381004916
 mas "DuckDuckGo Privacy Essentials", id: 1482920575
@@ -131,7 +125,6 @@ mas "Paprika Recipe Manager 3", id: 1303222628
 mas "Pastebot", id: 1179623856
 mas "Pocket", id: 568494494
 mas "Reeder", id: 1449412482
-mas "Right Click", id: 1364038646
 mas "Save to Pocket", id: 1477385213
 mas "SessionRestore", id: 1463334954
 mas "Slack", id: 803453959
