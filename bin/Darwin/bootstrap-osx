@@ -3,9 +3,20 @@
 # Sources:
 # https://github.com/kevinSuttle/macOS-Defaults/blob/master/.macos
 # https://github.com/tiiiecherle/osx_install_config/blob/master/11_system_and_app_preferences/
+#
+# Headless install of xcode command line tools
+if ! xcode-select -p &> /dev/null; then
+    touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
+
+    PROD=$(softwareupdate -l | grep "\*.*Command Line" | head -n 1 | awk -F"*" '{print $2}' | sed -e 's/^ *//' | tr -d '\n')
+
+    softwareupdate -i "$PROD" --verbose
+
+    rm /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
+fi
 
 # Close any open System Preferences panes, to prevent them from overriding settings we’re about to change
-osascript -e 'tell application "System Preferences" to quit'
+osascript -e 'tell application "System Preferences" to quit' >/dev/null 2>&1
 
 # Ask for the administrator password upfront
 sudo -v
@@ -27,7 +38,7 @@ sudo nvram StartupMute=%00
 defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false
 
 # Disable automatic light / dark mode.
-defaults delete NSGlobalDomain AppleInterfaceStyle 2>/dev/null
+defaults delete NSGlobalDomain AppleInterfaceStyle >/dev/null 2>&1
 defaults write NSGlobalDomain AppleInterfaceStyleSwitchesAutomatically -bool false
 
 # Always show scrollbars
@@ -129,13 +140,15 @@ fi
 sudo pmset -a hibernatemode 0
 
 # Remove the sleep image file to save disk space
-sudo rm -f /private/var/vm/sleepimage
+if [ -e /private/var/vm/sleepimage ]; then
+    sudo rm -f /private/var/vm/sleepimage
 
-# Create a zero-byte file instead...
-sudo touch /private/var/vm/sleepimage
+    # Create a zero-byte file instead...
+    sudo touch /private/var/vm/sleepimage
 
-# ...and make sure it can’t be rewritten
-sudo chflags uchg /private/var/vm/sleepimage
+    # ...and make sure it can’t be rewritten
+    sudo chflags uchg /private/var/vm/sleepimage
+fi
 
 # Disable the sudden motion sensor as it’s not useful for SSDs
 sudo pmset -a sms 0
@@ -762,38 +775,27 @@ defaults write com.googlecode.iterm2 "LoadPrefsFromCustomFolder" -bool true
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
 # ---------
-# VSCode
+# Homebrew
 # ---------
-
-defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
-
-# Java
-# /Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/bin/keytool -import -trustcacerts -file /etc/riddler/ca-bundle.crt -keystore cacerts -storepass changeit -noprompt
-
-# Fish
-
-[ $(cat /etc/shells | grep -c $(brew --prefix)/bin/fish) -ne 1 ] && echo "$(brew --prefix)/bin/fish" | sudo tee -a /etc/shells > /dev/null
-[ "$(which fish)" != "$(brew --prefix)/bin/fish" ] && chsh -s "$(brew --prefix)/bin/fish"
-
-# Headless install of xcode command line tools
-if ! xcode-select -p &> /dev/null; then
-    touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
-
-    PROD=$(softwareupdate -l | grep "\*.*Command Line" | head -n 1 | awk -F"*" '{print $2}' | sed -e 's/^ *//' | tr -d '\n')
-
-    softwareupdate -i "$PROD" --verbose
-
-    rm /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
-fi
 
 # Install Homebrew if it is not already installed
 export HOMEBREW_NO_GITHUB_API=1
-which brew &> /dev/null || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null
+which brew &> /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" < /dev/null
+
+# Fish
+[ $(cat /etc/shells | grep -c $(brew --prefix)/bin/fish) -ne 1 ] && echo "$(brew --prefix)/bin/fish" | sudo tee -a /etc/shells > /dev/null
+
+if [ -x "/usr/local/bin/fish" ]; then
+    chsh -s "/usr/local/bin/fish"
+fi
 
 # Link ~/iCloud
 if [ ! -e ~/iCloud ]; then
     ln -s "/Users/dsully/Library/Mobile Documents/com~apple~CloudDocs" ~/iCloud
 fi
+
+# Hide the readme from Finder.
+chflags hidden ~/README.md
 
 find ~/Library/Application\ Support/Dock -name "*.db" -maxdepth 1 -delete
 
