@@ -96,6 +96,7 @@ cask "soulver"
 cask "soundsource"
 cask "stay"
 cask "superduper"
+cask "suspicious-package"
 cask "the-unarchiver"
 cask "timing"
 cask "tower"
@@ -104,6 +105,7 @@ cask "unshaky"
 cask "visual-studio-code"
 cask "waltr"
 cask "wireshark"
+cask "zoomus"
 mas "Adobe Lightroom", id: 1451544217
 mas "Apple Configurator 2", id: 1037126344
 mas "AutoMounter", id: 1160435653
