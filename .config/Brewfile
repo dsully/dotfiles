@@ -30,7 +30,6 @@ brew "mtr"
 brew "mysql@5.7", restart_service: true
 brew "ncdu"
 brew "netcat6"
-brew "p7zip"
 brew "ripgrep"
 brew "rsync"
 brew "rustup-init"
@@ -38,8 +37,7 @@ brew "sd"
 brew "syncthing", restart_service: true
 brew "telnet"
 brew "tree"
-brew "unrar"
-brew "unzip"
+brew "unar"
 brew "watch"
 brew "cjbassi/ytop/ytop"
 brew "fabianishere/personal/pam_reattach"
@@ -98,10 +96,8 @@ cask "stay"
 cask "superduper"
 cask "suspicious-package"
 cask "the-unarchiver"
-cask "timing"
 cask "tower"
 cask "transmit"
-cask "unshaky"
 cask "visual-studio-code"
 cask "waltr"
 cask "wireshark"
@@ -115,6 +111,7 @@ mas "DuckDuckGo Privacy Essentials", id: 1482920575
 mas "Ghostery Lite", id: 1436953057
 mas "HomeAtmo", id: 1359795390
 mas "iMovie", id: 408981434
+mas "Jayson", id: 1468691718
 mas "JSONPeep", id: 1458969831
 mas "Keynote", id: 409183694
 mas "Magnet", id: 441258766
