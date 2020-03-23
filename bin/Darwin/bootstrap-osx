@@ -797,6 +797,9 @@ fi
 # Hide the readme from Finder.
 chflags hidden ~/README.md
 
+# Hide the export partition.
+sudo /usr/bin/setfile -a V /export
+
 find ~/Library/Application\ Support/Dock -name "*.db" -maxdepth 1 -delete
 
 for app in "cfprefsd" "Dock" "Finder" "Safari" "SystemUIServer"; do
