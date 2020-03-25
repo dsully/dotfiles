@@ -16,7 +16,6 @@
     status = auto
     ui = true
 [core]
-    excludesfile = /Users/dsully/.gitignore
     trustctime = false
     # pager = delta --dark --file-style=box --hunk-style=plain --theme=base16
     pager = diff-so-fancy | less --tabs=4 -RFX
@@ -37,6 +36,6 @@
     relativePaths = true
 
 [include]
-    path = ~/.gitconfig-private
+    path = ~/.config/git/private
 [includeIf "gitdir:~/dev/linkedin/"]
-    path = ~/.gitconfig-linkedin
+    path = ~/.config/git/linkedin
