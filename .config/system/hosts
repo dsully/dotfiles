@@ -8,8 +8,10 @@
 255.255.255.255	broadcasthost
 ::1             localhost
 
-0.0.0.0 albert.apple.com
-0.0.0.0 iprofiles.apple.com
-0.0.0.0 mdmenrollment.apple.com
-0.0.0.0 deviceenrollment.apple.com
-0.0.0.0 gdmf.apple.com
+# https://gist.github.com/henrik242/65d26a7deca30bdb9828e183809690bd
+# https://support.apple.com/en-us/HT210060
+0.0.0.0 albert.apple.com           # OS X / iOS Activation Server
+0.0.0.0 iprofiles.apple.com        # DEP Enrollment Profile
+0.0.0.0 mdmenrollment.apple.com    # MDM / DEP
+0.0.0.0 deviceenrollment.apple.com # DEP provisional enrollment
+0.0.0.0 gdmf.apple.com             # iOS Software Lookup Service
