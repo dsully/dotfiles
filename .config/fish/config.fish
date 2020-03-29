@@ -25,6 +25,15 @@ set -Ux RIPGREP_CONFIG_PATH $HOME/.ripgreprc
 bind --all \t complete
 # https://github.com/fish-shell/fish-shell/issues/3299
 
+addpath \
+    "$HOME/bin/share" \
+    "$HOME/bin/$OS" \
+    "$HOME/.cargo/bin" \
+    "$HOME/.poetry/bin" \
+    "$HOME/.local/bin" \
+    /usr/local/bin \
+    /usr/local/sbin
+
 if test -e "$HOME/.config/fish/lib/github.fish"
     source "$HOME/.config/fish/lib/github.fish"
 end
@@ -33,30 +42,19 @@ if test -e "$HOME/.config/fish/lib/linkedin.fish"
     source "$HOME/.config/fish/lib/linkedin.fish"
 end
 
-if test -z "$fish_user_paths"
-    addpath \
-        "$HOME/bin/share" \
-        "$HOME/bin/$OS" \
-        "$HOME/.cargo/bin" \
-        "$HOME/.poetry/bin" \
-        "$HOME/bin/Sites/LinkedIn" \
-        "$HOME/.local/bin" \
-        /usr/local/bin \
-        /usr/local/sbin \
-        /usr/local/linkedin/bin \
-        /export/apps/python/3.7/bin \
-        /export/apps/xtools/bin \
-        /export/apps/mysql/5.7/bin \
-        /usr/bin \
-        /bin \
-        /sbin \
-        /usr/sbin
-end
+addpath \
+    /usr/bin \
+    /bin \
+    /sbin \
+    /usr/sbin
 
 # Clear out entries from /etc/paths.d and add our paths to the actual PATH.
 set -e PATH
 set -gx PATH $fish_user_paths
 set -gx MANPATH /usr/share/man:/usr/local/share/man
+
+# Python
+set -gx PYTHONSTARTUP ~/.config/python/startup.py
 
 # https://github.com/ajeetdsouza/zoxide
 set -gx _ZO_DATA $HOME/.local/zoxide

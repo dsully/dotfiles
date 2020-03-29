@@ -1,6 +1,7 @@
 **/fish/conf.d
 **/fish/fish_variables
 **/fisher/github.com
+**/.config/repos/
 *.egg
 *.egg-info/
 *.iml

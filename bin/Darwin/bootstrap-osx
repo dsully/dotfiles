@@ -734,9 +734,11 @@ LOGIN_ITEMS=(
     "Numi.app"
     "SoundSource.app"
     "The Clock.app"
-    "WiFi Signal.app"
     "Yoink.app"
 )
+
+# Only if on a laptop.
+# "WiFi Signal.app"
 
 for APP in $LOGIN_ITEMS; do
 
