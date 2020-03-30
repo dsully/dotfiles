@@ -58,7 +58,6 @@ cask "electorrent"
 cask "fantastical"
 cask "font-hack-nerd-font"
 cask "font-jetbrains-mono"
-cask "gifox"
 cask "github"
 cask "google-chrome"
 cask "google-drive-file-stream"
@@ -107,6 +106,7 @@ mas "AutoMounter", id: 1160435653
 mas "Deliveries", id: 924726344
 mas "Discovery", id: 1381004916
 mas "DuckDuckGo Privacy Essentials", id: 1482920575
+mas "Gifox", id: 1461845568
 mas "Ghostery Lite", id: 1436953057
 mas "HomeAtmo", id: 1359795390
 mas "iMovie", id: 408981434
