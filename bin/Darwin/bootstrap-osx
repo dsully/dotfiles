@@ -206,6 +206,9 @@ defaults write com.apple.finder ShowRecentTags -bool false
 /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 
+# Set the screenshot location:
+defaults write com.apple.screencapture location "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Pictures/Screenshots"
+
 # -------------------------------
 # Software Update / Mac App Store
 # -------------------------------
@@ -500,7 +503,8 @@ defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.Web
 defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
 
 # Set Safari’s home page to the favorites page.
-defaults write com.apple.Safari HomePage -string "favorites://"
+# defaults write com.apple.Safari HomePage -string "favorites://"
+defaults write com.apple.Safari HomePage -string "file:///Users/dsully/dev/start/index.html"
 
 # New windows open with: "Homepage"
 defaults write com.apple.Safari NewWindowBehavior -int 0
@@ -792,7 +796,7 @@ fi
 
 # Link ~/iCloud
 if [ ! -e ~/iCloud ]; then
-    ln -s "/Users/dsully/Library/Mobile Documents/com~apple~CloudDocs" ~/iCloud
+    ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs" ~/iCloud
 fi
 
 # Hide the readme from Finder.
