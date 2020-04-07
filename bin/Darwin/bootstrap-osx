@@ -207,7 +207,7 @@ defaults write com.apple.finder ShowRecentTags -bool false
 /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 
 # Set the screenshot location:
-defaults write com.apple.screencapture location "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Pictures/Screenshots"
+defaults write com.apple.screencapture location "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Screenshots"
 
 # -------------------------------
 # Software Update / Mac App Store
