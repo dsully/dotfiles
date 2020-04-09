@@ -105,6 +105,8 @@ cask "waltr"
 cask "wireshark"
 cask "zoomus"
 mas "Adobe Lightroom", id: 1451544217
+mas "Affinity Photo", id: 824183456
+mas "Affinity Designer", id: 824171161
 mas "Apple Configurator 2", id: 1037126344
 mas "AutoMounter", id: 1160435653
 mas "Deliveries", id: 924726344
