@@ -1292,9 +1292,9 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>687 236 1605 901 0 0 2560 1417 </string>
+	<string>944 311 1605 924 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>925 72 1605 901 0 0 2560 1417 </string>
+	<string>523 86 1605 901 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>364 158 1605 901 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
@@ -2004,7 +2004,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>065842C1-E8A9-44AB-8D92-447C0D9BE510</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>14</integer>
+	<integer>16</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -2794,6 +2794,8 @@
 	<true/>
 	<key>SUSendProfileInfo</key>
 	<false/>
+	<key>Selection Respects Soft Boundaries</key>
+	<true/>
 	<key>SoundForEsc</key>
 	<false/>
 	<key>TmuxUsesDedicatedProfile</key>
