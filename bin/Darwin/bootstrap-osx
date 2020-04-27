@@ -736,7 +736,6 @@ LOGIN_ITEMS=(
     "Magnet.app"
     "OpenInTerminal.app"
     "Numi.app"
-    "SoundSource.app"
     "The Clock.app"
     "Yoink.app"
 )
