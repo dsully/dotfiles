@@ -732,11 +732,11 @@ LOGIN_ITEMS=(
     "1Password 7.app"
     "Alfred 4.app"
     "AutoMounter.app"
-    "Bartender 3.app"
+    "CleanShot X.app"
+    "Dato.app"
     "Magnet.app"
-    "OpenInTerminal.app"
     "Numi.app"
-    "The Clock.app"
+    "Vanilla.app"
     "Yoink.app"
 )
 
