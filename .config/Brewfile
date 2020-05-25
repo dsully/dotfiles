@@ -12,6 +12,7 @@ tap "homebrew/services"
 tap "mistertea/et"
 brew "bandwhich"
 brew "bat"
+brew "bluetoothconnector"
 brew "direnv"
 brew "dust"
 brew "fd"
@@ -77,7 +78,6 @@ cask "monodraw"
 cask "movist-pro"
 cask "numi"
 cask "omnigraffle"
-cask "openinterminal"
 cask "paw"
 cask "pdfpen"
 cask "proxyman"
@@ -102,7 +102,6 @@ cask "tower"
 cask "transmit"
 cask "vanilla"
 cask "visual-studio-code"
-cask "waltr"
 cask "wireshark"
 cask "zoomus"
 mas "Adobe Lightroom", id: 1451544217
@@ -140,6 +139,5 @@ mas "Tweetbot", id: 1384080005
 mas "WhatsApp", id: 1147396723
 mas "WiFi Explorer", id: 494803304
 mas "WiFi Signal", id: 525912054
-mas "Wipr", id: 1320666476
 mas "WireGuard", id: 1451685025
 mas "Yoink", id: 457622435
