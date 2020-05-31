@@ -56,9 +56,6 @@ set -gx MANPATH /usr/share/man:/usr/local/share/man
 # Python
 set -gx PYTHONSTARTUP ~/.config/python/startup.py
 
-# https://github.com/ajeetdsouza/zoxide
-set -gx _ZO_DATA $HOME/.local/zoxide
-
 # 3rd party.
 if status --is-interactive
 
