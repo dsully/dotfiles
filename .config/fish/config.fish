@@ -56,6 +56,13 @@ set -gx MANPATH /usr/share/man:/usr/local/share/man
 # Python
 set -gx PYTHONSTARTUP ~/.config/python/startup.py
 
+# https://github.com/Homebrew/homebrew-command-not-found
+set HB_CNF_HANDLER /usr/local/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.fish
+
+if test -f $HB_CNF_HANDLER
+   source $HB_CNF_HANDLER
+end
+
 # 3rd party.
 if status --is-interactive
 
