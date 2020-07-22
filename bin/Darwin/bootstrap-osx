@@ -734,9 +734,6 @@ LOGIN_ITEMS=(
     "AutoMounter.app"
     "CleanShot X.app"
     "Dato.app"
-    "Magnet.app"
-    "Numi.app"
-    "Vanilla.app"
     "Yoink.app"
 )
 
