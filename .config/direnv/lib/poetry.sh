@@ -1,21 +1,10 @@
-# Filename: ~/.direnvrc
-
-layout_pygradle() {
-  export VIRTUAL_ENV=$(basename $PWD)
-  PATH_add $(expand_path "../build/$VIRTUAL_ENV/venv/bin")
-}
-
-layout_pygradle2() {
-  export VIRTUAL_ENV=$(basename $PWD)
-  PATH_add $(expand_path "../build/$VIRTUAL_ENV/environments/development-venv/bin")
-}
-
 layout_poetry() {
   if [[ ! -f pyproject.toml ]]; then
     log_error 'No pyproject.toml found.  Use `poetry new` or `poetry init` to create one first.'
     exit 2
   fi
 
+  # local VENV=$(poetry env list --full-path | grep Activated | cut -d' ' -f1)
   local VENV=$(dirname $(poetry run which python))
   export VIRTUAL_ENV=$(echo "$VENV" | rev | cut -d'/' -f2- | rev)
   export POETRY_ACTIVE=1
