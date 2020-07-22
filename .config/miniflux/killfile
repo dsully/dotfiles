@@ -1,0 +1,23 @@
+ignore-article "https://daringfireball.net/" "title =~ my thanks to"
+ignore-article "https://daringfireball.net/" "title =~ \[Sponsor\]"
+ignore-article "https://daringfireball.net/" "title =~ the talk show:"
+ignore-article "https://daringfireball.net/" "title =~ Daring Fireball Weekly Sponsorships"
+
+ignore-article "http://feeds.feedburner.com/thechangelog" "title =~ JS Party"
+
+ignore-article "http://feeds.feedburner.com/thesimpledollar" "title =~ Insurance Review"
+ignore-article "http://feeds.feedburner.com/thesimpledollar" "title =~ Renters Insurance"
+
+ignore-article "http://feeds.feedburner.com/twistedsifter" "title =~ The Shirk Report"
+
+ignore-article "https://electrek.co/feed/" "title # podcast,motorcyle,bike,scooter,moped,bicycle"
+
+ignore-article "https://www.hodinkee.com/" "title =~ The Grey NATO"
+ignore-article "https://www.hodinkee.com/" "title =~ HODINKEE Radio"
+ignore-article "https://www.hodinkee.com/" "title =~ Weekend Round"
+
+ignore-article "http://www.ablogtowatch.com/feed/" "title =~ BEST FROM"
+ignore-article "http://www.ablogtowatch.com/feed/" "title =~ weekly news roundup"
+
+ignore-article "https://www.macstories.net/" "title =~ Top Stories:"
+ignore-article "https://www.macstories.net/" "title =~ \[Sponsor\]"

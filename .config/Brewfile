@@ -11,7 +11,6 @@ tap "homebrew/cask-versions"
 tap "homebrew/command-not-found"
 tap "homebrew/core"
 tap "homebrew/services"
-tap "microsoft/git"
 tap "mistertea/et"
 brew "bandwhich"
 brew "bat"
@@ -54,7 +53,6 @@ cask "1password"
 cask "alfred"
 cask "anylist"
 cask "appcleaner"
-cask "audio-hijack"
 cask "blue-jeans"
 cask "cisco-proximity"
 cask "cleanshot"
@@ -68,20 +66,21 @@ cask "elgato-control-center"
 cask "font-hack-nerd-font"
 cask "font-jetbrains-mono"
 cask "garmin-express"
-cask "git-credential-manager-core"
 cask "github"
 cask "google-chrome"
 cask "graphiql"
 cask "hex-fiend"
 cask "iterm2"
-cask "loopback"
 cask "macdive"
 cask "mactracker"
 cask "mediainfo"
 cask "meta"
+cask "microsoft-outlook"
+cask "microsoft-powerpoint"
+cask "microsoft-teams"
+cask "microsoft-word"
 cask "monodraw"
 cask "movist-pro"
-cask "numi"
 cask "omnigraffle"
 cask "paw"
 cask "pdfpen"
@@ -111,35 +110,43 @@ cask "visual-studio-code"
 cask "wireshark"
 cask "zoomus"
 mas "Adobe Lightroom", id: 1451544217
-mas "Affinity Photo", id: 824183456
 mas "Affinity Designer", id: 824171161
+mas "Affinity Photo", id: 824183456
 mas "Apple Configurator 2", id: 1037126344
 mas "AutoMounter", id: 1160435653
+mas "Brother P-touch Editor", id: 1453365242
 mas "Dato", id: 1470584107
 mas "Deliveries", id: 924726344
 mas "Discovery", id: 1381004916
 mas "DuckDuckGo Privacy Essentials", id: 1482920575
-mas "Gifox", id: 1461845568
 mas "Ghostery Lite", id: 1436953057
 mas "HomeAtmo", id: 1359795390
+mas "Honey", id: 1472777122
 mas "iMovie", id: 408981434
+mas "Instapaper", id: 1481302432
 mas "JSONPeep", id: 1458969831
+mas "Keep It", id: 1272768911
 mas "Keynote", id: 409183694
 mas "Magnet", id: 441258766
 mas "Marked 2", id: 890031187
-mas "MindNode – Mind Map", id: 1289197285
+mas "Microsoft Remote Desktop", id: 1295203466
+mas "MindNode", id: 1289197285
 mas "Numbers", id: 409203825
 mas "Open In Webmail", id: 1451552749
 mas "Pages", id: 409201541
 mas "Paprika Recipe Manager 3", id: 1303222628
-mas "Pastebot", id: 1179623856
 mas "Patterns", id: 429449079
 mas "Reeder", id: 1449412482
 mas "SessionRestore", id: 1463334954
 mas "Slack", id: 803453959
 mas "StopTheMadness", id: 1376402589
+mas "Tailscale", id: 1475387142
+mas "Taskheat", id: 1431995750
+mas "Tweetbot", id: 1384080005
+mas "Twitter", id: 1482454543
 mas "WhatsApp", id: 1147396723
 mas "WiFi Explorer", id: 494803304
 mas "WiFi Signal", id: 525912054
+mas "Wipr", id: 1320666476
 mas "WireGuard", id: 1451685025
 mas "Yoink", id: 457622435
