@@ -10,7 +10,7 @@ ignore-article "http://feeds.feedburner.com/thesimpledollar" "title =~ Renters I
 
 ignore-article "http://feeds.feedburner.com/twistedsifter" "title =~ The Shirk Report"
 
-ignore-article "https://electrek.co/feed/" "title # podcast,motorcyle,bike,scooter,moped,bicycle"
+ignore-article "https://electrek.co/feed/" "title # Podcast,podcast,motorcyle,bike,scooter,moped,bicycle"
 
 ignore-article "https://www.hodinkee.com/" "title =~ The Grey NATO"
 ignore-article "https://www.hodinkee.com/" "title =~ HODINKEE Radio"
