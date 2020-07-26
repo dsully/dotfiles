@@ -21,3 +21,5 @@ ignore-article "http://www.ablogtowatch.com/feed/" "title =~ weekly news roundup
 
 ignore-article "https://www.macstories.net/" "title =~ Top Stories:"
 ignore-article "https://www.macstories.net/" "title =~ \[Sponsor\]"
+
+ignore-article "https://www.fratellowatches.com/" "title =~ Sunday Morning Showdown"
