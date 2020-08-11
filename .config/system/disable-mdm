@@ -1,0 +1,11 @@
+#!/bin/sh
+
+BASE="/Volumes/Macintosh HD/System/Library"
+BASE="/System/Library"
+
+sudo mkdir $BASE/LaunchDaemons.disabled $BASE/LaunchAgents.disabled
+sudo mv $BASE/LaunchDaemons/com.apple.ManagedClient* $BASE/LaunchDaemons.disabled/
+sudo mv $BASE/LaunchAgents/com.apple.ManagedClient* $BASE/LaunchAgents.disabled/
+
+sudo cp hosts /etc/
+sudo cp sudo /etc/pam.d/
