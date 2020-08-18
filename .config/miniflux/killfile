@@ -4,6 +4,8 @@ ignore-article "https://daringfireball.net/" "title =~ the talk show:"
 ignore-article "https://daringfireball.net/" "title =~ Daring Fireball Weekly Sponsorships"
 
 ignore-article "http://feeds.feedburner.com/thechangelog" "title =~ JS Party"
+ignore-article "http://feeds.feedburner.com/thechangelog" "title =~ Practical AI"
+ignore-article "http://feeds.feedburner.com/thechangelog" "title =~ Go Time"
 
 ignore-article "http://feeds.feedburner.com/thesimpledollar" "title =~ Insurance Review"
 ignore-article "http://feeds.feedburner.com/thesimpledollar" "title =~ Renters Insurance"
