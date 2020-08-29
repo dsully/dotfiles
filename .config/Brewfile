@@ -121,9 +121,7 @@ mas "Ghostery Lite", id: 1436953057
 mas "HomeAtmo", id: 1359795390
 mas "Honey", id: 1472777122
 mas "iMovie", id: 408981434
-mas "Instapaper", id: 1481302432
 mas "JSONPeep", id: 1458969831
-mas "Keep It", id: 1272768911
 mas "Keynote", id: 409183694
 mas "Magnet", id: 441258766
 mas "Marked 2", id: 890031187
@@ -134,14 +132,13 @@ mas "Open In Webmail", id: 1451552749
 mas "Pages", id: 409201541
 mas "Paprika Recipe Manager 3", id: 1303222628
 mas "Patterns", id: 429449079
+mas "Raindrop.io for Safari", id: 957810159
 mas "Reeder", id: 1449412482
 mas "SessionRestore", id: 1463334954
 mas "Slack", id: 803453959
 mas "StopTheMadness", id: 1376402589
-mas "Tailscale", id: 1475387142
 mas "Taskheat", id: 1431995750
 mas "Tweetbot", id: 1384080005
-mas "Twitter", id: 1482454543
 mas "WhatsApp", id: 1147396723
 mas "WiFi Explorer", id: 494803304
 mas "WiFi Signal", id: 525912054
