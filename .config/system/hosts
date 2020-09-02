@@ -7,6 +7,7 @@
 127.0.0.1	localhost
 255.255.255.255	broadcasthost
 ::1             localhost
+10.0.0.100      server
 
 # https://gist.github.com/henrik242/65d26a7deca30bdb9828e183809690bd
 # https://support.apple.com/en-us/HT210060
