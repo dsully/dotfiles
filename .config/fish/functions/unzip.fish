@@ -3,6 +3,6 @@ function unzip
     if test -d /usr/local/opt/unzip/bin
         command /usr/local/opt/unzip/bin/unzip $argv
     else
-        command unzip
+        command unzip $argv
     end
 end
