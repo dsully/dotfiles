@@ -31,6 +31,7 @@ addpath \
     "$HOME/.cargo/bin" \
     "$HOME/.poetry/bin" \
     "$HOME/.local/bin" \
+    /Library/Apple/usr/bin \
     /usr/local/bin \
     /usr/local/sbin
 
