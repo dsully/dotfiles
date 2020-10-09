@@ -24,4 +24,14 @@ ignore-article "http://www.ablogtowatch.com/feed/" "title =~ weekly news roundup
 ignore-article "https://www.macstories.net/" "title =~ Top Stories:"
 ignore-article "https://www.macstories.net/" "title =~ \[Sponsor\]"
 
+ignore-article "http://feeds.macrumors.com/" "title =~ Top Stories:"
+
 ignore-article "https://www.fratellowatches.com/" "title =~ Sunday Morning Showdown"
+
+ignore-article "https://www.reddit.com/r/Watches/.rss" "title =~ Vostok"
+ignore-article "https://www.reddit.com/r/Watches/.rss" "title =~ Orient"
+ignore-article "https://www.reddit.com/r/Watches/.rss" "title =~ Wrist Check"
+
+ignore-article "https://www.reddit.com/r/rust/.rss" "title =~ This Week in Rust"
+ignore-article "https://www.reddit.com/r/rust/.rss" "title =~ What's everyone working on this week"
+ignore-article "https://www.reddit.com/r/rust/.rss" "title =~ Hey Rustaceans! Got an easy question?"
