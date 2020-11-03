@@ -17,16 +17,20 @@ ignore-article "https://electrek.co/feed/" "title =~ (?i)(podcast|scooter|motorc
 ignore-article "https://www.hodinkee.com/" "title =~ The Grey NATO"
 ignore-article "https://www.hodinkee.com/" "title =~ HODINKEE Radio"
 ignore-article "https://www.hodinkee.com/" "title =~ Weekend Round"
+ignore-article "https://www.hodinkee.com/" "title =~ Sunday Rewind"
 
-ignore-article "http://www.ablogtowatch.com/feed/" "title =~ BEST FROM"
-ignore-article "http://www.ablogtowatch.com/feed/" "title =~ weekly news roundup"
+ignore-article "https://www.fratellowatches.com/" "title =~ This Week in Watches"
+ignore-article "https://www.fratellowatches.com/" "title =~ Sunday Morning Showdown"
+
+ignore-article "https://wornandwound.com/" "title =~ Watches, Stories & Gear:"
+
+ignore-article "http://www.ablogtowatch.com/" "title =~ BEST FROM"
+ignore-article "http://www.ablogtowatch.com/" "title =~ weekly news roundup"
 
 ignore-article "https://www.macstories.net/" "title =~ Top Stories:"
 ignore-article "https://www.macstories.net/" "title =~ \[Sponsor\]"
 
 ignore-article "http://feeds.macrumors.com/" "title =~ Top Stories:"
-
-ignore-article "https://www.fratellowatches.com/" "title =~ Sunday Morning Showdown"
 
 ignore-article "https://www.reddit.com/r/Watches/.rss" "title =~ Vostok"
 ignore-article "https://www.reddit.com/r/Watches/.rss" "title =~ Orient"
