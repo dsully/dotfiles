@@ -11,7 +11,6 @@ tap "homebrew/cask-versions"
 tap "homebrew/command-not-found"
 tap "homebrew/core"
 tap "homebrew/services"
-tap "mistertea/et"
 brew "bandwhich"
 brew "bat"
 brew "bvaisvil/zenith/zenith"
@@ -34,10 +33,8 @@ brew "iperf3"
 brew "jq"
 brew "lsd"
 brew "mas"
-brew "mistertea/et/et"
 brew "mtr"
 brew "mysql@5.7", restart_service: true
-brew "ncdu"
 brew "netcat6"
 brew "p7zip"
 brew "ripgrep"
@@ -140,7 +137,7 @@ mas "Pages", id: 409201541
 mas "Paprika Recipe Manager 3", id: 1303222628
 mas "Patterns", id: 429449079
 mas "Raindrop.io for Safari", id: 957810159
-mas "Reeder", id: 1449412482
+mas "Reeder", id: 1529448980
 mas "SessionRestore", id: 1463334954
 mas "Slack", id: 803453959
 mas "StopTheMadness", id: 1376402589
