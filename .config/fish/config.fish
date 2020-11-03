@@ -17,6 +17,8 @@ set -Ux PAGER "less -FirSwX"
 set -Ux MANPAGER "less -FirSwX"
 
 set -Ux RIPGREP_CONFIG_PATH $HOME/.ripgreprc
+set -Ux HOMEBREW_CASK_OPTS "--no-quarantine"
+set -Ux VOLTA_HOME "$HOME/.volta"
 
 # Turn on vi keybindings
 # set -g fish_key_bindings fish_vi_key_bindings
@@ -29,8 +31,10 @@ addpath \
     "$HOME/bin/share" \
     "$HOME/bin/$OS" \
     "$HOME/.cargo/bin" \
-    "$HOME/.poetry/bin" \
     "$HOME/.local/bin" \
+    "$HOME/.poetry/bin" \
+    "$HOME/.volta/bin" \
+    /Users/dsully/Library/Python/3.8/bin \
     /Library/Apple/usr/bin \
     /usr/local/bin \
     /usr/local/sbin
