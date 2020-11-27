@@ -87,8 +87,6 @@ cask "monodraw"
 cask "movist-pro"
 cask "omnigraffle"
 cask "paw"
-cask "pdfpen"
-cask "pdf-expert"
 cask "proxyman"
 cask "pynsource"
 cask "qlcolorcode"
@@ -137,6 +135,7 @@ mas "Open In Webmail", id: 1451552749
 mas "Pages", id: 409201541
 mas "Paprika Recipe Manager 3", id: 1303222628
 mas "Patterns", id: 429449079
+mas "PDF Expert", id: 1055273043
 mas "Raindrop.io for Safari", id: 957810159
 mas "Reeder", id: 1529448980
 mas "SessionRestore", id: 1463334954
