@@ -78,11 +78,6 @@ cask "macdive"
 cask "mactracker"
 cask "mediainfo"
 cask "meta"
-cask "microsoft-auto-update"
-cask "microsoft-outlook"
-cask "microsoft-powerpoint"
-cask "microsoft-teams"
-cask "microsoft-word"
 cask "monodraw"
 cask "movist-pro"
 cask "omnigraffle"
@@ -91,7 +86,6 @@ cask "proxyman"
 cask "pynsource"
 cask "querious"
 cask "quicken"
-cask "quicklook-json"
 cask "raindropio"
 cask "roon"
 cask "screens"
@@ -103,7 +97,6 @@ cask "suspicious-package"
 cask "the-unarchiver"
 cask "tower"
 cask "transmit"
-cask "vanilla"
 cask "visual-studio-code"
 cask "wireshark"
 cask "zoomus"
@@ -134,7 +127,6 @@ mas "Patterns", id: 429449079
 mas "PDF Expert", id: 1055273043
 mas "Raindrop.io for Safari", id: 957810159
 mas "Reeder", id: 1529448980
-mas "SessionRestore", id: 1463334954
 mas "Slack", id: 803453959
 mas "StopTheMadness", id: 1376402589
 mas "Taskheat", id: 1431995750
