@@ -104,7 +104,6 @@ mas "Copied", id: 1026349850
 mas "Dato", id: 1470584107
 mas "Deliveries", id: 924726344
 mas "Discovery", id: 1381004916
-mas "HomeAtmo", id: 1359795390
 mas "Honey", id: 1472777122
 mas "iMovie", id: 408981434
 mas "JSONPeep", id: 1458969831
@@ -113,6 +112,7 @@ mas "Magnet", id: 441258766
 mas "Marked 2", id: 890031187
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "MindNode", id: 1289197285
+mas "Netmo", id: 1192219511
 mas "Numbers", id: 409203825
 mas "Open In Webmail", id: 1451552749
 mas "Pages", id: 409201541
