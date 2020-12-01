@@ -58,7 +58,6 @@ cask "aurora-hdr"
 cask "backblaze"
 cask "blue-jeans"
 cask "cakebrew"
-cask "cisco-proximity"
 cask "cleanshot"
 cask "daisydisk"
 cask "dash"
@@ -71,10 +70,7 @@ cask "font-jetbrains-mono"
 cask "garmin-express"
 cask "github"
 cask "google-chrome"
-cask "graphiql"
-cask "hex-fiend"
 cask "iterm2"
-cask "macdive"
 cask "mactracker"
 cask "mediainfo"
 cask "meta"
@@ -91,19 +87,14 @@ cask "roon"
 cask "screens"
 cask "soulseek"
 cask "soulver"
-cask "stay"
 cask "superduper"
 cask "suspicious-package"
 cask "the-unarchiver"
 cask "tower"
-cask "transmit"
 cask "visual-studio-code"
 cask "wireshark"
 cask "zoomus"
 mas "Adobe Lightroom", id: 1451544217
-mas "Affinity Designer", id: 824171161
-mas "Affinity Photo", id: 824183456
-mas "Apple Configurator 2", id: 1037126344
 mas "AutoMounter", id: 1160435653
 mas "Brother P-touch Editor", id: 1453365242
 mas "Copied", id: 1026349850
@@ -132,8 +123,6 @@ mas "StopTheMadness", id: 1376402589
 mas "Taskheat", id: 1431995750
 mas "Tweetbot", id: 1384080005
 mas "WhatsApp", id: 1147396723
-mas "WiFi Explorer", id: 494803304
-mas "WiFi Signal", id: 525912054
 mas "Wipr", id: 1320666476
 mas "WireGuard", id: 1451685025
 mas "Yoink", id: 457622435
