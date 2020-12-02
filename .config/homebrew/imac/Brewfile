@@ -80,7 +80,7 @@ cask "suspicious-package"
 cask "the-unarchiver"
 cask "visual-studio-code"
 cask "wireshark"
-cask "zoomus"
+cask "zoom"
 mas "Adobe Lightroom", id: 1451544217
 mas "Affinity Designer", id: 824171161
 mas "Affinity Photo", id: 824183456

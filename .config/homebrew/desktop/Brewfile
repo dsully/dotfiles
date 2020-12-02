@@ -93,7 +93,7 @@ cask "the-unarchiver"
 cask "tower"
 cask "visual-studio-code"
 cask "wireshark"
-cask "zoomus"
+cask "zoom"
 mas "Adobe Lightroom", id: 1451544217
 mas "AutoMounter", id: 1160435653
 mas "Brother P-touch Editor", id: 1453365242
