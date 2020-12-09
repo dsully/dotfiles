@@ -98,6 +98,7 @@ cask "visual-studio-code"
 cask "wireshark"
 cask "zoom"
 mas "Adobe Lightroom", id: 1451544217
+mas "Agenda", id: 1287445660
 mas "AutoMounter", id: 1160435653
 mas "Brother P-touch Editor", id: 1453365242
 mas "Copied", id: 1026349850

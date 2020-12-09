@@ -1,6 +1,5 @@
 tap "buo/cask-upgrade"
 tap "cjbassi/ytop"
-tap "fabianishere/personal"
 tap "guoxbin/guoxbin"
 tap "homebrew/bundle"
 tap "homebrew/cask"
@@ -16,7 +15,6 @@ brew "cjbassi/ytop/ytop"
 brew "direnv"
 brew "dog"
 brew "dust"
-brew "fabianishere/personal/pam_reattach"
 brew "fd"
 brew "fish"
 brew "fzf"
@@ -95,6 +93,7 @@ cask "visual-studio-code"
 cask "wireshark"
 cask "zoom"
 mas "Adobe Lightroom", id: 1451544217
+mas "Agenda", id: 1287445660
 mas "AutoMounter", id: 1160435653
 mas "Brother P-touch Editor", id: 1453365242
 mas "Copied", id: 1026349850
