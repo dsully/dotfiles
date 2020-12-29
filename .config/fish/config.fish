@@ -73,5 +73,5 @@ if status --is-interactive
 
     # Silence direnv logging and invoke it's hook.
     set -gx DIRENV_LOG_FORMAT ""
-    eval (direnv hook fish)
+    direnv hook fish | source
 end
