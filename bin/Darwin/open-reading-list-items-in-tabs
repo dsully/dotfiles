@@ -1,0 +1,28 @@
+#!/usr/bin/ruby
+
+require 'cfpropertylist'
+
+path = File.expand_path '~/Library/Safari/Bookmarks.plist'
+plist = CFPropertyList::List.new file: path
+
+list = plist.value.value['Children'].value.select do |item|
+  title = item.value['Title']
+  title.value == 'com.apple.ReadingList'
+end.first.value['Children'].value
+
+bookmarks = list.map do |item|
+  item.value['URLString'].value
+end.reverse
+
+puts "Opening #{bookmarks.count} tabs"
+
+`osascript -e 'tell application "Safari" to if windows is {} then reopen'`
+bookmarks.each do |url|
+  `osascript -e '
+    tell application "Safari"
+      tell window 1 to make new tab with properties {URL:"#{url}"}
+    end tell'`
+  print '.'
+end
+
+puts ''
