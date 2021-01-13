@@ -85,6 +85,7 @@ cask "querious"
 cask "raindropio"
 cask "roon"
 cask "screens"
+cask "signal"
 cask "soulseek"
 cask "soulver"
 cask "stay"
@@ -125,7 +126,6 @@ mas "Slack", id: 803453959
 mas "StopTheMadness", id: 1376402589
 mas "Taskheat", id: 1431995750
 mas "Tweetbot", id: 1384080005
-mas "WhatsApp", id: 1147396723
 mas "WiFi Explorer", id: 494803304
 mas "WiFi Signal", id: 525912054
 mas "Wipr", id: 1320666476
