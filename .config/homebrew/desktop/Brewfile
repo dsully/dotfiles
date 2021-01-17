@@ -30,6 +30,7 @@ brew "iperf3"
 brew "jq"
 brew "lsd"
 brew "mas"
+brew "mdcat"
 brew "mtr"
 brew "mysql@5.7", restart_service: true
 brew "netcat6"
