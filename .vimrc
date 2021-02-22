@@ -18,6 +18,7 @@ set viminfo='20,\"50    " read/write a .viminfo file, don't store more than 50 l
 set ttyfast             " fast terminal connection
 set magic               " changes special characters in search patterns
 set esckeys             " allow use of cursor keys in insert mode
+set re=0                " https://github.com/vim/vim/issues/7280
 
 set showmatch           " match brackets
 set showmode            " show on status line
