@@ -83,6 +83,7 @@ cask "macdive"
 cask "mactracker"
 cask "mediainfo"
 cask "meta"
+cask "microsoft-teams"
 cask "monodraw"
 cask "movist-pro"
 cask "notion"
@@ -93,7 +94,6 @@ cask "pynsource"
 cask "querious"
 cask "quicken"
 cask "raindropio"
-cask "retrobatch"
 cask "roon"
 cask "screens"
 cask "signal"
@@ -126,11 +126,11 @@ mas "iMovie", id: 408981434
 mas "iPreview", id: 1519213509
 mas "JSONPeep", id: 1458969831
 mas "Keynote", id: 409183694
-mas "Label LIVE", id: 1438785281
 mas "m-wiki", id: 1480168619
 mas "Magnet", id: 441258766
 mas "Marked 2", id: 890031187
 mas "MetaImage", id: 1397099749
+mas "Microsoft Outlook", id: 985367838
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Mindlist", id: 1505964697
 mas "MindNode", id: 1289197285
@@ -142,6 +142,8 @@ mas "Pages", id: 409201541
 mas "Paprika Recipe Manager 3", id: 1303222628
 mas "Patterns", id: 429449079
 mas "PDF Expert", id: 1055273043
+mas "PhotoMill", id: 778590574
+mas "PhotoSweeper", id: 463362050
 mas "Pricy", id: 1538659032
 mas "RAW Power", id: 1157116444
 mas "Reeder", id: 1529448980
