@@ -1,4 +1,5 @@
 tap "buo/cask-upgrade"
+tap "bvaisvil/zenith"
 tap "cjbassi/ytop"
 tap "guoxbin/guoxbin"
 tap "homebrew/bundle"
@@ -14,7 +15,6 @@ brew "bat"
 brew "direnv"
 brew "dog"
 brew "dust"
-brew "exiftool"
 brew "fd"
 brew "fish"
 brew "fzf"
@@ -28,19 +28,22 @@ brew "hexyl"
 brew "hyperfine"
 brew "iperf3"
 brew "jq"
+brew "loc"
 brew "lsd"
 brew "mas"
 brew "mdcat"
 brew "mtr"
 brew "mysql@5.7", restart_service: true
 brew "netcat6"
+brew "nmap"
 brew "p7zip"
+brew "procs"
 brew "ripgrep"
 brew "rsync"
 brew "rustup-init"
 brew "sd"
+brew "subversion"
 brew "syncthing", restart_service: true
-brew "tealdeer"
 brew "telnet"
 brew "tokei"
 brew "tree"
@@ -51,6 +54,7 @@ brew "xh"
 brew "xz"
 brew "zenith"
 brew "zoxide"
+brew "bvaisvil/zenith/zenith"
 brew "cjbassi/ytop/ytop"
 cask "1password"
 cask "adobe-creative-cloud"
@@ -66,11 +70,11 @@ cask "dash"
 cask "discord"
 cask "downie"
 cask "electorrent"
-cask "elgato-control-center"
 cask "font-hack-nerd-font"
 cask "font-jetbrains-mono"
 cask "garmin-express"
 cask "github"
+cask "hex-fiend"
 cask "iterm2"
 cask "kaleidoscope"
 cask "mactracker"
@@ -133,8 +137,9 @@ mas "Pages", id: 409201541
 mas "Paprika Recipe Manager 3", id: 1303222628
 mas "Patterns", id: 429449079
 mas "PDF Expert", id: 1055273043
+mas "PhotoMill", id: 778590574
+mas "PhotoSweeper", id: 463362050
 mas "Pricy", id: 1538659032
-mas "Quiet", id: 1441525727
 mas "RAW Power", id: 1157116444
 mas "Reeder", id: 1529448980
 mas "Save to Raindrop.io", id: 1549370672
