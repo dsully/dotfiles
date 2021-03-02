@@ -27,7 +27,7 @@ set -Ux VOLTA_HOME "$HOME/.volta"
 bind --all \t complete
 # https://github.com/fish-shell/fish-shell/issues/3299
 
-addpath \
+fish_add_path \
     "$HOME/bin/share" \
     "$HOME/bin/$OS" \
     "$HOME/.cargo/bin" \
@@ -47,7 +47,7 @@ if test -e "$HOME/.config/fish/lib/linkedin.fish"
     source "$HOME/.config/fish/lib/linkedin.fish"
 end
 
-addpath \
+fish_add_path \
     /usr/bin \
     /bin \
     /sbin \
