@@ -11,9 +11,7 @@ indent_style = space
 trim_trailing_whitespace = true
 
 [*.py]
-end_of_line = lf
 indent_size = 4
-indent_style = space
 insert_final_newline = true
 max_line_length = 160
 
@@ -22,4 +20,13 @@ max_line_length = 160
 indent_style = tab
 
 [build.gradle]
+indent_size = 2
+
+[package.json]
+indent_size = 2
+
+[*.ts]
+indent_size = 2
+
+[*.js]
 indent_size = 2
