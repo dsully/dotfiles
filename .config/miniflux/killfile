@@ -16,7 +16,7 @@ ignore-article "https://electrek.co/feed/" "title =~ (?i)(podcast|scooter|motorc
 
 ignore-article "https://www.hodinkee.com/" "title =~ The Grey NATO"
 ignore-article "https://www.hodinkee.com/" "title =~ HODINKEE Radio"
-ignore-article "https://www.hodinkee.com/" "title =~ Weekend Round"
+ignore-article "https://www.hodinkee.com/" "title =~ Weekend Round-Up"
 ignore-article "https://www.hodinkee.com/" "title =~ Sunday Rewind"
 
 ignore-article "https://www.fratellowatches.com/" "title =~ This Week in Watches"
@@ -39,3 +39,5 @@ ignore-article "https://www.reddit.com/r/Watches/.rss" "title =~ Wrist Check"
 ignore-article "https://www.reddit.com/r/rust/.rss" "title =~ This Week in Rust"
 ignore-article "https://www.reddit.com/r/rust/.rss" "title =~ What's everyone working on this week"
 ignore-article "https://www.reddit.com/r/rust/.rss" "title =~ Hey Rustaceans! Got an easy question?"
+
+ignore-article "https://techcrunch.com/feed/" "title =~ Daily Crunch"
