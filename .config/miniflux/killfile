@@ -14,6 +14,8 @@ ignore-article "http://feeds.feedburner.com/twistedsifter" "title =~ The Shirk R
 
 ignore-article "https://electrek.co/feed/" "title =~ (?i)(podcast|scooter|motorcycle|moped)"
 
+ignore-article "http://feeds.feedburner.com/cyclingtipsblog/" "title =~ CyclingTips Podcast"
+
 ignore-article "https://www.hodinkee.com/" "title =~ The Grey NATO"
 ignore-article "https://www.hodinkee.com/" "title =~ HODINKEE Radio"
 ignore-article "https://www.hodinkee.com/" "title =~ Weekend Round-Up"
@@ -41,3 +43,4 @@ ignore-article "https://www.reddit.com/r/rust/.rss" "title =~ What's everyone wo
 ignore-article "https://www.reddit.com/r/rust/.rss" "title =~ Hey Rustaceans! Got an easy question?"
 
 ignore-article "https://techcrunch.com/feed/" "title =~ Daily Crunch"
+ignore-article "https://techcrunch.com/feed/" "title =~ Dear Sophie"
