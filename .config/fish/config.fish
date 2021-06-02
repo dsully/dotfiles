@@ -72,6 +72,12 @@ end
 if status --is-interactive
 
     # Silence direnv logging and invoke it's hook.
-    set -gx DIRENV_LOG_FORMAT ""
-    direnv hook fish | source
+    if type -q direnv
+        set -gx DIRENV_LOG_FORMAT ""
+        direnv hook fish | source
+    end
+
+    if type -q zoxide
+        zoxide init fish --cmd j | source
+    end
 end
