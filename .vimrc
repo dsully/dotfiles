@@ -7,6 +7,9 @@ set shell=/bin/bash
 " https://github.com/hdima/python-syntax
 let python_highlight_all = 1
 
+" https://www.arthurkoziel.com/setting-up-vim-for-yaml/
+let g:indentLine_char = '⦙'
+
 set rtp+=/usr/local/opt/fzf
 
 syntax on
@@ -50,6 +53,9 @@ set smartcase
 set gdefault
 set incsearch
 set hlsearch
+
+hi Search cterm=NONE ctermfg=black ctermbg=green
+hi IncSearch cterm=NONE ctermfg=black ctermbg=green
 
 " Load matchit (% to bounce from do to end, etc.)
 runtime! macros/matchit.vim
@@ -124,8 +130,10 @@ au BufRead,BufNewFile *.avsc set filetype=json
 au BufRead,BufNewFile *.gradle set filetype=groovy softtabstop=2 shiftwidth=2
 
 " Tab stops & other per-file type setup.
-autocmd FileType java,vim,avro-idl,json,rest   set softtabstop=2 shiftwidth=2
-autocmd FileType html,html5,xhtml,xml,yaml     set softtabstop=2 shiftwidth=2
+autocmd FileType java,vim,avro-idl,json,rest   set softtabstop=2 shiftwidth=2 tabstop=2 expandtab
+autocmd FileType html,html5,xhtml,xml,yaml     set softtabstop=2 shiftwidth=2 tabstop=2 expandtab
+
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 augroup python
     autocmd!
