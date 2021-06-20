@@ -11,10 +11,14 @@ set -Ux XDG_CONFIG_HOME $HOME/.config
 set -Ux LANG en_US.UTF-8
 
 # Vim & Pager
-set -Ux EDITOR vim
-set -Ux VISUAL vim
+set -Ux EDITOR nvim
+set -Ux VISUAL nvim
 set -Ux PAGER "less -FirSwX"
 set -Ux MANPAGER "less -FirSwX"
+
+alias vi=nvim
+alias vim=nvim
+alias view="nvim -R"
 
 set -Ux RIPGREP_CONFIG_PATH $HOME/.ripgreprc
 set -Ux HOMEBREW_CASK_OPTS "--no-quarantine"
@@ -35,6 +39,8 @@ fish_add_path \
     "$HOME/.poetry/bin" \
     "$HOME/.volta/bin" \
     /Users/dsully/Library/Python/3.8/bin \
+    /Users/dsully/Library/Python/3.9/bin \
+    /Users/dsully/Library/Python/3.10/bin \
     /Library/Apple/usr/bin \
     /usr/local/bin \
     /usr/local/sbin
