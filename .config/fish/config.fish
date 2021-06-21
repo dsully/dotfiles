@@ -16,9 +16,9 @@ set -Ux VISUAL nvim
 set -Ux PAGER "less -FirSwX"
 set -Ux MANPAGER "less -FirSwX"
 
-alias vi=nvim
-alias vim=nvim
-alias view="nvim -R"
+abbr -a vi nvim
+abbr -a vim nvim
+abbr -a view nvim -R
 
 set -Ux RIPGREP_CONFIG_PATH $HOME/.ripgreprc
 set -Ux HOMEBREW_CASK_OPTS "--no-quarantine"
