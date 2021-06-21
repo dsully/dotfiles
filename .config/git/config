@@ -39,5 +39,5 @@
     path = ~/.config/git/private
 [includeIf "gitdir:~/dev/linkedin/"]
     path = ~/.config/git/linkedin
-[init]
-	defaultBranch = main
+#[init]
+#	defaultBranch = main
