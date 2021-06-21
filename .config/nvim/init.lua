@@ -9,6 +9,7 @@ vim.opt.foldenable = false
 vim.opt.formatoptions = 'crq'                      -- http://www.vim.org/htmldoc/change.html#fo-table
 vim.opt.guicursor = 'a:blinkon10'                  -- Blink the cursor.
 vim.opt.ignorecase = true
+vim.opt.number = true
 vim.opt.shell = 'sh'                               -- plugins expect bash - not fish, zsh, etc
 vim.opt.shiftwidth = 4
 vim.opt.showbreak = '>'

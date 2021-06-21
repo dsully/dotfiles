@@ -1,45 +1,45 @@
--- Bootstrap Paq https://github.com/savq/paq-nvim
+-- Bootstrap Packer: https://github.com/wbthomason/packer.nvim
 
-local install_path = vim.fn.stdpath('data')..'/site/pack/paqs/start/paq-nvim'
+local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.cmd('!git clone --depth 1 https://github.com/savq/paq-nvim.git '..install_path)
+  vim.fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
+  vim.api.nvim_command 'packadd packer.nvim'
 end
 
--- Load the plugin manager
-vim.cmd [[packadd paq-nvim]]
+return require('packer').startup(function()
+    -- Packer can manage itself
+    use 'wbthomason/packer.nvim'
 
-local paq = require 'paq-nvim'
+    use 'bash-lsp/bash-language-server'
+    use 'shaunsingh/nord.nvim'
+    use 'cespare/vim-toml'
+    use 'dag/vim-fish'
+    use 'famiu/nvim-reload'
+    use 'glench/vim-jinja2-syntax'
+    use 'hrsh7th/nvim-compe';
+    use 'keith/swift.vim'
+    use 'leafgarland/typescript-vim'
+    use {'lukas-reineke/indent-blankline.nvim', branch='lua'} -- TODO use master branch when 0.5 is out
+    use 'motus/pig.vim'
+    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    use 'nvim-treesitter/nvim-treesitter-textobjects'
+    use 'nvim-treesitter/playground'
+    use 'neovim/nvim-lspconfig'
+    use 'wsdjeg/vim-fetch'
 
-paq {
-    -- Make paq manage it self
-    'savq/paq-nvim';
+    -- Floating windows are awesome :)
+    use 'rhysd/git-messenger.vim'
 
-    -- Plugin list
-    'bash-lsp/bash-language-server';
-    'shaunsingh/nord.nvim';
-    'cespare/vim-toml';
-    'dag/vim-fish';
-    'famiu/nvim-reload';
-    'glench/vim-jinja2-syntax';
-    'hrsh7th/nvim-compe';
-    'keith/swift.vim';
-    'leafgarland/typescript-vim';
-    {'lukas-reineke/indent-blankline.nvim', branch='lua'}; -- TODO use master branch when 0.5 is out
-    'motus/pig.vim';
-    {'nvim-treesitter/nvim-treesitter', run=':TSUpdate'};
-    'nvim-treesitter/nvim-treesitter-textobjects';
-    'nvim-treesitter/playground';
-    'neovim/nvim-lspconfig';
-    'nvim-treesitter/nvim-treesitter';
-    'wsdjeg/vim-fetch';
+    use {
+        'nvim-telescope/telescope.nvim', requires={
+            'nvim-lua/popup.nvim',
+            'nvim-lua/plenary.nvim',
+        }
+    }
 
-    -- Dependencies for telescope.
-    'nvim-lua/popup.nvim';
-    'nvim-lua/plenary.nvim';
-    'nvim-telescope/telescope.nvim';
-}
-
--- Auto install and clean plugins
-paq.install()
-paq.clean()
+    -- Use dependency and run lua function after load
+    use {
+        'lewis6991/gitsigns.nvim', requires={ 'nvim-lua/plenary.nvim' }, config=function() require('gitsigns').setup() end
+    }
+end)
