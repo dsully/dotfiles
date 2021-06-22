@@ -12,23 +12,25 @@ return require('packer').startup(function()
     use 'wbthomason/packer.nvim'
 
     use 'bash-lsp/bash-language-server'
-    use 'shaunsingh/nord.nvim'
     use 'cespare/vim-toml'
     use 'dag/vim-fish'
     use 'famiu/nvim-reload'
+    use 'folke/lua-dev.nvim'
     use 'glench/vim-jinja2-syntax'
     use 'hrsh7th/nvim-compe';
     use 'keith/swift.vim'
+    use 'kosayoda/nvim-lightbulb'
     use 'leafgarland/typescript-vim'
-    use {'lukas-reineke/indent-blankline.nvim', branch='lua'} -- TODO use master branch when 0.5 is out
+    use 'lukas-reineke/format.nvim'
     use 'motus/pig.vim'
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    use 'neovim/nvim-lspconfig'
     use 'nvim-treesitter/nvim-treesitter-textobjects'
     use 'nvim-treesitter/playground'
-    use 'neovim/nvim-lspconfig'
+    use 'shaunsingh/nord.nvim'
     use 'wsdjeg/vim-fetch'
-    use 'kosayoda/nvim-lightbulb'
-    use 'folke/lua-dev.nvim'
+
+    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    use {'lukas-reineke/indent-blankline.nvim', branch='lua'} -- TODO use master branch when 0.5 is out
 
     -- Floating windows are awesome :)
     use 'rhysd/git-messenger.vim'
@@ -51,6 +53,9 @@ return require('packer').startup(function()
 
     -- Use dependency and run lua function after load
     use {
-        'lewis6991/gitsigns.nvim', requires={ 'nvim-lua/plenary.nvim' }, config=function() require('gitsigns').setup() end
+        'lewis6991/gitsigns.nvim', requires={
+            'nvim-lua/plenary.nvim'
+        },
+        config=function() require('gitsigns').setup() end
     }
 end)
