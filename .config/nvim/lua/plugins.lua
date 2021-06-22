@@ -27,15 +27,26 @@ return require('packer').startup(function()
     use 'nvim-treesitter/playground'
     use 'neovim/nvim-lspconfig'
     use 'wsdjeg/vim-fetch'
+    use 'kosayoda/nvim-lightbulb'
+    use 'folke/lua-dev.nvim'
 
     -- Floating windows are awesome :)
     use 'rhysd/git-messenger.vim'
+
+    use {
+        'hoob3rt/lualine.nvim',
+        requires = {'kyazdani42/nvim-web-devicons', opt = true}
+    }
 
     use {
         'nvim-telescope/telescope.nvim', requires={
             'nvim-lua/popup.nvim',
             'nvim-lua/plenary.nvim',
         }
+    }
+
+    use {
+        'williamboman/nvim-lsp-installer'
     }
 
     -- Use dependency and run lua function after load
