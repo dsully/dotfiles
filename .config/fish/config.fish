@@ -6,7 +6,7 @@ if test -z "$HOSTNAME"
     set -Ux OS (uname -s)
 end
 
-set -Ux TERM xterm-color
+set -Ux fish_term24bit 1
 set -Ux XDG_CONFIG_HOME $HOME/.config
 set -Ux LANG en_US.UTF-8
 
@@ -76,6 +76,10 @@ end
 
 # 3rd party.
 if status --is-interactive
+
+    if test -e "/Applications/kitty.app/Contents/Resources/kitty/terminfo"
+        set -gx TERMINFO "/Applications/kitty.app/Contents/Resources/kitty/terminfo"
+    end
 
     # Silence direnv logging and invoke it's hook.
     if type -q direnv
