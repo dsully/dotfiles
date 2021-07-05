@@ -13,8 +13,8 @@ set -Ux LANG en_US.UTF-8
 # Vim & Pager
 set -Ux EDITOR nvim
 set -Ux VISUAL nvim
-set -Ux PAGER "less -FirSwX"
-set -Ux MANPAGER "less -FirSwX"
+set -Ux PAGER "less -FiRSwX"
+set -Ux MANPAGER "less -FiRSwX"
 
 abbr -a vi nvim
 abbr -a vim nvim
@@ -62,7 +62,6 @@ fish_add_path \
 # Clear out entries from /etc/paths.d and add our paths to the actual PATH.
 set -e PATH
 set -gx PATH $fish_user_paths
-set -gx MANPATH /usr/share/man:/usr/local/share/man
 
 # Python
 set -gx PYTHONSTARTUP ~/.config/python/startup.py
