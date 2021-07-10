@@ -10,6 +10,7 @@
 **/fisher/github.com
 **/fish/fish_variables
 **/htmlcov/
+**/packer_compiled.lua
 Icon?
 *.iml
 *.ipr
