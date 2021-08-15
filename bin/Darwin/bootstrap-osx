@@ -482,6 +482,25 @@ defaults write com.apple.Safari WebKitJavaEnabled -bool false
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabled -bool false
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabledForLocalFiles -bool false
 
+# Remove preference pane which is just a symlink into Internet-Plugins
+sudo rm /Library/PreferencePanes/JavaControlPanel.prefPane
+
+# Remove Application support that is just symlinks into Internet-Plugins +
+# highest installed Oracle Java version in a file for Preference Pane checks
+# (that we just removed). Check carefully if you have anything else. I had
+# just Java subdirectory under Oracle and just the symlinks + file as
+# described above, so I could remove the whole Oracle directory.
+sudo rm -rf /Library/Application\ Support/Oracle
+
+# Remove the plugin itself
+sudo rm -rf /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin
+
+# This package usually owns these files, so forget it was installed
+# since we removed them. Although, as shown above, some other non-standard
+# javaX packages currently own these files. Still, having this package
+# recorded without its files present is just not right.
+sudo pkgutil --forget com.oracle.jre
+
 # Enable "Do Not Track"
 defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
 
