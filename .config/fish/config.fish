@@ -31,7 +31,7 @@ set -Ux VOLTA_HOME "$HOME/.volta"
 bind --all \t complete
 # https://github.com/fish-shell/fish-shell/issues/3299
 
-fish_add_path \
+fish_add_path --append \
     "$HOME/bin/share" \
     "$HOME/bin/$OS" \
     "$HOME/.cargo/bin" \
@@ -45,23 +45,19 @@ fish_add_path \
     /usr/local/bin \
     /usr/local/sbin
 
-if test -e "$HOME/.config/fish/lib/github.fish"
+if test -f "$HOME/.config/fish/lib/github.fish"
     source "$HOME/.config/fish/lib/github.fish"
 end
 
-if test -e "$HOME/.config/fish/lib/linkedin.fish"
+if test -f "$HOME/.config/fish/lib/linkedin.fish"
     source "$HOME/.config/fish/lib/linkedin.fish"
 end
 
-fish_add_path \
+fish_add_path --append \
     /usr/bin \
     /bin \
     /sbin \
     /usr/sbin
-
-# Clear out entries from /etc/paths.d and add our paths to the actual PATH.
-set -e PATH
-set -gx PATH $fish_user_paths
 
 # Python
 set -gx PYTHONSTARTUP ~/.config/python/startup.py
@@ -76,7 +72,7 @@ end
 # 3rd party.
 if status --is-interactive
 
-    if test -e "/Applications/kitty.app/Contents/Resources/kitty/terminfo"
+    if test -f "/Applications/kitty.app/Contents/Resources/kitty/terminfo"
         set -gx TERMINFO "/Applications/kitty.app/Contents/Resources/kitty/terminfo"
     end
 
