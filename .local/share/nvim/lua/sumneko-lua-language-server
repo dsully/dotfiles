@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-if [ $OS == "Darwin" ]; then
-    ARCH="macOS"
-else
-    ARCH=$OS
-fi
-
-$(dirname $0)/sumneko-lua/extension/server/bin/$ARCH/lua-language-server -E -e LANG=en $(dirname $0)/sumneko-lua/extension/server/main.lua $*
