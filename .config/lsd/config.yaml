@@ -42,7 +42,7 @@ dereference: false
 # == Display ==
 # What items to display. Do not specify this for the default behavior.
 # Possible values: all, almost-all, directory-only
-display: almost-all
+# display: almost-all
 
 # == Icons ==
 icons:
