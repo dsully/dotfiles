@@ -20,6 +20,7 @@ abbr -a vi nvim
 abbr -a vim nvim
 abbr -a view nvim -R
 
+set -Ux GOPATH $HOME/.local/go
 set -Ux RIPGREP_CONFIG_PATH $HOME/.ripgreprc
 set -Ux HOMEBREW_CASK_OPTS "--no-quarantine"
 set -Ux VOLTA_HOME "$HOME/.volta"
@@ -36,9 +37,11 @@ fish_add_path --append \
     "$HOME/bin/$OS" \
     "$HOME/.cargo/bin" \
     "$HOME/.local/bin" \
+    "$HOME/.local/go/bin" \
     "$HOME/.poetry/bin" \
     "$HOME/.volta/bin" \
-    /Users/dsully/Library/Python/3.8/bin \
+    "$HOME/.volta/bin" \
+    /home/linuxbrew/.linuxbrew/bin \
     /Users/dsully/Library/Python/3.9/bin \
     /Users/dsully/Library/Python/3.10/bin \
     /Library/Apple/usr/bin \
