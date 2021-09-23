@@ -20,7 +20,8 @@
     # pager = delta --dark --file-style=box --hunk-style=plain --theme=base16
     pager = diff-so-fancy | less --tabs=4 -RFX
 [credential]
-    helper = osxkeychain
+    helper = /usr/local/bin/git-credential-manager-core
+    credentialStore = cache
 [diff]
     noprefix = true
 [push]
