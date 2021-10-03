@@ -98,5 +98,14 @@ if status --is-interactive
 
     if type -q zoxide
         zoxide init fish --cmd j | source
+    # https://github.com/Homebrew/homebrew-cask/blob/master/USAGE.md
+    set -gx HOMEBREW_CASK_OPTS --no-quarantine
+
+    # https://github.com/Homebrew/homebrew-command-not-found
+    switch $OS
+        case Darwin
+            source /usr/local/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.fish
+        case Linux
+            source /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.fish
     end
 end
