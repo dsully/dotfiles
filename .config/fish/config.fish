@@ -7,23 +7,21 @@ if test -z "$HOSTNAME"
 end
 
 set -Ux fish_term24bit 1
+set -Ux XDG_CACHE_HOME $HOME/.cache
 set -Ux XDG_CONFIG_HOME $HOME/.config
 set -Ux LANG en_US.UTF-8
 
 # Vim & Pager
-set -Ux EDITOR nvim
-set -Ux VISUAL nvim
-set -Ux PAGER "less -FiRSwX"
-set -Ux MANPAGER "less -FiRSwX"
+set -gx EDITOR nvim
+set -gx VISUAL nvim
+set -gx PAGER "less -FiRSwX"
+set -gx MANPAGER "less -FiRSwX"
 
-abbr -a vi nvim
-abbr -a vim nvim
-abbr -a view nvim -R
-
-set -Ux GOPATH $HOME/.local/go
-set -Ux RIPGREP_CONFIG_PATH $HOME/.ripgreprc
-set -Ux HOMEBREW_CASK_OPTS "--no-quarantine"
-set -Ux VOLTA_HOME "$HOME/.volta"
+alias ls lsd
+alias python python3
+alias vi nvim
+alias vim nvim
+alias view "nvim -R"
 
 # Turn on vi keybindings
 # set -g fish_key_bindings fish_vi_key_bindings
@@ -39,8 +37,7 @@ fish_add_path --append \
     "$HOME/.local/bin" \
     "$HOME/.local/go/bin" \
     "$HOME/.poetry/bin" \
-    "$HOME/.volta/bin" \
-    "$HOME/.volta/bin" \
+    "$HOME/.local/volta/bin" \
     /home/linuxbrew/.linuxbrew/bin \
     /Users/dsully/Library/Python/3.9/bin \
     /Users/dsully/Library/Python/3.10/bin \
@@ -73,31 +70,67 @@ if type -q fzf_configure_bindings
     # Bind Ctrl-t to use fzf for the current directory.
     fzf_configure_bindings --directory=\ct
 end
+
+# Move Golang's path out of $HOME
+set -gx GOPATH $HOME/.local/go
+set -gx GO111MODULE on
+
+set -gx RIPGREP_CONFIG_PATH $HOME/.config/ripgrep/config
+set -gx VOLTA_HOME "$HOME/.local/volta"
+
 # Python
 set -gx PYTHONSTARTUP ~/.config/python/startup.py
 
-# https://github.com/Homebrew/homebrew-command-not-found
-set HB_CNF_HANDLER /usr/local/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.fish
-
-if test -f $HB_CNF_HANDLER
-   source $HB_CNF_HANDLER
+# Silence direnv logging and invoke it's hook.
+if type -q direnv
+    set -gx DIRENV_LOG_FORMAT ""
+    direnv hook fish | source
 end
 
-# 3rd party.
-if status --is-interactive
+if type -q zoxide
+    zoxide init fish --cmd j | source
 
-    if test -f "/Applications/kitty.app/Contents/Resources/kitty/terminfo"
-        set -gx TERMINFO "/Applications/kitty.app/Contents/Resources/kitty/terminfo"
+    set -gx _ZO_FZF_OPTS $FZF_DEFAULT_OPTS '--preview "_fzf_preview_file {}"'
+
+    alias za "zoxide add"
+    alias zq "zoxide query"
+    alias zr "zoxide remove"
+end
+
+# https://github.com/eth-p/bat-extras
+if type -q batman
+    alias man batman
+end
+
+if type -q batpipe
+    eval (batpipe)
+end
+
+# Forward term info in kitty when connection via ssh
+if string match -q xterm-kitty -- $TERM
+    alias ssh "kitty +kitten ssh"
+end
+
+if test -f "/Applications/kitty.app/Contents/Resources/kitty/terminfo"
+    set -gx TERMINFO "/Applications/kitty.app/Contents/Resources/kitty/terminfo"
+end
+
+if status is-interactive
+
+    # make less behave with XDG
+    if [ ! -d "$XDG_CACHE_HOME"/less ]
+        mkdir -p "$XDG_CACHE_HOME"/less
     end
 
-    # Silence direnv logging and invoke it's hook.
-    if type -q direnv
-        set -gx DIRENV_LOG_FORMAT ""
-        direnv hook fish | source
+    set -gx LESSKEY "$XDG_CACHE_HOME"/less/lesskey
+    set -gx LESSHISTFILE "$XDG_CACHE_HOME"/less/history
+
+    # Install fisher if it isn't already.
+    if not functions -q fisher
+        curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+        fish -c fisher
     end
 
-    if type -q zoxide
-        zoxide init fish --cmd j | source
     # https://github.com/Homebrew/homebrew-cask/blob/master/USAGE.md
     set -gx HOMEBREW_CASK_OPTS --no-quarantine
 
