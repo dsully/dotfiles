@@ -1,0 +1,81 @@
+# Based on the Nord colorscheme.
+# (https://www.nordtheme.com/docs/colors-and-palettes)
+#
+# Polar night
+# polar-night-nord0 #2e3440, [46, 52, 64]
+# polar-night-nord1 #3b4252, [59, 66, 82]
+# polar-night-nord2 #434c5e, [67, 76, 94]
+# polar-night-nord3 #4c566a, [76, 86, 106]
+# 
+# Snow storm
+# snow-storm-nord4 #d8dee9, [216, 222, 233]
+# snow-storm-nord5 #e5e9f0, [229, 233, 240]
+# snow-storm-nord6 #eceff4, [236, 239, 244]
+# 
+# Frost
+# frost-nord7 #8fbcbb, [143, 188, 187]
+# frost-nord8 #88c0d0, [136, 192, 208]
+# frost-nord9 #81a1c1, [129, 161, 193]
+# frost-nord10 #5e81ac, [94, 129, 172]
+# 
+# Aurora
+# aurora-nord11 #bf616a, [191, 97, 106]
+# aurora-nord12 #d08770, [208, 135, 112]
+# aurora-nord13 #ebcb8b, [235, 203, 139]
+# aurora-nord14 #a3be8c, [163, 190, 140]
+# aurora-nord15 #b48ead, [180, 142, 173]
+
+user: [229, 233, 240]  # snow-storm-nord5
+group: [229, 233, 240] # snow-storm-nord5
+
+# file-type:
+#   file:
+#     exec-uid: green
+#     uid-no-exec: yellow
+#     exec-no-uid: green
+#     no-exec-no-uid: yellow
+# 
+#   dir: 
+#     uid: blue
+#     no-uid: blue
+# 
+#   pipe: cyan
+# 
+#   symlink: 
+#     default: [191, 97, 106] # aurora-nord11
+#     # default: cyan
+#     broken: red
+# 
+#   block-device: cyan
+#   char-device: yellow
+#   socket: cyan
+#   special: cyan
+
+permission:
+  read: [143, 188, 187]   # frost-nord7
+  write: [136, 192, 208]  # frost-nord8
+  exec: [236, 239, 244] # snow-storm-nord6
+
+  exec-sticky: [191, 97, 106] # aurora-nord11
+  no-access: [236, 239, 244]   # snow-storm-nord6
+
+date:
+  hour-old: [236, 239, 244]   # snow-storm-nord6
+  day-old: [229, 233, 240]  # snow-storm-nord5
+  older: [216, 222, 233] # snow-storm-nord4
+
+size:
+  none: [143, 188, 187]   # frost-nord7
+  small: [136, 192, 208]  # frost-nord8
+  medium: [129, 161, 193] # frost-nord9
+  large: [94, 129, 172]   # frost-nord10
+
+inode:
+  valid: [136, 192, 208]  # frost-nord8
+  invalid: [191, 97, 106] # aurora-nord11
+
+links:
+  valid: [136, 192, 208]  # frost-nord8
+  invalid: [191, 97, 106] # aurora-nord11
+
+tree-edge: [191, 97, 106] # aurora-nord11
