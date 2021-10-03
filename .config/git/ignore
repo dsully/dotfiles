@@ -24,3 +24,4 @@ Icon?
 *.swp
 Thumbs.db
 *.vscode
+**/.local/share/nvim
