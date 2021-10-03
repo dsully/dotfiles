@@ -62,6 +62,17 @@ fish_add_path --append \
     /sbin \
     /usr/sbin
 
+# https://github.com/PatrickF1/fzf.fish
+if type -q fzf_configure_bindings
+    set fzf_preview_file_cmd bat --line-range :100 --color=always --plain
+    set fzf_preview_dir_cmd lsd --tree --depth=1
+
+    set fzf_fd_opts --hidden --exclude ".git" --exclude ".direnv" --exclude ".pytest_cache"
+    set fzf_dir_opts --bind 'ctrl-e:execute(command nvim {} >/dev/tty)'
+
+    # Bind Ctrl-t to use fzf for the current directory.
+    fzf_configure_bindings --directory=\ct
+end
 # Python
 set -gx PYTHONSTARTUP ~/.config/python/startup.py
 
