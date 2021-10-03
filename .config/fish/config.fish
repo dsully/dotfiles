@@ -63,6 +63,17 @@ fish_add_path --append \
 if type -q vivid
     set -gx LS_COLORS (vivid generate nord)
 end
+
+# Set Nord as the fzf color scheme: https://github.com/junegunn/fzf/blob/master/ADVANCED.md
+set -x FZF_DEFAULT_OPTS --cycle \
+    --filepath-word \
+    --height=50% \
+    --info=hidden \
+    --border=rounded \
+    --margin=1 \
+    --padding=1 \
+    --color='bg+:#3B4252,bg:#2E3440,spinner:#81A1C1,hl:#616E88,fg:#D8DEE9,header:#616E88,info:#81A1C1,pointer:#81A1C1,marker:#81A1C1,fg+:#D8DEE9,prompt:#81A1C1,hl+:#81A1C1'
+
 # https://github.com/PatrickF1/fzf.fish
 if type -q fzf_configure_bindings
     set fzf_preview_file_cmd bat --line-range :100 --color=always --plain
