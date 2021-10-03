@@ -59,6 +59,10 @@ fish_add_path --append \
     /sbin \
     /usr/sbin
 
+# Set `LS_COLORS` via https://github.com/sharkdp/vivid
+if type -q vivid
+    set -gx LS_COLORS (vivid generate nord)
+end
 # https://github.com/PatrickF1/fzf.fish
 if type -q fzf_configure_bindings
     set fzf_preview_file_cmd bat --line-range :100 --color=always --plain

@@ -1,0 +1,133 @@
+colors:
+  # Based on the Nord colorscheme.
+  # (https://www.nordtheme.com/docs/colors-and-palettes)
+
+  # Polar night
+  polar-night-nord0 : '2e3440'  # #2e3440, [46, 52, 64]
+  polar-night-nord1 : '3b4252'  # #3b4252, [59, 66, 82]
+  polar-night-nord2 : '434c5e'  # #434c5e, [67, 76, 94]
+  polar-night-nord3 : '4c566a'  # #4c566a, [76, 86, 106]
+
+  # Snow storm
+  snow-storm-nord4 : 'd8dee9'  # #d8dee9, [216, 222, 233]
+  snow-storm-nord5 : 'e5e9f0'  # #e5e9f0, [229, 233, 240]
+  snow-storm-nord6 : 'eceff4'  # #eceff4, [236, 239, 244]
+
+  # Frost
+  frost-nord7 : '8fbcbb'  # #8fbcbb, [143, 188, 187]
+  frost-nord8 : '88c0d0'  # #88c0d0, [136, 192, 208]
+  frost-nord9 : '81a1c1'  # #81a1c1, [129, 161, 193]
+  frost-nord10 : '5e81ac' # #5e81ac, [94, 129, 172]
+
+  # Aurora
+  aurora-nord11 : 'bf616a'  # #bf616a, [191, 97, 106]
+  aurora-nord12 : 'd08770'  # #d08770, [208, 135, 112]
+  aurora-nord13 : 'ebcb8b'  # #ebcb8b, [235, 203, 139]
+  aurora-nord14 : 'a3be8c'  # #a3be8c, [163, 190, 140]
+  aurora-nord15 : 'b48ead'  # #b48ead, [180, 142, 173]
+
+core:
+  regular_file:
+    foreground: frost-nord8
+    font-style: underline
+
+  directory:
+    foreground: frost-nord10
+    font-style: bold
+
+  executable_file:
+    foreground: frost-nord7
+    font-style: bold
+
+  symlink:
+    foreground: frost-nord8
+
+  broken_symlink:
+    foreground: aurora-nord11
+    # background: polar-night-nord0
+
+  missing_symlink_target:
+    foreground: snow-storm-nord6
+    background: aurora-nord11
+    font-style: bold
+
+  fifo:
+    foreground: frost-nord7
+    font-style: underline
+
+  socket:
+    foreground: frost-nord8
+
+  character_device:
+    foreground: aurora-nord13
+
+  block_device:
+    foreground: aurora-nord13
+    font-style: bold
+
+  normal_text:
+    foreground: snow-storm-nord6
+
+  other_writable:
+    {}
+
+  sticky:
+    foreground: snow-storm-nord6
+    font-style: bold
+
+  sticky_other_writable:
+    foreground: snow-storm-nord6
+    font-style: bold
+
+text:
+  special:
+    foreground: snow-storm-nord6
+
+  todo:
+    foreground: snow-storm-nord6
+    font-style: bold
+
+  licenses:
+    foreground: snow-storm-nord6
+
+  configuration:
+    foreground: snow-storm-nord6
+
+  other:
+    foreground: snow-storm-nord6
+
+markup:
+  foreground: snow-storm-nord6
+
+programming:
+  foreground: snow-storm-nord6
+
+media:
+  image:
+    foreground: aurora-nord14
+
+  audio:
+    foreground: aurora-nord14
+
+  video:
+    foreground: aurora-nord14
+
+  fonts:
+    foreground: aurora-nord14
+
+office:
+  foreground: aurora-nord14
+
+archives:
+  foreground: aurora-nord14
+  font-style: bold
+
+executable:
+  foreground: frost-nord7
+  font-style: bold
+
+  symlink:
+    foreground: frost-nord8
+
+unimportant:
+  foreground: polar-night-nord3
