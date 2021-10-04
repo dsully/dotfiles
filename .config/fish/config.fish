@@ -122,9 +122,9 @@ if type -q batpipe
 end
 
 # Forward term info in kitty when connection via ssh
-if string match -q xterm-kitty -- $TERM
-    alias ssh "kitty +kitten ssh"
-end
+# if string match -q xterm-kitty -- $TERM
+#     alias ssh "kitty +kitten ssh"
+# end
 
 if test -f "/Applications/kitty.app/Contents/Resources/kitty/terminfo"
     set -gx TERMINFO "/Applications/kitty.app/Contents/Resources/kitty/terminfo"
