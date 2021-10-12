@@ -91,7 +91,7 @@ set -gx GOPATH $HOME/.local/go
 set -gx GO111MODULE on
 
 set -gx RIPGREP_CONFIG_PATH $HOME/.config/ripgrep/config
-set -gx VOLTA_HOME "$HOME/.local/volta"
+set -gx VOLTA_HOME "$HOME/.volta"
 
 # Python
 set -gx PYTHONSTARTUP ~/.config/python/startup.py
