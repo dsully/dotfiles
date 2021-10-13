@@ -1,30 +1,21 @@
 #!/usr/bin/env bash
 
-[ -n "$1" ] && echo <<-END
-    bootstrap: Create a git repo in the destination directory with a separate git dir in $HOME/.config/repos.
+# Bootstrap my dotfiles.
+#
+# https://joeyates.info/2018/12/16/dotfiles/
+# G
 
-    Usage:
-      bootstrap [GIT_REPO]
+URL=https://github.com/dsully/dotfiles.git
+DOT=.config/repos/dotfiles
 
-    GIT_REPO:     A remote git repo URI
-END
+git clone --bare $URL "$HOME/$DOT"
 
-DEFAULT_URL="https://github.com/dsully/dotfiles.git"
+echo "gitdir: $DOT" > "$HOME/.git"
 
-URL="${1:-$DEFAULT_URL}"
-REPO="${URL##*/}"
-REPO="${REPO%.*}"
-REPO_PATH="$HOME/.config/repos"
-REPO_TEMP="$HOME/.config/repos/temp"
+cd "$HOME/$DOT" || exit
+git config --local core.worktree "$HOME"
+git config --local status.showUntrackedFiles no
+git reset
 
-rm -rf "$HOME/.git"
-rm -rf "$REPO_TEMP"
-
-git clone --separate-git-dir "$REPO_PATH/$REPO" "$URL" --no-checkout "$REPO_TEMP"
-mv $REPO_TEMP/.git $HOME
-rm -rf "$REPO_TEMP"
-
-env GITDIR="$REPO_PATH/$REPO" git config --local status.showUntrackedFiles no
-
-git fetch
-git reset --mixed HEAD
+# This overwrites any existing files.
+# git reset --hard HEAD --

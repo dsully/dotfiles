@@ -6,13 +6,13 @@ blog](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-gi
 
 This allows for dotfiles without symlinks, rsyncing, or other state management.
 
-### On a new machine:
+## On a new machine
 
-``` bash
+```bash
 curl https://raw.githubusercontent.com/dsully/dotfiles/master/bin/bootstrap [URL] | bash
 ```
 
-### Using different repositories.
+### Using different repositories
 
 Often you'll want to have public dotfiles along with private ones, for both home and work.
 
