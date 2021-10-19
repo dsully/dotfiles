@@ -1,7 +1,8 @@
 tap "buo/cask-upgrade"
-tap "bvaisvil/zenith"
 tap "cjbassi/ytop"
+tap "eth-p/software"
 tap "guoxbin/guoxbin"
+tap "hashicorp/tap"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-drivers"
@@ -10,9 +11,10 @@ tap "homebrew/cask-versions"
 tap "homebrew/command-not-found"
 tap "homebrew/core"
 tap "homebrew/services"
+tap "microsoft/git"
 brew "bandwhich"
 brew "bat"
-brew "boxes"
+brew "deno"
 brew "direnv"
 brew "dog"
 brew "dust"
@@ -25,40 +27,52 @@ brew "git"
 brew "git-delta"
 brew "git-quick-stats"
 brew "gnu-tar"
+brew "go"
+brew "gopls"
 brew "hexyl"
 brew "hyperfine"
 brew "iperf3"
 brew "jq"
-brew "loc"
+brew "less"
 brew "lsd"
+brew "luajit", args: ["HEAD"]
 brew "mas"
 brew "mdcat"
 brew "mtr"
 brew "mysql@5.7", restart_service: true
+brew "neovim", args: ["HEAD"]
 brew "netcat6"
-brew "nmap"
 brew "p7zip"
-brew "procs"
 brew "ripgrep"
 brew "rsync"
+brew "rust-analyzer"
 brew "rustup-init"
 brew "sd"
+brew "shellcheck"
+brew "shfmt"
+brew "stylua"
 brew "subversion"
 brew "syncthing", restart_service: true
+brew "tealdeer"
 brew "telnet"
 brew "tokei"
 brew "tree"
 brew "unar"
+brew "vivid"
 brew "volta"
 brew "websocat"
 brew "xh"
 brew "xz"
 brew "zenith"
 brew "zoxide"
-brew "bvaisvil/zenith/zenith"
 brew "cjbassi/ytop/ytop"
+brew "eth-p/software/bat-extras-batdiff"
+brew "eth-p/software/bat-extras-batgrep"
+brew "eth-p/software/bat-extras-batman"
+brew "eth-p/software/bat-extras-batpipe"
+brew "eth-p/software/bat-extras-batwatch"
+brew "hashicorp/tap/terraform-ls"
 cask "1password"
-cask "adobe-creative-cloud"
 cask "alfred"
 cask "anylist"
 cask "appcleaner"
@@ -74,13 +88,17 @@ cask "electorrent"
 cask "font-hack-nerd-font"
 cask "font-jetbrains-mono"
 cask "garmin-express"
+cask "git-credential-manager-core"
 cask "github"
-cask "hex-fiend"
+cask "google-chrome"
 cask "iterm2"
 cask "kaleidoscope"
+cask "kitty"
 cask "mactracker"
 cask "mediainfo"
 cask "meta"
+cask "microsoft-auto-update"
+cask "microsoft-outlook"
 cask "microsoft-teams"
 cask "monodraw"
 cask "movist-pro"
@@ -92,6 +110,7 @@ cask "pynsource"
 cask "querious"
 cask "quicken"
 cask "raindropio"
+cask "retrobatch"
 cask "rocket"
 cask "roon"
 cask "screens"
@@ -106,15 +125,16 @@ cask "transmit"
 cask "visual-studio-code"
 cask "wireshark"
 cask "zoom"
-mas "Adobe Lightroom", id: 1451544217
+mas "1Password for Safari", id: 1569813296
+mas "Affinity Photo", id: 824183456
 mas "Agenda", id: 1287445660
 mas "AutoMounter", id: 1160435653
 mas "Brother P-touch Editor", id: 1453365242
 mas "Copied", id: 1026349850
-mas "Craft", id: 1487937127
 mas "Darkroom", id: 953286746
 mas "Dato", id: 1470584107
 mas "Deliveries", id: 924726344
+mas "DevCleaner", id: 1388020431
 mas "Discovery", id: 1381004916
 mas "Disk Speed Test", id: 425264550
 mas "hare", id: 1538324606
@@ -128,7 +148,6 @@ mas "m-wiki", id: 1480168619
 mas "Magnet", id: 441258766
 mas "Marked 2", id: 890031187
 mas "MetaImage", id: 1397099749
-mas "Microsoft Outlook", id: 985367838
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "MindNode", id: 1289197285
 mas "Netmo", id: 1192219511
@@ -142,16 +161,18 @@ mas "PDF Expert", id: 1055273043
 mas "PhotoMill", id: 778590574
 mas "PhotoSweeper", id: 463362050
 mas "Pricy", id: 1538659032
+mas "Quiet", id: 1441525727
 mas "RAW Power", id: 1157116444
 mas "Reeder", id: 1529448980
 mas "Save to Raindrop.io", id: 1549370672
 mas "Scenecuts Helper", id: 1540491573
 mas "SessionRestore", id: 1463334954
 mas "Slack", id: 803453959
+mas "SmugMug", id: 1115348888
 mas "StopTheMadness", id: 1376402589
 mas "Str*Viewer", id: 1501259216
-mas "Tab Space", id: 1473726602
 mas "Taskheat", id: 1431995750
+mas "Tripsy", id: 1429967544
 mas "Tweetbot", id: 1384080005
 mas "Userscripts", id: 1463298887
 mas "Wipr", id: 1320666476
