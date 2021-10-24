@@ -133,8 +133,8 @@ end
 if status is-interactive
 
     # make less behave with XDG
-    if [ ! -d "$XDG_CACHE_HOME"/less ]
-        mkdir -p "$XDG_CACHE_HOME"/less
+    if [ ! -d "$XDG_CACHE_HOME/less" ]
+        mkdir -p "$XDG_CACHE_HOME/less"
     end
 
     set -gx LESSKEY "$XDG_CACHE_HOME"/less/lesskey
@@ -152,8 +152,12 @@ if status is-interactive
     # https://github.com/Homebrew/homebrew-command-not-found
     switch $OS
         case Darwin
-            source /usr/local/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.fish
+            if test -f "/usr/local/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.fish"
+                source /usr/local/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.fish
+            end
         case Linux
-            source /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.fish
+            if test -f "/home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.fish"
+                source /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.fish
+            end
     end
 end
