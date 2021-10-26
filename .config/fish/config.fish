@@ -148,6 +148,11 @@ if status is-interactive
 
     # https://github.com/Homebrew/homebrew-cask/blob/master/USAGE.md
     set -gx HOMEBREW_CASK_OPTS --no-quarantine
+    set -gx HOMEBREW_BAT 1
+    set -gx HOMEBREW_FORCE_BREWED_GIT 1
+    set -gx HOMEBREW_INSTALL_FROM_API 1
+    set -gx HOMEBREW_NO_ANALYTICS 1
+    set -gx HOMEBREW_NO_COMPAT 1
 
     # https://github.com/Homebrew/homebrew-command-not-found
     switch $OS
