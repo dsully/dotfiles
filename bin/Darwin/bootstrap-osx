@@ -3,7 +3,7 @@
 # Sources:
 # https://github.com/kevinSuttle/macOS-Defaults/blob/master/.macos
 # https://github.com/tiiiecherle/osx_install_config/blob/master/11_system_and_app_preferences/
-#
+
 # Headless install of xcode command line tools
 if ! xcode-select -p &> /dev/null; then
     touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
@@ -342,36 +342,6 @@ defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextr
 #    kSHKTurnFocusFollowingOnOrOff               = 179,  //
 # };
 
-# https://stackoverflow.com/questions/866056/how-do-i-programmatically-get-the-shortcut-keys-reserved-by-mac-os-x
-# https://marcosantadev.com/manage-plist-files-plistbuddy/
-# https://stackoverflow.com/questions/21878482/what-do-the-parameter-values-in-applesymbolichotkeys-plist-dict-represent
-
-# hide these menu bar icons
-defaults write com.apple.systemuiserver dontAutoLoad -array \
-    "/System/Library/CoreServices/Menu Extras/AirPort.menu" \
-    "/System/Library/CoreServices/Menu Extras/Clock.menu" \
-    "/System/Library/CoreServices/Menu Extras/Displays.menu" \
-    "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
-    "/System/Library/CoreServices/Menu Extras/User.menu" \
-    "/System/Library/CoreServices/Menu Extras/Volume.menu" \
-    "/System/Library/CoreServices/Menu Extras/WWAN.menu"
-
-EXTRAS=(
-    "/System/Library/CoreServices/Menu Extras/AirPort.menu"
-    "/System/Library/CoreServices/Menu Extras/Clock.menu"
-    "/System/Library/CoreServices/Menu Extras/Displays.menu"
-    "/System/Library/CoreServices/Menu Extras/TimeMachine.menu"
-    "/System/Library/CoreServices/Menu Extras/User.menu"
-    "/System/Library/CoreServices/Menu Extras/Volume.menu"
-    "/System/Library/CoreServices/Menu Extras/WWAN.menu"
-)
-
-# Need to reboot for these to take effect. Killing SystemUIServer isn't enough.
-for e in $EXTRAS; do
-    /usr/libexec/PlistBuddy -c "Delete 'menuExtras:$(defaults read ~/Library/Preferences/com.apple.systemuiserver.plist menuExtras | cat -n | grep "$e" | awk '{print SUM $1-2}') string'" ~/Library/Preferences/com.apple.systemuiserver.plist >/dev/null 2>&1
-    :
-done
-
 # --------
 # Keyboard
 # --------
@@ -483,7 +453,7 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabledForLocalFiles -bool false
 
 # Remove preference pane which is just a symlink into Internet-Plugins
-sudo rm /Library/PreferencePanes/JavaControlPanel.prefPane
+sudo rm -f /Library/PreferencePanes/JavaControlPanel.prefPane
 
 # Remove Application support that is just symlinks into Internet-Plugins +
 # highest installed Oracle Java version in a file for Preference Pane checks
@@ -494,12 +464,6 @@ sudo rm -rf /Library/Application\ Support/Oracle
 
 # Remove the plugin itself
 sudo rm -rf /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin
-
-# This package usually owns these files, so forget it was installed
-# since we removed them. Although, as shown above, some other non-standard
-# javaX packages currently own these files. Still, having this package
-# recorded without its files present is just not right.
-sudo pkgutil --forget com.oracle.jre
 
 # Enable "Do Not Track"
 defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
@@ -797,28 +761,51 @@ defaults write com.googlecode.iterm2 "LoadPrefsFromCustomFolder" -bool true
 # Don’t display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
+# Install Rosetta (until everything has an arm64 install)
+if [[ $(uname -m) = "arm64" ]]; then
+    sudo softwareupdate --install-rosetta
+fi
+
 # ---------
 # Homebrew
 # ---------
 
 # Install Homebrew if it is not already installed
-export HOMEBREW_NO_GITHUB_API=1
-which brew &> /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" < /dev/null
 
-# Fish
-[ $(cat /etc/shells | grep -c $(brew --prefix)/bin/fish) -ne 1 ] && echo "$(brew --prefix)/bin/fish" | sudo tee -a /etc/shells > /dev/null
+export HOMEBREW_INSTALL_FROM_API=1
 
-if [ -x "/usr/local/bin/fish" ]; then
-    chsh -s "/usr/local/bin/fish"
+if [[ $(uname -m) = "arm64" ]]; then
+    BREW=/opt/homebrew/bin/brew
+    FISH=/opt/homebrew/bin/fish
+else
+    BREW=/usr/local/bin/brew
+    FISH=/usr/local/bin/fish
+fi
+
+if [[ ! -x "$BREW" ]]; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" < /dev/null
+fi
+
+if [[ ! -x "$BREW" ]]; then
+    echo "Couldn't install Homebrew! Exiting."
+    exit
+fi
+
+if [[ ! -x "$FISH" ]]; then
+    $BREW install fish
+
+    [ $(cat /etc/shells | grep -c "$FISH") -ne 1 ] && echo "$FISH" | sudo tee -a /etc/shells > /dev/null
+
+    chsh -s $FISH
+
+else
+    echo "Couldn't install fish!"
 fi
 
 # Link ~/iCloud
 if [ ! -e ~/iCloud ]; then
     ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs" ~/iCloud
 fi
-
-# Hide the readme from Finder.
-chflags hidden ~/README.md
 
 # Hide the export partition.
 if [ -d /export ]; then
