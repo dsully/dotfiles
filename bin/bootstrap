@@ -3,19 +3,19 @@
 # Bootstrap my dotfiles.
 #
 # https://joeyates.info/2018/12/16/dotfiles/
-# G
 
 URL=https://github.com/dsully/dotfiles.git
 DOT=.config/repos/dotfiles
 
 git clone --bare $URL "$HOME/$DOT"
 
-echo "gitdir: $DOT" > "$HOME/.git"
-
 cd "$HOME/$DOT" || exit
+git config --local core.bare false
 git config --local core.worktree "$HOME"
 git config --local status.showUntrackedFiles no
 git reset
 
 # This overwrites any existing files.
-# git reset --hard HEAD --
+git reset --hard HEAD --
+
+echo "gitdir: $DOT" > "$HOME/.git"
