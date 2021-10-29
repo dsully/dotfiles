@@ -1,4 +1,0 @@
-#!/bin/bash
-
-rm -rf ~/.Trash/*
-# rm -rf /bits/.Trashes/`id -u`/*
