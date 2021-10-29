@@ -70,7 +70,6 @@ brew "eth-p/software/bat-extras-batwatch"
 cask "1password"
 cask "alfred"
 cask "anylist"
-cask "appcleaner"
 cask "aurora-hdr"
 cask "backblaze"
 cask "bartender"
@@ -155,6 +154,7 @@ mas "Slack", id: 803453959
 mas "SmugMug", id: 1115348888
 mas "StopTheMadness", id: 1376402589
 mas "Str*Viewer", id: 1501259216
+mas "TrashMe 3", id: 1490879410
 mas "Tripsy", id: 1429967544
 mas "Tweaks for Twitter", id: 1567751529
 mas "Tweetbot", id: 1384080005
