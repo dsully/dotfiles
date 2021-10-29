@@ -21,15 +21,6 @@ defscrollback 10000
 defutf8 on
 
 screen -t zot 0
-screen -t zot 1
-screen -t zot 2
-screen -t zot 3
-screen -t zot 4
-screen -t zot 5
-screen -t zot 6
-screen -t zot 7
-screen -t zot 8
-screen -t zot 9
 
 # don't kill window until i press this
 # zombie P
@@ -74,8 +65,3 @@ termcapinfo xterm 'vi=\E[?25l:ve=\E[34h\E[?25h:vs=\E[34l'
 
 # emulate part of the 'K' charset
 termcapinfo   xterm 'XC=K%,%\E(B,[\304,\\\\\326,]\334,{\344,|\366,}\374,~\337'
-
-# printscreen support
-termcapinfo xterm 'po=\E[5i:pf=\E[4i'
-termcapinfo vt100 'po=\E[5i:pf=\E[4i'
-termcapinfo vt220 'po=\E[5i:pf=\E[4i'
