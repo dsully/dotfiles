@@ -67,7 +67,6 @@ def _pythonrc_enable_history():
         def write_history():
             if not has_written[0]:
                 readline.write_history_file(history_path)
-                print('Written history to %s' % history_path)
                 has_written[0] = True
         atexit.register(write_history)
 

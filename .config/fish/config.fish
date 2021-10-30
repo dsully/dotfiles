@@ -17,8 +17,15 @@ set -gx VISUAL nvim
 set -gx PAGER "less -FiRSwX"
 set -gx MANPAGER "less -FiRSwX"
 
+# Python
+set -gx PYTHONSTARTUP ~/.config/python/startup.py
+set -gx PYTHON_VERSION 3.10
+
+# Move Golang's path out of $HOME
+set -gx GOPATH $HOME/.local/go
+set -gx GO111MODULE on
+
 alias ls lsd
-alias python python3
 alias vi nvim
 alias vim nvim
 alias view "nvim -R"
@@ -49,8 +56,9 @@ fish_add_path --append \
     "$HOME/.volta/bin" \
     "$HOMEBREW_PREFIX/bin" \
     "$HOMEBREW_PREFIX/sbin" \
-    "$HOMEBREW_PREFIX/opt/python@3.10/bin" \
-    "$HOMEBREW_PREFIX/opt/python@3.10/libexec/bin" \
+    "$HOMEBREW_PREFIX/opt/python@$PYTHON_VERSION/bin" \
+    "$HOMEBREW_PREFIX/opt/python@$PYTHON_VERSION/libexec/bin" \
+    "$HOME/Library/Python/$PYTHON_VERSION/bin" \
     /Library/Apple/usr/bin \
     /usr/local/bin \
     /usr/local/sbin
@@ -69,15 +77,8 @@ fish_add_path --append \
     /sbin \
     /usr/sbin
 
-# Move Golang's path out of $HOME
-set -gx GOPATH $HOME/.local/go
-set -gx GO111MODULE on
-
 set -gx RIPGREP_CONFIG_PATH $HOME/.config/ripgrep/config
 set -gx VOLTA_HOME "$HOME/.volta"
-
-# Python
-set -gx PYTHONSTARTUP ~/.config/python/startup.py
 
 if test -f "/Applications/kitty.app/Contents/Resources/kitty/terminfo"
     set -gx TERMINFO "/Applications/kitty.app/Contents/Resources/kitty/terminfo"
