@@ -42,7 +42,7 @@ if test -d /opt/homebrew
     set -Ux HOMEBREW_PREFIX /opt/homebrew
 else if test -d /usr/local/Homebrew
     set -Ux HOMEBREW_PREFIX /usr/local/Homebrew
-else if test -d /usr/local/Homebrew
+else if test -d /home/linuxbrew/.linuxbrew
     set -Ux HOMEBREW_PREFIX /home/linuxbrew/.linuxbrew
 end
 
