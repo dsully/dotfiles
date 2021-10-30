@@ -165,5 +165,7 @@ if status is-interactive
 
     if test -f "$HOMEBREW_PREFIX/$TAPS"
         source "$HOMEBREW_PREFIX/$TAPS"
+    else if test -f "$HOMEBREW_PREFIX/Homebrew/$TAPS"
+        source "$HOMEBREW_PREFIX/Homebrew/$TAPS"
     end
 end
