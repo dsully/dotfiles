@@ -7,6 +7,8 @@
     last = log -1 HEAD
     sync = pull --rebase
     unstage = reset HEAD --
+[advice]
+    skippedCherryPicks = false
 [branch]
     autosetupmerge = true
     autosetuprebase = always
@@ -24,6 +26,8 @@
     credentialStore = cache
 [diff]
     noprefix = true
+[help]
+    autoCorrect = immediate
 [push]
     default = current
 [rebase]
