@@ -159,6 +159,7 @@ if status is-interactive
     set -gx HOMEBREW_INSTALL_FROM_API 1
     set -gx HOMEBREW_NO_ANALYTICS 1
     set -gx HOMEBREW_NO_COMPAT 1
+    set -gx HOMEBREW_NO_ENV_HINTS 1
 
     # https://github.com/Homebrew/homebrew-command-not-found
     set HANDLER Library/Taps/homebrew/homebrew-command-not-found/handler.fish
