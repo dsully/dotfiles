@@ -108,11 +108,8 @@ if status is-interactive
         fzf_configure_bindings --directory=\ct
     end
 
-    # Silence direnv logging and invoke it's hook.
-    if type -q direnv
-        set -gx DIRENV_LOG_FORMAT ""
-        direnv hook fish | source
-    end
+    # Silence direnv logging. Hook is invoked via vendor_conf.d/
+    set -gx DIRENV_LOG_FORMAT ""
 
     if type -q zoxide
         zoxide init fish --cmd j | source
