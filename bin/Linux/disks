@@ -1,3 +1,3 @@
-#!/usr/bin/env fish
+#!/bin/sh
 
-lsblk -o PATH,SIZE,MODEL -i (fd -a --exclude '*part*' 'pci-' '/dev/disk/by-path/') | grep -v -E "/dev/sd[a-z][0-9]" | grep -v -E "n[0-9]p[0-9]"
+lsblk -d -o PATH,SIZE,MODEL | grep -v /dev/loop
