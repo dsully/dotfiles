@@ -41,7 +41,7 @@ bind --all \t complete
 if test -d /opt/homebrew
     set -Ux HOMEBREW_PREFIX /opt/homebrew
 else if test -d /usr/local/Homebrew
-    set -Ux HOMEBREW_PREFIX /usr/local/Homebrew
+    set -Ux HOMEBREW_PREFIX /usr/local
 else if test -d /home/linuxbrew/.linuxbrew
     set -Ux HOMEBREW_PREFIX /home/linuxbrew/.linuxbrew
 end
@@ -165,5 +165,13 @@ if status is-interactive
         source "$HOMEBREW_PREFIX/$TAPS"
     else if test -f "$HOMEBREW_PREFIX/Homebrew/$TAPS"
         source "$HOMEBREW_PREFIX/Homebrew/$TAPS"
+    end
+
+    # Kitty terminal emulator integration.
+    set -g KITTY_SHELL_INTEGRATION no-cursor
+
+    if set -q KITTY_INSTALLATION_DIR
+        source "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_conf.d/kitty-shell-integration.fish"
+        set --prepend fish_complete_path "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_completions.d"
     end
 end
