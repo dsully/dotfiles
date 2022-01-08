@@ -1,6 +1,6 @@
 # Fish git prompt
-set __fish_git_prompt_showdirtystate 'yes'
-set __fish_git_prompt_color_branch -o white
+set -U __fish_git_prompt_showdirtystate true
+set -U __fish_git_prompt_color_branch -o white
 
 set -U fish_color_user cyan
 set -U fish_color_host cyan
@@ -46,6 +46,6 @@ function fish_prompt --description 'Write out the prompt'
     set -g __fish_prompt_user (set_color $fish_color_user)
   end
 
-  echo -n -s '[' "$__fish_prompt_user" (prompt_pwd) "$__fish_prompt_normal" ']' (__fish_git_prompt)\n "$delim" ' '
+  echo -n -s '[' "$__fish_prompt_user" (prompt_pwd) "$__fish_prompt_normal" ']' (fish_git_prompt)\n "$delim" ' '
 
 end
