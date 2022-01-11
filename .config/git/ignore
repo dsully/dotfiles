@@ -1,6 +1,7 @@
 **/.cache/
 **/.config/configstore/
 **/.config/jgit/
+**/.config/kitty/kitty_search
 **/.config/memestra/
 **/.config/repos/
 **/.config/wireshark/
