@@ -58,6 +58,7 @@ fish_add_path --append \
     "$HOMEBREW_PREFIX/sbin" \
     "$HOMEBREW_PREFIX/opt/python@$PYTHON_VERSION/bin" \
     "$HOMEBREW_PREFIX/opt/python@$PYTHON_VERSION/libexec/bin" \
+    "$HOMEBREW_PREFIX/opt/python@$PYTHON_VERSION/Frameworks/Python.framework/Versions/$PYTHON_VERSION/bin" \
     "$HOME/Library/Python/$PYTHON_VERSION/bin" \
     /Library/Apple/usr/bin \
     /usr/local/bin \
