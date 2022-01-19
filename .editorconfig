@@ -25,8 +25,5 @@ indent_size = 2
 [package.json]
 indent_size = 2
 
-[*.ts]
-indent_size = 2
-
-[*.js]
+[*.{js,ts}]
 indent_size = 2
