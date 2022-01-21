@@ -168,6 +168,13 @@ if status is-interactive
         source "$HOMEBREW_PREFIX/Homebrew/$TAPS"
     end
 
+    # Python PEP-582 PDM integration: https://pdm.fming.dev
+    if test -n "$PYTHONPATH"
+        set -gx PYTHONPATH "/Users/dsully/Library/Python/$PYTHON_VERSION/lib/python/site-packages/pdm/pep582" $PYTHONPATH
+    else
+        set -gx PYTHONPATH "/Users/dsully/Library/Python/$PYTHON_VERSION/lib/python/site-packages/pdm/pep582"
+    end
+
     # Kitty terminal emulator integration.
     set -g KITTY_SHELL_INTEGRATION no-cursor
 
