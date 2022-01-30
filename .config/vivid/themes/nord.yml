@@ -68,6 +68,24 @@ core:
   normal_text:
     foreground: snow-storm-nord6
 
+  reset_to_normal:
+    {}
+
+  file_with_capability:
+    {}
+
+  multi_hard_link:
+    {}
+
+  door:
+    {}
+
+  setgid:
+    {}
+
+  setuid:
+    {}
+
   other_writable:
     {}
 
