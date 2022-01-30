@@ -2,7 +2,7 @@
 function cat --wraps=bat --description 'Use bat instead of cat'
 
     if string match --quiet --regex ".*\.md\$" $argv[1]
-        mdcat -p $argv[1]
+        glow -p $argv[1]
     else
         command bat --style plain --theme Nord $argv
     end
