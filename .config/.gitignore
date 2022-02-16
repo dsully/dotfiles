@@ -1,0 +1,7 @@
+beets/library.db
+beets/state.pickle
+certbot/
+git/private
+htop/
+syncthing/
+systemd/user/default.target.wants/
