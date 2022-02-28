@@ -3,7 +3,6 @@ description = "Development Directories"
 # Directories to index.
 dirs = [
     "~/dev",
-    "/bits",
 ]
 
 # Set to "Dirs" or "Files" to skip directories or files.
