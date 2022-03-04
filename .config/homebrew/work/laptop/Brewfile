@@ -1,8 +1,8 @@
 tap "buo/cask-upgrade"
-tap "bvaisvil/zenith"
 tap "cjbassi/ytop"
-tap "fabianishere/personal"
+tap "eth-p/software"
 tap "guoxbin/guoxbin"
+tap "homebrew/autoupdate"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-drivers"
@@ -13,7 +13,8 @@ tap "homebrew/core"
 tap "homebrew/services"
 brew "bandwhich"
 brew "bat"
-brew "boxes"
+brew "clang-format"
+brew "deno"
 brew "direnv"
 brew "dog"
 brew "dust"
@@ -24,16 +25,19 @@ brew "fzf"
 brew "gettext"
 brew "gh"
 brew "git"
-brew "gitup"
 brew "git-delta"
+brew "git-lfs"
 brew "git-quick-stats"
-brew "glow"
+brew "gitup"
 brew "gnu-tar"
+brew "glow"
+brew "go"
+brew "gopls"
 brew "hexyl"
 brew "hyperfine"
 brew "iperf3"
 brew "jq"
-brew "loc"
+brew "less"
 brew "lsd"
 brew "lua-language-server"
 brew "macchina"
@@ -41,39 +45,47 @@ brew "mas"
 brew "mtr"
 brew "mysql@5.7", restart_service: true
 brew "neovim"
-brew "netcat6"
-brew "nmap"
+brew "onefetch"
 brew "p7zip"
-brew "procs"
+brew "python@3.10", link: true
 brew "ripgrep"
 brew "rsync"
+brew "rust-analyzer"
 brew "rustup-init"
 brew "sd"
+brew "selene"
+brew "shellcheck"
+brew "shellharden"
+brew "shfmt"
+brew "stylua"
 brew "subversion"
 brew "syncthing", restart_service: true
+brew "tealdeer"
 brew "telnet"
 brew "tokei"
 brew "tree"
+brew "tree-sitter"
 brew "unar"
+brew "uncrustify"
+brew "vivid"
 brew "volta"
 brew "websocat"
 brew "xh"
 brew "xz"
 brew "zenith"
 brew "zoxide"
-brew "bvaisvil/zenith/zenith"
 brew "cjbassi/ytop/ytop"
-brew "fabianishere/personal/pam_reattach"
+brew "eth-p/software/bat-extras-batdiff"
+brew "eth-p/software/bat-extras-batgrep"
+brew "eth-p/software/bat-extras-batman"
+brew "eth-p/software/bat-extras-batpipe"
+brew "eth-p/software/bat-extras-batwatch"
 cask "1password"
-cask "adobe-creative-cloud"
 cask "alfred"
 cask "anylist"
-cask "appcleaner"
-cask "aurora-hdr"
 cask "backblaze"
 cask "bartender"
 cask "cakebrew"
-cask "cisco-proximity"
 cask "cleanshot"
 cask "daisydisk"
 cask "dash"
@@ -82,30 +94,27 @@ cask "downie"
 cask "electorrent"
 cask "font-hack-nerd-font"
 cask "font-jetbrains-mono"
-cask "garmin-express"
-cask "hex-fiend"
-cask "iterm2"
-cask "macdive"
-cask "mactracker"
+cask "github"
+cask "google-chrome"
+cask "iina"
+cask "kitty"
 cask "mediainfo"
-cask "meta"
+cask "microsoft-auto-update"
+cask "microsoft-outlook"
 cask "microsoft-teams"
 cask "mimestream"
 cask "monodraw"
 cask "movist-pro"
-cask "notion"
+cask "mullvadvpn"
 cask "omnigraffle"
 cask "paw"
-cask "proxyman"
-cask "pynsource"
 cask "querious"
 cask "quicken"
 cask "raindropio"
+cask "retrobatch"
 cask "rocket"
-cask "roon"
 cask "screens"
 cask "signal"
-cask "soulseek"
 cask "soulver"
 cask "stay"
 cask "superduper"
@@ -115,56 +124,37 @@ cask "tower"
 cask "transmit"
 cask "visual-studio-code"
 cask "zoom"
-mas "Adobe Lightroom", id: 1451544217
-mas "Affinity Designer", id: 824171161
 mas "Agenda", id: 1287445660
 mas "AutoMounter", id: 1160435653
-mas "Brother P-touch Editor", id: 1453365242
-mas "Craft", id: 1487937127
-mas "Darkroom", id: 953286746
+mas "Boop", id: 1518425043
 mas "Dato", id: 1470584107
 mas "Deliveries", id: 924726344
+mas "DevCleaner", id: 1388020431
 mas "Discovery", id: 1381004916
 mas "Honey", id: 1472777122
-mas "Hush", id: 1544743900
-mas "iMovie", id: 408981434
 mas "iPreview", id: 1519213509
+mas "Jiffy", id: 1502527999
 mas "JSONPeep", id: 1458969831
 mas "Keynote", id: 409183694
 mas "m-wiki", id: 1480168619
 mas "Magnet", id: 441258766
 mas "Marked 2", id: 890031187
-mas "MetaImage", id: 1397099749
-mas "Microsoft Outlook", id: 985367838
-mas "Microsoft Remote Desktop", id: 1295203466
-mas "Mindlist", id: 1505964697
 mas "MindNode", id: 1289197285
 mas "Netmo", id: 1192219511
 mas "NextDNS", id: 1464122853
 mas "Numbers", id: 409203825
-mas "Octotree", id: 1457450145
 mas "Pages", id: 409201541
-mas "Paprika Recipe Manager 3", id: 1303222628
 mas "Patterns", id: 429449079
-mas "PDF Expert", id: 1055273043
-mas "PhotoMill", id: 778590574
-mas "PhotoSweeper", id: 463362050
-mas "Pricy", id: 1538659032
-mas "RAW Power", id: 1157116444
 mas "Reeder", id: 1529448980
 mas "Save to Raindrop.io", id: 1549370672
-mas "Scenecuts Helper", id: 1540491573
-mas "SessionRestore", id: 1463334954
 mas "Slack", id: 803453959
 mas "StopTheMadness", id: 1376402589
 mas "Str*Viewer", id: 1501259216
-mas "Tab Space", id: 1473726602
 mas "Taskheat", id: 1431995750
+mas "TrashMe 3", id: 1490879410
+mas "Tweaks for Twitter", id: 1567751529
 mas "Tweetbot", id: 1384080005
 mas "Userscripts", id: 1463298887
-mas "WiFi Explorer", id: 494803304
-mas "WiFi Signal", id: 525912054
 mas "Wipr", id: 1320666476
 mas "WireGuard", id: 1451685025
 mas "Yoink", id: 457622435
-mas "Zappos", id: 392988420
