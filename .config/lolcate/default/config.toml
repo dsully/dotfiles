@@ -1,8 +1,8 @@
-description = "Development Directories"
+description = "Home"
 
 # Directories to index.
 dirs = [
-    "~/dev",
+    "~",
 ]
 
 # Set to "Dirs" or "Files" to skip directories or files.
@@ -16,4 +16,4 @@ ignore_symlinks = true
 ignore_hidden = false
 
 # Set to true to read .gitignore files and ignore matching files
-gitignore = true
+gitignore = false
