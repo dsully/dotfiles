@@ -1,4 +1,5 @@
 function bu --description "Update Homebrew formula, casks and taps."
-  command brew upgrade --formula --force-bottle
-  command brew upgrade --casks (brew outdated --cask --quiet)
+  command brew update --force
+  command brew upgrade --greedy --force-bottle
+  command brew cleanup --prune=all
 end
