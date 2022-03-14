@@ -182,4 +182,19 @@ if status is-interactive
         source "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_conf.d/kitty-shell-integration.fish"
         set --prepend fish_complete_path "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_completions.d"
     end
+
+    # Start SSH agent and set environment.
+    if test -z (pgrep ssh-agent | string collect)
+        eval (ssh-agent -c)
+        set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
+        set -Ux SSH_AGENT_PID $SSH_AGENT_PID
+    end
+
+    switch $OS
+        case Darwin
+            command ssh-add --apple-use-keychain -q
+        case Linux
+            command ssh-add -A -q
+    end
+
 end
