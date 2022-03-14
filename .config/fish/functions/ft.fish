@@ -8,13 +8,13 @@
 
 function ft -d 'Open the current directory (or any other directory) in a new Finder tab'
 
-  if test (count $argv) -gt 0
-    set open "$PWD/$argv"
-  else
-    set open $PWD
-  end
+    if test (count $argv) -gt 0
+        set open "$PWD/$argv"
+    else
+        set open $PWD
+    end
 
-  command osascript 2>/dev/null -e "
+    command osascript 2>/dev/null -e "
     tell application \"Finder\"
       activate
       set t to target of Finder window 1
@@ -26,5 +26,5 @@ function ft -d 'Open the current directory (or any other directory) in a new Fin
     tell application \"Finder\"
         set target of Finder window 1 to POSIX file \"$open\"
     end tell
-  " 1> /dev/null
+  " 1>/dev/null
 end

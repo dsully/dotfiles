@@ -2,8 +2,8 @@
 function top --wraps='top -s 2 -ocpu -Otime'
     switch $OS
         case Darwin
-          command top -s 2 -ocpu -Otime $argv
+            command top -s 2 -ocpu -Otime $argv
         case Linux
-          command htop
-        end
+            command htop
+    end
 end
