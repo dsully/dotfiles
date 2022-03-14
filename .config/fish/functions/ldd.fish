@@ -2,8 +2,8 @@
 function ldd --wraps='otool -L'
     switch $OS
         case Darwin
-          command otool -L $argv;
+            command otool -L $argv
         case Linux
-          command ldd $argv
-        end
+            command ldd $argv
+    end
 end
