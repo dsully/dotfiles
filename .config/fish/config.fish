@@ -185,7 +185,7 @@ if status is-interactive
 
     # Start SSH agent and set environment.
     if test -z (pgrep ssh-agent | string collect)
-        eval (ssh-agent -c)
+        eval (ssh-agent -c) > /dev/null
         set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
         set -Ux SSH_AGENT_PID $SSH_AGENT_PID
     end
