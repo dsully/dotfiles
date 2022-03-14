@@ -188,13 +188,11 @@ if status is-interactive
         eval (ssh-agent -c) >/dev/null
         set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
         set -Ux SSH_AGENT_PID $SSH_AGENT_PID
-    end
 
-    switch $OS
-        case Darwin
-            command ssh-add --apple-use-keychain -q
-        case Linux
-            command ssh-add -A -q
+        switch $OS
+            case Darwin
+                command ssh-add --apple-use-keychain -q
+        end
     end
 
 end
