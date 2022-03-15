@@ -1,3 +1,3 @@
-function pip --wraps=pip3
-    command pip3 --disable-pip-version-check $argv
+function pip
+    command python3 -m pip $argv
 end

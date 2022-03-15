@@ -145,10 +145,10 @@ if status is-interactive
     set -gx LESSHISTFILE "$XDG_CACHE_HOME"/less/history
 
     # Install fisher if it isn't already.
-    if not functions -q fisher
-        curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
-        fish -c fisher
-    end
+    # if not functions -q fisher
+    #     curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+    #     fish -c fisher
+    # end
 
     # https://github.com/Homebrew/homebrew-cask/blob/master/USAGE.md
     set -gx HOMEBREW_CASK_OPTS --no-quarantine
