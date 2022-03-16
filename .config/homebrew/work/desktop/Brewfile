@@ -20,7 +20,10 @@ brew "dasel"
 brew "deno"
 brew "direnv"
 brew "dog"
+brew "dos2unix"
+brew "dua-cli"
 brew "dust"
+brew "exiv2"
 brew "fd"
 brew "fish"
 brew "fselect"
@@ -34,8 +37,8 @@ brew "git-lfs"
 brew "git-quick-stats"
 brew "gitui"
 brew "gitup"
-brew "gnu-tar"
 brew "glow"
+brew "gnu-tar"
 brew "go"
 brew "gopls"
 brew "hexyl"
@@ -52,6 +55,8 @@ brew "mtr"
 brew "mysql@5.7", restart_service: true
 brew "neovim"
 brew "onefetch"
+brew "openssl@1.1"
+brew "openssl@3"
 brew "p7zip"
 brew "python@3.10", link: true
 brew "ripgrep"
@@ -90,7 +95,6 @@ brew "eth-p/software/bat-extras-batwatch"
 cask "1password"
 cask "alfred"
 cask "anylist"
-cask "appcleaner"
 cask "aurora-hdr"
 cask "backblaze"
 cask "bartender"
@@ -100,13 +104,13 @@ cask "daisydisk"
 cask "dash"
 cask "devtoys"
 cask "discord"
-cask "docker"
 cask "downie"
 cask "electorrent"
 cask "font-hack-nerd-font"
 cask "font-jetbrains-mono"
 cask "google-chrome"
 cask "iina"
+cask "iterm2"
 cask "jetbrains-toolbox"
 cask "kaleidoscope"
 cask "kitty"
@@ -128,8 +132,8 @@ cask "rocket"
 cask "roon"
 cask "screens"
 cask "signal"
+cask "soulseek"
 cask "soulver"
-cask "stay"
 cask "superduper"
 cask "suspicious-package"
 cask "the-unarchiver"
@@ -139,15 +143,20 @@ cask "visual-studio-code"
 cask "zoom"
 mas "Affinity Photo", id: 824183456
 mas "Agenda", id: 1287445660
+mas "Apple Configurator 2", id: 1037126344
 mas "AutoMounter", id: 1160435653
+mas "Book Track", id: 1496543317
 mas "Boop", id: 1518425043
 mas "Brother P-touch Editor", id: 1453365242
+mas "CardPointers", id: 1472875808
+mas "CollageIt 3 Lite", id: 675540049
 mas "Darkroom", id: 953286746
 mas "Dato", id: 1470584107
 mas "Deliveries", id: 924726344
 mas "DevCleaner", id: 1388020431
 mas "Discovery", id: 1381004916
 mas "Disk Speed Test", id: 425264550
+mas "Handy Converter", id: 1193672923
 mas "Honey", id: 1472777122
 mas "Hush", id: 1544743900
 mas "iMovie", id: 408981434
@@ -159,9 +168,13 @@ mas "Keynote", id: 409183694
 mas "m-wiki", id: 1480168619
 mas "Magnet", id: 441258766
 mas "Marked 2", id: 890031187
+mas "Matter", id: 1548677272
+mas "Mela", id: 1568924476
 mas "MetaImage", id: 1397099749
 mas "Microsoft Remote Desktop", id: 1295203466
+mas "Microsoft To Do", id: 1274495053
 mas "MindNode", id: 1289197285
+mas "MusicHarbor", id: 1440405750
 mas "Netmo", id: 1192219511
 mas "NextDNS", id: 1464122853
 mas "Numbers", id: 409203825
@@ -171,8 +184,7 @@ mas "Patterns", id: 429449079
 mas "PDF Expert", id: 1055273043
 mas "PhotoMill", id: 778590574
 mas "PhotoSweeper", id: 463362050
-mas "Pricy", id: 1538659032
-mas "Quiet", id: 1441525727
+mas "Play", id: 1596506190
 mas "RAW Power", id: 1157116444
 mas "Reeder", id: 1529448980
 mas "Save to Raindrop.io", id: 1549370672
@@ -187,6 +199,7 @@ mas "Tripsy", id: 1429967544
 mas "Tweaks for Twitter", id: 1567751529
 mas "Tweetbot", id: 1384080005
 mas "Userscripts", id: 1463298887
+mas "Vinegar", id: 1591303229
 mas "Wipr", id: 1320666476
 mas "WireGuard", id: 1451685025
 mas "Yoink", id: 457622435
