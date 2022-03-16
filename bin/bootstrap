@@ -4,7 +4,7 @@
 #
 # https://joeyates.info/2018/12/16/dotfiles/
 
-URL=https://github.com/dsully/dotfiles.git
+URL=git@github.com:dsully/dotfiles.git
 DOT=.config/repos/dotfiles
 
 git clone --bare $URL "$HOME/$DOT"
