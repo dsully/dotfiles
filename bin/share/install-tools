@@ -12,6 +12,7 @@ set -l PACKAGES amber \
     cargo-update \
     csvlens \
     dirstat-rs \
+    fclones \
     gfold \
     jfmt \
     lfs \
