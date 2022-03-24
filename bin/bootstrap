@@ -19,3 +19,6 @@ git reset
 git reset --hard HEAD --
 
 echo "gitdir: $DOT" > "$HOME/.git"
+
+# Pull in kitten-search.
+git clone https://github.com/trygveaa/kitty-kitten-search "$HOME/.config/kitty/kitty_search"
