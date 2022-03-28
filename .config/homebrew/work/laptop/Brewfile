@@ -88,7 +88,7 @@ brew "eth-p/software/bat-extras-batgrep"
 brew "eth-p/software/bat-extras-batman"
 brew "eth-p/software/bat-extras-batpipe"
 brew "eth-p/software/bat-extras-batwatch"
-cask "1password"
+cask "1password-beta"
 cask "alfred"
 cask "anylist"
 cask "backblaze"
@@ -133,6 +133,7 @@ cask "tower"
 cask "transmit"
 cask "visual-studio-code"
 cask "zoom"
+mas "1Password for Safari", id: 1569813296
 mas "Agenda", id: 1287445660
 mas "AutoMounter", id: 1160435653
 mas "Boop", id: 1518425043
