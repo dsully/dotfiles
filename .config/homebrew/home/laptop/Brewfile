@@ -161,6 +161,7 @@ mas "Keynote", id: 409183694
 mas "m-wiki", id: 1480168619
 mas "Magnet", id: 441258766
 mas "Marked 2", id: 890031187
+mas "Matter", id: 1548677272
 mas "Mela", id: 1568924476
 mas "MetaImage", id: 1397099749
 mas "Netmo", id: 1192219511
@@ -191,3 +192,4 @@ mas "WiFi Signal", id: 525912054
 mas "Wipr", id: 1320666476
 mas "WireGuard", id: 1451685025
 mas "Yoink", id: 457622435
+mas "uBlacklist for Safari", id: 1547912640

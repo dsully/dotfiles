@@ -142,13 +142,13 @@ mas "Deliveries", id: 924726344
 mas "DevCleaner", id: 1388020431
 mas "Discovery", id: 1381004916
 mas "Honey", id: 1472777122
-mas "iPreview", id: 1519213509
-mas "Jiffy", id: 1502527999
 mas "JSONPeep", id: 1458969831
+mas "Jiffy", id: 1502527999
 mas "Keynote", id: 409183694
-mas "m-wiki", id: 1480168619
 mas "Magnet", id: 441258766
 mas "Marked 2", id: 890031187
+mas "Matter", id: 1548677272
+mas "Microsoft To Do", id: 1274495053
 mas "MindNode", id: 1289197285
 mas "Netmo", id: 1192219511
 mas "NextDNS", id: 1464122853
@@ -168,3 +168,6 @@ mas "Userscripts", id: 1463298887
 mas "Wipr", id: 1320666476
 mas "WireGuard", id: 1451685025
 mas "Yoink", id: 457622435
+mas "iPreview", id: 1519213509
+mas "m-wiki", id: 1480168619
+mas "uBlacklist for Safari", id: 1547912640
