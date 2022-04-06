@@ -85,6 +85,12 @@ if test -f "/Applications/kitty.app/Contents/Resources/kitty/terminfo"
     set -gx TERMINFO "/Applications/kitty.app/Contents/Resources/kitty/terminfo"
 end
 
+# Set maxfiles limits higher.
+switch $OS
+    case Darwin
+        ulimit -n 65536
+end
+
 if status is-interactive
 
     # Set Nord as the fzf color scheme: https://github.com/junegunn/fzf/blob/master/ADVANCED.md
