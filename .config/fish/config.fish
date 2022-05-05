@@ -175,12 +175,7 @@ if status is-interactive
     end
 
     # Python PEP-582 PDM integration: https://pdm.fming.dev
-    switch $OS
-        case Darwin
-            set -gx PYTHONPATH "$HOME/Library/Python/$PYTHON_VERSION/lib/python/site-packages/pdm/pep582"
-        case Linux
-            set -gx PYTHONPATH "$HOMEBREW_PREFIX/opt/python@$PYTHON_VERSION/lib/python$PYTHON_VERSION/site-packages/pdm/pep582"
-    end
+    set -gx PYTHONPATH "$HOME/.local/pipx/venvs/pdm/lib/python$PYTHON_VERSION/site-packages/pdm/pep582"
 
     # Kitty terminal emulator integration.
     set -g KITTY_SHELL_INTEGRATION no-cursor
