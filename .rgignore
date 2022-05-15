@@ -5,3 +5,5 @@ venv/
 *.iml
 *.ipr
 *.egg-info
+node_modules/*
+.yarn
