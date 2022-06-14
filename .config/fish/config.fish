@@ -88,7 +88,7 @@ end
 # Set maxfiles limits higher.
 switch $OS
     case Darwin
-        ulimit -n 65536
+        ulimit -n 131072
 end
 
 if status is-interactive
