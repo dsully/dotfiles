@@ -27,6 +27,7 @@
     autoCorrect = immediate
 [push]
     default = current
+	autoSetupRemote = true
 [rebase]
     autosquash = true
 [status]
