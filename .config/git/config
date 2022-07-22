@@ -7,6 +7,8 @@
     last = log -1 HEAD
     sync = pull --rebase
     unstage = reset HEAD --
+    # Check out a pull request.
+    pr = "!f() { git fetch -fu ${2:-origin} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
 [advice]
     skippedCherryPicks = false
 [branch]
