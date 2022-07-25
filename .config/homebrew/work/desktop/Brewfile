@@ -9,12 +9,11 @@ tap "homebrew/cask-drivers"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/command-not-found"
-tap "homebrew/core"
-tap "homebrew/services"
 brew "act"
 brew "azure-cli"
 brew "bandwhich"
 brew "bat"
+brew "cjbassi/ytop/ytop"
 brew "clang-format"
 brew "code-minimap"
 brew "dasel"
@@ -22,6 +21,11 @@ brew "direnv"
 brew "dog"
 brew "dua-cli"
 brew "dust"
+brew "eth-p/software/bat-extras-batdiff"
+brew "eth-p/software/bat-extras-batgrep"
+brew "eth-p/software/bat-extras-batman"
+brew "eth-p/software/bat-extras-batpipe"
+brew "eth-p/software/bat-extras-batwatch"
 brew "exiv2"
 brew "fclones"
 brew "fd"
@@ -91,12 +95,6 @@ brew "xsv"
 brew "xz"
 brew "zenith"
 brew "zoxide"
-brew "cjbassi/ytop/ytop"
-brew "eth-p/software/bat-extras-batdiff"
-brew "eth-p/software/bat-extras-batgrep"
-brew "eth-p/software/bat-extras-batman"
-brew "eth-p/software/bat-extras-batpipe"
-brew "eth-p/software/bat-extras-batwatch"
 cask "1password"
 cask "adguard"
 cask "alfred"
@@ -125,7 +123,6 @@ cask "microsoft-outlook"
 cask "microsoft-teams"
 cask "mimestream"
 cask "monodraw"
-cask "movist-pro"
 cask "omnigraffle"
 cask "paw"
 cask "proxyman"
@@ -145,6 +142,8 @@ cask "tower"
 cask "transmit"
 cask "visual-studio-code"
 cask "zoom"
+tap "homebrew/core"
+tap "homebrew/services"
 mas "1Password for Safari", id: 1569813296
 mas "Affinity Photo", id: 824183456
 mas "Agenda", id: 1287445660
@@ -160,12 +159,9 @@ mas "DevCleaner", id: 1388020431
 mas "Discovery", id: 1381004916
 mas "Disk Speed Test", id: 425264550
 mas "Handy Converter", id: 1193672923
-mas "iMovie", id: 408981434
-mas "iPreview", id: 1519213509
-mas "Jiffy", id: 1502527999
 mas "JSONPeep", id: 1458969831
+mas "Jiffy", id: 1502527999
 mas "Keynote", id: 409183694
-mas "m-wiki", id: 1480168619
 mas "Magnet", id: 441258766
 mas "Marked 2", id: 890031187
 mas "Matter", id: 1548677272
@@ -175,10 +171,10 @@ mas "Microsoft To Do", id: 1274495053
 mas "MindNode", id: 1289197285
 mas "Netmo", id: 1192219511
 mas "Numbers", id: 409203825
+mas "PDF Expert", id: 1055273043
 mas "Pages", id: 409201541
 mas "Paprika Recipe Manager 3", id: 1303222628
 mas "Patterns", id: 429449079
-mas "PDF Expert", id: 1055273043
 mas "Play", id: 1596506190
 mas "RAW Power", id: 1157116444
 mas "Reeder", id: 1529448980
@@ -195,3 +191,6 @@ mas "Tweetbot", id: 1384080005
 mas "Userscripts", id: 1463298887
 mas "WireGuard", id: 1451685025
 mas "Yoink", id: 457622435
+mas "iMovie", id: 408981434
+mas "iPreview", id: 1519213509
+mas "m-wiki", id: 1480168619
