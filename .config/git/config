@@ -23,22 +23,21 @@
     trustctime = false
     # pager = delta --dark --file-style=box --hunk-style=plain --theme=base16
     pager = diff-so-fancy | less --tabs=4 -RFX
+    untrackedcache = true
 [diff]
     noprefix = true
 [help]
     autoCorrect = immediate
 [push]
     default = current
-	autoSetupRemote = true
+    autoSetupRemote = true
 [rebase]
     autosquash = true
 [status]
     relativePaths = true
-
 [submodule ".config/kitty/kitty_search"]
     path = .config/kitty/kitty_search
     url = https://github.com/trygveaa/kitty-kitten-search
-
 [include]
     path = ~/.config/git/private
 [includeIf "gitdir:~/dev/linkedin/"]
