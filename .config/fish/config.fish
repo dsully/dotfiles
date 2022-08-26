@@ -52,6 +52,7 @@ fish_add_path --append \
     "$HOME/.cargo/bin" \
     "$HOME/.local/bin" \
     "$HOME/.local/go/bin" \
+    "$HOME/.local/share/nvim/mason/bin" \
     "$HOME/.poetry/bin" \
     "$HOME/.volta/bin" \
     "$HOMEBREW_PREFIX/bin" \
