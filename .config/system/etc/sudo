@@ -1,5 +1,4 @@
 # sudo: auth account password session
-auth       optional       pam_reattach.so
 auth       sufficient     pam_tid.so
 auth       sufficient     pam_smartcard.so
 auth       required       pam_opendirectory.so
