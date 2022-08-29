@@ -49,6 +49,7 @@ end
 fish_add_path --append \
     "$HOME/bin/share" \
     "$HOME/bin/$OS" \
+    "$HOME/bin/Sites/*" \
     "$HOME/.cargo/bin" \
     "$HOME/.local/bin" \
     "$HOME/.local/go/bin" \
