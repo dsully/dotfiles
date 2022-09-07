@@ -10,6 +10,7 @@ set -Ux fish_term24bit 1
 set -Ux XDG_CACHE_HOME $HOME/.cache
 set -Ux XDG_CONFIG_HOME $HOME/.config
 set -Ux LANG en_US.UTF-8
+set -Ux HISTFILE $HOME/.local/share/fish/fish_history
 
 # Vim & Pager
 set -gx EDITOR nvim
@@ -25,10 +26,8 @@ set -gx PYTHON_VERSION 3.10
 set -gx GOPATH $HOME/.local/go
 set -gx GO111MODULE on
 
-alias ls lsd
-alias vi nvim
-alias vim nvim
-alias view "nvim -R"
+# chdir to the root of a git repo.
+alias cdr 'cd (git rev-parse --show-toplevel 2> /dev/null)'
 
 # Turn on vi keybindings
 # set -g fish_key_bindings fish_vi_key_bindings
@@ -96,14 +95,10 @@ end
 if status is-interactive
 
     # Set Nord as the fzf color scheme: https://github.com/junegunn/fzf/blob/master/ADVANCED.md
-    set -x FZF_DEFAULT_OPTS --cycle \
-        --filepath-word \
-        --height=50% \
-        --info=hidden \
-        --border=rounded \
-        --margin=1 \
-        --padding=1 \
-        --color='bg+:#3B4252,bg:#2E3440,spinner:#81A1C1,hl:#616E88,fg:#D8DEE9,header:#616E88,info:#81A1C1,pointer:#81A1C1,marker:#81A1C1,fg+:#D8DEE9,prompt:#81A1C1,hl+:#81A1C1'
+    set -l NORD_COLORS "--color=bg+:#3B4252,bg:#2E3440,spinner:#81A1C1,hl:#616E88,fg:#D8DEE9,header:#616E88"
+    set -l NORD_COLORS "$NORD_COLORS,info:#81A1C1,pointer:#81A1C1,marker:#81A1C1,fg+:#81A1C1,prompt:#81A1C1,hl+:#81A1C1"
+
+    set -gx FZF_DEFAULT_OPTS --cycle --filepath-word --height=50% --info=hidden --border=sharp $NORD_COLORS
 
     # https://github.com/PatrickF1/fzf.fish
     if type -q fzf_configure_bindings
@@ -198,4 +193,15 @@ if status is-interactive
         end
     end
 
+    # https://github.com/Peltoche/lsd
+    if type -q lsd
+        alias ls lsd
+    end
+
+    # http://github.com/neovim/neovim
+    if type -q nvim
+        alias vi nvim
+        alias vim nvim
+        alias view "nvim -R"
+    end
 end
