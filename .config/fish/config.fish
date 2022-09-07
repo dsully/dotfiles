@@ -13,37 +13,10 @@ set -Ux LANG en_US.UTF-8
 set -Ux HISTFILE $HOME/.local/share/fish/fish_history
 
 # Vim & Pager
-set -gx EDITOR nvim
-set -gx VISUAL nvim
+set -gx EDITOR vi
+set -gx VISUAL vi
 set -gx PAGER "less -FiRSwX"
 set -gx MANPAGER "less -FiRSwX"
-
-# Python
-set -gx PYTHONSTARTUP ~/.config/python/startup.py
-set -gx PYTHON_VERSION 3.10
-
-# Move Golang's path out of $HOME
-set -gx GOPATH $HOME/.local/go
-set -gx GO111MODULE on
-
-# chdir to the root of a git repo.
-alias cdr 'cd (git rev-parse --show-toplevel 2> /dev/null)'
-
-# Turn on vi keybindings
-# set -g fish_key_bindings fish_vi_key_bindings
-# set -g fish_key_bindings fish_hybrid_key_bindings
-# bind --all \t accept-autosuggestion
-bind --all \t complete
-# https://github.com/fish-shell/fish-shell/issues/3299
-
-# Brew is installed in different places depending on OS and architecture.
-if test -d /opt/homebrew
-    set -Ux HOMEBREW_PREFIX /opt/homebrew
-else if test -d /usr/local/Homebrew
-    set -Ux HOMEBREW_PREFIX /usr/local
-else if test -d /home/linuxbrew/.linuxbrew
-    set -Ux HOMEBREW_PREFIX /home/linuxbrew/.linuxbrew
-end
 
 fish_add_path --append \
     "$HOME/bin/share" \
@@ -53,38 +26,8 @@ fish_add_path --append \
     "$HOME/.local/bin" \
     "$HOME/.local/go/bin" \
     "$HOME/.local/share/nvim/mason/bin" \
-    "$HOME/.poetry/bin" \
     "$HOME/.volta/bin" \
-    "$HOMEBREW_PREFIX/bin" \
-    "$HOMEBREW_PREFIX/sbin" \
-    "$HOMEBREW_PREFIX/opt/python@$PYTHON_VERSION/bin" \
-    "$HOMEBREW_PREFIX/opt/python@$PYTHON_VERSION/libexec/bin" \
-    "$HOMEBREW_PREFIX/opt/python@$PYTHON_VERSION/Frameworks/Python.framework/Versions/$PYTHON_VERSION/bin" \
-    "$HOME/Library/Python/$PYTHON_VERSION/bin" \
-    /Library/Apple/usr/bin \
-    /usr/local/bin \
-    /usr/local/sbin
-
-if test -f "$HOME/.config/fish/lib/github.fish"
-    source "$HOME/.config/fish/lib/github.fish"
-end
-
-if test -f "$HOME/.config/fish/lib/work.fish"
-    source "$HOME/.config/fish/lib/work.fish"
-end
-
-fish_add_path --append \
-    /usr/bin \
-    /bin \
-    /sbin \
-    /usr/sbin
-
-set -gx RIPGREP_CONFIG_PATH $HOME/.config/ripgrep/config
-set -gx VOLTA_HOME "$HOME/.volta"
-
-if test -f "/Applications/kitty.app/Contents/Resources/kitty/terminfo"
-    set -gx TERMINFO "/Applications/kitty.app/Contents/Resources/kitty/terminfo"
-end
+    /Library/Apple/usr/bin
 
 # Set maxfiles limits higher.
 switch $OS
@@ -93,6 +36,27 @@ switch $OS
 end
 
 if status is-interactive
+
+    # Turn on vi keybindings
+    # set -g fish_key_bindings fish_vi_key_bindings
+    # set -g fish_key_bindings fish_hybrid_key_bindings
+    # bind --all \t accept-autosuggestion
+    bind --all \t complete
+    # https://github.com/fish-shell/fish-shell/issues/3299
+
+    if type -q go
+        # Move Golang's path out of $HOME
+        set -gx GOPATH $HOME/.local/go
+        set -gx GO111MODULE on
+    end
+
+    if type -q rg
+        set -gx RIPGREP_CONFIG_PATH $HOME/.config/ripgrep/config
+    end
+
+    if type -q volta
+        set -gx VOLTA_HOME "$HOME/.volta"
+    end
 
     # Set Nord as the fzf color scheme: https://github.com/junegunn/fzf/blob/master/ADVANCED.md
     set -l NORD_COLORS "--color=bg+:#3B4252,bg:#2E3440,spinner:#81A1C1,hl:#616E88,fg:#D8DEE9,header:#616E88"
@@ -113,7 +77,9 @@ if status is-interactive
     end
 
     # Silence direnv logging. Hook is invoked via vendor_conf.d/
-    set -gx DIRENV_LOG_FORMAT ""
+    if type -q direnv
+        set -gx DIRENV_LOG_FORMAT ""
+    end
 
     if type -q zoxide
         zoxide init fish --cmd j | source
@@ -153,33 +119,8 @@ if status is-interactive
     #     fish -c fisher
     # end
 
-    # https://github.com/Homebrew/homebrew-cask/blob/master/USAGE.md
-    set -gx HOMEBREW_CASK_OPTS --no-quarantine
-    set -gx HOMEBREW_BAT 1
-    set -gx HOMEBREW_INSTALL_FROM_API 1
-    set -gx HOMEBREW_NO_ANALYTICS 1
-    set -gx HOMEBREW_NO_COMPAT 1
-    set -gx HOMEBREW_NO_ENV_HINTS 1
-
-    # https://github.com/Homebrew/homebrew-command-not-found
-    set HANDLER Library/Taps/homebrew/homebrew-command-not-found/handler.fish
-
-    if test -f "$HOMEBREW_PREFIX/$TAPS"
-        source "$HOMEBREW_PREFIX/$TAPS"
-    else if test -f "$HOMEBREW_PREFIX/Homebrew/$TAPS"
-        source "$HOMEBREW_PREFIX/Homebrew/$TAPS"
-    end
-
-    # Python PEP-582 PDM integration: https://pdm.fming.dev
-    set -gx PYTHONPATH "$HOME/.local/pipx/venvs/pdm/lib/python$PYTHON_VERSION/site-packages/pdm/pep582"
-
     # Kitty terminal emulator integration.
     set -g KITTY_SHELL_INTEGRATION no-cursor
-
-    if set -q KITTY_INSTALLATION_DIR
-        source "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_conf.d/kitty-shell-integration.fish"
-        set --prepend fish_complete_path "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_completions.d"
-    end
 
     # Start SSH agent and set environment.
     if test -z (pgrep ssh-agent | string collect)
@@ -203,7 +144,13 @@ if status is-interactive
         alias vi nvim
         alias vim nvim
         alias view "nvim -R"
+
+        set -gx EDITOR nvim
+        set -gx VISUAL nvim
     end
+
+    # chdir to the root of a git repo.
+    alias cdr 'cd (git rev-parse --show-toplevel 2> /dev/null)'
 
     # These aren't currently installed, but keep the config around.
     # if type -q atuin
