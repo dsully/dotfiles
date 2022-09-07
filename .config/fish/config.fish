@@ -204,4 +204,16 @@ if status is-interactive
         alias vim nvim
         alias view "nvim -R"
     end
+
+    # These aren't currently installed, but keep the config around.
+    # if type -q atuin
+    #     set -gx ATUIN_SUPPRESS_TUI true
+    #
+    #     atuin init fish | source
+    # end
+    #
+    # if type -q sk
+    #     set -gx SKIM_DEFAULT_OPTIONS --height=30% $NORD_COLORS
+    #     status --is-interactive; and skim_key_bindings
+    # end
 end
