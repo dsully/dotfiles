@@ -2,7 +2,7 @@
 assume_yes = true
 
 # Disable specific steps - same options as the command line flag
-disable = ["containers", "firmware", "github_cli_extensions", "mas", "node", "restarts", "system", "vim"]
+disable = ["containers", "firmware", "github_cli_extensions", "mas", "node", "restarts", "vim"]
 
 # Ignore failures for these steps
 ignore_failures = ["git_repos"]
