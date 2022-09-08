@@ -21,13 +21,16 @@ set -gx MANPAGER "less -FiRSwX"
 fish_add_path --append \
     "$HOME/bin/share" \
     "$HOME/bin/$OS" \
-    "$HOME/bin/Sites/*" \
     "$HOME/.cargo/bin" \
     "$HOME/.local/bin" \
     "$HOME/.local/go/bin" \
     "$HOME/.local/share/nvim/mason/bin" \
     "$HOME/.volta/bin" \
     /Library/Apple/usr/bin
+
+for path in $HOME/bin/Sites/*
+    fish_add_path --append $path
+end
 
 # Set maxfiles limits higher.
 switch $OS
