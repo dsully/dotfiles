@@ -1,24 +1,61 @@
 #!/usr/bin/env fish
 
 # Install packages via Cargo.
-
-set -l PACKAGES amber \
+set -l PACKAGES \
     autorebase \
-    cargo-binstall \
     cargo-cache \
-    cargo-edit \
     cargo-nextest \
-    cargo-quickinstall \
-    cargo-update \
     csvlens \
-    dirstat-rs \
-    fclones \
+    fddf \
+    # gfold repository finder: https://github.com/nickgerace/gfold
     gfold \
     jfmt \
-    lfs \
-    lolcate-rs \
+    lolcat \
     ppcp \
-    rnr \
-    rustcat
+    rnr
 
-command cargo install $PACKAGES
+switch (uname)
+    case Linux
+        # Installed via Homebrew.
+        if not type -q gitui
+            set -a packages gitui
+        end
+
+        # Only works on Linux.
+        if not type -q lfs
+            set -a PACKAGES lfs
+        end
+end
+
+# These packages don't map to their CLI name.
+if not type -q ambr
+    set -a PACKAGES amber
+end
+
+if not type -q cargo-add
+    set -a PACKAGES cargo-edit
+end
+
+if not type -q cargo-install-update
+    set -a PACKAGES cargo-update
+end
+
+if not type -q ds
+    set -a PACKAGES dirstat-rs
+end
+
+if not type -q lolcate
+    set -a PACKAGES lolcate-rs
+end
+
+if not type -q rcat
+    set -a PACKAGES rustcat
+end
+
+for package in $PACKAGES
+    if type -q $package
+        echo "$package already installed"
+    else
+        command cargo install $package
+    end
+end
