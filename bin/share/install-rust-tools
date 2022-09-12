@@ -1,5 +1,14 @@
 #!/usr/bin/env fish
 
+if not type -q rustup-init
+    echo "rustup needs to be installed via Homebrew first!"
+    exit
+end
+
+if not test -d "$HOME/.rustup"
+    command rustup-init -y
+end
+
 # Install packages via Cargo.
 set -l PACKAGES \
     autorebase \
