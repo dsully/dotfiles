@@ -10,6 +10,7 @@ tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/command-not-found"
 tap "homebrew/core"
+tap "homebrew/services"
 brew "act"
 brew "bandwhich"
 brew "bat"
@@ -63,7 +64,6 @@ brew "topgrade"
 brew "tree"
 brew "tree-sitter"
 brew "unar"
-brew "uncrustify"
 brew "vivid"
 brew "volta"
 brew "websocat"
@@ -136,13 +136,16 @@ mas "Patterns", id: 429449079
 mas "Reeder", id: 1529448980
 mas "Save to Raindrop.io", id: 1549370672
 mas "Slack", id: 803453959
+mas "Spark", id: 1176895641
 mas "StopTheMadness", id: 1376402589
 mas "Str*Viewer", id: 1501259216
+mas "Tailscale", id: 1475387142
 mas "TrashMe 3", id: 1490879410
 mas "Tweaks for Twitter", id: 1567751529
 mas "Tweetbot", id: 1384080005
+mas "WiFi Explorer", id: 494803304
 mas "WireGuard", id: 1451685025
 mas "Yoink", id: 457622435
 mas "iPreview", id: 1519213509
 mas "m-wiki", id: 1480168619
-tap "homebrew/services"
+mas "xSearch", id: 1579902068

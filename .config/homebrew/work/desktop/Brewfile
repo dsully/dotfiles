@@ -1,5 +1,18 @@
+tap "buo/cask-upgrade"
+tap "cjbassi/ytop"
+tap "eth-p/software"
+tap "guoxbin/guoxbin"
+tap "homebrew/autoupdate"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-drivers"
+tap "homebrew/cask-fonts"
+tap "homebrew/cask-versions"
+tap "homebrew/command-not-found"
+tap "homebrew/core"
+tap "homebrew/services"
+tap "nickgerace/nickgerace"
 brew "act"
-brew "azure-cli"
 brew "bandwhich"
 brew "bat"
 brew "cjbassi/ytop/ytop"
@@ -13,8 +26,6 @@ brew "eth-p/software/bat-extras-batdiff"
 brew "eth-p/software/bat-extras-batgrep"
 brew "eth-p/software/bat-extras-batman"
 brew "eth-p/software/bat-extras-batpipe"
-brew "eth-p/software/bat-extras-batwatch"
-brew "exiv2"
 brew "fclones"
 brew "fd"
 brew "fish"
@@ -22,14 +33,11 @@ brew "fselect"
 brew "fzf"
 brew "gettext"
 brew "gh"
-brew "git"
 brew "git-delta"
-brew "git-filter-repo"
 brew "git-lfs"
 brew "git-quick-stats"
 brew "gitbatch"
 brew "gitui"
-brew "gitup"
 brew "glow"
 brew "gnu-tar"
 brew "go"
@@ -47,11 +55,12 @@ brew "mtr"
 brew "mysql@5.7"
 brew "neovim"
 brew "onefetch"
+brew "openjdk@11"
+brew "openjdk@17"
 brew "openssl@1.1"
 brew "openssl@3"
 brew "p7zip"
 brew "pcre2"
-brew "python@3.10", link: true
 brew "ripgrep"
 brew "rsync"
 brew "rustup-init"
@@ -66,7 +75,6 @@ brew "topgrade"
 brew "tree"
 brew "tree-sitter"
 brew "unar"
-brew "uncrustify"
 brew "vivid"
 brew "volta"
 brew "websocat"
@@ -162,26 +170,14 @@ mas "SmugMug", id: 1115348888
 mas "Spark", id: 1176895641
 mas "StopTheMadness", id: 1376402589
 mas "Str*Viewer", id: 1501259216
+mas "Tailscale", id: 1475387142
 mas "TrashMe 3", id: 1490879410
 mas "Tripsy", id: 1429967544
 mas "Tweaks for Twitter", id: 1567751529
 mas "Tweetbot", id: 1384080005
-mas "Userscripts", id: 1463298887
+mas "WiFi Explorer", id: 494803304
 mas "WireGuard", id: 1451685025
 mas "Yoink", id: 457622435
-mas "iMovie", id: 408981434
 mas "iPreview", id: 1519213509
 mas "m-wiki", id: 1480168619
-tap "buo/cask-upgrade"
-tap "cjbassi/ytop"
-tap "eth-p/software"
-tap "guoxbin/guoxbin"
-tap "homebrew/autoupdate"
-tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/cask-drivers"
-tap "homebrew/cask-fonts"
-tap "homebrew/cask-versions"
-tap "homebrew/command-not-found"
-tap "homebrew/core"
-tap "homebrew/services"
+mas "xSearch", id: 1579902068
