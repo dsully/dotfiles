@@ -1,0 +1,16 @@
+#!/usr/bin/env fish
+
+# Bootstrap and build Caddy.
+
+if not type -q xcaddy
+    echo "Installing xcaddy..."
+    command go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
+end
+
+switch $HOSTNAME
+    case server
+        command xcaddy build --with github.com/caddy-dns/gandi
+    case zap
+        # We need linode on electricrain.
+        command xcaddy build --with github.com/caddy-dns/gandi --with github.com/ocomsoft/caddy2_linode
+end
