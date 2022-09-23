@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# https://sw.kovidgoyal.net/kitty/conf/#sample-kitty-conf
+
+curl -o sample.kitty.conf https://sw.kovidgoyal.net/kitty/_downloads/433dadebd0bf504f8b008985378086ce/kitty.conf
