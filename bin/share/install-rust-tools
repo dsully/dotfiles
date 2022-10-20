@@ -18,6 +18,8 @@ set -l PACKAGES \
     fddf \
     # gfold repository finder: https://github.com/nickgerace/gfold
     gfold \
+    # https://github.com/nguyenvukhang/gitnu - git status wrapper.
+    gitnu \
     jfmt \
     lolcat \
     ppcp \

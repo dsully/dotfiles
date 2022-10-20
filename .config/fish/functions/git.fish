@@ -1,10 +1,11 @@
-function git --wraps=git --description 'Wrapper to handle git main/master'
+function git --wraps=git --description 'Wrapper to handle git main/master and also gitnu'
 
     set -f MAIN main
     set -f MASTER master
+    set -f GIT git
 
     # Check with git so that "main" gets rewritten to "master" if that's the default branch, or vice versa.
-    set -f branch (command git symbolic-ref -q refs/remotes/origin/HEAD|string split -q -f 4 "/")
+    set -f branch (command $GIT symbolic-ref -q refs/remotes/origin/HEAD|string split -q -f 4 "/")
 
     if test -n $branch
 
@@ -18,5 +19,10 @@ function git --wraps=git --description 'Wrapper to handle git main/master'
         end
     end
 
-    command git $argv
+    # https://github.com/nguyenvukhang/gitnu
+    if type -q gitnu
+        set -f GIT gitnu
+    end
+
+    command $GIT $argv
 end
