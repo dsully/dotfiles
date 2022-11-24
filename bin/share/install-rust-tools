@@ -36,13 +36,14 @@ switch (uname)
         if not type -q lfs
             set -a PACKAGES lfs
         end
+
+        # Only works on Linux.
+        if not type -q tree-sitter
+            set -a PACKAGES tree-sitter-cli
+        end
 end
 
 # These packages don't map to their CLI name.
-if not type -q ambr
-    set -a PACKAGES amber
-end
-
 if not type -q cargo-add
     set -a PACKAGES cargo-edit
 end
