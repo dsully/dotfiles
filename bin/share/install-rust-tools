@@ -27,19 +27,9 @@ set -l PACKAGES \
 
 switch (uname)
     case Linux
-        # Installed via Homebrew.
-        if not type -q gitui
-            set -a packages gitui
-        end
-
         # Only works on Linux.
         if not type -q lfs
             set -a PACKAGES lfs
-        end
-
-        # Only works on Linux.
-        if not type -q tree-sitter
-            set -a PACKAGES tree-sitter-cli
         end
 end
 
