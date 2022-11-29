@@ -756,6 +756,13 @@ if [[ $(uname -m) = "arm64" ]]; then
 fi
 
 # ---------
+# Crontab
+# ---------
+
+(crontab -l || true; echo "0 * * * * $HOME/.cargo/bin/lolcate --all --update > /dev/null 2>&1") | crontab
+(crontab -l || true; echo "# iCal Sucks\n@hourly /usr/bin/pkill -9 CalendarAgent") | crontab
+
+# ---------
 # Homebrew
 # ---------
 
