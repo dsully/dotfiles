@@ -16,8 +16,6 @@ set -l PACKAGES \
     cargo-nextest \
     csvlens \
     fddf \
-    # gfold repository finder: https://github.com/nickgerace/gfold
-    gfold \
     # https://github.com/nguyenvukhang/gitnu - git status wrapper.
     gitnu \
     jfmt \
