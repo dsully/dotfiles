@@ -9,6 +9,9 @@
     unstage = reset HEAD --
     # Check out a pull request.
     pr = "!f() { git fetch -fu ${2:-origin} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
+    #
+    # https://hachyderm.io/@nedbat/109426516519513998
+    actions = "!f() { gh run list --branch $(git rev-parse --abbrev-ref HEAD); }; f"
 [advice]
     skippedCherryPicks = false
 [branch]
