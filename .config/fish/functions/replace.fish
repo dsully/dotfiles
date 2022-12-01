@@ -1,3 +1,3 @@
-function replace --wraps=ambr -d "Search and replace."
-    ambr --regex $argv
+function replace --wraps=sd -d "Search and replace."
+    sd $argv **/*
 end
