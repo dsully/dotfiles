@@ -1,4 +1,4 @@
-function git --wraps=git --description 'Wrapper to handle git main/master and also gitnu'
+function git --wraps=git --description 'Wrapper to handle git main/master'
 
     set -f MAIN main
     set -f MASTER master
@@ -20,9 +20,10 @@ function git --wraps=git --description 'Wrapper to handle git main/master and al
     end
 
     # https://github.com/nguyenvukhang/gitnu
-    if type -q gitnu
-        set -f GIT gitnu
-    end
+    # This is removing color output right now.
+    # if type -q gitnu
+    #     set -f GIT gitnu
+    # end
 
     command $GIT $argv
 end
