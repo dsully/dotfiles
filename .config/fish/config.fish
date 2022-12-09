@@ -155,6 +155,12 @@ if status is-interactive
     # chdir to the root of a git repo.
     alias cdr 'cd (git rev-parse --show-toplevel 2> /dev/null)'
 
+    # 1Password shell integration.
+    if type -q op
+        set -gx OP_PLUGIN_ALIASES_SOURCED 1
+        alias gh "op plugin run -- gh"
+    end
+
     # These aren't currently installed, but keep the config around.
     # if type -q atuin
     #     set -gx ATUIN_SUPPRESS_TUI true
