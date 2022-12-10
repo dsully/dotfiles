@@ -22,13 +22,11 @@ readline library[1], or you can use a different Python distribution
 [1]: http://pypi.python.org/pypi/readline
 """
 
-import os
-
 from pathlib import Path
 
 
 def _pythonrc_enable_readline():
-    """Enable readline, tab completion, and history"""
+    """Enable readline, tab completion, and history."""
     import sys
 
     try:
@@ -76,12 +74,12 @@ def _pythonrc_enable_history():
 
 
 def _pythonrc_enable_pprint():
-    """Enable pretty printing of evaluated expressions"""
+    """Enable pretty printing of evaluated expressions."""
     import pprint
     import sys
 
     try:
-        from cStringIO import StringIO
+        from io import StringIO
         from pygments import highlight
         from pygments.lexers import PythonLexer, PythonTracebackLexer
         from pygments.formatters import TerminalFormatter
@@ -98,7 +96,7 @@ def _pythonrc_enable_pprint():
         _old_excepthook = sys.excepthook
 
         def excepthook(exctype, value, traceback):
-            """Prints exceptions to sys.stderr and colorizes them"""
+            """Prints exceptions to sys.stderr and colorizes them."""
 
             # traceback.format_exception() isn't used because it's
             # inconsistent with the built-in formatter
@@ -120,10 +118,7 @@ def _pythonrc_enable_pprint():
     except ImportError:
         pphighlight = pprint.pprint
 
-    try:
-        import __builtin__
-    except ImportError:
-        import builtins as __builtin__
+    import builtins as __builtin__
     import inspect
     import pydoc
     import sys
@@ -146,7 +141,7 @@ def _pythonrc_enable_pprint():
         return unpack('HHHH', ioctl(fd, TIOCGWINSZ, pack('HHHH', 0, 0, 0, 0)))[1]
 
     def get_width():
-        """Returns terminal width"""
+        """Returns terminal width."""
 
         width = 0
         try:
@@ -197,7 +192,7 @@ def _pythonrc_enable_pprint():
 
 
 def _pythonrc_fix_linecache():
-    """Add source(obj) that shows the source code for a given object"""
+    """Add source(obj) that shows the source code for a given object."""
     import os
     import sys
     from linecache import cache
@@ -206,8 +201,10 @@ def _pythonrc_fix_linecache():
     # See http://bugs.python.org/issue4223 for more information.
     def updatecache(filename, module_globals=None):
         """Update a cache entry and return its list of lines.
+
         If something's wrong, print a message, discard the cache entry,
-        and return an empty list."""
+        and return an empty list.
+        """
 
         if filename in cache:
             del cache[filename]
@@ -228,7 +225,7 @@ def _pythonrc_fix_linecache():
                 if name and get_source:
                     try:
                         data = get_source(name)
-                    except (ImportError, IOError):
+                    except (ImportError, OSError):
                         pass
                     else:
                         if data is None:
@@ -254,10 +251,8 @@ def _pythonrc_fix_linecache():
             else:
                 return []
         try:
-            fp = open(fullname, 'rU')
-            lines = fp.readlines()
-            fp.close()
-        except IOError:
+            lines = Path(fullname).read_text().splitlines()
+        except OSError:
             return []
         size, mtime = stat.st_size, stat.st_mtime
         cache[filename] = size, mtime, lines, fullname
