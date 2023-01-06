@@ -21,7 +21,9 @@ set -l PACKAGES \
     jfmt \
     lolcat \
     ppcp \
-    rnr
+    rnr \
+    # https://github.com/tamton-aquib/veldora - PDF password brute force
+    veldora
 
 switch (uname)
     case Linux
