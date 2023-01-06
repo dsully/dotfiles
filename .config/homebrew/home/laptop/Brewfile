@@ -63,10 +63,11 @@ brew "multi-git-status"
 brew "neovim"
 brew "nnn"
 brew "onefetch"
-brew "openjdk@11"
 brew "openjdk@17"
+brew "openssl@1.1"
 brew "p7zip"
-brew "protobuf"
+brew "procs"
+brew "protobuf", link: false
 brew "python@3.10"
 brew "ripgrep"
 brew "rsync"
@@ -123,6 +124,7 @@ cask "paw"
 cask "querious"
 cask "quicken"
 cask "raindropio"
+cask "raycast"
 cask "renamer"
 cask "retrobatch"
 cask "rocket"
@@ -142,6 +144,7 @@ cask "zoom"
 mas "1Password for Safari", id: 1569813296
 mas "Affinity Designer", id: 824171161
 mas "Affinity Photo", id: 824183456
+mas "Auth for Tesla", id: 1552058613
 mas "AutoMounter", id: 1160435653
 mas "Book Tracker", id: 1496543317
 mas "Brother P-touch Editor", id: 1453365242
