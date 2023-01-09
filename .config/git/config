@@ -27,6 +27,9 @@
     # pager = delta --dark --file-style=box --hunk-style=plain --theme=base16
     pager = diff-so-fancy | less --tabs=4 -RFX
     untrackedcache = true
+[init]
+  # Compatibility for unit tests.
+  defaultBranch = master
 [diff]
     noprefix = true
 [help]
