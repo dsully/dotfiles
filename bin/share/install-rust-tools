@@ -14,7 +14,6 @@ set -l PACKAGES \
     autorebase \
     cargo-cache \
     cargo-nextest \
-    csvlens \
     fddf \
     # https://github.com/nguyenvukhang/gitnu - git status wrapper.
     gitnu \
