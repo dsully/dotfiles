@@ -1,8 +1,12 @@
 # Don't ask for confirmations
 assume_yes = true
 
+# Disable warning
+skip_notify = true
+display_preamble = false
+
 # Disable specific steps - same options as the command line flag
-disable = ["containers", "firmware", "github_cli_extensions", "mas", "node", "restarts", "vim"]
+disable = ["containers", "firmware", "github_cli_extensions", "node", "restarts"]
 
 # Ignore failures for these steps
 ignore_failures = ["git_repos"]
@@ -11,7 +15,7 @@ ignore_failures = ["git_repos"]
 #only = ["system", "emacs"]
 
 # Do not ask to retry failed steps (default: false)
-#no_retry = true
+no_retry = true
 
 # Run inside tmux
 #run_in_tmux = true
@@ -66,7 +70,7 @@ greedy_cask = true
 
 [npm]
 # Use sudo if the NPM directory isn't owned by the current user
-#use_sudo = true
+use_sudo = true
 
 [firmware]
 # Offer to update firmware; if false just check for and display available updates
@@ -74,4 +78,4 @@ upgrade = false
 
 [flatpak]
 # Use sudo for updating the system-wide installation
-#use_sudo = true
+use_sudo = true
