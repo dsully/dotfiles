@@ -14,11 +14,12 @@ tap "homebrew/services"
 brew "act"
 brew "bandwhich"
 brew "bat"
-brew "btop"
 brew "cjbassi/ytop/ytop"
-brew "code-minimap"
+brew "curl"
 brew "dasel"
+brew "dash", link: false
 brew "direnv"
+brew "docker", link: false
 brew "dog"
 brew "dua-cli"
 brew "dust"
@@ -34,9 +35,13 @@ brew "fselect"
 brew "fzf"
 brew "gettext"
 brew "gh"
-brew "glow"
+brew "git"
+brew "git-delta"
+brew "git-lfs"
+brew "git-quick-stats"
 brew "gnu-tar"
 brew "go"
+brew "grpcurl"
 brew "hexyl"
 brew "hyperfine"
 brew "iperf3"
@@ -50,6 +55,7 @@ brew "mtr"
 brew "mysql@5.7", restart_service: true
 brew "neovim"
 brew "onefetch"
+brew "openjdk@17"
 brew "p7zip"
 brew "ripgrep"
 brew "rsync"
@@ -75,10 +81,12 @@ brew "xz"
 brew "zenith"
 brew "zoxide"
 cask "1password"
+cask "adguard"
 cask "alfred"
 cask "anylist"
 cask "backblaze"
 cask "bartender"
+cask "cisco-proximity"
 cask "cleanshot"
 cask "daisydisk"
 cask "dash"
@@ -89,10 +97,12 @@ cask "downie"
 cask "electorrent"
 cask "font-hack-nerd-font"
 cask "font-jetbrains-mono"
+cask "github"
 cask "google-chrome"
 cask "iina"
 cask "kitty"
 cask "latest"
+cask "microsoft-auto-update"
 cask "microsoft-outlook"
 cask "microsoft-teams"
 cask "monodraw"
@@ -102,10 +112,12 @@ cask "paw"
 cask "querious"
 cask "quicken"
 cask "raindropio"
+cask "raycast"
 cask "retrobatch"
 cask "rocket"
 cask "screens"
 cask "signal"
+cask "slack"
 cask "soulver"
 cask "stay"
 cask "superduper"
@@ -114,6 +126,7 @@ cask "the-unarchiver"
 cask "tower"
 cask "transmit"
 cask "visual-studio-code"
+cask "warp"
 cask "zoom"
 mas "1Password for Safari", id: 1569813296
 mas "Agenda", id: 1287445660
@@ -125,10 +138,10 @@ mas "DevCleaner", id: 1388020431
 mas "Discovery", id: 1381004916
 mas "JSONPeep", id: 1458969831
 mas "Jiffy", id: 1502527999
+mas "Kagi Inc.", id: 1622835804
 mas "Keynote", id: 409183694
 mas "Magnet", id: 441258766
 mas "Marked 2", id: 890031187
-mas "Matter", id: 1548677272
 mas "Microsoft To Do", id: 1274495053
 mas "MindNode", id: 1289197285
 mas "Netmo", id: 1192219511
@@ -136,8 +149,8 @@ mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Patterns", id: 429449079
 mas "Reeder", id: 1529448980
+mas "Save to Matter", id: 1548677272
 mas "Save to Raindrop.io", id: 1549370672
-mas "Slack", id: 803453959
 mas "Spark", id: 1176895641
 mas "StopTheMadness", id: 1376402589
 mas "Str*Viewer", id: 1501259216
@@ -145,8 +158,8 @@ mas "Tailscale", id: 1475387142
 mas "TrashMe 3", id: 1490879410
 mas "Tweaks for Twitter", id: 1567751529
 mas "WiFi Explorer", id: 494803304
+mas "WiFi Signal", id: 525912054
 mas "WireGuard", id: 1451685025
 mas "Yoink", id: 457622435
 mas "iPreview", id: 1519213509
 mas "m-wiki", id: 1480168619
-mas "xSearch", id: 1579902068
