@@ -12,11 +12,13 @@ tap "homebrew/command-not-found"
 tap "homebrew/core"
 tap "homebrew/services"
 tap "nickgerace/nickgerace"
+tap "rajiv/fastmate"
 brew "act"
 brew "bandwhich"
 brew "bat"
 brew "btop"
 brew "cjbassi/ytop/ytop"
+brew "cmake"
 brew "code-minimap"
 brew "dasel"
 brew "direnv"
@@ -38,8 +40,6 @@ brew "git-delta"
 brew "git-lfs"
 brew "git-quick-stats"
 brew "gitbatch"
-brew "gitui"
-brew "glow"
 brew "gnu-tar"
 brew "go"
 brew "hexyl"
@@ -47,7 +47,7 @@ brew "hyperfine"
 brew "iperf3"
 brew "jless"
 brew "jq"
-brew "kubernetes-cli"
+brew "kubernetes-cli", link: false
 brew "less"
 brew "lsd"
 brew "macchina"
@@ -66,6 +66,7 @@ brew "ripgrep"
 brew "rsync"
 brew "rustup-init"
 brew "sd"
+brew "sqlite"
 brew "subversion"
 brew "syncthing", restart_service: true
 brew "tealdeer"
@@ -83,11 +84,14 @@ brew "wget"
 brew "xh"
 brew "xsv"
 brew "xz"
+brew "yq"
+brew "zellij"
 brew "zenith"
 brew "zoxide"
 cask "1password"
 cask "adguard"
 cask "alfred"
+cask "android-platform-tools"
 cask "anylist"
 cask "aurora-hdr"
 cask "backblaze"
@@ -97,9 +101,8 @@ cask "daisydisk"
 cask "dash"
 cask "devtoys"
 cask "discord"
-cask "docker"
-cask "downie"
 cask "electorrent"
+cask "fastmate"
 cask "font-hack-nerd-font"
 cask "font-jetbrains-mono"
 cask "google-chrome"
@@ -110,7 +113,6 @@ cask "kitty"
 cask "microsoft-auto-update"
 cask "microsoft-outlook"
 cask "microsoft-teams"
-cask "mimestream"
 cask "monodraw"
 cask "omnigraffle"
 cask "paw"
@@ -118,6 +120,7 @@ cask "proxyman"
 cask "querious"
 cask "quicken"
 cask "raindropio"
+cask "raycast"
 cask "retrobatch"
 cask "rocket"
 cask "screens"
@@ -136,7 +139,7 @@ mas "Affinity Photo", id: 824183456
 mas "Agenda", id: 1287445660
 mas "Apple Configurator", id: 1037126344
 mas "AutoMounter", id: 1160435653
-mas "Book Track", id: 1496543317
+mas "Book Tracker", id: 1496543317
 mas "Brother P-touch Editor", id: 1453365242
 mas "CollageIt 3 Lite", id: 675540049
 mas "Darkroom", id: 953286746
@@ -145,13 +148,12 @@ mas "Deliveries", id: 924726344
 mas "DevCleaner", id: 1388020431
 mas "Discovery", id: 1381004916
 mas "Disk Speed Test", id: 425264550
-mas "Handy Converter", id: 1193672923
+mas "Infuse", id: 1136220934
 mas "JSONPeep", id: 1458969831
-mas "Jiffy", id: 1502527999
+mas "Kagi Inc.", id: 1622835804
 mas "Keynote", id: 409183694
 mas "Magnet", id: 441258766
 mas "Marked 2", id: 890031187
-mas "Matter", id: 1548677272
 mas "MetaImage", id: 1397099749
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Microsoft To Do", id: 1274495053
@@ -166,18 +168,21 @@ mas "Play", id: 1596506190
 mas "RAW Power", id: 1157116444
 mas "Reeder", id: 1529448980
 mas "Save to Raindrop.io", id: 1549370672
+mas "Save to Reader", id: 1640236961
 mas "Slack", id: 803453959
 mas "SmugMug", id: 1115348888
 mas "Spark", id: 1176895641
 mas "StopTheMadness", id: 1376402589
 mas "Str*Viewer", id: 1501259216
 mas "Tailscale", id: 1475387142
+mas "TestFlight", id: 899247664
 mas "TrashMe 3", id: 1490879410
 mas "Tripsy", id: 1429967544
 mas "Tweaks for Twitter", id: 1567751529
 mas "WiFi Explorer", id: 494803304
 mas "WireGuard", id: 1451685025
+mas "Xcode", id: 497799835
 mas "Yoink", id: 457622435
+mas "iMovie", id: 408981434
 mas "iPreview", id: 1519213509
 mas "m-wiki", id: 1480168619
-mas "xSearch", id: 1579902068
