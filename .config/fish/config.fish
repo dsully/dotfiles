@@ -172,4 +172,17 @@ if status is-interactive
     #     set -gx SKIM_DEFAULT_OPTIONS --height=30% $NORD_COLORS
     #     status --is-interactive; and skim_key_bindings
     # end
+
+    # https://zellij.dev/ - terminal multiplexer and session manager.
+    if type -q zellij
+        if [ ! -f "$XDG_CONFIG_HOME/fish/completions/zellij.fish" ]
+            zellij setup --generate-completion fish >$XDG_CONFIG_HOME/fish/completions/zellij.fish
+        end
+
+        # Automatically attach if a session doesn't exist.
+        if not set -q ZELLIJ
+            and test $HOSTNAME = server
+            zellij attach -c server
+        end
+    end
 end
