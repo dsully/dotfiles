@@ -5,9 +5,10 @@ set -U __fish_git_prompt_color_branch -o white
 set -U fish_color_user cyan
 set -U fish_color_host cyan
 
-# only display a host name if we're in an ssh session
+# only display a host name if we're in an ssh session, but not inside zellij, as it provides the hostname.
 function __user_host
-    if test -n "$SSH_CLIENT$SSH2_CLIENT$SSH_TTY"
+    if test -n "$SSH_CLIENT$SSH_TTY"
+        and not set -q ZELLIJ
 
         if test (id -u) -eq 0
             set_color --bold red

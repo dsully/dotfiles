@@ -1,8 +1,9 @@
 // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
-keybinds {
+keybinds clear-defaults=true {
     normal {
         // uncomment this and adjust key if using copy_on_select=false
         // bind "Alt c" { Copy; }
+        bind "Ctrl d" { Detach; }
     }
     locked {
         bind "Ctrl g" { SwitchToMode "Normal"; }
@@ -111,7 +112,10 @@ keybinds {
         bind "d" { Detach; }
     }
     tmux {
-        bind "[" { SwitchToMode "Scroll"; }
+        // bind "[" { SwitchToMode "Scroll"; }
+        bind "Ctrl ]" { PageScrollDown; }
+        bind "Ctrl [" { PageScrollUp; }
+
         bind "Ctrl b" { Write 2; SwitchToMode "Normal"; }
         bind "\"" { NewPane "Down"; SwitchToMode "Normal"; }
         bind "%" { NewPane "Right"; SwitchToMode "Normal"; }
@@ -181,7 +185,7 @@ plugins {
 //   - detach (Default)
 //   - quit
 //
-// on_force_close "quit"
+on_force_close "detach"
 
 //  Send a request for a simplified ui (without arrow fonts) to plugins
 //  Options:
@@ -193,14 +197,14 @@ plugins {
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
 //
-// default_shell "fish"
+default_shell "fish"
 
 // Toggle between having pane frames around the panes
 // Options:
 //   - true (default)
 //   - false
 //
-// pane_frames true
+pane_frames true
 
 // Define color themes for Zellij
 // For more examples, see: https://github.com/zellij-org/zellij/tree/main/example/themes
@@ -246,7 +250,7 @@ default_layout "compact"
 //   - true (default)
 //   - false
 //
-// mouse_mode false
+mouse_mode true
 
 // Configure the scroll back buffer size
 // This is the number of lines zellij stores for each pane in the scroll back
