@@ -5,7 +5,7 @@ function git --wraps=git --description 'Wrapper to handle git main/master'
     set -f GIT git
 
     # Check with git so that "main" gets rewritten to "master" if that's the default branch, or vice versa.
-    set -f branch (command $GIT symbolic-ref -q refs/remotes/origin/HEAD|string split -q -f 4 "/")
+    set -f branch (command $GIT symbolic-ref -q refs/remotes/origin/HEAD|string split -f 4 "/")
 
     if test -n $branch
 
