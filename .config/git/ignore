@@ -63,7 +63,7 @@
 /fisher/github.com
 /iCloud
 /mbox
-/src
+^/src
 Icon?
 Thumbs.db
 __pypackages__/
