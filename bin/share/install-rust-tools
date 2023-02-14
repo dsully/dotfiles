@@ -19,8 +19,9 @@ set -l PACKAGES \
     gitnu \
     jfmt \
     lolcat \
+    # Renamer: https://github.com/yaa110/nomino
+    nomino \
     ppcp \
-    rnr \
     # https://github.com/tamton-aquib/veldora - PDF password brute force
     veldora
 
