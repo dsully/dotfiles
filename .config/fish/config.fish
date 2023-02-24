@@ -125,18 +125,6 @@ if status is-interactive
     # Kitty terminal emulator integration.
     set -g KITTY_SHELL_INTEGRATION no-cursor
 
-    # Start SSH agent and set environment.
-    if test -z (pgrep ssh-agent | string collect)
-        eval (ssh-agent -c) >/dev/null
-        set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
-        set -Ux SSH_AGENT_PID $SSH_AGENT_PID
-
-        switch $OS
-            case Darwin
-                command ssh-add --apple-use-keychain -q
-        end
-    end
-
     # https://github.com/Peltoche/lsd
     if type -q lsd
         alias ls lsd
@@ -144,9 +132,9 @@ if status is-interactive
 
     # http://github.com/neovim/neovim
     if type -q nvim
-        alias vi nvim
-        alias vim nvim
-        alias view "nvim -R"
+        abbr --add vi 'nvim'
+        abbr --add vim 'nvim'
+        abbr --add viem 'nvim -R'
 
         set -gx EDITOR nvim
         set -gx VISUAL nvim
