@@ -59,6 +59,11 @@
     navigate = true  # use n and N to move between diff sections
     noprefix = true
     renames = copies # Detect copies as well as renames.
+[filter "lfs"]
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
 [help]
     # Automatically correct and execute mistyped commands.
     autocorrect = immediate
@@ -76,4 +81,3 @@
     path = ~/.config/git/private
 [includeIf "gitdir:~/dev/linkedin/"]
     path = ~/.config/git/linkedin
-#
