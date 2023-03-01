@@ -10,7 +10,7 @@ This allows for dotfiles without symlinks, rsyncing, or other state management.
 ## On a new machine
 
 ```bash
-curl https://raw.githubusercontent.com/dsully/dotfiles/master/bin/bootstrap [URL] | bash
+curl https://raw.githubusercontent.com/dsully/dotfiles/master/bin/bootstrap | bash
 ```
 
 ### Using different repositories
