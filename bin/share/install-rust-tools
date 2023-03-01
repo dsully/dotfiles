@@ -23,7 +23,9 @@ set -l PACKAGES \
     nomino \
     ppcp \
     # https://github.com/tamton-aquib/veldora - PDF password brute force
-    veldora
+    veldora \
+    # https://github.com/tarka/xcp/
+    xcp
 
 switch (uname)
     case Linux
