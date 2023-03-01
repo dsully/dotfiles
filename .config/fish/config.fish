@@ -140,6 +140,12 @@ if status is-interactive
         set -gx VISUAL nvim
     end
 
+    # Check for CUDA bins and libraries.
+    if [ -d /usr/local/cuda ]
+        set -gx CUDA_HOME /usr/local/cuda
+        fish_add_path --append "$CUDA_HOME/bin"
+    end
+
     # chdir to the root of a git repo.
     alias cdr 'cd (git rev-parse --show-toplevel 2> /dev/null)'
 
