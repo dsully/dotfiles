@@ -146,6 +146,11 @@ if status is-interactive
         fish_add_path --append "$CUDA_HOME/bin"
     end
 
+    # Disable EternalTerminal telemetry.
+    if type -q et
+        set -gx ET_NO_TELEMETRY 1
+    end
+
     # chdir to the root of a git repo.
     alias cdr 'cd (git rev-parse --show-toplevel 2> /dev/null)'
 
