@@ -170,7 +170,12 @@ if status is-interactive
         # Automatically attach if a session doesn't exist.
         if not set -q ZELLIJ
             and test $HOSTNAME = server
-            zellij attach -c server
+
+            if test -n (zellij list-sessions | grep -c server)
+                zellij attach server
+            else
+                zellij -s server
+            end
         end
     end
 end
