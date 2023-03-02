@@ -132,8 +132,8 @@ if status is-interactive
 
     # http://github.com/neovim/neovim
     if type -q nvim
-        abbr --add vi 'nvim'
-        abbr --add vim 'nvim'
+        abbr --add vi nvim
+        abbr --add vim nvim
         abbr --add viem 'nvim -R'
 
         set -gx EDITOR nvim
@@ -158,6 +158,10 @@ if status is-interactive
     if type -q op
         set -gx OP_PLUGIN_ALIASES_SOURCED 1
         alias gh "op plugin run -- gh"
+    end
+
+    if [ -f "$XDG_CONFIG_HOME/fish/lib/private.fish" ]
+        source "$XDG_CONFIG_HOME/fish/lib/private.fish"
     end
 
     # These aren't currently installed, but keep the config around.
