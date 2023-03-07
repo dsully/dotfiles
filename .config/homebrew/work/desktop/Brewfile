@@ -4,15 +4,15 @@ tap "eth-p/software"
 tap "guoxbin/guoxbin"
 tap "homebrew/autoupdate"
 tap "homebrew/bundle"
-tap "homebrew/cask"
 tap "homebrew/cask-drivers"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/command-not-found"
-tap "homebrew/core"
 tap "homebrew/services"
+tap "mistertea/et"
 tap "nickgerace/nickgerace"
 tap "rajiv/fastmate"
+tap "scullionw/tap"
 brew "act"
 brew "bandwhich"
 brew "bat"
@@ -42,16 +42,17 @@ brew "git-quick-stats"
 brew "gitbatch"
 brew "gnu-tar"
 brew "go"
+brew "gping"
 brew "hexyl"
 brew "hyperfine"
 brew "iperf3"
 brew "jless"
 brew "jq"
-brew "kubernetes-cli", link: false
 brew "less"
 brew "lsd"
 brew "macchina"
 brew "mas"
+brew "mistertea/et/et"
 brew "mtr"
 brew "mysql@5.7"
 brew "neovim"
@@ -64,7 +65,9 @@ brew "p7zip"
 brew "pcre2"
 brew "ripgrep"
 brew "rsync"
+brew "rtx"
 brew "rustup-init"
+brew "scullionw/tap/dirstat-rs"
 brew "sd"
 brew "sqlite"
 brew "subversion"
@@ -157,13 +160,13 @@ mas "Marked 2", id: 890031187
 mas "MetaImage", id: 1397099749
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Microsoft To Do", id: 1274495053
-mas "MindNode", id: 1289197285
 mas "Netmo", id: 1192219511
 mas "Numbers", id: 409203825
 mas "PDF Expert", id: 1055273043
 mas "Pages", id: 409201541
 mas "Paprika Recipe Manager 3", id: 1303222628
 mas "Patterns", id: 429449079
+mas "Pixelmator Pro", id: 1289583905
 mas "Play", id: 1596506190
 mas "RAW Power", id: 1157116444
 mas "Reeder", id: 1529448980
@@ -178,6 +181,7 @@ mas "Tailscale", id: 1475387142
 mas "TestFlight", id: 899247664
 mas "TrashMe 3", id: 1490879410
 mas "Tripsy", id: 1429967544
+mas "Tweaks for Reddit", id: 1524828965
 mas "Tweaks for Twitter", id: 1567751529
 mas "WiFi Explorer", id: 494803304
 mas "WireGuard", id: 1451685025

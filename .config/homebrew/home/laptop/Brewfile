@@ -5,14 +5,14 @@ tap "guoxbin/guoxbin"
 tap "hashicorp/tap"
 tap "homebrew/autoupdate"
 tap "homebrew/bundle"
-tap "homebrew/cask"
 tap "homebrew/cask-drivers"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/command-not-found"
-tap "homebrew/core"
 tap "homebrew/services"
+tap "mistertea/et"
 tap "rajiv/fastmate"
+tap "scullionw/tap"
 brew "act"
 brew "bandwhich"
 brew "bat"
@@ -47,6 +47,7 @@ brew "gitup"
 brew "glow"
 brew "gnu-tar"
 brew "go"
+brew "gping"
 brew "helix"
 brew "hexyl"
 brew "hyperfine"
@@ -58,6 +59,7 @@ brew "lsd"
 brew "luarocks"
 brew "macchina"
 brew "mas"
+brew "mistertea/et/et"
 brew "mtr"
 brew "multi-git-status"
 brew "neovim"
@@ -71,7 +73,9 @@ brew "protobuf", link: false
 brew "python@3.10"
 brew "ripgrep"
 brew "rsync"
+brew "rtx"
 brew "rustup-init"
+brew "scullionw/tap/dirstat-rs"
 brew "sd"
 brew "syncthing", restart_service: true
 brew "tealdeer"
@@ -169,6 +173,7 @@ mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Paprika Recipe Manager 3", id: 1303222628
 mas "Patterns", id: 429449079
+mas "Pixelmator Pro", id: 1289583905
 mas "Play", id: 1596506190
 mas "RAW Power", id: 1157116444
 mas "Reeder", id: 1529448980
@@ -184,6 +189,7 @@ mas "Tailscale", id: 1475387142
 mas "TestFlight", id: 899247664
 mas "TrashMe 3", id: 1490879410
 mas "Tripsy", id: 1429967544
+mas "Tweaks for Reddit", id: 1524828965
 mas "Tweaks for Twitter", id: 1567751529
 mas "WiFi Explorer", id: 494803304
 mas "WiFi Signal", id: 525912054
