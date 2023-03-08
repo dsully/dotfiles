@@ -1,0 +1,99 @@
+# Don't ask for confirmations
+assume_yes = true
+
+# Disable warning
+display_preamble = false
+skip_notify = true
+
+# Disable specific steps - same options as the command line flag
+disable = [
+    "brew_cask",
+    "brew_formula",
+    "cargo",
+    "containers",
+    "deb_get",
+    "firmware",
+    "github_cli_extensions",
+    "go",
+    "mas",
+    "node",
+    "pip3",
+    "pipx",
+    "pnpm",
+    "restarts",
+    "rustup",
+    "snap",
+    "system",
+    "tldr",
+    "vim",
+    "yarn",
+]
+
+# Ignore failures for these steps
+ignore_failures = [ "git_repos" ]
+
+# Run specific steps - same options as the command line flag
+#only = ["system", "emacs"]
+
+# Do not ask to retry failed steps (default: false)
+no_retry = true
+
+# Run inside tmux
+#run_in_tmux = true
+
+# List of remote machines with Topgrade installed on them
+# remote_topgrades = ["dsully-md1", "dsully-mn1", "jarvis", "server", "zap"]
+
+# Arguments to pass SSH when upgrading remote systems
+#ssh_arguments = "-o ConnectTimeout=2"
+
+# Path to Topgrade executable on remote machines
+#remote_topgrade_path = ".cargo/bin/topgrade"
+
+# Arguments to pass tmux when pulling Repositories
+#tmux_arguments = "-S /var/tmux.sock"
+
+# Do not set the terminal title
+#set_title = false
+
+# Display the time in step titles
+# display_time = true
+
+# Cleanup temporary or old files
+cleanup = true
+
+[git]
+#max_concurrency = 5
+# Additional git repositories to pull
+repos = [
+    "/bits/apps/stable-diffusion-webui/extensions/*",
+]
+
+# Don't pull the predefined git repos
+pull_predefined = false
+
+# Arguments to pass Git when pulling Repositories
+arguments = "--rebase --autostash"
+
+# Commands to run before anything
+[pre_commands]
+#"Emacs Snapshot" = "rm -rf ~/.emacs.d/elpa.bak && cp -rl ~/.emacs.d/elpa ~/.emacs.d/elpa.bak"
+
+# Custom commands
+[commands]
+#"Python Environment" = "~/dev/.env/bin/pip install -i https://pypi.python.org/simple -U --upgrade-strategy eager jupyter"
+
+[brew]
+greedy_cask = true
+
+[npm]
+# Use sudo if the NPM directory isn't owned by the current user
+use_sudo = true
+
+[firmware]
+# Offer to update firmware; if false just check for and display available updates
+upgrade = false
+
+[flatpak]
+# Use sudo for updating the system-wide installation
+use_sudo = true
