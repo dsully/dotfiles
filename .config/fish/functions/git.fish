@@ -4,10 +4,15 @@ function git --wraps=git --description 'Wrapper to handle git main/master'
     set -f MASTER master
     set -f GIT git
 
-    # Check with git so that "main" gets rewritten to "master" if that's the default branch, or vice versa.
-    set -f branch (command $GIT symbolic-ref -q refs/remotes/origin/HEAD|string split -f 4 "/")
+    if command $GIT rev-parse --is-inside-work-tree >/dev/null 2>&1
+        set -f branch $MASTER
 
-    if test -n $branch
+        # Check with git so that "main" gets rewritten to "master" if that's the default branch, or vice versa.
+        set -f git_root (command $GIT rev-parse --absolute-git-dir)
+
+        if test -e "$git_root/refs/heads/main"
+            set -f branch $MAIN
+        end
 
         for i in (seq (count $argv))
 
