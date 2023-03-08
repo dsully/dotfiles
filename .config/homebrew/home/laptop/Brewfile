@@ -19,10 +19,8 @@ brew "bat"
 brew "btop"
 brew "cjbassi/ytop/ytop"
 brew "cmake"
-brew "code-minimap"
 brew "dasel"
 brew "direnv"
-brew "dog"
 brew "dua-cli"
 brew "dust"
 brew "eth-p/software/bat-extras-batdiff"
@@ -42,7 +40,6 @@ brew "git"
 brew "git-delta"
 brew "git-lfs"
 brew "git-quick-stats"
-brew "gitui"
 brew "gitup"
 brew "glow"
 brew "gnu-tar"
@@ -56,7 +53,6 @@ brew "jless"
 brew "jq"
 brew "less"
 brew "lsd"
-brew "luarocks"
 brew "macchina"
 brew "mas"
 brew "mistertea/et/et"
@@ -69,7 +65,7 @@ brew "openjdk@17"
 brew "openssl@1.1"
 brew "p7zip"
 brew "procs"
-brew "protobuf", link: false
+brew "protobuf"
 brew "python@3.10"
 brew "ripgrep"
 brew "rsync"
@@ -86,7 +82,6 @@ brew "topgrade"
 brew "tree"
 brew "tree-sitter"
 brew "unar"
-brew "universal-ctags"
 brew "vivid"
 brew "volta"
 brew "websocat"
@@ -94,6 +89,7 @@ brew "wget"
 brew "xh"
 brew "xsv"
 brew "xz"
+brew "zellij"
 brew "zenith"
 brew "zoxide"
 cask "1password"
@@ -125,6 +121,7 @@ cask "macdive"
 cask "monodraw"
 cask "mullvadvpn"
 cask "paw"
+cask "proxyman"
 cask "querious"
 cask "quicken"
 cask "raindropio"
@@ -132,7 +129,6 @@ cask "raycast"
 cask "renamer"
 cask "retrobatch"
 cask "rocket"
-cask "roon"
 cask "screens"
 cask "signal"
 cask "soulseek"
@@ -144,7 +140,6 @@ cask "tower"
 cask "transmit"
 cask "visual-studio-code"
 cask "warp"
-cask "zoom"
 mas "1Password for Safari", id: 1569813296
 mas "Affinity Designer", id: 824171161
 mas "Affinity Photo", id: 824183456
@@ -152,21 +147,19 @@ mas "Auth for Tesla", id: 1552058613
 mas "AutoMounter", id: 1160435653
 mas "Book Tracker", id: 1496543317
 mas "Brother P-touch Editor", id: 1453365242
+mas "CotEditor", id: 1024640650
 mas "Darkroom", id: 953286746
 mas "Dato", id: 1470584107
 mas "Deliveries", id: 290986013
 mas "DevCleaner", id: 1388020431
 mas "Discovery", id: 1381004916
 mas "Flighty", id: 1358823008
-mas "Handy Converter", id: 1193672923
 mas "Infuse", id: 1136220934
 mas "JSONPeep", id: 1458969831
-mas "Jiffy", id: 1502527999
 mas "Kagi Inc.", id: 1622835804
 mas "Keynote", id: 409183694
 mas "Magnet", id: 441258766
 mas "Marked 2", id: 890031187
-mas "Mela", id: 1568924476
 mas "MetaImage", id: 1397099749
 mas "Netmo", id: 1192219511
 mas "Numbers", id: 409203825
@@ -180,6 +173,7 @@ mas "Reeder", id: 1529448980
 mas "Router", id: 1229416813
 mas "Save to Matter", id: 1548677272
 mas "Save to Raindrop.io", id: 1549370672
+mas "Save to Reader", id: 1640236961
 mas "Slack", id: 803453959
 mas "SmugMug", id: 1115348888
 mas "Spark", id: 1176895641
