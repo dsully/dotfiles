@@ -487,7 +487,7 @@ defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
 
 # Set Safari’s home page to the favorites page.
 # defaults write com.apple.Safari HomePage -string "favorites://"
-defaults write com.apple.Safari HomePage -string "file:///Users/dsully/dev/start/index.html"
+defaults write com.apple.Safari HomePage -string "https://sully.org/dan/start/"
 
 # New windows open with: "Homepage"
 defaults write com.apple.Safari NewWindowBehavior -int 0
@@ -761,6 +761,7 @@ fi
 
 (crontab -l || true; echo "0 * * * * $HOME/.cargo/bin/lolcate --all --update > /dev/null 2>&1") | crontab
 (crontab -l || true; echo "# iCal Sucks\n@hourly /usr/bin/pkill -9 CalendarAgent") | crontab
+(crontab -l || true; echo "# iCal Sucks\n@hourly /usr/bin/pkill -9 exchangesyncd") | crontab
 
 # ---------
 # Homebrew
