@@ -1,3 +1,0 @@
-# Use Ctrl-W for breaking at path separators.
-set bind-tty-special-chars off
-"\C-w": unix-filename-rubout
