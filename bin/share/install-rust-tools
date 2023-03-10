@@ -19,8 +19,6 @@ set -l PACKAGES \
     gitnu \
     jfmt \
     lolcat \
-    # Renamer: https://github.com/yaa110/nomino
-    nomino \
     ppcp \
     # https://github.com/tamton-aquib/veldora - PDF password brute force
     veldora \
@@ -42,10 +40,6 @@ end
 
 if not type -q cargo-install-update
     set -a PACKAGES cargo-update
-end
-
-if not type -q ds
-    set -a PACKAGES dirstat-rs
 end
 
 if not type -q lolcate
