@@ -30,6 +30,7 @@ brew "onefetch"
 brew "openssl@1.1", link: false
 brew "pcre2"
 brew "procs"
+brew "rtx"
 brew "sd"
 brew "tealdeer"
 brew "tokei"

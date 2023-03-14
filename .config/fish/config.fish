@@ -164,6 +164,14 @@ if status is-interactive
         source "$XDG_CONFIG_HOME/fish/lib/private.fish"
     end
 
+    # https://github.com/jdxcode/rtx
+    if type -q rtx
+        set -gx RTX_EXPERIMENTAL 1
+        set -gx RTX_USE_TOML 1
+
+        rtx activate fish | source
+    end
+
     # These aren't currently installed, but keep the config around.
     # if type -q atuin
     #     set -gx ATUIN_SUPPRESS_TUI true
@@ -179,7 +187,7 @@ if status is-interactive
     # https://zellij.dev/ - terminal multiplexer and session manager.
     if type -q zellij
         if [ ! -f "$XDG_CONFIG_HOME/fish/completions/zellij.fish" ]
-            zellij setup --generate-completion fish > "$XDG_CONFIG_HOME/fish/completions/zellij.fish"
+            zellij setup --generate-completion fish >"$XDG_CONFIG_HOME/fish/completions/zellij.fish"
         end
 
         # Automatically attach if a session doesn't exist.
