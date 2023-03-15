@@ -18,7 +18,7 @@ ignore_failures = ["git_repos"]
 no_retry = true
 
 # Run inside tmux
-#run_in_tmux = true
+run_in_tmux = false
 
 # List of remote machines with Topgrade installed on them
 # remote_topgrades = ["dsully-md1", "dsully-mn1", "jarvis", "server", "zap"]
@@ -49,6 +49,7 @@ repos = [
     "~/src/rust/*/",
     "~/src/neovim/*/",
     "~/src/neovim/dots/*/",
+    "~/.config/repos/private",
 ]
 
 # Don't pull the predefined git repos
