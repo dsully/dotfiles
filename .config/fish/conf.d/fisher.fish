@@ -1,16 +1,13 @@
 # https://github.com/jorgebucaran/fisher/issues/640#issuecomment-1172984768
 if status is-login
 
-    set -q _fisher_path_initialized && exit
-    set -g _fisher_path_initialized
-
     # Set fisher install to be outside of ~/.config/fish
     set -gx fisher_path $HOME/.cache/fish
 
     # Install fisher if it isn't already.
+    # Use 'fisher update' and not install to read the checked in fish_plugins file.
     if not test -f $fisher_path/functions/fisher.fish
-        curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
-        fish -c fisher
+        curl -sL https://git.io/fisher | source && fisher update
     end
 
     set fish_complete_path $fish_complete_path[1] $fisher_path/completions $fish_complete_path[2..]
