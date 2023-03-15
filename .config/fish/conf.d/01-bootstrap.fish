@@ -59,4 +59,10 @@ if status is-interactive
     set -gx NORD_COLORS "$NORD_COLORS,info:#81A1C1,pointer:#81A1C1,marker:#81A1C1,fg+:#81A1C1,prompt:#81A1C1,hl+:#81A1C1"
 
     set -gx FZF_DEFAULT_OPTS --cycle --filepath-word --height=50% --info=hidden --border=sharp $NORD_COLORS
+
+    if test -d $XDG_CONFIG_HOME/repos/private/fish/conf.d
+        for file in $XDG_CONFIG_HOME/repos/private/fish/conf.d/*.fish
+            source $file
+        end
+    end
 end
