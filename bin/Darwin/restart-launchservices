@@ -1,3 +1,0 @@
-#!/bin/sh
-
-lsregister -kill -r -domain local -domain system -domain user

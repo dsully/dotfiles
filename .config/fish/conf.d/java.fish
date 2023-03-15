@@ -1,6 +1,6 @@
 if status is-interactive
 
-    switch (uname)
+    switch $OS
         case Darwin
             set -l BASE /Library/Java/JavaVirtualMachines
             set -gx JAVA_HOME $BASE/(command ls $BASE|sort)[-1]/Contents/Home
