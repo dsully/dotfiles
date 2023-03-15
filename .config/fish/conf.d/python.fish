@@ -1,6 +1,6 @@
 if status is-interactive
 
-    set -gx PYTHONSTARTUP $HOME/.config/python/startup.py
+    set -gx PYTHONSTARTUP $XDG_CONFIG_HOME/python/startup.py
     set -gx PYTHON_VERSION 3.10
 
     fish_add_path --append "/export/apps/python/$PYTHON_VERSION/bin" "$HOME/Library/Python/$PYTHON_VERSION/bin"

@@ -1,5 +1,0 @@
-#!/bin/sh
-
-for i in $(ls -Rl@ | grep '^	com\.apple\.metadata' | awk '{print $1}' | sort -u); \
-	do echo Removing $i ... >&2;  \
-	find . -print0| xargs -0 xattr -d $i 2>/dev/null ; done
