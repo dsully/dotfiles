@@ -1,6 +1,6 @@
 # https://github.com/jdxcode/rtx
-if status is-interactive; and test -f $HOMEBREW_PREFIX/bin/rtx
+if status is-interactive; and type -q rtx
     set -gx RTX_USE_TOML 1
 
-    $HOMEBREW_PREFIX/bin/rtx activate fish | source
+    command rtx activate fish | source
 end
