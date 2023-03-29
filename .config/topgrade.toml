@@ -6,7 +6,7 @@ skip_notify = true
 display_preamble = false
 
 # Disable specific steps - same options as the command line flag
-disable = ["containers", "firmware", "github_cli_extensions", "mas", "node", "pip3", "restarts", "vim"]
+disable = ["containers", "firmware", "github_cli_extensions", "mas", "node", "pip3", "pnpm", "restarts", "vim"]
 
 # Ignore failures for these steps
 ignore_failures = ["git_repos"]
