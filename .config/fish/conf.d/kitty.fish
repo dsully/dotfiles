@@ -5,6 +5,6 @@ if status is-interactive
         set -gx fish_term24bit 1
         set -gx KITTY_SHELL_INTEGRATION no-cursor
 
-        alias ssh="kitty +kitten ssh"
+        # alias ssh="kitty +kitten ssh"
     end
 end
