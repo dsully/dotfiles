@@ -31,9 +31,9 @@ def _pythonrc_enable_readline():
 
     try:
         import readline
-        import rlcompleter
+        import rlcompleter  # noqa
     except ImportError:
-        sys.stderr.write('readline unavailable - tab completion disabled.\n')
+        sys.stderr.write("readline unavailable - tab completion disabled.\n")
         return
 
     old_complete = readline.get_completer()
@@ -41,24 +41,26 @@ def _pythonrc_enable_readline():
     def complete(text, state):
         if not text:
             # Insert four spaces for indentation
-            return ('    ', None)[state]
+            return ("    ", None)[state]
         else:
             return old_complete(text, state)
-    readline.parse_and_bind('tab: complete')
+
+    readline.parse_and_bind("tab: complete")
     readline.set_completer(complete)
 
 
 def _pythonrc_enable_history():
     import atexit
     import os
+
     try:
         import readline
     except ImportError:
         return
 
     # "NOHIST= python" will disable history
-    if 'NOHIST' not in os.environ:
-        history_path = os.path.expanduser('~/.pyhistory')
+    if "NOHIST" not in os.environ:
+        history_path = os.path.expanduser("~/.cache/pyhistory")
 
         has_written = [False]
 
@@ -66,6 +68,7 @@ def _pythonrc_enable_history():
             if not has_written[0]:
                 readline.write_history_file(history_path)
                 has_written[0] = True
+
         atexit.register(write_history)
 
         if os.path.isfile(history_path):
@@ -87,11 +90,10 @@ def _pythonrc_enable_pprint():
         def pphighlight(o, *a, **kw):
             s = pprint.pformat(o, *a, **kw)
             try:
-                sys.stdout.write(
-                    highlight(s, PythonLexer(), TerminalFormatter()))
+                sys.stdout.write(highlight(s, PythonLexer(), TerminalFormatter()))
             except UnicodeError:
                 sys.stdout.write(s)
-                sys.stdout.write('\n')
+                sys.stdout.write("\n")
 
         _old_excepthook = sys.excepthook
 
@@ -106,8 +108,7 @@ def _pythonrc_enable_pprint():
                 _old_excepthook(exctype, value, traceback)
                 s = sys.stderr.getvalue()
                 try:
-                    s = highlight(
-                        s, PythonTracebackLexer(), TerminalFormatter())
+                    s = highlight(s, PythonTracebackLexer(), TerminalFormatter())
                 except UnicodeError:
                     pass
                 old_stderr.write(s)
@@ -124,21 +125,26 @@ def _pythonrc_enable_pprint():
     import sys
     import types
 
-    help_types = [types.BuiltinFunctionType, types.BuiltinMethodType,
-                  types.FunctionType, types.MethodType, types.ModuleType,
-                  type,
-                  # method_descriptor
-                  type(list.remove)]
-    if hasattr(types, 'UnboundMethodType'):
+    help_types = [
+        types.BuiltinFunctionType,
+        types.BuiltinMethodType,
+        types.FunctionType,
+        types.MethodType,
+        types.ModuleType,
+        type,
+        # method_descriptor
+        type(list.remove),
+    ]
+    if hasattr(types, "UnboundMethodType"):
         help_types.append(types.UnboundMethodType)
     help_types = tuple(help_types)
 
     def _ioctl_width(fd):
-
         from fcntl import ioctl
         from struct import pack, unpack
         from termios import TIOCGWINSZ
-        return unpack('HHHH', ioctl(fd, TIOCGWINSZ, pack('HHHH', 0, 0, 0, 0)))[1]
+
+        return unpack("HHHH", ioctl(fd, TIOCGWINSZ, pack("HHHH", 0, 0, 0, 0)))[1]
 
     def get_width():
         """Returns terminal width."""
@@ -150,10 +156,11 @@ def _pythonrc_enable_pprint():
             pass
         if not width:
             import os
-            width = os.environ.get('COLUMNS', 0)
+
+            width = os.environ.get("COLUMNS", 0)
         return width
 
-    if hasattr(inspect, 'getfullargspec'):
+    if hasattr(inspect, "getfullargspec"):
         getargspec = inspect.getfullargspec
     else:
         getargspec = inspect.getargspec
@@ -170,21 +177,21 @@ def _pythonrc_enable_pprint():
             reprstr = repr(value)
             try:
                 if inspect.isfunction(value):
-                    parts = reprstr.split(' ')
+                    parts = reprstr.split(" ")
                     parts[1] += inspect.formatargspec(*getargspec(value))
-                    reprstr = ' '.join(parts)
+                    reprstr = " ".join(parts)
                 elif inspect.ismethod(value):
-                    parts = reprstr[:-1].split(' ')
+                    parts = reprstr[:-1].split(" ")
                     parts[2] += inspect.formatargspec(*getargspec(value))
-                    reprstr = ' '.join(parts) + '>'
+                    reprstr = " ".join(parts) + ">"
             except TypeError:
                 pass
             sys.stdout.write(reprstr)
-            sys.stdout.write('\n')
-            if getattr(value, '__doc__', None):
-                sys.stdout.write('\n')
+            sys.stdout.write("\n")
+            if getattr(value, "__doc__", None):
+                sys.stdout.write("\n")
                 sys.stdout.write(pydoc.getdoc(value))
-                sys.stdout.write('\n')
+                sys.stdout.write("\n")
         else:
             pphighlight(value, width=get_width() or 80)
 
@@ -208,7 +215,7 @@ def _pythonrc_fix_linecache():
 
         if filename in cache:
             del cache[filename]
-        if not filename or filename[0] + filename[-1] == '<>':
+        if not filename or filename[0] + filename[-1] == "<>":
             return []
 
         fullname = filename
@@ -217,10 +224,10 @@ def _pythonrc_fix_linecache():
         except os.error:
             basename = os.path.split(filename)[1]
 
-            if module_globals and '__loader__' in module_globals:
-                name = module_globals.get('__name__')
-                loader = module_globals['__loader__']
-                get_source = getattr(loader, 'get_source', None)
+            if module_globals and "__loader__" in module_globals:
+                name = module_globals.get("__name__")
+                loader = module_globals["__loader__"]
+                get_source = getattr(loader, "get_source", None)
 
                 if name and get_source:
                     try:
@@ -231,9 +238,10 @@ def _pythonrc_fix_linecache():
                         if data is None:
                             return []
                         cache[filename] = (
-                            len(data), None,
-                            [line + '\n' for line in data.splitlines()],
-                            fullname
+                            len(data),
+                            None,
+                            [line + "\n" for line in data.splitlines()],
+                            fullname,
                         )
                         return cache[filename][2]
 
@@ -259,6 +267,7 @@ def _pythonrc_fix_linecache():
         return lines
 
     import linecache
+
     linecache.updatecache = updatecache
 
 
@@ -279,55 +288,61 @@ def source(obj):
             raise TypeError
         s = getsource(obj)
     except TypeError:
-        sys.stderr.write("Source code unavailable (maybe it's part of a C extension?)\n")
+        sys.stderr.write(
+            "Source code unavailable (maybe it's part of a C extension?)\n"
+        )
         return
 
     # Detect the module's file encoding. We could use
     # tokenize.detect_encoding(), but it's only available in Python 3.
     import re
-    enc = 'ascii'
+
+    enc = "ascii"
     for line in findsource(getmodule(obj))[0][:2]:
-        m = re.search(r'coding[:=]\s*([-\w.]+)', line)
+        m = re.search(r"coding[:=]\s*([-\w.]+)", line)
         if m:
             enc = m.group(1)
-    if hasattr(s, 'decode'):
+    if hasattr(s, "decode"):
         try:
-            s = s.decode(enc, 'replace')
+            s = s.decode(enc, "replace")
         except LookupError:
-            s = s.decode('ascii', 'replace')
+            s = s.decode("ascii", "replace")
 
     try:
         from pygments import highlight
         from pygments.lexers import PythonLexer
         from pygments.formatters import TerminalFormatter
+
         s = highlight(s, PythonLexer(), TerminalFormatter())
     except (ImportError, UnicodeError):
         pass
 
     # Display the source code in the pager, and try to convince less not to
     # escape color control codes.
-    has_lessopts = 'LESS' in os.environ
-    lessopts = os.environ.get('LESS', '')
+    has_lessopts = "LESS" in os.environ
+    lessopts = os.environ.get("LESS", "")
     try:
-        os.environ['LESS'] = lessopts + ' -R'
-        if hasattr(s, 'decode'):
-            pager(s.encode(sys.stdout.encoding, 'replace'))
+        os.environ["LESS"] = lessopts + " -R"
+        if hasattr(s, "decode"):
+            pager(s.encode(sys.stdout.encoding, "replace"))
         else:
             pager(s)
     finally:
         if has_lessopts:
-            os.environ['LESS'] = lessopts
+            os.environ["LESS"] = lessopts
         else:
-            os.environ.pop('LESS', None)
+            os.environ.pop("LESS", None)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     __doc__ = None
 
     # Make sure modules in the current directory can't interfere
     import sys
+
     try:
         try:
-            cwd = sys.path.index('')
+            cwd = sys.path.index("")
             sys.path.pop(cwd)
         except ValueError:
             cwd = None
@@ -339,10 +354,11 @@ if __name__ == '__main__':
         try:
             try:
                 import jedi.utils
+
                 jedi.utils.setup_readline()
                 del jedi
-            except:
-                print('No jedi here. Coming to the dark side.')
+            except Exception:
+                print("No jedi here. Coming to the dark side.")
                 _pythonrc_enable_readline()
                 del _pythonrc_enable_readline
 
@@ -355,7 +371,7 @@ if __name__ == '__main__':
             del _pythonrc_fix_linecache
         finally:
             if cwd is not None:
-                sys.path.insert(cwd, '')
+                sys.path.insert(cwd, "")
             del cwd
     finally:
         pass
