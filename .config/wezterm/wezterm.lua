@@ -1,4 +1,5 @@
 local wezterm = require("wezterm")
+local act = wezterm.action
 
 local function create_ssh_domain_from_ssh_config()
     local ssh_domains = {}
@@ -40,15 +41,25 @@ local colors = {
     gray = { base = "#4c566a", bright = "#667084", dim = "#2b303b" },
 }
 
+local function basename(s)
+    return string.gsub(s, "(.*[/\\])(.*)", "%2")
+end
+
+---@diagnostic disable-next-line: unused-local
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-    local bar = "❙ "
+    --
+    local bar = "❙"
 
     if tab.tab_index + 1 == #tabs then
         bar = ""
     end
 
-    -- ensure that the titles fit in the available space, and that we have room for the edges.
-    local title = wezterm.truncate_right(tab.active_pane.title, max_width - 2)
+    local process_name = basename(tab.active_pane.foreground_process_name)
+    local pane_title = tab.active_pane.title
+
+    if process_name == "nvim" then
+        pane_title = pane_title:gsub("^(nvim %S+) .*", "%1")
+    end
 
     local has_unseen_output = false
 
@@ -64,12 +75,26 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
     if has_unseen_output then
         output = {
             { Foreground = { Color = colors.cyan.dim } },
-            { Text = " " },
+            { Attribute = { Intensity = "Bold" } },
+            { Text = " *" },
             { Foreground = { Color = colors.white.dim } },
         }
     end
 
-    table.insert(output, { Text = string.format(" %d: %s %s", tab.tab_index + 1, title, bar) })
+    -- Highlight just the relevant text in active mode.
+    table.insert(output, { Background = { Color = colors.black.base } })
+    table.insert(output, { Text = " " })
+
+    if tab.is_active then
+        table.insert(output, { Background = { Color = colors.gray.base } })
+    else
+        table.insert(output, { Background = { Color = colors.black.base } })
+    end
+
+    -- ensure that the titles fit in the available space, and that we have room for the edges.
+    table.insert(output, { Text = wezterm.truncate_right(string.format("%d: %s", tab.tab_index + 1, pane_title), max_width - 2) })
+    table.insert(output, { Background = { Color = colors.black.base } })
+    table.insert(output, { Text = " " .. bar })
 
     return output
 end)
@@ -227,21 +252,46 @@ return {
 
     keys = {
         -- Always start in $HOME.
-        { mods = "CMD", key = "t", action = wezterm.action({ SpawnCommandInNewTab = { cwd = wezterm.home_dir } }) },
+        { mods = "SUPER", key = "t", action = act({ SpawnCommandInNewTab = { cwd = wezterm.home_dir } }) },
 
         -- CTRL-SHIFT-l activates the debug overlay
-        { mods = "CTRL", key = "L", action = wezterm.action.ShowDebugOverlay },
-        { mods = "CTRL", key = "P", action = wezterm.action.ActivateCommandPalette },
+        { mods = "CTRL", key = "L", action = act.ShowDebugOverlay },
+        { mods = "CTRL", key = "P", action = act.ActivateCommandPalette },
 
-        { mods = "CMD", key = "c", action = wezterm.action.CopyTo("ClipboardAndPrimarySelection") },
-        { mods = "CMD", key = "v", action = wezterm.action.PasteFrom("Clipboard") },
+        { mods = "SUPER", key = "c", action = act.CopyTo("ClipboardAndPrimarySelection") },
+        { mods = "SUPER", key = "v", action = act.PasteFrom("Clipboard") },
+        { mods = "SUPER", key = "f", action = act.Search({ CaseInSensitiveString = "" }) },
 
-        { mods = "CMD", key = "RightArrow", action = wezterm.action.MoveTabRelative(1) },
-        { mods = "CMD", key = "LeftArrow", action = wezterm.action.MoveTabRelative(-1) },
+        { mods = "SUPER", key = "RightArrow", action = act.MoveTabRelative(1) },
+        { mods = "SUPER", key = "LeftArrow", action = act.MoveTabRelative(-1) },
     },
 
+    mouse_bindings = {
+        -- Change the default click behavior so that it only selects
+        -- text and doesn't open hyperlinks
+        {
+            event = { Up = { streak = 1, button = "Left" } },
+            mods = "NONE",
+            action = act.CompleteSelection("PrimarySelection"),
+        },
+
+        -- and make CTRL-Click open hyperlinks
+        {
+            event = { Up = { streak = 1, button = "Left" } },
+            mods = "SUPER",
+            action = act.OpenLinkAtMouseCursor,
+        },
+
+        -- Disable the 'Down' event of CTRL-Click to avoid weird program behaviors
+        {
+            event = { Down = { streak = 1, button = "Left" } },
+            mods = "SUPER",
+            action = act.Nop,
+        },
+    },
+    mouse_wheel_scrolls_tabs = false,
+
     scrollback_lines = 50000,
-    selection_word_boundary = " \t\n{}[]()\"'`,;:│=&!%",
 
     -- https://wezfurlong.org/wezterm/config/keyboard-concepts.html?h=mod+key#macos-left-and-right-option-key
     send_composed_key_when_left_alt_is_pressed = false,
