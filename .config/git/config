@@ -42,8 +42,7 @@
     ui = true
 [core]
     trustctime = false
-    # pager = delta --dark --file-style=box --hunk-style=plain --theme=base16
-    pager = diff-so-fancy | less --tabs=4 -RFX
+    pager = diff-so-fancy | /usr/bin/less --tabs=4 -RFX
 
     # Make `git rebase` safer on macOS.
     # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
