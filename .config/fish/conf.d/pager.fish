@@ -1,7 +1,7 @@
 if status is-interactive
 
     if type -q moar
-        set -gx MOAR '-statusbar=bold -no-linenumbers -no-clear-on-exit -style=nord -colors=16M'
+        set -gx MOAR '-statusbar=bold -no-linenumbers -no-clear-on-exit -style=nord -colors=16M -wrap'
         set -gx PAGER moar
         set -gx MANPAGER moar
 
