@@ -23,6 +23,6 @@ function cat --wraps=bat --description 'Use bat instead of cat'
         wezterm imgcat $argv[1]
 
     else
-        command bat --style plain --theme Nord $argv
+        command bat --style plain --theme Nord --pager="/usr/bin/less -RFX" $argv
     end
 end
