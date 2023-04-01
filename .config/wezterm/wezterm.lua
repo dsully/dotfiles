@@ -83,7 +83,12 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 
     -- Highlight just the relevant text in active mode.
     table.insert(output, { Background = { Color = colors.black.base } })
-    table.insert(output, { Text = " " })
+
+    if tab.tab_index == 0 then
+        table.insert(output, { Text = "  " })
+    else
+        table.insert(output, { Text = " " })
+    end
 
     if tab.is_active then
         table.insert(output, { Background = { Color = colors.gray.base } })
