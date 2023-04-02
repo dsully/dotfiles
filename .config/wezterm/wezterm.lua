@@ -1,19 +1,8 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
-local function create_ssh_domain_from_ssh_config()
-    local ssh_domains = {}
-
-    for host, config in pairs(wezterm.enumerate_ssh_hosts()) do
-        table.insert(ssh_domains, {
-            name = host,
-            remote_address = config.hostname .. ":" .. config.port,
-            username = config.user,
-            multiplexing = "None",
-            assume_shell = "Posix",
-        })
-    end
-    return ssh_domains
+local function basename(s)
+    return string.gsub(s, "(.*[/\\])(.*)", "%2")
 end
 
 -- From my nvim/lua/plugins/nightfox.lua
@@ -41,8 +30,42 @@ local colors = {
     gray = { base = "#4c566a", bright = "#667084", dim = "#2b303b" },
 }
 
-local function basename(s)
-    return string.gsub(s, "(.*[/\\])(.*)", "%2")
+local function create_ssh_domain_from_ssh_config()
+    local ssh_domains = {}
+
+    for host, config in pairs(wezterm.enumerate_ssh_hosts()) do
+        table.insert(ssh_domains, {
+            name = host,
+            remote_address = config.hostname .. ":" .. config.port,
+            username = config.user,
+            multiplexing = "None",
+            assume_shell = "Posix",
+        })
+    end
+    return ssh_domains
+end
+
+local hyperlink_rules = function()
+    -- Use the defaults as a base
+    local rules = wezterm.default_hyperlink_rules()
+
+    -- Make Go links clickable.
+    -- the first matched regex group is captured in $1.
+    table.insert(rules, {
+        regex = [[\bgo/(\S+)\b]],
+        format = "https://go/$1",
+    })
+
+    -- Make username/project paths clickable. this implies paths like the following are for github.
+    -- ( "nvim-treesitter/nvim-treesitter" | wbthomason/packer.nvim | wez/wezterm | "wez/wezterm.git" )
+    -- as long as a full url hyperlink regex exists above this it should not match a full url to
+    -- github or gitlab / bitbucket (i.e. https://gitlab.com/user/project.git is still a whole clickable url)
+    table.insert(rules, {
+        regex = [[["]?([\w\d]{1}[-\w\d]+)(/){1}([-\w\d\.]+)["]?%s+]],
+        format = "https://www.github.com/$1/$3",
+    })
+
+    return rules
 end
 
 ---@diagnostic disable-next-line: unused-local
@@ -215,6 +238,8 @@ return {
     exit_behavior = "CloseOnCleanExit",
     hide_tab_bar_if_only_one_tab = true,
 
+    hyperlink_rules = hyperlink_rules(),
+
     initial_cols = 180,
     initial_rows = 55,
 
@@ -260,6 +285,9 @@ return {
     mouse_wheel_scrolls_tabs = false,
 
     scrollback_lines = 50000,
+
+    -- https://wezfurlong.org/wezterm/config/lua/config/selection_word_boundary.html
+    selection_word_boundary = " \t\n{}[]()\"'`,;:|│",
 
     -- https://wezfurlong.org/wezterm/config/keyboard-concepts.html?h=mod+key#macos-left-and-right-option-key
     send_composed_key_when_left_alt_is_pressed = false,
