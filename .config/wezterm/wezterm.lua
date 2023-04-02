@@ -61,6 +61,8 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
         pane_title = pane_title:gsub("^(nvim %S+) .*", "%1")
     end
 
+    pane_title = pane_title:gsub("^Zellij .+%[(%S+)%]", "%1")
+
     local has_unseen_output = false
 
     for _, pane in ipairs(tab.panes) do
