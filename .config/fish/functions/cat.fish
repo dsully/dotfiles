@@ -8,7 +8,7 @@ function cat --wraps=bat --description 'Use bat instead of cat'
     # https://sw.kovidgoyal.net/kitty/kittens/icat/
     # https://github.com/wez/wezterm/blob/main/docs/imgcat.md
     set -f icat_extensions png jpg jpeg gif bmp tiff webp
-    set -f glow_extensions md markdown mkd text txt
+    set -f glow_extensions md markdown mkd
 
     # Escape --version and similar.
     set -f ext (string split "." -- $argv[1])[-1]
