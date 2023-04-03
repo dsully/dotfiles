@@ -62,7 +62,6 @@ brew "rustup-init"
 brew "scullionw/tap/dirstat-rs"
 brew "sd"
 brew "sqlite"
-brew "subversion"
 brew "syncthing", restart_service: true
 brew "tealdeer"
 brew "telnet"

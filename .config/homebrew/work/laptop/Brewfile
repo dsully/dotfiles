@@ -53,7 +53,6 @@ brew "rsync"
 brew "rtx"
 brew "rustup-init"
 brew "sd"
-brew "subversion"
 brew "syncthing", restart_service: true
 brew "tealdeer"
 brew "telnet"
