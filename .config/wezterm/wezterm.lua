@@ -287,7 +287,7 @@ return {
     scrollback_lines = 50000,
 
     -- https://wezfurlong.org/wezterm/config/lua/config/selection_word_boundary.html
-    selection_word_boundary = " \t\n{}[]()\"'`,;:|│",
+    selection_word_boundary = " \t\n{}[]()\"'`,;|│",
 
     -- https://wezfurlong.org/wezterm/config/keyboard-concepts.html?h=mod+key#macos-left-and-right-option-key
     send_composed_key_when_left_alt_is_pressed = false,
