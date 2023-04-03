@@ -68,6 +68,13 @@ local hyperlink_rules = function()
     return rules
 end
 
+local padding_with_spaces = function(target_str, max_width)
+    while target_str:len() < max_width - 2 do
+        target_str = " " .. target_str .. " "
+    end
+    return target_str
+end
+
 ---@diagnostic disable-next-line: unused-local
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
     --
@@ -121,8 +128,10 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
         table.insert(output, { Background = { Color = colors.black.base } })
     end
 
-    -- ensure that the titles fit in the available space, and that we have room for the edges.
-    table.insert(output, { Text = wezterm.truncate_right(string.format("%d: %s", tab.tab_index + 1, pane_title), max_width - 2) })
+    -- Ensure that the titles fit in the available space, and that we have room for the edges.
+    local title = wezterm.truncate_right(string.format("%d: %s", tab.tab_index + 1, pane_title), max_width - 2)
+
+    table.insert(output, { Text = padding_with_spaces(title, max_width) })
     table.insert(output, { Background = { Color = colors.black.base } })
     table.insert(output, { Text = " " .. bar })
 
@@ -130,11 +139,12 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 end)
 
 return {
-    font = wezterm.font("Menlo", { stretch = "Expanded" }),
+    font = wezterm.font("Menlo", { harfbuzz_features = { "calt=0", "clig=0", "liga=0" }, stretch = "Expanded" }),
     font_size = 16.3,
     custom_block_glyphs = true,
     unicode_version = 14,
 
+    adjust_window_size_when_changing_font_size = false,
     animation_fps = 1,
     bold_brightens_ansi_colors = true,
     check_for_updates = false,
@@ -233,6 +243,10 @@ return {
     cursor_blink_ease_out = "Constant",
     default_cursor_style = "BlinkingBlock",
     default_cwd = wezterm.home_dir,
+
+    disable_default_key_bindings = true,
+    disable_default_mouse_bindings = true,
+
     enable_kitty_graphics = true,
     enable_scroll_bar = false,
     exit_behavior = "CloseOnCleanExit",
@@ -247,6 +261,12 @@ return {
         -- Always start in $HOME.
         { mods = "SUPER", key = "t", action = act({ SpawnCommandInNewTab = { cwd = wezterm.home_dir } }) },
 
+        { key = "-", mods = "CMD|SHIFT", action = "DecreaseFontSize" },
+        { key = "+", mods = "CMD|SHIFT", action = "IncreaseFontSize" },
+        { key = "0", mods = "CMD|SHIFT", action = "ResetFontSize" },
+
+        { key = "w", mods = "CMD", action = wezterm.action.CloseCurrentTab({ confirm = false }) },
+
         -- CTRL-SHIFT-l activates the debug overlay
         { mods = "CTRL", key = "L", action = act.ShowDebugOverlay },
         { mods = "CTRL", key = "P", action = act.ActivateCommandPalette },
@@ -255,32 +275,49 @@ return {
         { mods = "SUPER", key = "v", action = act.PasteFrom("Clipboard") },
         { mods = "SUPER", key = "f", action = act.Search({ CaseInSensitiveString = "" }) },
 
-        { mods = "SUPER", key = "RightArrow", action = act.MoveTabRelative(1) },
-        { mods = "SUPER", key = "LeftArrow", action = act.MoveTabRelative(-1) },
+        { mods = "SUPER", key = "RightArrow", action = act.ActivateTabRelative(1) },
+        { mods = "SUPER", key = "LeftArrow", action = act.ActivateTabRelative(-1) },
+
+        { mods = "SUPER|SHIFT", key = "RightArrow", action = act.MoveTabRelative(1) },
+        { mods = "SUPER|SHIFT", key = "LeftArrow", action = act.MoveTabRelative(-1) },
+
+        { key = "1", mods = "CMD", action = wezterm.action({ ActivateTab = 0 }) },
+        { key = "2", mods = "CMD", action = wezterm.action({ ActivateTab = 1 }) },
+        { key = "3", mods = "CMD", action = wezterm.action({ ActivateTab = 2 }) },
+        { key = "4", mods = "CMD", action = wezterm.action({ ActivateTab = 3 }) },
+        { key = "5", mods = "CMD", action = wezterm.action({ ActivateTab = 4 }) },
+        { key = "6", mods = "CMD", action = wezterm.action({ ActivateTab = 5 }) },
+        { key = "7", mods = "CMD", action = wezterm.action({ ActivateTab = 6 }) },
+        { key = "8", mods = "CMD", action = wezterm.action({ ActivateTab = 7 }) },
+        { key = "9", mods = "CMD", action = wezterm.action({ ActivateTab = 8 }) },
+        { key = "0", mods = "CMD", action = wezterm.action({ ActivateTab = 9 }) },
     },
 
     mouse_bindings = {
         -- Change the default click behavior so that it only selects
         -- text and doesn't open hyperlinks
-        {
-            event = { Up = { streak = 1, button = "Left" } },
-            mods = "NONE",
-            action = act.CompleteSelection("PrimarySelection"),
-        },
+        { event = { Up = { streak = 1, button = "Left" } }, mods = "NONE", action = act.CompleteSelection("PrimarySelection") },
+        { event = { Up = { streak = 2, button = "Left" } }, mods = "NONE", action = act.CompleteSelection("Clipboard") },
+        { event = { Up = { streak = 3, button = "Left" } }, mods = "NONE", action = act.CompleteSelection("Clipboard") },
 
-        -- and make CTRL-Click open hyperlinks
-        {
-            event = { Up = { streak = 1, button = "Left" } },
-            mods = "SUPER",
-            action = act.OpenLinkAtMouseCursor,
-        },
+        { event = { Down = { streak = 1, button = "Left" } }, mods = "NONE", action = act.SelectTextAtMouseCursor("Cell") },
+        { event = { Down = { streak = 2, button = "Left" } }, mods = "NONE", action = act.SelectTextAtMouseCursor("Word") },
+        { event = { Down = { streak = 2, button = "Left" } }, mods = "SHIFT", action = act.SelectTextAtMouseCursor("Word") },
+
+        { event = { Drag = { streak = 1, button = "Left" } }, mods = "NONE", action = act({ ExtendSelectionToMouseCursor = "Cell" }) },
+        { event = { Drag = { streak = 1, button = "Left" } }, mods = "SHIFT", action = act({ ExtendSelectionToMouseCursor = "Cell" }) },
+
+        { event = { Drag = { streak = 2, button = "Left" } }, mods = "NONE", action = act({ ExtendSelectionToMouseCursor = "Word" }) },
+        { event = { Drag = { streak = 3, button = "Left" } }, mods = "NONE", action = act({ ExtendSelectionToMouseCursor = "Line" }) },
+
+        { event = { Down = { streak = 1, button = { WheelUp = 1 } } }, mods = "NONE", action = act.ScrollByCurrentEventWheelDelta },
+        { event = { Down = { streak = 1, button = { WheelDown = 1 } } }, mods = "NONE", action = act.ScrollByCurrentEventWheelDelta },
+
+        -- Make CTRL-Click open hyperlinks.
+        { event = { Up = { streak = 1, button = "Left" } }, mods = "SUPER", action = act.OpenLinkAtMouseCursor },
 
         -- Disable the 'Down' event of CTRL-Click to avoid weird program behaviors
-        {
-            event = { Down = { streak = 1, button = "Left" } },
-            mods = "SUPER",
-            action = act.Nop,
-        },
+        { event = { Down = { streak = 1, button = "Left" } }, mods = "SUPER", action = act.Nop },
     },
     mouse_wheel_scrolls_tabs = false,
 
@@ -299,22 +336,23 @@ return {
     ssh_domains = create_ssh_domain_from_ssh_config(),
 
     tab_max_width = 64,
+    term = "wezterm",
 
     use_dead_keys = false,
     use_fancy_tab_bar = false,
+
     window_close_confirmation = "NeverPrompt",
-
-    window_padding = {
-        left = 0,
-        right = 0,
-        top = 0,
-        bottom = 0,
-    },
-
+    window_decorations = "RESIZE",
     window_frame = {
         border_left_width = "0.5cell",
         border_right_width = "0.5cell",
         border_bottom_height = "0.1cell",
         border_top_height = "0.1cell",
+    },
+    window_padding = {
+        left = 0,
+        right = 0,
+        top = 0,
+        bottom = 0,
     },
 }
