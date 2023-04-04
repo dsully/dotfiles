@@ -296,6 +296,7 @@ return {
 
         { event = { Down = { streak = 1, button = "Left" } }, mods = "NONE", action = act.SelectTextAtMouseCursor("Cell") },
         { event = { Down = { streak = 2, button = "Left" } }, mods = "NONE", action = act.SelectTextAtMouseCursor("Word") },
+        { event = { Down = { streak = 3, button = "Left" } }, mods = "NONE", action = act.SelectTextAtMouseCursor("Line") },
         { event = { Down = { streak = 2, button = "Left" } }, mods = "SHIFT", action = act.SelectTextAtMouseCursor("Word") },
 
         { event = { Drag = { streak = 1, button = "Left" } }, mods = "NONE", action = act({ ExtendSelectionToMouseCursor = "Cell" }) },
