@@ -309,10 +309,10 @@ return {
         { event = { Down = { streak = 1, button = { WheelDown = 1 } } }, mods = "NONE", action = act.ScrollByCurrentEventWheelDelta },
 
         -- Make CTRL-Click open hyperlinks.
-        { event = { Up = { streak = 1, button = "Left" } }, mods = "CMD|CTRL", action = act.OpenLinkAtMouseCursor },
+        { event = { Up = { streak = 1, button = "Left" } }, mods = "CMD", action = act.OpenLinkAtMouseCursor },
 
         -- Disable the 'Down' event of CTRL-Click to avoid weird program behaviors
-        { event = { Down = { streak = 1, button = "Left" } }, mods = "CMD|CTRL", action = act.Nop },
+        { event = { Down = { streak = 1, button = "Left" } }, mods = "CMD", action = act.Nop },
     },
     mouse_wheel_scrolls_tabs = false,
 
