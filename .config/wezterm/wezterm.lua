@@ -139,9 +139,10 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 end)
 
 return {
-    font = wezterm.font("Menlo", { harfbuzz_features = { "calt=0", "clig=0", "liga=0" }, stretch = "Expanded" }),
+    font = wezterm.font("Menlo", { stretch = "Expanded" }),
     font_size = 16.3,
     custom_block_glyphs = true,
+    harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
     unicode_version = 14,
 
     adjust_window_size_when_changing_font_size = false,
@@ -265,7 +266,8 @@ return {
         { key = "+", mods = "CMD|SHIFT", action = "IncreaseFontSize" },
         { key = "0", mods = "CMD|SHIFT", action = "ResetFontSize" },
 
-        { key = "w", mods = "CMD", action = wezterm.action.CloseCurrentTab({ confirm = false }) },
+        { key = 'q', mods = 'CMD', action = act.QuitApplication },
+        { key = "w", mods = "CMD", action = act.CloseCurrentTab({ confirm = false }) },
 
         -- CTRL-SHIFT-l activates the debug overlay
         { mods = "CTRL", key = "L", action = act.ShowDebugOverlay },
@@ -281,16 +283,16 @@ return {
         { mods = "SUPER|SHIFT", key = "RightArrow", action = act.MoveTabRelative(1) },
         { mods = "SUPER|SHIFT", key = "LeftArrow", action = act.MoveTabRelative(-1) },
 
-        { key = "1", mods = "CMD", action = wezterm.action({ ActivateTab = 0 }) },
-        { key = "2", mods = "CMD", action = wezterm.action({ ActivateTab = 1 }) },
-        { key = "3", mods = "CMD", action = wezterm.action({ ActivateTab = 2 }) },
-        { key = "4", mods = "CMD", action = wezterm.action({ ActivateTab = 3 }) },
-        { key = "5", mods = "CMD", action = wezterm.action({ ActivateTab = 4 }) },
-        { key = "6", mods = "CMD", action = wezterm.action({ ActivateTab = 5 }) },
-        { key = "7", mods = "CMD", action = wezterm.action({ ActivateTab = 6 }) },
-        { key = "8", mods = "CMD", action = wezterm.action({ ActivateTab = 7 }) },
-        { key = "9", mods = "CMD", action = wezterm.action({ ActivateTab = 8 }) },
-        { key = "0", mods = "CMD", action = wezterm.action({ ActivateTab = 9 }) },
+        { key = "1", mods = "CMD", action = act({ ActivateTab = 0 }) },
+        { key = "2", mods = "CMD", action = act({ ActivateTab = 1 }) },
+        { key = "3", mods = "CMD", action = act({ ActivateTab = 2 }) },
+        { key = "4", mods = "CMD", action = act({ ActivateTab = 3 }) },
+        { key = "5", mods = "CMD", action = act({ ActivateTab = 4 }) },
+        { key = "6", mods = "CMD", action = act({ ActivateTab = 5 }) },
+        { key = "7", mods = "CMD", action = act({ ActivateTab = 6 }) },
+        { key = "8", mods = "CMD", action = act({ ActivateTab = 7 }) },
+        { key = "9", mods = "CMD", action = act({ ActivateTab = 8 }) },
+        { key = "0", mods = "CMD", action = act({ ActivateTab = 9 }) },
     },
 
     mouse_bindings = {
