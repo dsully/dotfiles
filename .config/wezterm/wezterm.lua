@@ -68,13 +68,6 @@ local hyperlink_rules = function()
     return rules
 end
 
-local padding_with_spaces = function(target_str, max_width)
-    while target_str:len() < max_width - 2 do
-        target_str = " " .. target_str .. " "
-    end
-    return target_str
-end
-
 ---@diagnostic disable-next-line: unused-local
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
     --
@@ -131,7 +124,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
     -- Ensure that the titles fit in the available space, and that we have room for the edges.
     local title = wezterm.truncate_right(string.format("%d: %s", tab.tab_index + 1, pane_title), max_width - 2)
 
-    table.insert(output, { Text = padding_with_spaces(title, max_width) })
+    table.insert(output, { Text = title })
     table.insert(output, { Background = { Color = colors.black.base } })
     table.insert(output, { Text = " " .. bar })
 
