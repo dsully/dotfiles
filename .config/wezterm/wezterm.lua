@@ -249,32 +249,31 @@ return {
     hyperlink_rules = hyperlink_rules(),
 
     initial_cols = 180,
-    initial_rows = 55,
+    initial_rows = 56,
 
     keys = {
-        -- Always start in $HOME.
-        { mods = "SUPER", key = "t", action = act({ SpawnCommandInNewTab = { cwd = wezterm.home_dir } }) },
-
         { key = "-", mods = "CMD|SHIFT", action = "DecreaseFontSize" },
         { key = "+", mods = "CMD|SHIFT", action = "IncreaseFontSize" },
         { key = "0", mods = "CMD|SHIFT", action = "ResetFontSize" },
 
+        { key = "f", mods = "CMD", action = act.Search({ CaseInSensitiveString = "" }) },
+        { key = 'n', mods = 'CMD', action = act.SpawnWindow },
         { key = 'q', mods = 'CMD', action = act.QuitApplication },
+        { key = "t", mods = "CMD", action = act({ SpawnCommandInNewTab = { cwd = wezterm.home_dir } }) },
         { key = "w", mods = "CMD", action = act.CloseCurrentTab({ confirm = false }) },
 
         -- CTRL-SHIFT-l activates the debug overlay
-        { mods = "CTRL", key = "L", action = act.ShowDebugOverlay },
-        { mods = "CTRL", key = "P", action = act.ActivateCommandPalette },
+        { key = "L", mods = "CTRL", action = act.ShowDebugOverlay },
+        { key = "P", mods = "CTRL", action = act.ActivateCommandPalette },
 
-        { mods = "SUPER", key = "c", action = act.CopyTo("ClipboardAndPrimarySelection") },
-        { mods = "SUPER", key = "v", action = act.PasteFrom("Clipboard") },
-        { mods = "SUPER", key = "f", action = act.Search({ CaseInSensitiveString = "" }) },
+        { key = "c", mods = "CMD", action = act.CopyTo("ClipboardAndPrimarySelection") },
+        { key = "v", mods = "CMD", action = act.PasteFrom("Clipboard") },
 
-        { mods = "SUPER", key = "RightArrow", action = act.ActivateTabRelative(1) },
-        { mods = "SUPER", key = "LeftArrow", action = act.ActivateTabRelative(-1) },
+        { mods = "CMD", key = "RightArrow", action = act.ActivateTabRelative(1) },
+        { mods = "CMD", key = "LeftArrow", action = act.ActivateTabRelative(-1) },
 
-        { mods = "SUPER|SHIFT", key = "RightArrow", action = act.MoveTabRelative(1) },
-        { mods = "SUPER|SHIFT", key = "LeftArrow", action = act.MoveTabRelative(-1) },
+        { mods = "CMD|SHIFT", key = "RightArrow", action = act.MoveTabRelative(1) },
+        { mods = "CMD|SHIFT", key = "LeftArrow", action = act.MoveTabRelative(-1) },
 
         { key = "1", mods = "CMD", action = act({ ActivateTab = 0 }) },
         { key = "2", mods = "CMD", action = act({ ActivateTab = 1 }) },
@@ -309,10 +308,10 @@ return {
         { event = { Down = { streak = 1, button = { WheelDown = 1 } } }, mods = "NONE", action = act.ScrollByCurrentEventWheelDelta },
 
         -- Make CTRL-Click open hyperlinks.
-        { event = { Up = { streak = 1, button = "Left" } }, mods = "SUPER", action = act.OpenLinkAtMouseCursor },
+        { event = { Up = { streak = 1, button = "Left" } }, mods = "CMD|CTRL", action = act.OpenLinkAtMouseCursor },
 
         -- Disable the 'Down' event of CTRL-Click to avoid weird program behaviors
-        { event = { Down = { streak = 1, button = "Left" } }, mods = "SUPER", action = act.Nop },
+        { event = { Down = { streak = 1, button = "Left" } }, mods = "CMD|CTRL", action = act.Nop },
     },
     mouse_wheel_scrolls_tabs = false,
 
