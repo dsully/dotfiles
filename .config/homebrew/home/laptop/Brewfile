@@ -1,4 +1,3 @@
-tap "guoxbin/guoxbin"
 tap "hashicorp/tap"
 tap "homebrew/autoupdate"
 tap "homebrew/bundle"
