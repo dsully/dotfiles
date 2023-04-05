@@ -16,13 +16,16 @@ function ropen --description 'Remotely open a Finder window for the current or g
     end
 
     # Clean up the path.
-    set path (string escape -n (realpath $path))
+    set -f path (string escape -n (realpath $path))
 
     if not string match -q -r "^/bits" $path
         echo "Can't open non /bits paths remotely."
         exit 1
     end
 
-    echo "Opening $path on $host ..."
-    command /usr/bin/ssh $host /usr/bin/open "~/Mounts$path"
+    set -f partial (string replace /bits/ "" $path)
+    set -f remote "~/Mounts/$hostname/$partial"
+
+    echo "Opening $remote on $host ..."
+    command ssh $host /usr/bin/open $remote
 end
