@@ -1,12 +1,12 @@
 #!/usr/bin/env fish
 
-if not type -q rustup-init
+if not type -q rustup
     echo "rustup needs to be installed via Homebrew first!"
     exit
 end
 
 if not test -d "$HOME/.rustup"
-    command rustup-init -y
+    command rustup update
 end
 
 # Install packages via Cargo.
