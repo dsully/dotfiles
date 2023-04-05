@@ -1,0 +1,12 @@
+#!/usr/bin/env fish
+
+# Fake xdg-open to allow opening on a remote host.
+
+set -f ropen "$HOME/.ssh/ropen.txt"
+
+if not test -f $ropen
+    echo "Set a host in $ropen"
+    exit 1
+end
+
+command ssh (cat $ropen | string trim) /usr/bin/open $argv
