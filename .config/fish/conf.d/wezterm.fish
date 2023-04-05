@@ -9,8 +9,7 @@ if status is-interactive
         set -l WEZ_TERMINFO1 $TERMINFO_DIR/77/wezterm
         set -l WEZ_TERMINFO2 $TERMINFO_DIR/w/wezterm
 
-        if not test -f $WEZ_TERMINFO1
-            -o not test -f $WEZ_TERMINFO2
+        if not test -f $WEZ_TERMINFO1; or not test -f $WEZ_TERMINFO2
             /usr/bin/tic -x -o $TERMINFO_DIR $XDG_CONFIG_HOME/wezterm/wezterm.terminfo
         end
     end
