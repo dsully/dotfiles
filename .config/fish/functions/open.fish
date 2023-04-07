@@ -1,6 +1,18 @@
 function ropen --description 'Remotely open a Finder window for the current or given path.'
 
-    set -f host (cat "$HOME/.ssh/ropen.txt")
+    if not set -q SSH_TTY
+        command /usr/bin/open $argv
+        exit 0
+    end
+
+    set -f ROPEN "$HOME/.ssh/ropen.txt"
+
+    if not test -f $ROPEN
+        echo "$ROPEN must exist."
+        exit 0
+    end
+
+    set -f host (cat $ROPEN)
     set -f path $PWD
 
     argparse host -- $argv
