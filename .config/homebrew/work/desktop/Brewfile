@@ -24,6 +24,7 @@ brew "fd"
 brew "fish"
 brew "fselect"
 brew "fzf"
+brew "gcc"
 brew "gettext"
 brew "gh"
 brew "git-lfs"
@@ -136,6 +137,7 @@ mas "AutoMounter", id: 1160435653
 mas "Book Tracker", id: 1496543317
 mas "Brother P-touch Editor", id: 1453365242
 mas "CollageIt 3 Lite", id: 675540049
+mas "CustomSearch", id: 1588019370
 mas "Darkroom", id: 953286746
 mas "Dato", id: 1470584107
 mas "Deliveries", id: 924726344
