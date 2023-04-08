@@ -2,14 +2,25 @@
 assume_yes = true
 
 # Disable warning
-skip_notify = true
 display_preamble = false
+skip_notify = true
 
 # Disable specific steps - same options as the command line flag
-disable = ["containers", "firmware", "github_cli_extensions", "mas", "node", "pip3", "pnpm", "restarts", "vim"]
+disable = [
+    "containers",
+    "firmware",
+    "github_cli_extensions",
+    "mas",
+    "node",
+    "pip3",
+    "pnpm",
+    "restarts",
+    "snap",
+    "vim",
+]
 
 # Ignore failures for these steps
-ignore_failures = ["git_repos"]
+ignore_failures = [ "git_repos" ]
 
 # Run specific steps - same options as the command line flag
 #only = ["system", "emacs"]
