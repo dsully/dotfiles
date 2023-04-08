@@ -1,0 +1,15 @@
+# https://breadboard.me/breadmachine/
+[Unit]
+Description=Breadboard Web UI
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/home/dsully/.volta/bin/npm start
+WorkingDirectory=/bits/apps/breadboard-web/
+Restart=on-failure
+StandardOutput=null
+StandardError=null
+
+[Install]
+WantedBy=default.target
