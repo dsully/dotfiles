@@ -67,6 +67,8 @@ icons:
 # == Ignore Globs ==
 # A list of globs to ignore when listing.
 ignore-globs:
+  - __breadboard__
+  - __pypackages__
   - .git
 
 # == Indicators ==
