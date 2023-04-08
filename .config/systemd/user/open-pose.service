@@ -1,0 +1,15 @@
+# https://github.com/ZhUyU1997/open-pose-editor
+[Unit]
+Description=Open Pose Editor Web UI
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/home/dsully/.volta/bin/npm run dev
+WorkingDirectory=/bits/apps/open-pose-editor
+Restart=on-failure
+StandardOutput=null
+StandardError=null
+
+[Install]
+WantedBy=default.target
