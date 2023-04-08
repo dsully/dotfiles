@@ -1,0 +1,15 @@
+# https://github.com/jndietz/caption-captain
+[Unit]
+Description=Captions Web UI
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/home/dsully/.volta/bin/npm start
+WorkingDirectory=/bits/apps/caption-captain
+Restart=on-failure
+StandardOutput=null
+StandardError=null
+
+[Install]
+WantedBy=default.target
