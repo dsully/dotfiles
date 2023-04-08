@@ -15,6 +15,8 @@ set -l PACKAGES \
     cargo-cache \
     cargo-nextest \
     fddf \
+    # https://github.com/gitext-rs/git-dive
+    git-dive \
     # https://github.com/nguyenvukhang/gitnu - git status wrapper.
     gitnu \
     jfmt \

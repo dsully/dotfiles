@@ -58,6 +58,8 @@
     navigate = true  # use n and N to move between diff sections
     noprefix = true
     renames = copies # Detect copies as well as renames.
+[dive]
+    theme = Nord
 [filter "lfs"]
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
