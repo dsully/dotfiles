@@ -27,6 +27,7 @@
 /.conda
 /.config/auth0/
 /.config/configstore/
+/.config/gdrive3
 /.config/github-copilot/
 /.config/jgit/
 /.config/kitty/kitty_search
@@ -35,6 +36,7 @@
 /.config/raycast/
 /.config/repos/
 /.config/toot/
+/.config/zellij/auto
 /.cups
 /.diffusionbee
 /.docker
