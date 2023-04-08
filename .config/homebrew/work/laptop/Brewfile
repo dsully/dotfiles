@@ -23,6 +23,7 @@ brew "fd"
 brew "fish"
 brew "fselect"
 brew "fzf"
+brew "gcc"
 brew "gettext"
 brew "gh"
 brew "git"
@@ -122,7 +123,7 @@ cask "zoom"
 mas "1Password for Safari", id: 1569813296
 mas "Agenda", id: 1287445660
 mas "AutoMounter", id: 1160435653
-mas "Boop", id: 1518425043
+mas "CustomSearch", id: 1588019370
 mas "Dato", id: 1470584107
 mas "Deliveries", id: 924726344
 mas "DevCleaner", id: 1388020431
