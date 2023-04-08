@@ -1,0 +1,15 @@
+# https://github.com/ddPn08/kohya-sd-scripts-webui
+[Unit]
+Description=Training Web UI
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/bits/apps/kohya-sd-scripts-webui/venv/bin/python3 launch.py --skip-install --skip-torch-cuda-test --skip-checkout-repo --port 7861
+WorkingDirectory=/bits/apps/kohya-sd-scripts-webui
+Restart=on-failure
+StandardOutput=null
+StandardError=null
+
+[Install]
+WantedBy=default.target
