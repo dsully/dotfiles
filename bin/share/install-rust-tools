@@ -12,8 +12,16 @@ end
 # Install packages via Cargo.
 set -l PACKAGES \
     autorebase \
+    # https://github.com/RustSec/rustsec/tree/main/cargo-audit
+    cargo-audit \
+    # https://github.com/matthiaskrgr/cargo-cache
     cargo-cache \
+    # https://github.com/Riey/cargo-feature
+    cargo-feature \
+    # https://nexte.st
     cargo-nextest \
+    # https://github.com/kbknapp/cargo-outdated
+    cargo-outdated \
     fddf \
     # https://github.com/gitext-rs/git-dive
     git-dive \
