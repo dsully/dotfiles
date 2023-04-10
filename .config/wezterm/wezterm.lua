@@ -30,21 +30,6 @@ local colors = {
     gray = { base = "#4c566a", bright = "#667084", dim = "#2b303b" },
 }
 
-local function create_ssh_domain_from_ssh_config()
-    local ssh_domains = {}
-
-    for host, config in pairs(wezterm.enumerate_ssh_hosts()) do
-        table.insert(ssh_domains, {
-            name = host,
-            remote_address = config.hostname .. ":" .. config.port,
-            username = config.user,
-            multiplexing = "None",
-            assume_shell = "Posix",
-        })
-    end
-    return ssh_domains
-end
-
 local hyperlink_rules = function()
     -- Use the defaults as a base
     local rules = wezterm.default_hyperlink_rules()
@@ -249,7 +234,7 @@ return {
     hyperlink_rules = hyperlink_rules(),
 
     initial_cols = 180,
-    initial_rows = 56,
+    initial_rows = 57,
 
     keys = {
         { key = "-", mods = "CMD|SHIFT", action = "DecreaseFontSize" },
@@ -328,7 +313,7 @@ return {
     show_new_tab_button_in_tab_bar = false,
     show_tab_index_in_tab_bar = true,
 
-    ssh_domains = create_ssh_domain_from_ssh_config(),
+    ssh_domains = wezterm.default_ssh_domains(),
 
     tab_max_width = 64,
     term = "wezterm",
