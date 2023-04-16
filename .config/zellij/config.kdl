@@ -21,31 +21,6 @@ keybinds clear-defaults=true {
         bind "=" "+" { Resize "Increase"; }
         bind "-" { Resize "Decrease"; }
     }
-    pane {
-        bind "Ctrl p" { SwitchToMode "Normal"; }
-        bind "h" "Left" { MoveFocus "Left"; }
-        bind "l" "Right" { MoveFocus "Right"; }
-        bind "j" "Down" { MoveFocus "Down"; }
-        bind "k" "Up" { MoveFocus "Up"; }
-        bind "p" { SwitchFocus; }
-        bind "n" { NewPane; SwitchToMode "Normal"; }
-        bind "d" { NewPane "Down"; SwitchToMode "Normal"; }
-        bind "r" { NewPane "Right"; SwitchToMode "Normal"; }
-        bind "x" { CloseFocus; SwitchToMode "Normal"; }
-        bind "f" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
-        bind "z" { TogglePaneFrames; SwitchToMode "Normal"; }
-        bind "w" { ToggleFloatingPanes; SwitchToMode "Normal"; }
-        bind "e" { TogglePaneEmbedOrFloating; SwitchToMode "Normal"; }
-        bind "c" { SwitchToMode "RenamePane"; PaneNameInput 0;}
-    }
-    move {
-        bind "Ctrl h" { SwitchToMode "Normal"; }
-        bind "n" "Tab" { MovePane; }
-        bind "h" "Left" { MovePane "Left"; }
-        bind "j" "Down" { MovePane "Down"; }
-        bind "k" "Up" { MovePane "Up"; }
-        bind "l" "Right" { MovePane "Right"; }
-    }
     tab {
         bind "Ctrl t" { SwitchToMode "Normal"; }
         bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
@@ -104,10 +79,6 @@ keybinds clear-defaults=true {
         bind "Ctrl c" { SwitchToMode "Normal"; }
         bind "Esc" { UndoRenameTab; SwitchToMode "Tab"; }
     }
-    renamepane {
-        bind "Ctrl c" { SwitchToMode "Normal"; }
-        bind "Esc" { UndoRenamePane; SwitchToMode "Pane"; }
-    }
     session {
         bind "Ctrl S" { SwitchToMode "Normal"; }
         bind "Ctrl s" { SwitchToMode "Scroll"; }
@@ -127,12 +98,6 @@ keybinds clear-defaults=true {
     shared_except "normal" "locked" {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
     }
-    shared_except "pane" "locked" {
-        bind "Ctrl p" { SwitchToMode "Pane"; }
-    }
-    shared_except "resize" "locked" {
-        bind "Ctrl n" { SwitchToMode "Resize"; }
-    }
     shared_except "scroll" "locked" {
         bind "Ctrl s" { SwitchToMode "Scroll"; }
     }
@@ -141,12 +106,6 @@ keybinds clear-defaults=true {
     }
     shared_except "tab" "locked" {
         bind "Ctrl t" { SwitchToMode "Tab"; }
-    }
-    shared_except "move" "locked" {
-        bind "Ctrl h" { SwitchToMode "Move"; }
-    }
-    shared_except "tmux" "locked" {
-        bind "Ctrl b" { SwitchToMode "Tmux"; }
     }
 }
 
