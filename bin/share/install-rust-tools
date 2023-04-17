@@ -67,3 +67,7 @@ for package in $PACKAGES
         command cargo install $package
     end
 end
+
+if not type -q cloudflare-dns-updater
+    cargo install --git git+ssh://github.com/dsully/zoned
+end
