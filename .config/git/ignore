@@ -43,6 +43,7 @@
 /.proxyman
 /.pyhistory
 /.python_history
+/.ruff_cache
 /.rustup
 /.sqlite_history
 /.ssh/id_*
