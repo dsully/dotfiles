@@ -69,5 +69,5 @@ for package in $PACKAGES
 end
 
 if not type -q cloudflare-dns-updater
-    cargo install --git git+ssh://github.com/dsully/zoned
+    cargo install --git git+ssh://git@github.com/dsully/zoned
 end
