@@ -75,9 +75,6 @@
     autosquash = true
 [status]
     relativePaths = true
-[submodule ".config/kitty/kitty_search"]
-    path = .config/kitty/kitty_search
-    url = https://github.com/trygveaa/kitty-kitten-search
 [include]
     path = ~/.config/repos/private/git/private
 [includeIf "gitdir:~/dev/linkedin/"]
