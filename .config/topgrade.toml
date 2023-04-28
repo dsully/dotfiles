@@ -6,24 +6,24 @@ display_preamble = false
 skip_notify = true
 
 # Disable specific steps - same options as the command line flag
-disable = [
-    "containers",
-    "firmware",
-    "github_cli_extensions",
-    "mas",
-    "node",
-    "pip3",
-    "pnpm",
-    "restarts",
-    "snap",
-    "vim",
-]
+disable = [  ]
 
 # Ignore failures for these steps
 ignore_failures = [ "git_repos" ]
 
 # Run specific steps - same options as the command line flag
-#only = ["system", "emacs"]
+only = [
+    "brew_formula",
+    "brew_cask",
+    "cargo",
+    "custom_commands",
+    "deb_get",
+    "git_repos",
+    "helix",
+    "pipx",
+    "shell",
+    "system",
+]
 
 # Do not ask to retry failed steps (default: false)
 no_retry = true
@@ -75,7 +75,7 @@ arguments = "--rebase --autostash"
 
 # Custom commands
 [commands]
-#"Python Environment" = "~/dev/.env/bin/pip install -i https://pypi.python.org/simple -U --upgrade-strategy eager jupyter"
+"RTX Plugins" = "rtx plugins update"
 
 [brew]
 greedy_cask = true
