@@ -4,7 +4,7 @@ function gu --description 'Git pull and show log'
 
     echo "Starting hash: $start"
 
-    command git pull --rebase
+    command git pull --rebase --autostash
     command git log $start..HEAD
 end
 
