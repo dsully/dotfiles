@@ -10,5 +10,13 @@ if status is-interactive
         if not set -q ZELLIJ; and test -e "$XDG_CONFIG_HOME/zellij/auto"
             zellij attach -c $HOSTNAME
         end
+
+        # Update the zellij tab name with the current pwd.
+        # https://github.com/zellij-org/zellij/issues/2284
+        function zellij_tab_name_update --on-variable PWD
+            if set -q ZELLIJ
+                command nohup zellij action rename-tab (prompt_pwd) >/dev/null 2>&1
+            end
+        end
     end
 end
