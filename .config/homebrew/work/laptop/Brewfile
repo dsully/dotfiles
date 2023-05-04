@@ -13,10 +13,8 @@ brew "choose-rust"
 brew "croc"
 brew "curl"
 brew "dasel"
-brew "dash", link: false
 brew "direnv"
 brew "docker", link: false
-brew "dog"
 brew "dua-cli"
 brew "dust"
 brew "fclones"
@@ -72,11 +70,9 @@ brew "zenith"
 brew "zoxide"
 cask "1password"
 cask "adguard"
-cask "alfred"
 cask "anylist"
 cask "backblaze"
 cask "bartender"
-cask "cisco-proximity"
 cask "cleanshot"
 cask "daisydisk"
 cask "dash"
@@ -87,7 +83,6 @@ cask "downie"
 cask "electorrent"
 cask "font-hack-nerd-font"
 cask "font-jetbrains-mono"
-cask "github"
 cask "google-chrome"
 cask "iina"
 cask "latest"
@@ -97,7 +92,6 @@ cask "microsoft-teams"
 cask "monodraw"
 cask "mullvadvpn"
 cask "omnigraffle"
-cask "paw"
 cask "querious"
 cask "quicken"
 cask "raindropio"
@@ -112,6 +106,7 @@ cask "stay"
 cask "superduper"
 cask "suspicious-package"
 cask "syncthing"
+cask "telegram"
 cask "the-unarchiver"
 cask "tower"
 cask "transmit"
@@ -122,13 +117,12 @@ cask "zoom"
 mas "1Password for Safari", id: 1569813296
 mas "Agenda", id: 1287445660
 mas "AutoMounter", id: 1160435653
-mas "CustomSearch", id: 1588019370
 mas "Dato", id: 1470584107
 mas "Deliveries", id: 924726344
 mas "DevCleaner", id: 1388020431
 mas "Discovery", id: 1381004916
+mas "Eagle for Safari", id: 1526651672
 mas "JSONPeep", id: 1458969831
-mas "Jiffy", id: 1502527999
 mas "Kagi Inc.", id: 1622835804
 mas "Keynote", id: 409183694
 mas "Magnet", id: 441258766
@@ -139,15 +133,17 @@ mas "Netmo", id: 1192219511
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Patterns", id: 429449079
+mas "Play", id: 1596506190
 mas "Reeder", id: 1529448980
-mas "Save to Matter", id: 1548677272
 mas "Save to Raindrop.io", id: 1549370672
+mas "Save to Reader", id: 1640236961
 mas "Spark", id: 1176895641
 mas "StopTheMadness", id: 1376402589
-mas "Str*Viewer", id: 1501259216
 mas "Tailscale", id: 1475387142
+mas "TestFlight", id: 899247664
 mas "TrashMe 3", id: 1490879410
 mas "Tweaks for Twitter", id: 1567751529
+mas "Wavelength", id: 1584865627
 mas "WiFi Explorer", id: 494803304
 mas "WiFi Signal", id: 525912054
 mas "WireGuard", id: 1451685025
