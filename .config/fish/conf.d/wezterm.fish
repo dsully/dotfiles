@@ -6,11 +6,15 @@ if status is-interactive
         set -l TERMINFO_DIR $HOME/.terminfo
 
         # Different OSes, different paths.
-        set -l WEZ_TERMINFO1 $TERMINFO_DIR/77/wezterm
-        set -l WEZ_TERMINFO2 $TERMINFO_DIR/w/wezterm
+        switch $OS
+            case Darwin
+                set -f WEZ_TERMINFO $TERMINFO_DIR/77/wezterm
+            case Linux
+                set -f WEZ_TERMINFO $TERMINFO_DIR/w/wezterm
+        end
 
-        if not test -f $WEZ_TERMINFO1; or not test -f $WEZ_TERMINFO2
-            /usr/bin/tic -x -o $TERMINFO_DIR $XDG_CONFIG_HOME/wezterm/wezterm.terminfo
+        if not test -f $WEZ_TERMINFO
+            /usr/bin/tic -x -o $TERMINFO_DIR $XDG_CONFIG_HOME/wezterm/terminfo
         end
     end
 end
