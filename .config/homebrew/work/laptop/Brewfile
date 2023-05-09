@@ -41,6 +41,7 @@ brew "lsd"
 brew "macchina"
 brew "mas"
 brew "moar"
+brew "mosh"
 brew "mtr"
 brew "mysql@5.7", restart_service: true
 brew "neovim"
