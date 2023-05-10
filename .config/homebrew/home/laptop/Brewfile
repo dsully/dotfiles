@@ -1,16 +1,14 @@
 tap "hashicorp/tap"
-tap "homebrew/autoupdate"
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
 tap "homebrew/command-not-found"
 tap "homebrew/services"
-tap "natesales/repo"
+tap "natesales/repo", "https://github.com/natesales/repo"
 tap "rajiv/fastmate"
 tap "scullionw/tap"
 brew "act"
 brew "bandwhich"
 brew "bat"
-brew "choose-rust"
 brew "cmake"
 brew "croc"
 brew "dasel"
@@ -39,8 +37,10 @@ brew "hyperfine"
 brew "iperf3"
 brew "jless"
 brew "jq"
+brew "just"
 brew "less"
 brew "lsd"
+brew "lua"
 brew "macchina"
 brew "mas"
 brew "moar"
@@ -61,6 +61,7 @@ brew "ripgrep"
 brew "rsync"
 brew "rtx"
 brew "rustup-init"
+brew "sccache"
 brew "scullionw/tap/dirstat-rs"
 brew "sd"
 brew "telnet"
@@ -134,10 +135,10 @@ mas "Affinity Designer", id: 824171161
 mas "Affinity Photo", id: 824183456
 mas "Auth for Tesla", id: 1552058613
 mas "AutoMounter", id: 1160435653
+mas "Black Out", id: 1319884285
 mas "Book Tracker", id: 1496543317
 mas "Brother P-touch Editor", id: 1453365242
 mas "CotEditor", id: 1024640650
-mas "CustomSearch", id: 1588019370
 mas "Darkroom", id: 953286746
 mas "Dato", id: 1470584107
 mas "Deliveries", id: 290986013
@@ -161,7 +162,6 @@ mas "Play", id: 1596506190
 mas "RAW Power", id: 1157116444
 mas "Reeder", id: 1529448980
 mas "Router", id: 1229416813
-mas "Save to Matter", id: 1548677272
 mas "Save to Raindrop.io", id: 1549370672
 mas "Save to Reader", id: 1640236961
 mas "Slack", id: 803453959
