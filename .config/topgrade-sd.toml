@@ -66,6 +66,7 @@ cleanup = true
 #max_concurrency = 5
 # Additional git repositories to pull
 repos = [
+    "/bits/apps/automatic/extensions/*",
     "/bits/apps/stable-diffusion-webui/extensions/*",
 ]
 
