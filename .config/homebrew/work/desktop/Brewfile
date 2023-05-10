@@ -15,6 +15,7 @@ brew "dasel"
 brew "direnv"
 brew "dua-cli"
 brew "dust"
+brew "erdtree"
 brew "fclones"
 brew "fd"
 brew "fish"
@@ -53,6 +54,7 @@ brew "openssl@1.1"
 brew "openssl@3"
 brew "p7zip"
 brew "pcre2"
+brew "procs"
 brew "ripgrep"
 brew "rsync"
 brew "rtx"
@@ -99,7 +101,6 @@ cask "font-jetbrains-mono"
 cask "google-chrome"
 cask "iina"
 cask "jetbrains-toolbox"
-cask "kitty"
 cask "latest"
 cask "microsoft-auto-update"
 cask "microsoft-outlook"
@@ -129,6 +130,7 @@ cask "tower"
 cask "transmit"
 cask "visual-studio-code"
 cask "wezterm"
+cask "yubico-yubikey-manager"
 cask "zoom"
 mas "1Password for Safari", id: 1569813296
 mas "Affinity Photo", id: 824183456
@@ -138,7 +140,6 @@ mas "AutoMounter", id: 1160435653
 mas "Book Tracker", id: 1496543317
 mas "Brother P-touch Editor", id: 1453365242
 mas "CollageIt 3 Lite", id: 675540049
-mas "CustomSearch", id: 1588019370
 mas "Darkroom", id: 953286746
 mas "Dato", id: 1470584107
 mas "Deliveries", id: 924726344
