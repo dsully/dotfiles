@@ -7,3 +7,5 @@
 Library/
 Mounts/
 .volta/
+.venv/
+venv/
