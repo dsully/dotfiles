@@ -60,11 +60,6 @@ if not type -q cargo-install-update
     set -a PACKAGES cargo-update
 end
 
-# https://github.com/ngirard/lolcate-rs
-if not type -q lolcate
-    set -a PACKAGES lolcate-rs
-end
-
 # https://github.com/robiot/rustcat
 if not type -q rcat
     set -a PACKAGES rustcat
@@ -78,6 +73,6 @@ for package in $PACKAGES
     end
 end
 
-if not type -q cloudflare-dns-updater
-    cargo install --git git+ssh://git@github.com/dsully/zoned
-end
+# My tools / forked.
+cargo install --git git+ssh://git@github.com/dsully/zoned
+cargo install --git git+ssh://git@github.com/dsully/lolcate-rs
