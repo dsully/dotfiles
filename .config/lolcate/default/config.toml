@@ -18,5 +18,8 @@ ignore_symlinks = true
 # Set to true if you want to ignore hidden files and directories
 ignore_hidden = false
 
+# Set to true if you want to ignore missing directories
+ignore_missing = true
+
 # Set to true to read .gitignore files and ignore matching files
 gitignore = true
