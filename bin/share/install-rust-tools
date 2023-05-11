@@ -35,8 +35,6 @@ set -l PACKAGES \
     gitnu \
     # https://github.com/scruffystuffs/jfmt.rs
     jfmt \
-    # https://github.com/ur0/lolcat
-    lolcat \
     # https://github.com/acidnik/ppcp - Remove in favor of xcp?
     ppcp \
     # https://github.com/tarka/xcp/
