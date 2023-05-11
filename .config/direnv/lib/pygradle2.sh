@@ -1,4 +1,8 @@
 layout_pygradle2() {
-  export VIRTUAL_ENV=$(basename $PWD)
-  PATH_add $(expand_path "../build/$VIRTUAL_ENV/environments/development-venv/bin")
+    REPO="$(basename "$PWD")"
+    VIRTUAL_ENV="$(expand_path "../build/$REPO/environments/development-venv")"
+
+    PATH_add "$VIRTUAL_ENV/bin"
+
+    export VIRTUAL_ENV
 }
