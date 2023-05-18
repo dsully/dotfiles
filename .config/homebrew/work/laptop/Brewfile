@@ -91,6 +91,7 @@ cask "latest"
 cask "microsoft-auto-update"
 cask "microsoft-outlook"
 cask "microsoft-teams"
+cask "mist"
 cask "monodraw"
 cask "mullvadvpn"
 cask "omnigraffle"
@@ -123,7 +124,6 @@ mas "Dato", id: 1470584107
 mas "Deliveries", id: 924726344
 mas "DevCleaner", id: 1388020431
 mas "Discovery", id: 1381004916
-mas "Eagle for Safari", id: 1526651672
 mas "JSONPeep", id: 1458969831
 mas "Kagi Inc.", id: 1622835804
 mas "Keynote", id: 409183694
