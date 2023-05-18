@@ -229,6 +229,7 @@ return {
     enable_kitty_graphics = true,
     enable_scroll_bar = false,
     exit_behavior = "CloseOnCleanExit",
+    front_end = "WebGpu",
     hide_tab_bar_if_only_one_tab = true,
 
     hyperlink_rules = hyperlink_rules(),
