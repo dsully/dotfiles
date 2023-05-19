@@ -75,9 +75,10 @@ arguments = "--rebase --autostash"
 
 # Custom commands
 [commands]
-"RTX Plugins" = "rtx plugins update"
+# "RTX Plugins" = "rtx plugins update"
 
 [brew]
+autoremove = true
 greedy_cask = true
 
 [npm]
