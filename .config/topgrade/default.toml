@@ -17,12 +17,9 @@ only = [
     "brew_cask",
     "cargo",
     "custom_commands",
-    "deb_get",
     "git_repos",
-    "helix",
     "pipx",
     "shell",
-    "system",
 ]
 
 # Do not ask to retry failed steps (default: false)
@@ -78,7 +75,6 @@ arguments = "--rebase --autostash"
 # "RTX Plugins" = "rtx plugins update"
 
 [brew]
-autoremove = true
 greedy_cask = true
 
 [npm]
