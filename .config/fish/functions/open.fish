@@ -11,8 +11,9 @@ function open --description 'Remotely open a for the current or given path.'
     else
         # If this is a git repository, and we have git-open, open the remote URL.
         if type -q git-open
-            command git-open
-            return 0
+            if test (command git-open) -eq 0
+                return 0
+            end
         end
 
         # Otherwise use the PWD if no arguments were passed.
@@ -20,8 +21,13 @@ function open --description 'Remotely open a for the current or given path.'
     end
 
     # Pass through URLs. TODO: Handle file:/// URLs?
-    if string match -q -r "://" $path
+    if string match -q "://" $path
         set -f remote $path
+
+    # If run with a - option, pass it through to macOS open.
+    else if string match -q -r "^-" $path
+        command open $path
+        return 0
 
     else
         # Clean up the path.
