@@ -76,3 +76,4 @@ end
 # My tools / forked.
 cargo install --git git+ssh://git@github.com/dsully/zoned
 cargo install --git git+ssh://git@github.com/dsully/lolcate-rs
+cargo install --git git+ssh://git@github.com/dsully/git-open
