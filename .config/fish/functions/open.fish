@@ -1,43 +1,51 @@
-function ropen --description 'Remotely open a Finder window for the current or given path.'
+function open --description 'Remotely open a for the current or given path.'
 
     if not set -q SSH_TTY
-        command /usr/bin/open $argv
-        exit 0
+        command open $argv
+        return 0
     end
 
-    set -f ROPEN "$HOME/.ssh/ropen.txt"
-
-    if not test -f $ROPEN
-        echo "$ROPEN must exist."
-        exit 0
-    end
-
-    set -f host (cat $ROPEN)
-    set -f path $PWD
-
-    argparse host -- $argv
-
-    if set -q _flag_host
-        set host $_flag_host
-    end
-
+    # Set the path if we have arguments.
     if test (count $argv) -gt 0
-        if not string match "." $argv[1]
-            set path $argv
+        set -f path $argv
+    else
+        # If this is a git repository, and we have git-open, open the remote URL.
+        if type -q git-open
+            command git-open
+            return 0
+        end
+
+        # Otherwise use the PWD if no arguments were passed.
+        set -f path $PWD
+    end
+
+    # Pass through URLs. TODO: Handle file:/// URLs?
+    if string match -q -r "://" $path
+        set -f remote $path
+
+    else
+        # Clean up the path.
+        set -f path (string escape -n (realpath $path))
+
+        if string match -q -r "^/bits" $path
+            set -l partial (string replace /bits/ "" $path)
+            set -f remote "~/Mounts/$hostname/$partial"
+
+        else if string match -q -r "^$HOME" $path
+
+            switch $OS
+                case Darwin
+                    set -f remote (string replace $HOME /home/$USER $path)
+                case Linux
+                    set -f remote (string replace $HOME /Users/$USER $path)
+            end
         end
     end
 
-    # Clean up the path.
-    set -f path (string escape -n (realpath $path))
-
-    if not string match -q -r "^/bits" $path
-        echo "Can't open non /bits paths remotely."
-        exit 1
+    # https://github.com/superbrothers/opener
+    if test -e $HOME/.opener.sock
+        echo $remote | nc -U "$HOME/.opener.sock"
+    else
+        echo "Install opener: https://github.com/superbrothers/opener"
     end
-
-    set -f partial (string replace /bits/ "" $path)
-    set -f remote "~/Mounts/$hostname/$partial"
-
-    echo "Opening $remote on $host ..."
-    command ssh $host /usr/bin/open $remote
 end
