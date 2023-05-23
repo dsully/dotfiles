@@ -1,10 +1,8 @@
 if status is-interactive
 
-    set -gx PYTHONSTARTUP $XDG_CONFIG_HOME/python/startup.py
-    set -gx PYTHON_VERSION 3.10
+    set -l startup $XDG_CONFIG_HOME/python/startup.py
 
-    fish_add_path --append "/export/apps/python/$PYTHON_VERSION/bin" "$HOME/Library/Python/$PYTHON_VERSION/bin"
-
-    # Python PEP-582 PDM integration: https://pdm.fming.dev
-    set -gx PYTHONPATH "$HOME/.local/pipx/venvs/pdm/lib/python$PYTHON_VERSION/site-packages/pdm/pep582"
+    if test -f $startup
+        set -gx PYTHONSTARTUP $startup
+    end
 end
