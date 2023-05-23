@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-if not isatty stdin
+if test -p /dev/stdin
     cat - | nc -U "$HOME/.opener.sock"
 else
     echo $argv | nc -U "$HOME/.opener.sock"
