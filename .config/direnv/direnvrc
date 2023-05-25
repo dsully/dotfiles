@@ -2,7 +2,7 @@
 
 # Adapted from: https://github.com/branchvincent/dotfiles
 
-[ -z "${DIRENV_DEBUG:-}" ] || set -x
+[ "${DIRENV_DEBUG-}" = "" ] || set -x
 
 # Copy of stdlib's `__dump_at_exit`, but logs on failure
 # https://github.com/direnv/direnv/issues/893
@@ -30,6 +30,9 @@ layout_auto() {
     elif [[ -f poetry.lock ]]; then
         log_status "detected poetry project"
         layout poetry
+    elif [[ -f build.gradle && -f setup.py ]]; then
+        log_status "detected pygradle project"
+        layout pygradle
     elif [[ -f pdm.lock ]]; then
         log_status "detected pdm project"
         layout pdm
@@ -49,57 +52,40 @@ layout_go() {
 ### Node ###
 layout_nodejs() {
     PATH_add node_modules/.bin
-
-    # Install, if dependencies are outdated
-    if [[ -f package-lock.json && package-lock.json -nt node_modules/.package-lock.json ]]; then
-        npm install
-    elif [[ -f yarn.lock && yarn.lock -nt node_modules ]]; then
-        yarn install
-    fi
-
     watch_file package-lock.json yarn.lock
 }
 
 ### Python ###
 
-# This uses rye.
 layout_python() {
-    export VIRTUAL_ENV="$PWD/.venv"
-    PATH_add "$VIRTUAL_ENV/bin"
-
-    # Install
-    if [[ ! -d "$VIRTUAL_ENV" ]]; then
-        rye sync
+    if [[ -d "$PWD/venv" ]]; then
+        export VIRTUAL_ENV="$PWD/venv"
+    else
+        export VIRTUAL_ENV="$PWD/.venv"
     fi
+
+    PATH_add "$VIRTUAL_ENV/bin"
 }
 
 layout_poetry() {
-    # Install, if dependencies are outdated
-    if [[ ! -d .venv || poetry.lock -nt "$(echo .venv/lib/python*/site-packages)" ]]; then
-        poetry install
-    fi
     watch_file poetry.lock
 
-    export VIRTUAL_ENV="$PWD/.venv"
+    layout_python
+
     export PIP_PYTHON="$VIRTUAL_ENV/bin/python"
     export POETRY_ACTIVE=1
-    PATH_add "$VIRTUAL_ENV/bin"
 }
 
 layout_pdm() {
-    # Install, if dependencies are outdated
-    if [[ ! -d __pypackages__ || pdm.lock -nt "$(echo __pypackages__/*/lib)" ]]; then
-        pdm install
-    fi
     watch_file pdm.lock
 
-    if [[ ! -e .venv || ! -e .pep582 ]]; then
+    if [[ ! -e .venv || ! -e venv || ! -e .pep582 ]]; then
 
         if [[ $(pdm config python.use_venv | grep -c "False") == 1 ]]; then
 
             # Create a stub file if it doesn't exist the first time.
             if [[ ! -f .pep582 ]]; then
-                pdm --pep582 > .pep582
+                pdm --pep582 >.pep582
             fi
         fi
     fi
@@ -111,9 +97,15 @@ layout_pdm() {
         PATH_add "$PWD"/__pypackages__/*/bin
 
     else
-        export VIRTUAL_ENV="$PWD/.venv"
-        PATH_add "$VIRTUAL_ENV/bin"
+        layout_python
     fi
+}
+
+layout_pygradle() {
+    REPO="$(basename "$PWD")"
+    export VIRTUAL_ENV="$(expand_path "../build/$REPO/environments/development-venv")"
+
+    PATH_add "$VIRTUAL_ENV/bin"
 }
 
 if [[ ! -s .envrc ]]; then
