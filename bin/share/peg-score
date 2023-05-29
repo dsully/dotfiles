@@ -1,25 +1,38 @@
-#!/usr/bin/perl
+#!/usr/bin/env python3
 
-# $Id$ 
-#
-# Calculate a Peg score for email. From grio.
+# Calculate a Peg score for email. From Grillo.
 
-$f=<STDIN>;
-if($f=~/:\s+\S/o){
-	while(<STDIN>){ last if /^$/o; }
-}
+import re
+import sys
 
-while($l=undef($f) || <STDIN>){
-		next if $l =~ /^>/o;
-		next if $l =~ /^\|/o;
-		last if $l =~ /^--$/o;
-        $e += ( ($j=$l) =~ s/\!/*/go );
-        $q += ( ($j=$l) =~ s/\?/*/go );
-        $r += ( ($j=$l) =~ s/\.\.\.?( +|$)/*/go );
-        $p += ( ($j=$l) =~ s/\./*/go );
-        $m += ( ($j=$l) =~ s/=[)(]/*/go );
-        $m += ( ($j=$l) =~ s/:-[)(]/*/go );
-        $s += ( ($j=$l) =~ s/[!?\.]+( +|$)/*/go );
-}
-print "${s} sentence(s): ${e} exclamation mark(s), ${q} question mark(s), ${p} period(s), ${r} ellipse(s), ${m} smilies\n";
-printf "peg score: %.1f\n",100*(($e * 1.25) + $q + $p + ($m  * 1.375) + ($r * .5))/$s if $s;
+f = sys.stdin.readline()
+
+if re.search(r':\s+\S', f):
+    while True:
+        line = sys.stdin.readline()
+        if not line.strip():
+            break
+
+e, q, r, p, m, s = 0, 0, 0, 0, 0, 0
+
+while True:
+    line = sys.stdin.readline()
+    if not line:
+        break
+    if line.startswith(('>', '|')):
+        continue
+    if line.strip() == '--':
+        break
+
+    j = line
+    e += len(re.findall(r'!', j))
+    q += len(re.findall(r'\?', j))
+    r += len(re.findall(r'\.\.\.?( +|$)', j))
+    p += len(re.findall(r'\.', j))
+    m += len(re.findall(r'=[)(]|:-[)(]', j))
+    s += len(re.findall(r'[!?\.]+( +|$)', j))
+
+if s:
+    peg_score = 100 * ((e * 1.25) + q + p + (m * 1.375) + (r * 0.5)) / s
+    print(f"{s} sentence(s): {e} exclamation mark(s), {q} question mark(s), {p} period(s), {r} ellipse(s), {m} smilies")
+    print(f"peg score: {peg_score:.1f}")
