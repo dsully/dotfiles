@@ -7,22 +7,29 @@ function cat --wraps=bat --description 'Use bat instead of cat'
 
     # https://sw.kovidgoyal.net/kitty/kittens/icat/
     # https://github.com/wez/wezterm/blob/main/docs/imgcat.md
-    set -f icat_extensions png jpg jpeg gif bmp tiff webp
-    set -f glow_extensions md markdown mkd
+    set -f image_extensions png jpg jpeg gif bmp tiff webp
+    set -f markdown_extensions md markdown mkd
 
     # Escape --version and similar.
     set -f ext (string split "." -- $argv[1])[-1]
 
-    if contains $ext $glow_extensions
-        glow -p $argv[1]
+    if contains $ext $markdown_extensions
 
-    else if contains $ext $icat_extensions; and test $TERM = xterm-kitty
+        if type -q frogmouth
+            frogmouth $argv[1]
+        else if type -q glow
+            glow -p $argv[1]
+        else
+            echo "Neither 'frogmouth' nor 'glow' is installed for Markdown rendering."
+        end
+
+    else if contains $ext $image_extensions; and test $TERM = xterm-kitty
         kitty +kitten icat $argv[1]
 
-    else if contains $ext $icat_extensions; and type -q wezterm
+    else if contains $ext $image_extensions; and type -q wezterm
         wezterm imgcat $argv[1]
 
     else
-        command bat --style plain --theme Nord --pager="/usr/bin/less -RFX" $argv
+        command bat --style plain --theme Nord --pager=$PAGER $argv
     end
 end
