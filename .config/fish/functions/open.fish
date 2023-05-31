@@ -56,7 +56,7 @@ function open --description 'Remotely open a for the current or given path.'
             echo "Install opener: https://github.com/superbrothers/opener"
         end
     else
-        if set -q url
+        if $url = true
             command open --background $remote
         else
             command open $remote
