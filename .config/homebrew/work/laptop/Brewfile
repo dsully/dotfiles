@@ -16,6 +16,7 @@ brew "direnv"
 brew "docker", link: false
 brew "dua-cli"
 brew "dust"
+brew "erdtree"
 brew "fclones"
 brew "fd"
 brew "fish"
