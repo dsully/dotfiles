@@ -35,8 +35,12 @@ set -l PACKAGES \
     gitnu \
     # https://github.com/scruffystuffs/jfmt.rs
     jfmt \
+    # https://github.com/mrjackwills/havn
+    havn \
     # https://github.com/acidnik/ppcp - Remove in favor of xcp?
     ppcp \
+    # https://github.com/TheWaWaR/simple-http-server
+    simple-http-server \
     # https://github.com/tarka/xcp/
     xcp
 
