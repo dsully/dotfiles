@@ -1,7 +1,11 @@
 # http://github.com/neovim/neovim
 if status is-interactive
 
-    if not test -z EDITOR
+    # Set VSCode to use itself if inside the VSCode terminal.
+    if string match -q "$TERM_PROGRAM" vscode
+        set -gx EDITOR code --wait
+
+    else if not test -z EDITOR
         if type -q nvim
             abbr --add vi nvim
             abbr --add vim nvim
