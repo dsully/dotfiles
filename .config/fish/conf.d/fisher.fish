@@ -10,13 +10,27 @@ if status is-login
         curl -sL https://git.io/fisher | source && fisher update
     end
 
-    set fish_complete_path $fish_complete_path[1] $fisher_path/completions $fish_complete_path[2..]
-    set fish_function_path $fish_function_path[1] $fisher_path/functions $fish_function_path[2..]
+    set -gx fish_complete_path $fish_complete_path[1] $fisher_path/completions $fish_complete_path[2..]
+    set -gx fish_function_path $fish_function_path[1] $fisher_path/functions $fish_function_path[2..]
 
     for file in $fisher_path/conf.d/*.fish
         if not test -f (string replace -r "^.*/" $__fish_config_dir/conf.d/ -- $file)
             and test -f $file && test -r $file
             source $file
         end
+    end
+
+    # Install fisher plugins if they aren't already.
+    if test $OS = Darwin; and not type -q mac
+        fisher install halostatue/fish-utils-core@v2.x
+        fisher install halostatue/fish-macos@v5.x
+    end
+
+    if not type -q fkill
+        fisher install gazorby/fish-finders
+    end
+
+    if not type -q fzf_configure_bindings
+        fisher install patrickf1/fzf.fish
     end
 end
