@@ -7,8 +7,9 @@ function open --description 'Remotely open a for the current or given path.'
         set -f path $argv
     else
         # If this is a git repository, and we have git-open, open the remote URL.
+        # Call with --print otherwise this doesn't work when running via SSH as I want --background
         if type -q git-open
-            set -f path (command git-open --print)
+            set -f path (command git-open --print (git rev-parse --show-toplevel))
         else
             # Otherwise use the PWD if no arguments were passed.
             set -f path $PWD
@@ -20,9 +21,14 @@ function open --description 'Remotely open a for the current or given path.'
         set -f remote $path
         set -f url true
 
-    else if string match -e -q "-" -- $path
+    else if string match -e -q - -- $path
         # If run with a - option, pass it through to macOS open.
-        command open $path
+        if test $path = --help
+            command open -h
+        else
+            command open $path
+        end
+
         return 0
 
     else if set -q SSH_TTY
@@ -49,12 +55,8 @@ function open --description 'Remotely open a for the current or given path.'
     end
 
     if set -q SSH_TTY
-        # https://github.com/superbrothers/opener
-        if test -e $HOME/.opener.sock
-            echo $remote | nc -U "$HOME/.opener.sock"
-        else
-            echo "Install opener: https://github.com/superbrothers/opener"
-        end
+        # brew install xdg-open-svc, runs on this port.
+        echo "$remote" | nc -q1 localhost 2226
     else
         if $url = true
             command open --background $remote

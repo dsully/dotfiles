@@ -1,7 +1,4 @@
 #!/usr/bin/env fish
 
-if test -p /dev/stdin
-    cat - | nc -U "$HOME/.opener.sock"
-else
-    echo $argv | nc -U "$HOME/.opener.sock"
-end
+# Call into functions/open.fish which uses xdg-open-svc
+open $argv

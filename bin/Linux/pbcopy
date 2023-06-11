@@ -1,0 +1,13 @@
+#!/usr/bin/env fish
+
+# https://carlosbecker.com/posts/pbcopy-pbpaste-open-ssh/
+
+if set -q SSH_TTY
+    if test -p /dev/stdin
+        cat - | nc -q1 localhost 2224
+    else
+        nc -q1 localhost 2224
+    end
+else
+    echo "Nothing to do!"
+end
