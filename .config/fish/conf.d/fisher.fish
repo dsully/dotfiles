@@ -2,7 +2,11 @@
 if status is-login
 
     # Set fisher install to be outside of ~/.config/fish
-    set -gx fisher_path $HOME/.cache/fish
+    # This variable is used at the top of fisher.fish
+    set -gx fisher_path $XDG_CACHE_HOME/fish
+
+    set -a fish_complete_path $fisher_path/completions
+    set -a fish_function_path $fisher_path/functions
 
     # Install fisher if it isn't already.
     # Use 'fisher update' and not install to read the checked in fish_plugins file.
@@ -10,13 +14,10 @@ if status is-login
         curl -sL https://git.io/fisher | source && fisher update
     end
 
-    set -gx fish_complete_path $fish_complete_path[1] $fisher_path/completions $fish_complete_path[2..]
-    set -gx fish_function_path $fish_function_path[1] $fisher_path/functions $fish_function_path[2..]
-
     for file in $fisher_path/conf.d/*.fish
         if not test -f (string replace -r "^.*/" $__fish_config_dir/conf.d/ -- $file)
             and test -f $file && test -r $file
-            source $file
+            builtin source $file 2>/dev/null
         end
     end
 

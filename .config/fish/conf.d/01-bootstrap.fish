@@ -4,13 +4,16 @@ if not set -q $HOSTNAME
     set -Ux OS (uname -s)
 end
 
-set -Ux XDG_CACHE_HOME $HOME/.cache
-set -Ux XDG_CONFIG_HOME $HOME/.config
-set -Ux LANG en_US.UTF-8
+set -gx XDG_CACHE_HOME $HOME/.cache
+set -gx XDG_CONFIG_HOME $HOME/.config
+set -gx XDG_DATA_HOME $HOME/.local/share
+set -gx XDG_STATE_HOME $HOME/.local/state
+
+set -gx LANG en_US.UTF-8
 
 set fish_greeting ''
 
-fish_add_path --append \
+fish_add_path --append -g \
     "$HOME/bin/share" \
     "$HOME/bin/$OS" \
     "$HOME/.cargo/bin" \
@@ -21,7 +24,7 @@ fish_add_path --append \
     /Library/Apple/usr/bin
 
 for path in $HOME/bin/Sites/*
-    fish_add_path --append $path
+    fish_add_path --append -g --move $path
 end
 
 # Set maxfiles limits higher.
@@ -32,6 +35,16 @@ end
 
 if status is-interactive
 
+    # Set fisher and auto-generated .fish files to be outside of ~/.config/fish
+    # This will get picked up by $__fish_vendor_*
+    set -l fish_cache $XDG_CACHE_HOME/fish
+    set -a fish_complete_path $fish_cache/completions
+    set -a fish_function_path $fish_cache/functions
+
+    if not test -d $fish_cache
+        mkdir -p $fish_cache/completions $fish_cache/functions
+    end
+
     # Turn on vi keybindings
     # set -g fish_key_bindings fish_vi_key_bindings
     # set -g fish_key_bindings fish_hybrid_key_bindings
@@ -39,13 +52,17 @@ if status is-interactive
     bind --all \t complete
     # https://github.com/fish-shell/fish-shell/issues/3299
 
-    set -Ux HISTFILE $HOME/.local/share/fish/fish_history
+    set -gx HISTFILE $XDG_DATA_HOME/fish/fish_history
 
     # Move Golang's path out of $HOME
     set -gx GOPATH $HOME/.local/go
     set -gx GO111MODULE on
 
     set -gx RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/ripgrep/config
+
+    # Node/Volta
+    set -gx NODE_REPL_HISTORY /dev/null
+    set -gx NO_UPDATE_NOTIFIER 1 # used by npm: https://github.com/yeoman/update-notifier/issues/180
     set -gx VOLTA_HOME "$HOME/.volta"
 
     # Silence direnv logging. Hook is invoked via vendor_conf.d/
@@ -60,9 +77,7 @@ if status is-interactive
 
     set -gx FZF_DEFAULT_OPTS --cycle --filepath-word --height=50% --info=hidden --border=sharp $NORD_COLORS
 
-    if test -d $XDG_CONFIG_HOME/repos/private/fish/conf.d
-        for file in $XDG_CONFIG_HOME/repos/private/fish/conf.d/*.fish
-            source $file
-        end
+    for file in $XDG_CONFIG_HOME/repos/private/fish/conf.d/*.fish
+        builtin source $file 2>/dev/null
     end
 end

@@ -6,6 +6,6 @@ if status is-interactive
     end
 
     if test -d $RYE_HOME/shims
-        fish_add_path --append $RYE_HOME/shims
+        fish_add_path --append -g $RYE_HOME/shims
     end
 end

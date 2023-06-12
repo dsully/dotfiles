@@ -8,7 +8,7 @@ if status is-interactive
         abbr --add less moar
 
     else
-        # make less behave with XDG
+        # Make less behave with XDG
         if not test -d "$XDG_CACHE_HOME/less"
             mkdir -p "$XDG_CACHE_HOME/less"
         end
@@ -17,6 +17,6 @@ if status is-interactive
         set -gx MANPAGER "less -FiRSwX"
 
         set -gx LESSKEY "$XDG_CACHE_HOME"/less/lesskey
-        set -gx LESSHISTFILE "$XDG_CACHE_HOME"/less/history
+        set -gx LESSHISTFILE /dev/null
     end
 end
