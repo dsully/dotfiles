@@ -23,7 +23,7 @@ function open --description 'Remotely open a for the current or given path.'
 
     else if string match -e -q - -- $path
         # If run with a - option, pass it through to macOS open.
-        if test $path = --help
+        if string match -q -r "\-\-help" -- $path
             command open -h
         else
             command open $path
