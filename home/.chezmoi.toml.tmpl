@@ -1,0 +1,76 @@
+{{/* boolean feature tags */}}
+{{- $podman := false -}}{{/* true if this machine should have Podman installed. */}}
+{{- $ephemeral := false -}}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance. */}}
+{{- $headless := false -}}{{/* true if this machine does not have a screen and keyboard. */}}
+{{- $personal := false -}}{{/* true if this machine is for personal use. */}}
+{{- $work := false -}}{{/* true if this machine is for work. */}}
+{{- "" -}}
+
+{{- $osID := .chezmoi.os -}}
+{{- if (and (eq .chezmoi.os "linux") (hasKey .chezmoi.osRelease "id")) -}}
+{{-   $osID = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+{{- end -}}
+
+{{/* Detect GitHub CodeSpaces, VSCode remote containers, Docker/Podman containers. */}}
+{{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "ubuntu" "vscode") -}}
+{{-   $ephemeral = true -}}
+{{-   $headless = true -}}
+{{- end -}}
+
+{{/* Work around unreliable hostname on macOS */}}
+{{- $hostname := .chezmoi.hostname -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $hostname = output "scutil" "--get" "ComputerName" | trim -}}
+{{- end -}}
+
+{{- if not $ephemeral -}}
+{{-   if regexMatch "^dsully-" $hostname -}}
+{{-     $work = true -}}
+{{-   else if regexMatch "\\.biz$" $hostname -}}
+{{-     $work = true -}}
+{{-   else if regexMatch "\\.corp\\." $hostname -}}
+{{-     $work = true -}}
+{{-   else if eq $hostname "gpu" -}}
+{{-     $headless = true -}}
+{{-     $personal = true -}}
+{{-   else if eq $hostname "jarvis" -}}
+{{-     $personal = true -}}
+{{-   else if eq $hostname "server" -}}
+{{-     $headless = true -}}
+{{-     $personal = true -}}
+{{-   else if eq $hostname "zap" -}}
+{{-     $headless = true -}}
+{{-     $personal = true -}}
+{{-   else -}}
+{{-     $ephemeral = true -}}
+{{-     $headless = true -}}
+{{-   end -}}
+{{- end -}}
+
+{{- $name := "Dan Sully" -}}
+{{- $github_user := "dsully" -}}
+
+[data]
+    ephemeral = {{ $ephemeral }}
+    github_user = {{ $github_user | quote }}
+    headless = {{ $headless }}
+    hostname = {{ $hostname | quote }}
+    name = {{ $name | quote }}
+    osid = {{ $osID | quote }}
+    personal = {{ $personal }}
+    podman = {{ $podman }}
+    work = {{ $work }}
+
+[diff]
+exclude = [ "scripts" ]
+pager = "diff-so-fancy | /usr/bin/less --tabs=4 -RFX"
+
+[merge]
+args = [ "-d", {{ "{{ .Destination }}" | quote }}, {{ "{{ .Source }}" | quote }}, {{ "{{ .Target }}" | quote }} ]
+command = "nvim"
+
+# https://www.chezmoi.io/user-guide/tools/diff/#show-human-friendly-diffs-for-binary-files
+[[textconv]]
+args = [ "-convert", "xml1", "-o", "-", "-" ]
+command = "plutil"
+pattern = "**/*.plist"
