@@ -1,3 +1,5 @@
+{{- if (and (eq .chezmoi.os "darwin") (.work)) -}}
 set ideajoin
 set idearefactormode=keep
 set ideastatusbar=false
+{{- end -}}
