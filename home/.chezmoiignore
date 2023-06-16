@@ -1,0 +1,71 @@
+# vim:ft=gitignore
+**/Brewfile.lock.json
+**/.dmypy.json
+**/.mypy_cache
+.bash_history
+.bashrc
+.cache
+.cargo
+.config/beets/library.db
+.config/beets/state.pickle
+.config/configstore
+.config/croc
+.config/direnv/allow
+.config/fish/fish_history
+.config/fish/fish_plugins
+.config/fish/fish_variables
+.config/github-copilot
+.config/lolcate/*/db.lz4
+.config/matplotlib
+.config/nvim/lazy-lock.json
+.config/nvim/spell/en.utf-8.add.spl
+.config/nvim/spell/en.utf-8.add.sug
+.dotnet
+.erg
+.fonts
+.github
+.hushlogin
+.lesshst
+.local
+.node_repl_history
+.npm
+.pyhistory
+.python_history
+.rnd
+.rustup
+.rye
+.sqlite_history
+.sudo_as_admin_successful
+.terminfo
+.viminfo
+.volta
+.wget-hsts
+.xargo
+.yarn
+.yarnrc
+
+# Ignore Linux-specific files on MacOS
+{{- if eq .chezmoi.os "linux" }}
+.config/cni
+.config/libvirt
+.config/syncthing
+.config/systemd/user/default.target.wants
+.config/systemd/user/multi-user.target.wants
+{{- end }}
+
+{{- if eq .chezmoi.hostname "server" }}
+.config/vopono
+.scrypted
+.stash
+{{- end }}
+
+{{- if .headless }}
+.config/alacritty/
+.config/kitty/
+.config/wezterm/
+.config/zellij/auto
+.mullvad-account
+.mullvad-expiry
+.nv
+.selected_editor
+{{- end }}

@@ -1,0 +1,12 @@
+# vim:ft=gitignore
+.CFUserTextEncoding
+.bash_logout
+.bash_profile
+.fzf.bash
+.fzf.zsh
+.inputrc
+.lesshst
+.profile
+.subversion
+.viminfo
+.wget-hsts
