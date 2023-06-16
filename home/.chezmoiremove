@@ -1,7 +1,9 @@
-# vim:ft=gitignore
+# vim:ft=gotmpl
 .CFUserTextEncoding
+.bash_history
 .bash_logout
 .bash_profile
+.bash_sessions
 .fzf.bash
 .fzf.zsh
 .inputrc
@@ -10,3 +12,8 @@
 .subversion
 .viminfo
 .wget-hsts
+.zshenv
+
+{{- if (or (eq .chezmoi.os "linux") (.personal)) -}}
+.ideavimrc
+{{- end }}
