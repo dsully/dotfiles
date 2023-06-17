@@ -5,7 +5,6 @@
 .1password
 .actrc
 .android
-.bash_history
 .bashrc
 .cache
 .cargo
@@ -21,7 +20,6 @@
 .config/fish/fish_history
 .config/fish/fish_plugins
 .config/fish/fish_variables
-.config/github-copilot
 .config/lolcate/*/db.lz4
 .config/matplotlib
 .config/nvim/lazy-lock.json
@@ -34,9 +32,7 @@
 .dotnet
 .erg
 .fonts
-.github
 .gradle
-.huggingface
 .hushlogin
 .ipython
 .jenv
@@ -92,11 +88,10 @@ Stuff
 .config/cni
 .config/libvirt
 .config/syncthing
-.config/systemd/user/default.target.wants
-.config/systemd/user/multi-user.target.wants
+.config/systemd
 {{- end }}
 
-{{- if eq .chezmoi.hostname "server" }}
+{{- if ne .chezmoi.hostname "server" }}
 .scrypted
 .stash
 {{- end }}
@@ -106,7 +101,6 @@ Stuff
 .config/kitty/
 .config/wezterm/
 .config/zellij/auto
-.mullvad-account
 .mullvad-expiry
 .nv
 .selected_editor

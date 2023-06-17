@@ -75,7 +75,12 @@
     autosquash = true
 [status]
     relativePaths = true
-[include]
-    path = ~/.config/repos/private/git/private
+
+[includeIf "gitdir:~/dev/home/"]
+    path = ~/.config/git/users/home
+
+[includeIf "gitdir:~/dev/src/"]
+    path = ~/.config/git/users/home
+
 [includeIf "gitdir:~/dev/linkedin/"]
-    path = ~/.config/repos/private/git/linkedin
+    path = ~/.config/git/users/work

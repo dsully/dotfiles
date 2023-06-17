@@ -1,0 +1,4 @@
+token = "{{ onepasswordRead "op://Private/Cloudflare/DNS API Token" .onepasswordAccount }}"
+zoneid = "{{ onepasswordRead "op://Private/Cloudflare/Zone ID" .onepasswordAccount }}"
+hostname = "{{ .chezmoi.fqdnHostname }}"
+external = "{{ onepasswordRead "op://Private/Cloudflare/Gateway" .onepasswordAccount }}"

@@ -1,0 +1,36 @@
+{
+	acme_dns cloudflare {{ onepasswordRead "op://Private/Cloudflare/DNS API Token" .onepasswordAccount }}
+	default_sni gpu.sully.org
+	http_port 80
+	https_port 443
+}
+
+breadboard.sully.org {
+	encode zstd gzip
+	reverse_proxy http://127.0.0.1:4200
+}
+
+captions.sully.org {
+	encode zstd gzip
+	reverse_proxy http://127.0.0.1:1337
+}
+
+crashplan-gpu.sully.org {
+	encode zstd gzip
+	reverse_proxy http://127.0.0.1:5800
+}
+
+invoke.sully.org {
+	encode zstd gzip
+	reverse_proxy http://127.0.0.1:3000
+}
+
+sd.sully.org {
+	encode zstd gzip
+	reverse_proxy http://127.0.0.1:7860
+}
+
+train.sully.org {
+	encode zstd gzip
+	reverse_proxy http://127.0.0.1:7861
+}

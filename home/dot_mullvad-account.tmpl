@@ -1,0 +1,3 @@
+{{- if eq .chezmoi.hostname "server" -}}
+{{ onepasswordRead "op://Private/Mullvad/username" .onepasswordAccount }}
+{{- end -}}
