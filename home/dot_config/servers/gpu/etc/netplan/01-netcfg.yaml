@@ -1,0 +1,18 @@
+network:
+  version: 2
+  renderer: "networkd"
+  ethernets:
+    eth0:
+      accept-ra: true
+      addresses: ["10.0.0.102/24"]
+      dhcp4: false
+      dhcp6: false
+      match:
+        macaddress: 58:11:22:6a:2d:17
+      optional: false
+      routes:
+        - to: default
+          via: 10.0.0.1
+          metric: 100
+          on-link: true
+      set-name: eth0

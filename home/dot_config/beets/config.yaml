@@ -6,7 +6,7 @@ plugins: chroma discogs fetchart ftintitle mbsync scrub replaygain
 original_date: yes
 
 replaygain:
-    backend: ffmpeg
+    backend: audiotools
 
 paths:
     default: %left{%upper{$albumartist},1}/$albumartist/$album/$disc-$track - $artist - $title

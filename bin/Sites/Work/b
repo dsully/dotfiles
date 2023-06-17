@@ -1,0 +1,84 @@
+#!/usr/bin/env python
+
+"""This script is called 'b': Run the build & setup the direnv files."""
+
+import json
+import subprocess
+import sys
+
+from pathlib import Path
+
+
+def write_vscode_settings(root, module) -> None:
+    settings = Path(root) / ".vscode" / "settings.json"
+
+    with settings.open("w") as fh:
+        json.dump(
+            {"python.pythonPath": f"${{workspaceRoot}}/build/{module}/venv/bin/python"},
+            fh,
+        )
+
+
+def find_product_root() -> Path:
+    spec = "product-spec.json"
+
+    for path in (Path.cwd() / spec, Path.cwd().parent / spec):
+        if path.exists():
+            return path.parent
+
+    current_path = Path.cwd()
+    limit_path = Path.home() / "dev"
+
+    while True:
+        for child in current_path.iterdir():
+            if child.match(spec) and child.is_file():
+                return child.parent
+
+            if current_path == limit_path:
+                raise FileNotFoundError("Hit the limit path.")
+
+        # Otherwise, go up a level & search again.
+        current_path = current_path.parent
+
+
+def is_pygradle2(root: Path) -> bool:
+    return _is_type(root / "product-spec.json", "ligradle-python")
+
+
+def _is_type(path: Path, expected: str) -> bool:
+    if path.exists():
+        for line in path.open():
+            if expected in line:
+                return True
+
+    return False
+
+
+def main() -> None:
+    root = find_product_root()
+
+    for build in root.glob("**/build.gradle"):
+        activate = build.parent / "activate"
+
+        if activate.exists():
+            activate.unlink()
+
+    direnv: str = ""
+
+    if is_pygradle2(root):
+        direnv = "pygradle2"
+
+    for build in root.glob("**/build.gradle"):
+        module = build.parent
+
+        if direnv:
+            envrc = module / ".envrc"
+            envrc.write_text(f"layout {direnv}")
+
+            subprocess.run(["direnv", "allow", module])
+
+    subprocess.run([root / "gradlew", "build"] + sys.argv[1:])
+
+
+if __name__ == "__main__":
+    main()

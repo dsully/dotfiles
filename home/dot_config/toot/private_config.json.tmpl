@@ -1,0 +1,18 @@
+{
+ "active_user": "{{ .github_user -}}@mastodon.social",
+ "apps": {
+  "mastodon.social": {
+   "base_url": "https://mastodon.social",
+   "client_id": "{{ onepasswordRead "op://Private/Mastodon/Client ID" .onepasswordAccount }}",
+   "client_secret": "{{ onepasswordRead "op://Private/Mastodon/Client Secret" .onepasswordAccount }}",
+   "instance": "mastodon.social"
+  }
+ },
+ "users": {
+  "{{ .github_user -}}@mastodon.social": {
+   "access_token": "{{ onepasswordRead "op://Private/Mastodon/Access Token" .onepasswordAccount }}",
+   "instance": "mastodon.social",
+   "username": "{{ .github_user }}"
+  }
+ }
+}

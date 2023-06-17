@@ -1,0 +1,10 @@
+dns = [ "194.242.2.2", "2a07:e340::2" ]
+firewall = "NfTables"
+interface = "eno1"
+# open_hosts = [ "127.0.0.1" ]
+protocol = "Wireguard"
+provider = "Mullvad"
+server = "usa-ussjc001"
+user = "dsully"
+custom_netns_name = "mullvad"
+open_ports = "54891"
