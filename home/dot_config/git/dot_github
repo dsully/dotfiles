@@ -1,0 +1,3 @@
+# vim:ft=gitconfig
+[user]
+email = dan+github@sully.org
