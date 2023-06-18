@@ -1,3 +1,13 @@
+[user]
+  name = Dan Sully
+  useConfigOnly = true
+
+[includeIf  "hasconfig:remote.*.url:git@github.com:**/**"]
+    path = ~/.config/git/.github
+
+[includeIf  "hasconfig:remote.*.url:*linkedin*:**/**"]
+    path = ~/.config/git/.work
+
 [alias]
     a = commit --amend
     aa = add --all
@@ -75,12 +85,3 @@
     autosquash = true
 [status]
     relativePaths = true
-
-[includeIf "gitdir:~/dev/home/"]
-    path = ~/.config/git/users/home
-
-[includeIf "gitdir:~/dev/src/"]
-    path = ~/.config/git/users/home
-
-[includeIf "gitdir:~/dev/linkedin/"]
-    path = ~/.config/git/users/work
