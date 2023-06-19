@@ -1,5 +1,6 @@
+{{- if and .flags.decrypt (eq .chezmoi.hostname "gpu") -}}
 {
-	acme_dns cloudflare {{ onepasswordRead "op://Private/Cloudflare/DNS API Token" .onepasswordAccount }}
+	acme_dns cloudflare {{ .cloudflare.api_token }}
 	default_sni gpu.sully.org
 	http_port 80
 	https_port 443
@@ -34,3 +35,4 @@ train.sully.org {
 	encode zstd gzip
 	reverse_proxy http://127.0.0.1:7861
 }
+{{- end -}}

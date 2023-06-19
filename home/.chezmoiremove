@@ -14,6 +14,6 @@
 .wget-hsts
 .zshenv
 
-{{- if (or (eq .chezmoi.os "linux") (.personal)) -}}
+{{- if (or (eq .chezmoi.os "linux") (.flags.personal)) -}}
 .ideavimrc
 {{- end }}

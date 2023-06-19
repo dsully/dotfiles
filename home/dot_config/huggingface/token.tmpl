@@ -1,1 +1,3 @@
-{{ onepasswordRead "op://Private/Hugging Face/API Token Read" .onepasswordAccount }}
+{{- if .flags.decrypt -}}
+{{ .huggingface.token }}
+{{- end -}}

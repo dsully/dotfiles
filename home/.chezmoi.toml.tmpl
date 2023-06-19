@@ -1,17 +1,20 @@
-{{/* boolean feature tags */}}
-{{- $podman := false -}}{{/* true if this machine should have Podman installed. */}}
-{{- $ephemeral := false -}}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance. */}}
-{{- $headless := false -}}{{/* true if this machine does not have a screen and keyboard. */}}
-{{- $personal := false -}}{{/* true if this machine is for personal use. */}}
-{{- $work := false -}}{{/* true if this machine is for work. */}}
-{{- "" -}}
-
+{{- $decrypt := false -}}
+{{- $ephemeral := false -}}
+{{- $fqdn := "" -}}
+{{- $fqhn := .chezmoi.fqdnHostname -}}
+{{- $headless := false -}}
+{{- $hostname := .chezmoi.hostname -}}
+{{- $identity := joinPath .chezmoi.homeDir ".config/chezmoi/key.txt" -}}
+{{- $personal := false -}}
+{{- $work := false -}}
+{{/* */}}
 {{/* Detect GitHub CodeSpaces, VSCode remote containers, Docker/Podman containers. */}}
 {{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "ubuntu" "vscode") -}}
 {{-   $ephemeral = true -}}
 {{-   $headless = true -}}
 {{- end -}}
-
+{{/* */}}
+{{/* Determine what kind of computer this is. */}}
 {{- $chassisType := "desktop" -}}
 {{- if eq .chezmoi.os "darwin" -}}
 {{-   if contains "MacBook" (output "sysctl" "-n" "hw.model") -}}
@@ -22,13 +25,27 @@
 {{- else -}}
 {{-   $chassisType = (output "hostnamectl" "--json=short" | mustFromJson).Chassis -}}
 {{- end }}
-
+{{/* */}}
 {{/* Work around unreliable hostname on macOS */}}
-{{- $hostname := .chezmoi.hostname -}}
 {{- if eq .chezmoi.os "darwin" -}}
 {{-   $hostname = output "scutil" "--get" "ComputerName" | trim -}}
 {{- end -}}
-
+{{/* */}}
+{{/* Get the domain name, as it's not always set. */}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $fqdn = output "sh" "-c" "scutil --dns | grep 'search domain'| head -1 | awk '{print $4}'" | trim -}}
+{{- else if eq .chezmoi.os "linux" -}}
+{{-   $fqdn = output "domainname" "-d" | trim -}}
+{{- end -}}
+{{- if eq $fqdn "" -}}
+{{-   $fqdn = promptString "Domain Name" -}}
+{{- end -}}
+{{/* */}}
+{{/* Get the fully qualfied hostname. */}}
+{{- if not (contains .chezmoi.fqdnHostname $fqdn) -}}
+{{-   $fqhn = (printf "%v.%v" $hostname $fqdn) -}}
+{{- end -}}
+{{/* More flag setting. */}}
 {{- if not $ephemeral -}}
 {{-   if regexMatch "^dsully-" $hostname -}}
 {{-     $work = true -}}
@@ -36,45 +53,63 @@
 {{-     $work = true -}}
 {{-   else if regexMatch "\\.corp\\." $hostname -}}
 {{-     $work = true -}}
-{{-   else if eq $hostname "gpu" -}}
-{{-     $headless = true -}}
-{{-     $personal = true -}}
-{{-   else if eq $hostname "jarvis" -}}
-{{-     $personal = true -}}
-{{-   else if eq $hostname "server" -}}
-{{-     $headless = true -}}
-{{-     $personal = true -}}
-{{-   else if eq $hostname "zap" -}}
-{{-     $headless = true -}}
+{{-   else if eq $hostname "gpu" "jarvis" "server" "zap" -}}
 {{-     $personal = true -}}
 {{-   else -}}
 {{-     $ephemeral = true -}}
-{{-     $headless = true -}}
 {{-   end -}}
 {{- end -}}
+{{/* */}}
+{{- if not (eq $chassisType "desktop" "laptop") -}}
+{{-   $headless = true -}}
+{{- end -}}
+{{/* */}}
+{{/* Extract TOML data out of the config file. */}}
+{{- $data := "" -}}
+{{/* */}}
+{{- if and (stat $identity) (stat (joinPath .chezmoi.homeDir ".config/chezmoi/chezmoi.toml")) -}}
+{{-   $data = include (joinPath .chezmoi.sourceDir "dot_config/chezmoi/encrypted_private_data.toml.age") | decrypt -}}
+{{-   $decrypt = true }}
+{{- else if not $ephemeral -}}
+{{-   writeToStdout "WARNING: Please re-run chezmoi init again to complete chezmoi.yaml data setup.\n\n" -}}
+{{- end -}}
+{{/* */}}
+color = true
+encryption = "age"
+progress = "true"
 
-{{- $name := "Dan Sully" -}}
-{{- $github_user := "dsully" -}}
+[age]
+identity = "{{- $identity -}}"
+recipient = "age1agm9desexf47g2mp02zeqq98fcvpxjmq2sg3k8d30w5ych5xj3mqx8lgn5"
 
 [data]
-    chassis = {{ $chassisType | quote }}
-    ephemeral = {{ $ephemeral }}
-    github_user = {{ $github_user | quote }}
-    headless = {{ $headless }}
-    hostname = {{ $hostname | quote }}
-    name = {{ $name | quote }}
-    onepasswordAccount = "6ND3GM67ENBS3EMV3CK4EUMZ6I"
-    personal = {{ $personal }}
-    podman = {{ $podman }}
-    work = {{ $work }}
+    chezmoi.chassis = "{{ $chassisType }}"
+    chezmoi.hostname = "{{ $hostname }}"
+    chezmoi.fqdn = "{{ $fqdn }}"
+    chezmoi.fqhn = "{{ $fqhn }}"
+
+    flags.applesilicon = {{ and (eq .chezmoi.os "darwin") (eq .chezmoi.arch "arm64") }}
+    flags.decrypt = {{ $decrypt }}
+    flags.ephemeral = {{ $ephemeral }}
+    flags.headless = {{ $headless }}
+    flags.personal = {{ $personal }}
+    flags.work = {{ $work }}
+
+{{ $data }}
 
 [diff]
 exclude = [ "scripts" ]
 pager = "diff-so-fancy | /usr/bin/less --tabs=4 -RFX"
 
+[edit]
+command = "nvim"
+
 [merge]
 args = [ "-d", {{ "{{ .Destination }}" | quote }}, {{ "{{ .Source }}" | quote }}, {{ "{{ .Target }}" | quote }} ]
 command = "nvim"
+
+[status]
+exclude = [ "scripts" ]
 
 # https://www.chezmoi.io/user-guide/tools/diff/#show-human-friendly-diffs-for-binary-files
 [[textconv]]
