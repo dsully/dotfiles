@@ -1,0 +1,5 @@
+{{- if .flags.decrypt -}}
+---
+MAXMIND_LICENSE_KEY: {{ .checkip.maxmind }}
+URLSCAN_API_KEY: {{ .checkip.urlscan }}
+{{- end -}}
