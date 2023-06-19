@@ -61,9 +61,6 @@
     # Speed up commands involving untracked files such as `git status`.
     # https://git-scm.com/docs/git-update-index#_untracked_cache
     untrackedCache = true
-[init]
-  # Compatibility for unit tests.
-  defaultBranch = master
 [diff]
     navigate = true  # use n and N to move between diff sections
     noprefix = true

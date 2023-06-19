@@ -1,8 +1,12 @@
-set -gx CLOUDFLARE_API_TOKEN {{ onepasswordRead "op://Private/Cloudflare/DNS API Token" .onepasswordAccount }}
-set -gx GITHUB_TOKEN {{ onepasswordRead "op://Private/GitHub/PAT" .onepasswordAccount }}
-set -gx HF_TOKEN {{ onepasswordRead "op://Private/Hugging Face/API Token Read" .onepasswordAccount }}
-set -gx OPENAI_KEY {{ onepasswordRead "op://Shared/OpenAI/API Key" .onepasswordAccount }}
-set -gx TMDB_TOKEN_V3 {{ onepasswordRead "op://Private/The Movie DB/Token" .onepasswordAccount }}
+{{- if .flags.decrypt -}}
+set -gx CLOUDFLARE_API_TOKEN {{ .cloudflare.api_token }}
+set -gx GITHUB_API_TOKEN {{ .github.tokens.api_pat }}
+set -gx HF_TOKEN {{ .huggingface.token }}
+set -gx OPENAI_KEY {{ .openai.token }}
 
-set -gx CF_TOKEN $CLOUDFLARE_API_TOKEN
+set -gx OP_ACCOUNT {{ .onepassword.account }}
+set -gx OP_SERVICE_ACCOUNT_TOKEN {{ .onepassword.service_token }}
+
+set -gx GITHUB_TOKEN $GITHUB_API_TOKEN
 set -gx OPENAI_API_KEY $OPENAI_KEY
+{{- end -}}

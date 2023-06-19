@@ -1,6 +1,8 @@
+{{- if .flags.decrypt -}}
 {
   "github.com": {
-    "user": "{{ .github_user }}",
-    "oauth_token": "{{ onepasswordRead "op://Private/GitHub/Copilot Token" .onepasswordAccount }}"
+    "user": "{{ .github.home.username }}",
+    "oauth_token": "{{- .github.tokens.copilot -}}"
   }
 }
+{{- end -}}

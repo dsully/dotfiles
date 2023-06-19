@@ -1,3 +1,7 @@
 # vim:ft=gitconfig
 [user]
 email = dsully@linkedin.com
+
+[init]
+# Compatibility for unit tests.
+defaultBranch = master

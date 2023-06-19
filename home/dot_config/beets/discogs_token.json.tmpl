@@ -1,4 +1,6 @@
+{{- if and .flags.decrypt (eq .chezmoi.hostname "server") -}}
 {
-  "token": "{{ onepasswordRead "op://Private/eunaqzi4hnejzbctucsojpwiva/Token" .onepasswordAccount }}",
-  "secret": "{{ onepasswordRead "op://Private/eunaqzi4hnejzbctucsojpwiva/Secret" .onepasswordAccount }}"
+  "token": "{{- .discogs.token -}}",
+  "secret": "{{- .discogs.secret -}}"
 }
+{{- end -}}

@@ -9,6 +9,9 @@ if status is-interactive
             set TERMINFO_DIR /usr/share/terminfo
         end
 
-        /usr/bin/tic -x -o $TERMINFO_DIR $XDG_CONFIG_HOME/wezterm/terminfo
+        # Comes in via Chezmoi externals.
+        if test -f $XDG_CACHE_HOME/wezterm.terminfo
+            /usr/bin/tic -x -o $TERMINFO_DIR $XDG_CACHE_HOME/wezterm.terminfo
+        end
     end
 end

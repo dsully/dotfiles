@@ -2,17 +2,19 @@
 **/.dmypy.json
 **/.mypy_cache
 **/Brewfile.lock.json
-.1password
+.1password/**
 .actrc
 .android
 .bashrc
-.cache
-.cargo
+.cache/**
+.cargo/**
 .config/auth0
 .config/beets/library.db
 .config/beets/state.pickle
 .config/btop/themes
-.config/chezmoi
+.config/chezmoi/chezmoi.toml
+.config/chezmoi/key.txt
+.config/chezmoi/chezmoistate.boltdb
 .config/configstore
 .config/croc
 .config/direnv/allow
@@ -20,6 +22,7 @@
 .config/fish/fish_history
 .config/fish/fish_plugins
 .config/fish/fish_variables
+.config/fish/functions/fisher.fish
 .config/lolcate/*/db.lz4
 .config/matplotlib
 .config/nvim/lazy-lock.json
@@ -29,17 +32,17 @@
 .cursor
 .cursor-tutor
 .docker
-.dotnet
-.erg
+.dotnet/**
+.erg/**
 .fonts
-.gradle
+.gradle/**
 .hushlogin
 .ipython
-.jenv
+.jenv/**
 .keras
 .lemminx
 .lesshst
-.local
+.local/**
 .luarocks
 .node_repl_history
 .npm
@@ -47,22 +50,24 @@
 .pyhistory
 .python_history
 .rnd
-.ruff_cache
-.rustup
-.rye
+.ruff_cache/**
+.rustup/**
+.rye/**
 .sqlite_history
 .sudo_as_admin_successful
-.terminfo
-.terraform.d
+.terminfo/**
+.terraform.d/**
 .viminfo
-.volta
-.vscode
+.volta/**
+.vscode/**
 .vscode-cli
 .wget-hsts
 .xargo
-.yarn
+.yarn/**
 .yarnrc
+bin/
 dev
+key.txt.age
 
 {{- if eq .chezmoi.os "darwin" }}
 **/.DS_Store
@@ -96,7 +101,7 @@ Stuff
 .stash
 {{- end }}
 
-{{- if .headless }}
+{{- if .flags.headless }}
 .config/alacritty/
 .config/kitty/
 .config/wezterm/
@@ -106,6 +111,6 @@ Stuff
 .selected_editor
 {{- end }}
 
-{{- if (and (eq .chezmoi.os "darwin") (.work)) -}}
+{{- if (and (eq .chezmoi.os "darwin") (.flags.work)) -}}
 .ssh/config
 {{- end }}
