@@ -1,7 +1,7 @@
 if status is-interactive
 
     if type -q moar
-        set -gx MOAR '-statusbar=bold -no-linenumbers -no-clear-on-exit -style=nord -colors=16M -wrap -quit-if-one-screen'
+        set -gx MOAR '--statusbar=bold --no-linenumbers --no-clear-on-exit --style=nord --colors=16M --wrap --quit-if-one-screen'
         set -gx PAGER moar
         set -gx MANPAGER moar
 
@@ -18,5 +18,9 @@ if status is-interactive
 
         set -gx LESSKEY "$XDG_CACHE_HOME"/less/lesskey
         set -gx LESSHISTFILE /dev/null
+    end
+
+    if type -q bat
+        set -gx BAT_PAGER "$PAGER"
     end
 end
