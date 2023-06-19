@@ -11,6 +11,7 @@
 .config/auth0/
 .config/beets/library.db
 .config/beets/state.pickle
+.config/btop/btop.log
 .config/btop/themes/
 .config/chezmoi/chezmoi.toml
 .config/chezmoi/key.txt
@@ -23,6 +24,7 @@
 .config/fish/fish_variables
 .config/lolcate/*/db.lz4
 .config/matplotlib
+.config/zellij/auto
 .cups/
 .cursor/
 .cursor-tutor/
@@ -87,21 +89,22 @@ Pictures/
 Stuff/
 {{- end }}
 
+{{- if eq .chezmoi.os "linux" }}
+.config/alacritty/
+.config/cni/net.d/cni.lock
+.config/kitty/
+.config/systemd/user/default.*
+.config/wezterm/
+.mullvad-expiry
+.nv/
+.selected_editor
+{{- end }}
+
 {{- if ne .chezmoi.hostname "server" }}
 .config/beets/config.yaml
 .config/beets/discogs_token.json
 .scrypted/
 .stash/
-{{- end }}
-
-{{- if .flags.headless }}
-.config/alacritty/
-.config/kitty/
-.config/wezterm/
-.config/zellij/auto
-.mullvad-expiry
-.nv/
-.selected_editor
 {{- end }}
 
 {{- if (and (eq .chezmoi.os "darwin") (.flags.work)) -}}
