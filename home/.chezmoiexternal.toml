@@ -1,0 +1,11 @@
+# [".config/nvim"]
+# url = "git@github.com:dsully/nvim.git"
+# type = "git-repo"
+
+[".config/fish/functions/fisher.fish"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish"
+
+[".cache/wezterm/terminfo"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo"
