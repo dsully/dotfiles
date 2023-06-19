@@ -1,6 +1,6 @@
 {{- $decrypt := false -}}
 {{- $ephemeral := false -}}
-{{- $fqdn := "" -}}
+{{- $fqdn := "" }}
 {{- $fqhn := .chezmoi.fqdnHostname -}}
 {{- $headless := false -}}
 {{- $hostname := .chezmoi.hostname -}}
@@ -32,13 +32,16 @@
 {{- end -}}
 {{/* */}}
 {{/* Get the domain name, as it's not always set. */}}
-{{- if eq .chezmoi.os "darwin" -}}
-{{-   $fqdn = output "sh" "-c" "scutil --dns | grep 'search domain'| head -1 | awk '{print $4}'" | trim -}}
-{{- else if eq .chezmoi.os "linux" -}}
-{{-   $fqdn = output "domainname" "-d" | trim -}}
-{{- end -}}
-{{- if eq $fqdn "" -}}
-{{-   $fqdn = promptString "Domain Name" -}}
+{{- if eq (index . "chezmoi.fqdn" | default "") "" }}
+{{- $fqhn := .chezmoi.fqdnHostname -}}
+{{-   if eq .chezmoi.os "darwin" -}}
+{{-     $fqdn = output "sh" "-c" "scutil --dns | grep 'search domain'| head -1 | awk '{print $4}'" | trim -}}
+{{-   else if eq .chezmoi.os "linux" -}}
+{{-     $fqdn = output "domainname" "-d" | trim -}}
+{{-   end -}}
+{{-   if eq $fqdn "" -}}
+{{-     $fqdn = promptString "Domain Name" -}}
+{{-   end -}}
 {{- end -}}
 {{/* */}}
 {{/* Get the fully qualfied hostname. */}}

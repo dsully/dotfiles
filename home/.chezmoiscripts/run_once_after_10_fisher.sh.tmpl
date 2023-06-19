@@ -1,0 +1,24 @@
+#!{{ lookPath "fish" }}
+
+# vim:ft=fish
+
+echo '
+ ___ ___ ___ _  _ ___ ___
+| __|_ _/ __| || | __| _ \
+| _| | |\__ \ __ | _||   /
+|_| |___|___/_||_|___|_|_\
+'
+
+# Set fisher install to be outside of ~/.config/fish
+# This variable is used at the top of fisher.fish
+set -gx fisher_path $XDG_CACHE_HOME/fish
+
+if not type -q fisher
+    echo "installing fisher..."
+    curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+end
+
+# ~/.config/fish/fish_plugins hash: {{ include "dot_config/fish/fish_plugins.tmpl" | sha256sum }}
+fisher update >/dev/null
+
+echo "finished fisher setup"

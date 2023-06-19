@@ -47,7 +47,7 @@ fi
 
 if [ ! -f "$CHEZMOI_KEY" ]; then
     mkdir -p "$CHEZMOI_DST"
-    "$AGE_BIN" --decrypt --output "$CHEZMOI_KEY" "${CHEZMOI_SRC}/key.txt.age"
+    "$AGE_BIN" --decrypt --output "$CHEZMOI_KEY" "${CHEZMOI_SRC}/.data/key.txt.age"
     chmod 600 "$CHEZMOI_KEY"
 fi
 
