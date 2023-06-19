@@ -8,6 +8,7 @@
 .bashrc
 .cache/
 .cargo/
+.checkip/
 .config/auth0/
 .config/beets/library.db
 .config/beets/state.pickle

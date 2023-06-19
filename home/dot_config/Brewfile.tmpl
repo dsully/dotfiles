@@ -1,67 +1,64 @@
-tap "caarlos0/tap"
-tap "hashicorp/tap"
-tap "he3-app/he3"
 tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
 tap "homebrew/command-not-found"
-tap "homebrew/services"
+tap "develerik/tools"
 tap "natesales/repo", "https://github.com/natesales/repo"
+{{/* */}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{ comment "" "#" }}
+{{ comment "# " "macOS specific taps." }}
+tap "caarlos0/tap" # xdg-open-svc
+tap "he3-app/he3"
+tap "homebrew/cask-fonts"
+tap "homebrew/services"
 tap "rajiv/fastmate"
-tap "scullionw/tap"
-tap "tuna-f1sh/taps"
-brew "act"
+tap "scullionw/tap" # dirstat-rs
+tap "tuna-f1sh/taps" # cyme
+{{- end -}}
+{{/* */}}
+{{ comment "" "#" }}
+{{ comment "# " "Common between Linux & macOS" }}
+brew "b3sum"
 brew "bandwhich"
 brew "bat"
-brew "caarlos0/tap/xdg-open-svc"
-brew "cmake"
+brew "btop"
+brew "chezmoi"
+brew "choose-rust"
 brew "croc"
+brew "curl"
 brew "dasel"
+brew "develerik/tools/git-credential-1password"
 brew "direnv"
 brew "dua-cli"
 brew "dust"
 brew "erdtree"
-brew "exiv2"
 brew "fclones"
-brew "fd"
 brew "fish"
 brew "fselect"
 brew "fzf"
-brew "gcc"
-brew "gettext"
 brew "gh"
 brew "git"
 brew "git-lfs"
 brew "git-quick-stats"
 brew "glow"
-brew "gnu-tar"
 brew "go"
-brew "gping"
 brew "helix"
 brew "hexyl"
 brew "hyperfine"
 brew "iperf3"
+brew "jenv"
 brew "jless"
 brew "jq"
 brew "just"
-brew "less"
-brew "libmagic"
 brew "lsd"
-brew "lua"
 brew "macchina"
-brew "mas"
 brew "moar"
 brew "mtr"
-brew "multi-git-status"
 brew "natesales/repo/q"
 brew "neovim"
-brew "nnn"
 brew "nomino"
 brew "onefetch"
-brew "openjdk"
-brew "openssl@1.1"
 brew "p7zip"
 brew "procs"
-brew "protobuf"
 brew "ripgrep"
 brew "rsync"
 brew "rustup-init"
@@ -69,8 +66,8 @@ brew "rye"
 brew "sccache"
 brew "scullionw/tap/dirstat-rs"
 brew "sd"
-brew "telnet"
-brew "terraform"
+brew "sqlite"
+brew "starship"
 brew "tokei"
 brew "topgrade"
 brew "tree"
@@ -84,19 +81,52 @@ brew "wget"
 brew "xh"
 brew "xsv"
 brew "xz"
+brew "yq"
 brew "zellij"
 brew "zenith"
 brew "zoxide"
-cask "1password"
-cask "adguard"
+{{/* */}}
+{{- if .flags.work -}}
+{{ comment "" "#" }}
+{{ comment "# " "Work Only" }}
+brew "act"
+brew "grpcurl"
+brew "mysql@5.7"
+brew "openjdk"
+brew "openjdk@11"
+brew "openjdk@17"
+{{- end -}}
+{{/* */}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{ comment "" "#" }}
+{{ comment "# " "macOS Only" }}
+brew "caarlos0/tap/xdg-open-svc"
+brew "gcc"
+brew "gnu-sed"
+brew "gnu-tar"
+brew "mas"
+brew "openjdk"
+brew "pam-reattach"
+brew "telnet"
+{{- end }}
+{{/* */}}
+{{- if and (eq .chezmoi.chassis "laptop" .flags.personal) -}}
+{{ comment "" "#" }}
+{{ comment "# " "Personal macOS Only" }}
 cask "airflow"
-cask "alfred"
+cask "batteries"
+cask "macdive"
+cask "mullvadvpn"
+cask "soulseek"
+{{- end }}
+{{/* */}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{ comment "" "#" }}
+{{ comment "# " "Casks:" }}
+cask "1password"
 cask "android-platform-tools"
-cask "anylist"
 cask "backblaze"
 cask "bartender"
-cask "batteries"
-cask "cakebrew"
 cask "cleanshot"
 cask "daisydisk"
 cask "dash"
@@ -111,10 +141,9 @@ cask "google-chrome"
 cask "he3"
 cask "iina"
 cask "latest"
-cask "macdive"
+cask "mailbutler"
 cask "mist"
 cask "monodraw"
-cask "mullvadvpn"
 cask "proxyman"
 cask "querious"
 cask "quicken"
@@ -123,11 +152,12 @@ cask "rapidapi"
 cask "raycast"
 cask "renamer"
 cask "retrobatch"
+{{ if eq .chezmoi.arch "arm64" -}}
 cask "rewind"
+{{ end -}}
 cask "rocket"
 cask "screens"
 cask "signal"
-cask "soulseek"
 cask "soulver"
 cask "superduper"
 cask "suspicious-package"
@@ -139,14 +169,33 @@ cask "transmit"
 cask "visual-studio-code"
 cask "warp"
 cask "wezterm"
+{{/* */}}
+{{- if .flags.work -}}
+{{ comment "" "#" }}
+{{ comment "# " "Work Casks" }}
+cask "jetbrains-toolbox"
+cask "microsoft-auto-update"
+cask "microsoft-outlook"
+cask "microsoft-powerpoint"
+cask "microsoft-teams"
+cask "stay"
+{{-   if eq .chezmoi.chassis "desktop" -}}
+cask "shureplus-motiv"
+{{-   end -}}
+cask "yubico-yubikey-manager"
+cask "zoom"
+{{- end -}}
+{{/* */}}
+{{/* Don't include Mac App Store until the "mas" CLI is installed. */}}
+{{- if lookPath "mas" -}}
+{{ comment "" "#" }}
+{{ comment "# " "Common App Store" }}
 mas "1Password for Safari", id: 1569813296
+mas "AdGuard for Safari", id: 1440147259
 mas "Affinity Designer", id: 824171161
 mas "Affinity Photo", id: 824183456
-mas "Auth for Tesla", id: 1552058613
 mas "AutoMounter", id: 1160435653
 mas "Black Out", id: 1319884285
-mas "Book Tracker", id: 1496543317
-mas "Brother P-touch Editor", id: 1453365242
 mas "CotEditor", id: 1024640650
 mas "Darkroom", id: 953286746
 mas "Dato", id: 1470584107
@@ -154,23 +203,21 @@ mas "Deliveries", id: 290986013
 mas "DevCleaner", id: 1388020431
 mas "Discovery", id: 1381004916
 mas "Flighty", id: 1358823008
-mas "Infuse", id: 1136220934
+mas "Ivory", id: 6444602274
 mas "JSONPeep", id: 1458969831
 mas "Kagi Inc.", id: 1622835804
 mas "Keynote", id: 409183694
-mas "Magnet", id: 441258766
 mas "Marked 2", id: 890031187
 mas "MetaImage", id: 1397099749
 mas "Netmo", id: 1192219511
 mas "Numbers", id: 409203825
+mas "PDF Expert", id: 1055273043
 mas "Pages", id: 409201541
 mas "Paprika Recipe Manager 3", id: 1303222628
 mas "Patterns", id: 429449079
 mas "Pixelmator Pro", id: 1289583905
 mas "Play", id: 1596506190
-mas "RAW Power", id: 1157116444
 mas "Reeder", id: 1529448980
-mas "Router", id: 1229416813
 mas "Save to Raindrop.io", id: 1549370672
 mas "Save to Reader", id: 1640236961
 mas "Slack", id: 803453959
@@ -182,14 +229,41 @@ mas "Tailscale", id: 1475387142
 mas "TestFlight", id: 899247664
 mas "TrashMe 3", id: 1490879410
 mas "Tripsy", id: 1429967544
+mas "Trypa", id: 1666429734
 mas "Tweaks for Reddit", id: 1524828965
 mas "Tweaks for Twitter", id: 1567751529
+mas "Userscripts-Mac-App", id: 1463298887
 mas "Wavelength", id: 1584865627
 mas "WiFi Explorer", id: 494803304
+{{ if eq .chezmoi.chassis "laptop" -}}
 mas "WiFi Signal", id: 525912054
+{{ end -}}
 mas "WireGuard", id: 1451685025
 mas "WordService", id: 899972312
 mas "Yoink", id: 457622435
 mas "iMovie", id: 408981434
 mas "iPreview", id: 1519213509
 mas "m-wiki", id: 1480168619
+{{/* */}}
+{{- if .flags.personal -}}
+{{ comment "" "#" }}
+{{ comment "# " "Personal App Store" }}
+mas "Book Tracker", id: 1496543317
+mas "Brother P-touch Editor", id: 1453365242
+mas "Infuse", id: 1136220934
+mas "RAW Power", id: 1157116444
+mas "Router", id: 1229416813
+{{- end -}}
+{{/* */}}
+{{- if .flags.work -}}
+{{ comment "" "#" }}
+{{ comment "# " "Work App Store" }}
+mas "Agenda", id: 1287445660
+mas "Disk Speed Test", id: 425264550
+mas "Microsoft Remote Desktop", id: 1295203466
+mas "Microsoft To Do", id: 1274495053
+mas "MindNode", id: 1289197285
+mas "Xcode", id: 497799835
+{{- end -}}
+{{- end -}}
+{{- end -}}

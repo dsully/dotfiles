@@ -4,6 +4,9 @@ function chezmoi --wraps=chezmoi
     if test "$argv" = cd
         cd (command chezmoi source-path)
 
+    else if test "$argv" = diff
+        command chezmoi --reverse
+
     # Old habits.
     else if set -q argv[1]; and test $argv[1] = "rm"
         command chezmoi remove $argv[2..-1]
