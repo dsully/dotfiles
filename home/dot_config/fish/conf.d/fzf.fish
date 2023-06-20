@@ -1,5 +1,8 @@
 # https://github.com/PatrickF1/fzf.fish
 if status is-interactive
+
+    set -gx FZF_DEFAULT_OPTS --cycle --filepath-word --height=50% --info=hidden --border=sharp $NORD_COLORS
+
     if functions -q fzf_configure_bindings
         set fzf_preview_file_cmd bat --line-range :100 --color=always --plain
         set fzf_preview_dir_cmd lsd --tree --depth=1

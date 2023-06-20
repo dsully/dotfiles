@@ -1,0 +1,38 @@
+#!{{ lookPath "fish" }}
+
+# ~/.config/fish/fish_plugins hash: {{ include "dot_config/fish/fish_plugins.tmpl" | sha256sum }}
+# vim:ft=fish
+
+source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+
+printf "$blue"
+echo '
+ ___ ___ ___ _  _
+| __|_ _/ __| || |
+| _| | |\__ \ __ |
+|_| |___|___/_||_|
+'
+printf "$normal"
+
+glog start "Setting up.."
+
+if test $SHELL != (command -v fish)
+    glog "info" "Changing default shell to fish"
+    chsh -s (command -v fish)
+end
+
+# Set fisher install to be outside of ~/.config/fish
+# This variable is used at the top of fisher.fish
+set -gx fisher_path $HOME/.cache/fish
+
+mkdir -p $fisher_path/completions $fisher_path/functions
+
+if not type -q fisher
+    glog "info" "Installing fisher.."
+    curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish -o $HOME/.config/fish/functions/fisher.fish
+end
+
+glog "start" "Running fisher update."
+fisher update >/dev/null
+
+glog success "Finished setting up fish shell."

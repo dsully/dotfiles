@@ -1,0 +1,17 @@
+#!{{ lookPath "fish" }}
+
+# vim:ft=fish
+# https://www.chezmoi.io/user-guide/frequently-asked-questions/encryption/
+
+source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+
+set CHEZMOI_DST "$HOME/.config/chezmoi"
+set CHEZMOI_KEY "$CHEZMOI_DST/key.txt"
+
+if not test -f $CHEZMOI_KEY
+    ensure_brew
+
+    mkdir -p $CHEZMOI_DST
+    command age --decrypt --output $CHEZMOI_KEY "$CHEZMOI_WORKING_TREE/.data/key.txt.age"
+    chmod 600 $CHEZMOI_KEY
+end

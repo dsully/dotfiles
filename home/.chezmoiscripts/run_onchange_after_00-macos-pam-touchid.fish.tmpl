@@ -1,0 +1,50 @@
+#!{{ lookPath "fish" }}
+
+# vim:ft=fish
+# /etc/pam.d/sudo hash: {{ include "/etc/pam.d/sudo" | sha256sum }}
+
+source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+
+set PAM_FILE "/etc/pam.d/sudo"
+set FIRST_LINE "# sudo: auth account password session"
+
+function add_pam_line
+    set PAM_LINE $argv[1]
+    set TITLE $argv[2]
+
+    if grep -qc $PAM_LINE $PAM_FILE
+        return 0
+    end
+
+    if not head -n1 $PAM_FILE | grep -qc $FIRST_LINE
+        glog error "$PAM_FILE is not in the expected format!"
+        return
+    end
+
+    ask_sudo
+    glog start "Setting up $TITLE"
+
+    sudo sed -i.bak -e "s|$FIRST_LINE|$FIRST_LINE\n$PAM_LINE|" $PAM_FILE
+    sudo rm $PAM_FILE.bak
+
+    glog success "$TITLE is setup."
+end
+
+if is_darwin
+    has_brew
+
+    if test -z $BREW_PREFIX
+        set BREW_PREFIX (brew --prefix)
+    end
+
+    set PAM_REATTACH "$BREW_PREFIX/lib/pam/pam_reattach.so"
+
+    if not test -e $PAM_REATTACH
+        glog start "Installing pam_reattach"
+        brew install pam_reattach
+    end
+
+    add_pam_line "auth       sufficient     pam_tid.so" "TouchID for sudo."
+    add_pam_line "auth       optional       $PAM_REATTACH" "PAM Re-attach."
+
+end

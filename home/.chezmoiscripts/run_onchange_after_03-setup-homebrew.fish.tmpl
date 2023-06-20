@@ -1,0 +1,17 @@
+#!{{ lookPath "fish" }}
+
+# vim:ft=fish
+# Brewfile hash: {{ include (joinPath .chezmoi.homeDir ".config/Brewfile") | sha256sum }}
+
+source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+
+if is_darwin
+    has_brew
+
+    glog start "Installing Homebrew packages"
+
+    brew bundle install --no-lock --file $HOME/.config/Brewfile | grep -v 'Using'
+    # $BREW bundle cleanup --file $HOME/.config/Brewfile --force --zap
+
+    glog success
+end

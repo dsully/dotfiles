@@ -1,0 +1,83 @@
+#!{{ lookPath "bash" }}
+
+# vim:ft=bash
+set -eufo pipefail
+
+source "${CHEZMOI_SOURCE_DIR}/.chezmoiscripts/.00_helpers.sh"
+
+GUM_PATH=""
+
+install_gum() {
+
+    # Acquire gum's path or attempt to install it
+    if command_exists gum; then
+        GUM_PATH="$(command -v gum)"
+
+    elif [ -f "$HOME/.local/bin/gum" ]; then
+        GUM_PATH="$HOME/.local/bin/gum"
+
+    else
+        {{- $latestRelease := gitHubLatestRelease "charmbracelet/gum" -}}
+        {{ $version := $latestRelease.Name | trimPrefix "v" }}
+
+        GUM_DOWNLOAD_URL="https://github.com/charmbracelet/gum/releases/download/v{{ $version }}/gum_{{ $version }}_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.tar.gz"
+
+        TMP="$(mktemp)"
+        TMP_DIR="$(dirname "$TMP")"
+
+        glog "info" "Downloading Gum from $GUM_DOWNLOAD_URL"
+
+        curl -sL $GUM_DOWNLOAD_URL | tar -xz -C $TMP_DIR
+
+        if mkdir -p "$HOME/.local/bin" && mv "$TMP_DIR/gum" "$HOME/.local/bin/gum"; then
+            GUM_PATH="$HOME/.local/bin/gum"
+        else
+            GUM_PATH="$(dirname "${BASH_SOURCE[0]}")/gum"
+        fi
+
+        chmod +x "$GUM_PATH"
+
+        echo ""
+        glog "info" "Using Gum at $GUM_PATH"
+    fi
+}
+
+install_homebrew() {
+    if ! command_exists brew; then
+        glog "start" "Installing Homebrew.."
+
+        bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+        glog "success" "Homebrew installed."
+    fi
+}
+
+install_packages() {
+    if ! command_exists age; then
+        glog "start" "Installing age from Homebrew."
+        $BREW install -q age
+    fi
+
+    if ! command_exists fish; then
+        glog "start" "Installing fish from Homebrew."
+        $BREW install -q fish
+    fi
+
+    if ! command_exists gum; then
+        glog "start" "Installing gum from Homebrew."
+        $BREW install -q gum
+    fi
+
+    if is_darwin; then
+        if ! command_exists mas; then
+            glog "start" "Installing mas from Homebrew."
+            $BREW install -q mas
+        fi
+    fi
+}
+
+has_brew
+install_gum
+install_homebrew
+ensure_homebrew
+install_packages
