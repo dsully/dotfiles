@@ -1,0 +1,25 @@
+#!{{ lookPath "fish" }}
+
+# vim:ft=fish
+
+set CHEZMOI_SOURCE_DIR (chezmoi source-path)
+source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+
+function fix_location_apps
+    # https://superuser.com/questions/526183/remove-applications-from-location-services-in-security-privacy-on-mac-os-x-10
+
+    if test -d /var/db/locationd/clients.plist
+        return
+    end
+
+    glog info "Fixing location services permissions."
+    ask_sudo
+
+    sudo chown -R _locationd:_locationd /var/db/locationd/
+    sudo chmod 755 /var/db/locationd/
+    sudo chmod 644 /var/db/locationd/clients.plist
+end
+
+if is_darwin
+    fix_location_apps
+end

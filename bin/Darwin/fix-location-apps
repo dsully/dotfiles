@@ -1,7 +1,0 @@
-#!/bin/sh
-
-# https://superuser.com/questions/526183/remove-applications-from-location-services-in-security-privacy-on-mac-os-x-10
-
-sudo chown -R _locationd:_locationd /var/db/locationd/
-sudo chmod 750 /var/db/locationd/
-sudo chmod 644 /var/db/locationd/clients.plist
