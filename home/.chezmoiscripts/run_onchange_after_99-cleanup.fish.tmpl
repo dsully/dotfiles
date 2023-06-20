@@ -1,0 +1,49 @@
+#!{{ lookPath "fish" }}
+
+# Various clean-up steps.
+# vim:ft=fish
+
+source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+
+if is_darwin
+    set APPS /Applications/GarageBand.app
+    set HAS_APP false
+
+    for app in $APPS
+        if test -e $app
+            set HAS_APP true
+            break
+        end
+    end
+
+    if test $HAS_APP = true
+        ask_sudo
+        glog start "Removing unwanted apps.."
+
+        for app in $APPS
+            glog info "Removing $app"
+            sudo rm -rf $app
+        end
+    end
+end
+
+# Clean up bootstrapped executables.
+set EXECUTABLES chezmoi gum
+
+for name in $EXECUTABLES
+
+    if test -e "$HOMEBREW_PREFIX/bin/$name"
+
+        set LOCAL "$HOME/.local/bin/$name"
+
+        if test -f $LOCAL
+            glog info "Removing bootstrap install of $name.."
+            rm -f $LOCAL
+        end
+    end
+end
+
+rm -rf "$HOME/.bash*"
+rm -f "$HOME/.sudo_as_admin_successful"
+
+glog success "Finished clean up."

@@ -2,9 +2,6 @@
 if status is-interactive
 
     if type -q zellij
-        if not test -f "$XDG_CONFIG_HOME/fish/completions/zellij.fish"
-            zellij setup --generate-completion fish >"$XDG_CONFIG_HOME/fish/completions/zellij.fish"
-        end
 
         # Update the zellij tab name with the current pwd.
         # https://github.com/zellij-org/zellij/issues/2284
