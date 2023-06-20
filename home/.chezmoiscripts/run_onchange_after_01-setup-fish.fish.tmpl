@@ -27,11 +27,6 @@ set -gx fisher_path $HOME/.cache/fish
 
 mkdir -p $fisher_path/completions $fisher_path/functions
 
-if not type -q fisher
-    glog "info" "Installing fisher.."
-    curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish -o $HOME/.config/fish/functions/fisher.fish
-end
-
 glog "start" "Running fisher update."
 fisher update >/dev/null
 
