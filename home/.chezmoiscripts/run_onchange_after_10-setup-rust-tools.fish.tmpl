@@ -1,13 +1,25 @@
-#!/usr/bin/env fish
+#!{{ lookPath "fish" }}
+
+# Various clean-up steps.
+# vim:ft=fish
+
+# TODO: Move some/all of this to .chezmoiexternals or install-release ?
+
+source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
 
 if not type -q rustup
-    echo "rustup needs to be installed via Homebrew first!"
-    exit
+    has_brew
+    glog info "Installing rustup via Homebrew."
+    brew install -q rustup-init
 end
 
 if not test -d "$HOME/.rustup"
-    command rustup update
+    glog start "Running 'rustup update'"
+    command rustup update >/dev/null 2>&1
+    glog success "Rust toolchains are up to date."
 end
+
+# Add via 'install-release' https://github.com/glotlabs/gdrive
 
 # Install packages via Cargo.
 set -l PACKAGES \
@@ -69,15 +81,29 @@ if not type -q rcat
     set -a PACKAGES rustcat
 end
 
+task "Installing Rust tools. 🦀"
+
 for package in $PACKAGES
-    if type -q $package
-        echo "$package already installed"
-    else
-        command cargo install $package
+    sub_task "Installing $package"
+
+    if not type -q $package
+        command cargo --quiet install $package
     end
 end
 
 # My tools / forked.
-cargo install --git git+ssh://git@github.com/dsully/zoned
-cargo install --git git+ssh://git@github.com/dsully/lolcate-rs
-cargo install --git git+ssh://git@github.com/dsully/git-open
+set -l URLS \
+    git+ssh://git@github.com/dsully/git-open \
+    git+ssh://git@github.com/dsully/lolcate-rs \
+    git+ssh://git@github.com/dsully/zoned
+
+echo
+
+for url in $URLS
+    sub_task "Installing $url" "◆"
+
+    command cargo --quiet install --git $url
+end
+
+echo
+glog success "Finished installing Rust tools."

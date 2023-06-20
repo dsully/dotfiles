@@ -104,27 +104,33 @@ function has_brew
 end
 
 # Task functions
-function TASK
-    set str $argv[1]
-    set str_len (math "4 + (string length $str)")
-    set char $argv[2]
+function task
+    set -f str $argv[1]
 
-    echo ""
-    printf '%*s' $str_len | tr ' ' $char
-    echo $char $str $char
-    printf '%*s' $str_len | tr ' ' $char
-    echo ""
+    # Compute the proper length of Unicode strings.
+    set -f str_len (echo -n $str | wc -m)
+    set -f delta (math (echo -n $str | wc -c) - $str_len)
+    set -f str_len (math $str_len + (math ceil $delta / 2) + 4)
+
+    set -f char (gum style --foreground=$nord_cyan_bright "─")
+    set -f delim (string repeat --no-newline -n $str_len $char)
+
+
+    echo $delim
+    echo $char (gum style --foreground=$nord_white $str) $char
+    echo $delim
 end
 
-function SUB_TASK
-    set str $argv[1]
-    set char $argv[2]
+function sub_task
+    set -f str $argv[1]
 
-    echo ""
-    echo $char
-    echo $str
-    echo $char
-    echo ""
+    if test (count $argv) -gt 1
+        set -f char " $argv[2]"
+    else
+        set -f char " ▶"
+    end
+
+    echo (gum style --foreground=$nord_green $char) (gum style --bold $str)
 end
 
 function glog
