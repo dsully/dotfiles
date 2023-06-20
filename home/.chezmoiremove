@@ -14,6 +14,19 @@
 .wget-hsts
 .zshenv
 
+.config/fish/completions
+.config/fish/functions/f.fish
+.config/fish/functions/git.fish
+.config/fish/functions/git-link.fish
+.config/fish/functions/o.fish
+.config/fish/functions/topgrade.fish
+.config/git/.gitignore
+.config/homebrew
+.config/topgrade
+.config/wezterm/terminfo
+bin/bootstrap
+bin/share/install-rust-tools
+
 {{- if (or (eq .chezmoi.os "linux") (.flags.personal)) -}}
 .ideavimrc
 {{- end }}
