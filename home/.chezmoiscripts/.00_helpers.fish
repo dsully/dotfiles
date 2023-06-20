@@ -24,6 +24,14 @@ set normal '\e[0m' # Reset / No Color
 
 set -gx DEBIAN_FRONTEND noninteractive
 
+if not set -q CHEZMOI_OS
+    set CHEZMOI_OS (string lower (uname -s))
+end
+
+if not set -q CHEZMOI_ARCH
+    set CHEZMOI_ARCH (uname -m)
+end
+
 # Ask sudo
 function ask_sudo
     glog info "Running this script would need 'sudo' permission."
@@ -81,7 +89,7 @@ end
 
 # Check for Homebrew
 function has_brew
-    if test -n $HOMEBREW_PREFIX
+    if set -q HOMEBREW_PREFIX
         set -gx BREW "$HOMEBREW_PREFIX/bin/brew"
     else
         if test -x /opt/homebrew/bin/brew
@@ -104,38 +112,31 @@ function has_brew
 end
 
 # Task functions
-function task
-    set -f str $argv[1]
+function task -a message -d "Print a task header."
 
     # Compute the proper length of Unicode strings.
-    set -f str_len (echo -n $str | wc -m)
-    set -f delta (math (echo -n $str | wc -c) - $str_len)
+    set -f str_len (echo -n $message | wc -m)
+    set -f delta (math (echo -n $message | wc -c) - $str_len)
     set -f str_len (math $str_len + (math ceil $delta / 2) + 4)
 
     set -f char (gum style --foreground=$nord_cyan_bright "─")
     set -f delim (string repeat --no-newline -n $str_len $char)
 
-
     echo $delim
-    echo $char (gum style --foreground=$nord_white $str) $char
+    echo $char (gum style --foreground=$nord_white $message) $char
     echo $delim
 end
 
-function sub_task
-    set -f str $argv[1]
+function sub_task -a message char -d "Print a sub-task header."
 
-    if test (count $argv) -gt 1
-        set -f char " $argv[2]"
-    else
-        set -f char " ▶"
+    if test -z $char
+        set -f char "▶"
     end
 
-    echo (gum style --foreground=$nord_green $char) (gum style --bold $str)
+    echo (gum style --foreground=$nord_green "  $char") (gum style --bold $message)
 end
 
-function glog
-    set TYPE $argv[1]
-    set MSG $argv[2]
+function glog -a TYPE MSG
 
     if type -q gum
         switch "$TYPE"
@@ -172,4 +173,65 @@ function glog
                 echo $MSG
         end
     end
+end
+
+function await -a message success -d "Await last background job with a spinner."
+    count (jobs) >/dev/null
+    or return 1
+
+    set -l spinners "$await_spinners"
+    set -l interval "$await_interval"
+    set -l success "$success"
+
+    if test -z "$spinners"
+        set spinners (gum style --foreground="$nord_blue" ⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏)
+    end
+
+    if test -z "$interval"
+        set interval 0.04
+    end
+
+    if test -z $success
+        set success "✔"
+    end
+
+    set -l message (gum style --bold "$message")
+
+    function __await_cleanup -a char
+        # Print the message with a check mark at the beginning of the line.
+        printf \r
+        echo (gum style --foreground="$nord_green" "$char") "$message"
+
+        stty echo
+        trap INT
+    end
+
+    function __await_kill_children
+        for x in (jobs -p | grep -v 'Process')
+            kill $x
+        end
+    end
+
+    function __on_exit --on-job-exit %self
+        __await_cleanup $success
+        __await_kill_children
+        functions -e __on_exit
+    end
+
+    # Hide the cursor.
+    tput civis
+    stty -echo
+
+    jobs -l | read -l job tail
+
+    while contains $job (jobs | cut -d\t -f1)
+
+        for spinner in $spinners
+            printf "\r$spinner $message"
+            sleep $interval
+        end
+    end
+
+    functions -e __on_exit
+    __await_cleanup $success
 end
