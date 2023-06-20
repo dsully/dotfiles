@@ -70,6 +70,8 @@ function ensure_darwin
         glog error "Unexpected OS ($CHEZMOI_OS), expected macOS!"
         exit 1
     end
+
+    return 0
 end
 
 function ensure_linux
@@ -141,7 +143,7 @@ function glog -a TYPE MSG
     if type -q gum
         switch "$TYPE"
             case error
-                echo (gum style --foreground="$nord_red" "✖") (gum style --bold --background="$nord_red" --foreground="$nord_white" " ERROR ")
+                echo (gum style --foreground="$nord_red" "✖") (gum style --bold --background="$nord_red" --foreground="$nord_white" " ERROR ") $MSG
             case info
                 echo (gum style --foreground="$nord_cyan" "○") (gum style --faint --foreground="$nord_white" "$MSG")
             case prompt
@@ -151,7 +153,7 @@ function glog -a TYPE MSG
             case success
                 echo (gum style --foreground="$nord_green" "✔") (gum style --bold "$MSG")
             case warn
-                echo (gum style --foreground="$nord_yellow" "◆") (gum style --bold --background="$nord_yellow" --foreground="$nord_black" " WARNING ")
+                echo (gum style --foreground="$nord_yellow" "◆") (gum style --bold --background="$nord_yellow" --foreground="$nord_black" " WARNING ") $MSG
             case '*'
                 echo (gum style --foreground="$nord_green" "▶") (gum style --bold "$TYPE")
         end
@@ -179,9 +181,11 @@ function await -a message success -d "Await last background job with a spinner."
     count (jobs) >/dev/null
     or return 1
 
-    set -l spinners "$await_spinners"
-    set -l interval "$await_interval"
-    set -l success "$success"
+    set message (gum style --bold "$message")
+
+    set spinners "$await_spinners"
+    set interval "$await_interval"
+    set indent "$await_indent"
 
     if test -z "$spinners"
         set spinners (gum style --foreground="$nord_blue" ⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏)
@@ -191,17 +195,24 @@ function await -a message success -d "Await last background job with a spinner."
         set interval 0.04
     end
 
-    if test -z $success
+    # -g so __await_cleanup can see these variables.
+    if test -z "$indent"
+        set indent ""
+    end
+
+    if test -z "$success"
         set success "✔"
     end
 
-    set -l message (gum style --bold "$message")
+    set -g complete "$indent"(gum style --foreground="$nord_green" "$success") $message
 
-    function __await_cleanup -a char
+    function __await_cleanup
         # Print the message with a check mark at the beginning of the line.
         printf \r
-        echo (gum style --foreground="$nord_green" "$char") "$message"
+        echo $complete
+        set -e complete
 
+        tput cnorm
         stty echo
         trap INT
     end
@@ -213,7 +224,7 @@ function await -a message success -d "Await last background job with a spinner."
     end
 
     function __on_exit --on-job-exit %self
-        __await_cleanup $success
+        __await_cleanup
         __await_kill_children
         functions -e __on_exit
     end
@@ -224,14 +235,16 @@ function await -a message success -d "Await last background job with a spinner."
 
     jobs -l | read -l job tail
 
+    trap __await_cleanup INT
+
     while contains $job (jobs | cut -d\t -f1)
 
         for spinner in $spinners
-            printf "\r$spinner $message"
+            printf "\r$indent$spinner $message"
             sleep $interval
         end
     end
 
     functions -e __on_exit
-    __await_cleanup $success
+    __await_cleanup
 end

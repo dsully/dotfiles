@@ -3,15 +3,28 @@
 # vim:ft=fish
 # Brewfile hash: {{ include (joinPath .chezmoi.homeDir ".config/Brewfile") | sha256sum }}
 
+set CHEZMOI_SOURCE_DIR (chezmoi source-path)
 source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
 
-if is_darwin
-    has_brew
+function is_appleid_logged_in
+    # Determine whether we are logged in to an Apple ID
+    # (not sure if this works in case an Apple ID account exists but is logged out)
+    defaults read MobileMeAccounts Accounts > /dev/null 2>&1
 
-    glog start "Installing Homebrew packages"
+    return $status
+end
 
-    brew bundle install --no-lock --file $HOME/.config/Brewfile | grep -v 'Using'
-    # $BREW bundle cleanup --file $HOME/.config/Brewfile --force --zap
+if ensure_homebrew
 
-    glog success
+    set brewfile $HOME/.config/Brewfile
+    set log $HOME/.cache/brewfile.log
+
+    if test -f $brewfile
+
+        command brew bundle --no-lock --no-upgrade --file=$brewfile >$log 2>&1 &
+        await "Installing Homebrew Packages 🍺"
+
+    else
+        glog warn "No Brewfile found, skipping Homebrew package installation."
+    end
 end
