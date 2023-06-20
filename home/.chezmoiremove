@@ -26,6 +26,7 @@
 .config/wezterm/terminfo
 bin/bootstrap
 bin/share/install-rust-tools
+bin/Darwin/fix-location-apps
 
 {{- if (or (eq .chezmoi.os "linux") (.flags.personal)) -}}
 .ideavimrc
