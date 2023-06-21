@@ -15,6 +15,7 @@
 .zshenv
 
 .config/fish/completions
+.config/fish/config.fish
 .config/fish/functions/f.fish
 .config/fish/functions/git.fish
 .config/fish/functions/git-link.fish
@@ -22,6 +23,7 @@
 .config/fish/functions/topgrade.fish
 .config/git/.gitignore
 .config/homebrew
+.config/matplotlib
 .config/topgrade
 .config/wezterm/terminfo
 bin/bootstrap
