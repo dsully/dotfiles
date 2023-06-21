@@ -1,0 +1,6 @@
+{{- if eq .chezmoi.os "linux" -}}
+function disks -d "Wraps lsblk"
+
+    command lsblk -d -o PATH,SIZE,MODEL | command grep -v /dev/loop
+end
+{{- end -}}
