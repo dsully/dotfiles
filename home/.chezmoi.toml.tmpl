@@ -1,7 +1,6 @@
+{{/* vim: set filetype=gotmpl.toml : */}}
 {{- $decrypt := false -}}
 {{- $ephemeral := false -}}
-{{- $fqdn := "" }}
-{{- $fqhn := .chezmoi.fqdnHostname -}}
 {{- $headless := false -}}
 {{- $hostname := .chezmoi.hostname -}}
 {{- $identity := joinPath .chezmoi.homeDir ".config/chezmoi/key.txt" -}}
@@ -13,7 +12,6 @@
 {{-   $ephemeral = true -}}
 {{-   $headless = true -}}
 {{- end -}}
-{{/* */}}
 {{/* Determine what kind of computer this is. */}}
 {{- $chassisType := "desktop" -}}
 {{- if eq .chezmoi.os "darwin" -}}
@@ -31,24 +29,7 @@
 {{-   $hostname = output "scutil" "--get" "ComputerName" | trim -}}
 {{- end -}}
 {{/* */}}
-{{/* Get the domain name, as it's not always set. */}}
-{{- if eq (index . "chezmoi.fqdn" | default "") "" }}
-{{- $fqhn := .chezmoi.fqdnHostname -}}
-{{-   if eq .chezmoi.os "darwin" -}}
-{{-     $fqdn = output "sh" "-c" "scutil --dns | grep 'search domain'| head -1 | awk '{print $4}'" | trim -}}
-{{-   else if eq .chezmoi.os "linux" -}}
-{{-     $fqdn = output "domainname" "-d" | trim -}}
-{{-   end -}}
-{{-   if eq $fqdn "" -}}
-{{-     $fqdn = promptString "Domain Name" -}}
-{{-   end -}}
-{{- end -}}
-{{/* */}}
-{{/* Get the fully qualfied hostname. */}}
-{{- if not (contains .chezmoi.fqdnHostname $fqdn) -}}
-{{-   $fqhn = (printf "%v.%v" $hostname $fqdn) -}}
-{{- end -}}
-{{/* More flag setting. */}}
+{{/* Boolean settings. */}}
 {{- if not $ephemeral -}}
 {{-   if regexMatch "^dsully-" $hostname -}}
 {{-     $work = true -}}
@@ -88,8 +69,6 @@ recipient = "age1agm9desexf47g2mp02zeqq98fcvpxjmq2sg3k8d30w5ych5xj3mqx8lgn5"
 [data]
     chezmoi.chassis = "{{ $chassisType }}"
     chezmoi.hostname = "{{ $hostname }}"
-    chezmoi.fqdn = "{{ $fqdn }}"
-    chezmoi.fqhn = "{{ $fqhn }}"
 
     flags.applesilicon = {{ and (eq .chezmoi.os "darwin") (eq .chezmoi.arch "arm64") }}
     flags.decrypt = {{ $decrypt }}
