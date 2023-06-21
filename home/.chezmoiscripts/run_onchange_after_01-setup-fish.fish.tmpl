@@ -14,10 +14,10 @@ echo '
 '
 printf "$normal"
 
-glog start "Setting up.."
+start "Setting up.."
 
 if test $SHELL != (command -v fish)
-    glog "info" "Changing default shell to fish"
+    "info" "Changing default shell to fish"
     chsh -s (command -v fish)
 end
 
@@ -27,7 +27,7 @@ set -gx fisher_path $HOME/.cache/fish
 
 mkdir -p $fisher_path/completions $fisher_path/functions
 
-glog "start" "Running fisher update."
+"start" "Running fisher update."
 fisher update >/dev/null
 
-glog success "Finished setting up fish shell."
+success "Finished setting up fish shell."

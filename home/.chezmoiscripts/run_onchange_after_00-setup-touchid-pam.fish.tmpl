@@ -17,20 +17,20 @@ function add_pam_line
     end
 
     if not head -n1 $PAM_FILE | grep -qc $FIRST_LINE
-        glog error "$PAM_FILE is not in the expected format!"
+        error "$PAM_FILE is not in the expected format!"
         return
     end
 
     sudo -v
-    glog start "Setting up $TITLE"
+    start "Setting up $TITLE"
 
     sudo sed -i.bak -e "s|$FIRST_LINE|$FIRST_LINE\n$PAM_LINE|" $PAM_FILE
     sudo rm $PAM_FILE.bak
 
-    glog success "$TITLE is setup."
+    success "$TITLE is setup."
 end
 
-if is_darwin
+if is_macos
     has_brew
 
     if test -z $BREW_PREFIX
@@ -40,7 +40,7 @@ if is_darwin
     set PAM_REATTACH "$BREW_PREFIX/lib/pam/pam_reattach.so"
 
     if not test -e $PAM_REATTACH
-        glog start "Installing pam_reattach"
+        start "Installing pam_reattach"
         brew install pam_reattach
     end
 

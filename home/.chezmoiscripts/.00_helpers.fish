@@ -1,26 +1,15 @@
 #!/usr/bin/env fish
 
-# Nord colors
-set nord_black "#2e3440"
-set nord_white "#eceff4"
-set nord_cyan "#8fbcbb"
-set nord_cyan_bright "#88c0d0"
-set nord_blue "#81a1c1"
-set nord_blue_bright "#5e81ac"
-set nord_red "#bf616a"
-set nord_orange "#d08770"
-set nord_yellow "#ebcb8b"
-set nord_green "#a3be8c"
-set nord_purple "#b48ead"
-
-set red '\e[0;31m'
-set green '\e[0;32m'
-set orange '\e[0;33m'
-set blue '\e[0;34m'
-set purple '\e[0;35m'
-set cyan '\e[0;36m'
-set white '\e[0;37m'
-set normal '\e[0m' # Reset / No Color
+set red (tput setaf 1)
+set red_bg (tput setab 1)
+set green (tput setaf 2)
+set orange (tput setaf 3)
+set orange_bg (tput setab 3)
+set blue (tput setaf 4)
+set cyan (tput setaf 6)
+set white (tput setaf 7)
+set normal (tput sgr0) # Reset / No Color
+set bold (tput bold)
 
 set -gx DEBIAN_FRONTEND noninteractive
 
@@ -33,7 +22,7 @@ if not set -q CHEZMOI_ARCH
 end
 
 # OS check functions
-function is_darwin
+function is_macos
     test $CHEZMOI_OS = darwin
 end
 
@@ -60,8 +49,8 @@ end
 
 # Ensure OS
 function ensure_darwin
-    if not is_darwin
-        glog error "Unexpected OS ($CHEZMOI_OS), expected macOS!"
+    if not is_macos
+        error "Unexpected OS ($CHEZMOI_OS), expected macOS!"
         exit 1
     end
 
@@ -70,7 +59,7 @@ end
 
 function ensure_linux
     if not is_linux
-        glog error "Unexpected OS ($CHEZMOI_OS), expected Linux!"
+        error "Unexpected OS ($CHEZMOI_OS), expected Linux!"
         exit 1
     end
 end
@@ -78,7 +67,7 @@ end
 # Ensure Homebrew
 function ensure_homebrew
     if not has_brew
-        glog error "Can't find Homebrew in the PATH."
+        error "Can't find Homebrew in the PATH."
         exit 1
     end
 end
@@ -95,7 +84,7 @@ function has_brew
         else if test -x /home/linuxbrew/.linuxbrew/brew
             set BREW /home/linuxbrew/.linuxbrew/brew
         else
-            glog warn "Homebrew not found!"
+            warn "Homebrew not found!"
             return 1
         end
 
@@ -115,11 +104,11 @@ function task -a message -d "Print a task header."
     set -f delta (math (echo -n $message | wc -c) - $str_len)
     set -f str_len (math $str_len + (math ceil $delta / 2) + 4)
 
-    set -f char (gum style --foreground=$nord_cyan_bright "─")
+    set -f char "$cyan─"
     set -f delim (string repeat --no-newline -n $str_len $char)
 
     echo $delim
-    echo $char (gum style --foreground=$nord_white $message) $char
+    echo "$char $white$message $char"
     echo $delim
 end
 
@@ -129,60 +118,45 @@ function sub_task -a message char -d "Print a sub-task header."
         set -f char "▶"
     end
 
-    echo (gum style --foreground=$nord_green "  $char") (gum style --bold $message)
+    echo "$green  $char" $bold $white $message $normal
 end
 
-function glog -a TYPE MSG
+function error -a msg
+    echo $red ✖ $red_bg $bold $white " ERROR " $normal $msg
+end
 
-    if type -q gum
-        switch "$TYPE"
-            case error
-                echo (gum style --foreground="$nord_red" "✖") (gum style --bold --background="$nord_red" --foreground="$nord_white" " ERROR ") $MSG
-            case info
-                echo (gum style --foreground="$nord_cyan" "○") (gum style --faint --foreground="$nord_white" "$MSG")
-            case prompt
-                echo (gum style --foreground="$nord_blue" "▶") (gum style --bold "$MSG")
-            case start
-                echo (gum style --foreground="$nord_green" "▶") (gum style --bold "$MSG")
-            case success
-                echo (gum style --foreground="$nord_green" "✔") (gum style --bold "$MSG")
-            case warn
-                echo (gum style --foreground="$nord_yellow" "◆") (gum style --bold --background="$nord_yellow" --foreground="$nord_black" " WARNING ") $MSG
-            case '*'
-                echo (gum style --foreground="$nord_green" "▶") (gum style --bold "$TYPE")
-        end
-    else
-        switch "$TYPE"
-            case error
-                printf "$red""[ERROR] $normal$MSG\n"
-            case info
-                printf "$cyan""[INFO] $normal$MSG\n"
-            case prompt
-                printf "$blue""PROMPT: $normal$MSG\n"
-            case start
-                printf "$green""[START] $normal$MSG\n"
-            case success
-                printf "$green""[SUCCESS] $normal$MSG\n"
-            case warn
-                printf "$orange""[WARNING] $normal$MSG\n"
-            case '*'
-                echo $MSG
-        end
-    end
+function error -a msg
+    echo $cyan ○ $white $msg $normal
+end
+
+function prompt -a msg
+    echo $blue ▶ $bold $white $msg $normal
+end
+
+function start -a msg
+    echo $green ▶ $bold $white $msg $normal
+end
+
+function success -a msg
+    echo $green ✔ $bold $white $msg $normal
+end
+
+function warn -a msg
+    echo $orange ◆ $bold $orange_bg $black " WARNING " $normal $msg
 end
 
 function await -a message success -d "Await last background job with a spinner."
     count (jobs) >/dev/null
     or return 1
 
-    set message (gum style --bold "$message")
+    set message "$bold$white$message$normal"
 
     set spinners "$await_spinners"
     set interval "$await_interval"
     set indent "$await_indent"
 
     if test -z "$spinners"
-        set spinners (gum style --foreground="$nord_blue" ⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏)
+        set spinners ⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏
     end
 
     if test -z "$interval"
@@ -195,10 +169,10 @@ function await -a message success -d "Await last background job with a spinner."
     end
 
     if test -z "$success"
-        set success "✔"
+        set success ✔
     end
 
-    set -g complete "$indent"(gum style --foreground="$nord_green" "$success") $message
+    set -g complete "$indent$green$success $message"
 
     function __await_cleanup
         # Print the message with a check mark at the beginning of the line.
@@ -234,7 +208,7 @@ function await -a message success -d "Await last background job with a spinner."
     while contains $job (jobs | cut -d\t -f1)
 
         for spinner in $spinners
-            printf "\r$indent$spinner $message"
+            printf "\r$indent$blue$spinner $message"
             sleep $interval
         end
     end

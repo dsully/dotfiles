@@ -22,8 +22,8 @@ if type -q rye
         command rye install $package >/dev/null 2>&1
     end
 
-    glog success "Finished installing Python tools."
+    success "Finished installing Python tools."
     echo
 else
-    glog error "'rye' is not installed. It should be installed via Homebrew."
+    error "'rye' is not installed. It should be installed via Homebrew."
 end

@@ -6,7 +6,7 @@ set CHEZMOI_SOURCE_DIR (chezmoi source-path)
 source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
 
 function install_rosetta
-    if not test -f /Library/Apple/usr/share/rosetta/rosetta
+    if not test -f /Library/Apple/usr/share/rosetta/rosetta1
         command softwareupdate --install-rosetta --agree-to-license >/dev/null 2>&1 &
         await "Installing Rosetta"
     end
@@ -16,13 +16,15 @@ function install_xcode_command_line_tools
 
     if not test -e /Library/Developer/CommandLineTools/usr/bin/git
 
-        glog start "Installing Apple Developer CLI Tools. Press any key when the installation has completed."
+        start "Installing Apple Developer CLI Tools. Press any key when the installation has completed."
         xcode-select --install >/dev/null 2>&1
         read -p "" -sn1
     end
 end
 
-if is_darwin
+if is_macos
+    task "Installing macOS Tools"
+
     if is_arm64
         install_rosetta
     end

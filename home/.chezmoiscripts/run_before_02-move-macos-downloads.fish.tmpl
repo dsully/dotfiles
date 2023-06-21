@@ -8,7 +8,7 @@ source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
 function move_downloads_folder
     # Move the original ~/Downloads out of the way so we can symlink
     if test -d $HOME/Downloads; and not test -L $HOME/Downloads
-        glog info "Moving ~/Downloads to symlink into iCloud."
+        info "Moving ~/Downloads to symlink into iCloud."
 
         mv $HOME/Downloads $HOME/Downloads.original
     end
@@ -19,6 +19,6 @@ function move_downloads_folder
     end
 end
 
-if is_darwin
+if is_macos
     move_downloads_folder
 end

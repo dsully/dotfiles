@@ -169,7 +169,7 @@ function finder
 
             if not command /usr/libexec/PlistBuddy -c "Add $argv[1]" $argv[2..-1]
 
-                glog error "Unable to set or add plist with args: $argv"
+                error "Unable to set or add plist with args: $argv"
             end
         end
     end
@@ -898,7 +898,7 @@ function periodic_tasks
     # launchctl load "~/Library/LaunchAgents/local.restic_backup.plist"
 end
 
-if is_darwin
+if is_macos
 
     sudo -v
     task "Setting macOS defaults."
@@ -939,6 +939,6 @@ if is_darwin
 
     killall cfprefsd Dock Finder Safari SystemUIServer >/dev/null 2>&1
 
-    glog success "macOS is now configured"
+    success "macOS is now configured"
     echo
 end
