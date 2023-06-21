@@ -1,9 +1,0 @@
-#!/usr/bin/env fish
-
-if not type -q safari
-    cargo install --git https://github.com/alexwlchan/safari.rs
-end
-
-for url in (command safari reading-list | tail -r)
-    command open $url
-end

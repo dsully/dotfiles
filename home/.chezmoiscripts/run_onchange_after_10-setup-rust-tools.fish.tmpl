@@ -57,13 +57,11 @@ set -l PACKAGES \
     # https://github.com/tarka/xcp/
     xcp
 
-switch (uname)
-    case Linux
-        # Only works on Linux.
-        # https://github.com/Canop/lfs
-        if not type -q lfs
-            set -a PACKAGES lfs
-        end
+if is_linux
+    # https://github.com/Canop/lfs
+    if not type -q lfs
+        set -a PACKAGES lfs
+    end
 end
 
 # These packages don't map to their CLI name.
@@ -92,11 +90,15 @@ for package in $PACKAGES
     end
 end
 
-# My tools / forked.
+# My tools / forked / git-only.
 set -l URLS \
     git+ssh://git@github.com/dsully/git-open \
     git+ssh://git@github.com/dsully/lolcate-rs \
     git+ssh://git@github.com/dsully/zoned
+
+if is_darwin
+    set -a URLS git+https://github.com/alexwlchan/safari.rs
+end
 
 echo
 

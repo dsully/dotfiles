@@ -1,0 +1,8 @@
+{{- if eq .chezmoi.os "darwin" -}}
+function open-reading-list-items-in-tabs -d "Open Reading List tabs in Safari"
+
+    for url in (command safari reading-list | command tail -r)
+        command open $url
+    end
+end
+{{- end -}}
