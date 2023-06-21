@@ -32,12 +32,6 @@ if not set -q CHEZMOI_ARCH
     set CHEZMOI_ARCH (uname -m)
 end
 
-# Ask sudo
-function ask_sudo
-    glog info "Running this script would need 'sudo' permission."
-    sudo -v
-end
-
 # OS check functions
 function is_darwin
     test $CHEZMOI_OS = darwin

@@ -21,7 +21,7 @@ function add_pam_line
         return
     end
 
-    ask_sudo
+    sudo -v
     glog start "Setting up $TITLE"
 
     sudo sed -i.bak -e "s|$FIRST_LINE|$FIRST_LINE\n$PAM_LINE|" $PAM_FILE

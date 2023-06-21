@@ -13,7 +13,7 @@ function fix_location_apps
     end
 
     glog info "Fixing location services permissions."
-    ask_sudo
+    sudo -v
 
     sudo chown -R _locationd:_locationd /var/db/locationd/
     sudo chmod 755 /var/db/locationd/

@@ -17,7 +17,7 @@ if is_darwin
     end
 
     if test $HAS_APP = true
-        ask_sudo
+        sudo -v
         glog start "Removing unwanted apps.."
 
         for app in $APPS
