@@ -1,4 +1,4 @@
-# vim:ft=gotmpl
+# vim:ft=gotmpl.gitignore
 .CFUserTextEncoding
 .bash_history
 .bash_logout
@@ -26,9 +26,7 @@
 .config/matplotlib
 .config/topgrade
 .config/wezterm/terminfo
-bin/bootstrap
-bin/share/install-rust-tools
-bin/Darwin/fix-location-apps
+bin
 
 {{- if (or (eq .chezmoi.os "linux") (.flags.personal)) -}}
 .ideavimrc

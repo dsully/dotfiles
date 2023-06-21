@@ -1,0 +1,15 @@
+{{- if .flags.work -}}
+# vim:ft=fish
+function deps -d "Write out Gradle dependencies."
+
+    if set -q argv[1]
+        set project $argv[1]
+    else
+        # Use the name of the current directory as the project name.
+        set project (basename (pwd))
+    end
+
+    set output (./gradlew ":$project:dependencies" 2>&1)
+    echo $output > "deps.$project.txt"
+end
+{{- end -}}

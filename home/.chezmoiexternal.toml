@@ -9,3 +9,9 @@
 [".cache/wezterm/terminfo"]
   type = "file"
   url = "https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo"
+
+[".local/bin/diff-so-fancy"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/diff-so-fancy"
+  refreshPeriod = "168h"
+  executable = true

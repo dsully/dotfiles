@@ -1,5 +1,0 @@
-#!/bin/sh
-
-# Wrap around https://github.com/mookid/diffr for regular diff.
-
-/usr/bin/diff $* | $HOME/bin/share/diffr
