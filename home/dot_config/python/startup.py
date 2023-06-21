@@ -22,6 +22,12 @@ readline library[1], or you can use a different Python distribution
 [1]: http://pypi.python.org/pypi/readline
 """
 
+import atexit
+import os
+import sys
+
+from contextlib import suppress
+from linecache import cache
 from pathlib import Path
 
 
@@ -42,16 +48,14 @@ def _pythonrc_enable_readline():
         if not text:
             # Insert four spaces for indentation
             return ("    ", None)[state]
-        else:
-            return old_complete(text, state)
+
+        return old_complete(text, state)
 
     readline.parse_and_bind("tab: complete")
     readline.set_completer(complete)
 
 
 def _pythonrc_enable_history():
-    import atexit
-    import os
 
     try:
         import readline
@@ -60,7 +64,7 @@ def _pythonrc_enable_history():
 
     # "NOHIST= python" will disable history
     if "NOHIST" not in os.environ:
-        history_path = os.path.expanduser("~/.cache/pyhistory")
+        history_path = Path.home() / ".cache/pyhistory"
 
         has_written = [False]
 
@@ -106,12 +110,7 @@ def _pythonrc_enable_pprint():
             sys.stderr = StringIO()
             try:
                 _old_excepthook(exctype, value, traceback)
-                s = sys.stderr.getvalue()
-                try:
-                    s = highlight(s, PythonTracebackLexer(), TerminalFormatter())
-                except UnicodeError:
-                    pass
-                old_stderr.write(s)
+                old_stderr.write(highlight(sys.stderr.getvalue(), PythonTracebackLexer(), TerminalFormatter()))
             finally:
                 sys.stderr = old_stderr
 
@@ -150,20 +149,16 @@ def _pythonrc_enable_pprint():
         """Returns terminal width."""
 
         width = 0
-        try:
+
+        with suppress(ImportError):
             width = _ioctl_width(0) or _ioctl_width(1) or _ioctl_width(2)
-        except ImportError:
-            pass
+
         if not width:
-            import os
 
             width = os.environ.get("COLUMNS", 0)
         return width
 
-    if hasattr(inspect, "getfullargspec"):
-        getargspec = inspect.getfullargspec
-    else:
-        getargspec = inspect.getargspec
+    getargspec = inspect.getfullargspec
 
     def pprinthook(value):
         """Pretty print an object to sys.stdout and also save it in __builtin__."""
@@ -200,9 +195,6 @@ def _pythonrc_enable_pprint():
 
 def _pythonrc_fix_linecache():
     """Add source(obj) that shows the source code for a given object."""
-    import os
-    import sys
-    from linecache import cache
 
     # linecache.updatecache() replacement that actually works with zips.
     # See http://bugs.python.org/issue4223 for more information.
@@ -221,7 +213,7 @@ def _pythonrc_fix_linecache():
         fullname = filename
         try:
             stat = os.stat(fullname)
-        except os.error:
+        except OSError:
             basename = os.path.split(filename)[1]
 
             if module_globals and "__loader__" in module_globals:
@@ -258,12 +250,15 @@ def _pythonrc_fix_linecache():
                         pass
             else:
                 return []
+
         try:
             lines = Path(fullname).read_text().splitlines()
         except OSError:
             return []
+
         size, mtime = stat.st_size, stat.st_mtime
         cache[filename] = size, mtime, lines, fullname
+
         return lines
 
     import linecache
@@ -276,8 +271,6 @@ def source(obj):
 
     Applies syntax highlighting if Pygments is available.
     """
-    import os
-    import sys
     from inspect import findsource, getmodule, getsource, getsourcefile
     from pydoc import pager
 
@@ -287,6 +280,7 @@ def source(obj):
         if not getsourcefile(obj):
             raise TypeError
         s = getsource(obj)
+
     except TypeError:
         sys.stderr.write(
             "Source code unavailable (maybe it's part of a C extension?)\n"
@@ -335,17 +329,15 @@ def source(obj):
 
 
 if __name__ == "__main__":
-    __doc__ = None
+    __doc__ = None  # type:ignore
 
     # Make sure modules in the current directory can't interfere
-    import sys
-
     try:
         try:
             cwd = sys.path.index("")
             sys.path.pop(cwd)
         except ValueError:
-            cwd = None
+            cwd = ""
 
         sys.ps1 = "\001\033[1;32m\002>>> \001\033[1;37m\002"
         sys.ps2 = "\001\033[1;31m\002... \001\033[1;37m\002"
@@ -353,7 +345,7 @@ if __name__ == "__main__":
         # Run installation functions and don't taint the global namespace
         try:
             try:
-                import jedi.utils
+                import jedi.utils  # type: ignore
 
                 jedi.utils.setup_readline()
                 del jedi
@@ -369,9 +361,11 @@ if __name__ == "__main__":
             del _pythonrc_enable_history
             del _pythonrc_enable_pprint
             del _pythonrc_fix_linecache
+
         finally:
-            if cwd is not None:
+            if cwd:
                 sys.path.insert(cwd, "")
             del cwd
+
     finally:
         pass
