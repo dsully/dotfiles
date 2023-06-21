@@ -1,6 +1,6 @@
 {{- if and .flags.decrypt (not .flags.ephemeral) -}}
 token = "{{- .cloudflare.api_token -}}"
 zoneid = "{{- .cloudflare.zone_id -}}"
-hostname = "{{ .chezmoi.fqhn}}"
+hostname = "{{- .chezmoi.hostname -}}.{{- .cloudflare.domain -}}"
 external = "{{- .cloudflare.external -}}"
 {{ end -}}
