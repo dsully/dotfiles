@@ -1,0 +1,42 @@
+#!{{ lookPath "fish" }}
+
+# Install GitHub tools via install-release
+# vim:ft=fish
+
+set CHEZMOI_SOURCE_DIR (chezmoi source-path)
+source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+
+if type -q install-release
+
+    set URLS \
+        https://github.com/TheWaWaR/simple-http-server \
+        https://github.com/cargo-bins/cargo-quickinstall \
+        https://github.com/jreisinger/checkip \
+        https://github.com/kbknapp/cargo-outdated \
+        https://github.com/mrjackwills/havn \
+        https://github.com/robiot/rustcat
+
+    if test $HOSTNAME = gpu
+        set -a URLS https://github.com/glotlabs/gdrive
+    end
+
+    if test -n "$URLS"
+
+        task "Installing GitHub tools."
+
+        for url in $URLS
+            sub_task "Installing $url"
+
+            command install-release get -q -y $package
+        end
+
+        echo
+    end
+
+    # Clean up from Cargo
+    if type -q cargo
+        cargo uninstall simple-http-server cargo-quickinstall cargo-outdated havn rustcat >/dev/null 2>&1
+    end
+else
+    error "'install-release' is not installed. It should be installed via Homebrew."
+end

@@ -3,81 +3,69 @@
 # vim:ft=bash
 set -eufo pipefail
 
-source "${CHEZMOI_SOURCE_DIR}/.chezmoiscripts/.00_helpers.sh"
+declare -r red=$(tput setaf 1)
+declare -r red_bg=$(tput setab 1)
+declare -r green=$(tput setaf 2)
+declare -r white=$(tput setaf 7)
+declare -r normal=$(tput sgr0) # Reset / No Color
+declare -r bold=$(tput bold)
 
-GUM_PATH=""
+start() {
+    printf "${green}▶ ${normal}${bold}$1${normal}\n"
+}
 
-install_gum() {
+command_exists() {
+    type "${1}" >/dev/null 2>&1
+}
 
-    # Acquire gum's path or attempt to install it
-    if command_exists gum; then
-        GUM_PATH="$(command -v gum)"
-
-    elif [ -f "$HOME/.local/bin/gum" ]; then
-        GUM_PATH="$HOME/.local/bin/gum"
-
+has_brew() {
+    if [ "$HOMEBREW_PREFIX" != "" ]; then
+        BREW="$HOMEBREW_PREFIX/bin/brew"
     else
-        {{- $latestRelease := gitHubLatestRelease "charmbracelet/gum" -}}
-        {{ $version := $latestRelease.Name | trimPrefix "v" }}
-
-        GUM_DOWNLOAD_URL="https://github.com/charmbracelet/gum/releases/download/v{{ $version }}/gum_{{ $version }}_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.tar.gz"
-
-        TMP="$(mktemp)"
-        TMP_DIR="$(dirname "$TMP")"
-
-        glog "info" "Downloading Gum from $GUM_DOWNLOAD_URL"
-
-        curl -sL $GUM_DOWNLOAD_URL | tar -xz -C $TMP_DIR
-
-        if mkdir -p "$HOME/.local/bin" && mv "$TMP_DIR/gum" "$HOME/.local/bin/gum"; then
-            GUM_PATH="$HOME/.local/bin/gum"
+        if [[ -x /opt/homebrew/bin/brew ]]; then
+            BREW=/opt/homebrew/bin/brew
+        elif [[ -x /usr/local/bin/brew ]]; then
+            BREW=/usr/local/bin/brew
+        elif [[ -x /home/linuxbrew/.linuxbrew/brew ]]; then
+            BREW=/home/linuxbrew/.linuxbrew/brew
         else
-            GUM_PATH="$(dirname "${BASH_SOURCE[0]}")/gum"
+            return 1
         fi
 
-        chmod +x "$GUM_PATH"
-
-        echo ""
-        glog "info" "Using Gum at $GUM_PATH"
+        eval "$("$BREW" shellenv)"
     fi
+
+    export BREW=$BREW
+
+    return 0
 }
 
 install_homebrew() {
     if ! command_exists brew; then
-        glog "start" "Installing Homebrew.."
+        start "Installing Homebrew.."
 
         bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-        glog "success" "Homebrew installed."
     fi
 }
 
-install_packages() {
-    if ! command_exists age; then
-        glog "start" "Installing age from Homebrew."
-        $BREW install -q age
-    fi
+install_package() {
+    package="$1"
 
-    if ! command_exists fish; then
-        glog "start" "Installing fish from Homebrew."
-        $BREW install -q fish
-    fi
-
-    if ! command_exists gum; then
-        glog "start" "Installing gum from Homebrew."
-        $BREW install -q gum
-    fi
-
-    if is_darwin; then
-        if ! command_exists mas; then
-            glog "start" "Installing mas from Homebrew."
-            $BREW install -q mas
-        fi
+    if ! command_exists $package; then
+        start "Installing $package from Homebrew."
+        $BREW install -q $package
     fi
 }
 
-has_brew
-install_gum
 install_homebrew
-ensure_homebrew
-install_packages
+
+if has_brew; then
+    install_package age
+    install_package fish
+
+    if [[ $CHEZMOI_OS == darwin ]]; then
+        install_package mas
+    fi
+else
+    printf "${red}✖ ${red_bg}${bold}${white} ERROR ${normal} Can't find Homebrew in the PATH.${normal}\n"
+fi

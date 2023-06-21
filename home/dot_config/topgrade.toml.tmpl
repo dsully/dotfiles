@@ -1,3 +1,5 @@
+# vim:ft=toml
+
 # Don't ask for confirmations
 assume_yes = true
 skip_notify = true
@@ -41,9 +43,6 @@ run_in_tmux = false
 # Path to Topgrade executable on remote machines
 #remote_topgrade_path = ".cargo/bin/topgrade"
 
-# Arguments to pass tmux when pulling Repositories
-#tmux_arguments = "-S /var/tmux.sock"
-
 # Do not set the terminal title
 #set_title = false
 
@@ -80,8 +79,17 @@ arguments = "--rebase --autostash"
 
 # Custom commands
 [commands]
-# "RTX Plugins" = "rtx plugins update"
+{{- if lookPath "rtx" -}}
+"RTX Plugins" = "rtx plugins update"
+{{- end -}}
+
+{{- if lookPath "fish" -}}
 "Fish Update Completions" = "fish_update_completions"
+{{- end -}}
+
+{{- if lookPath "install-update" -}}
+"GitHub Tools" = "install-update upgrade"
+{{- end -}}
 
 [brew]
 greedy_cask = true
