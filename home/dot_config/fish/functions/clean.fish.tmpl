@@ -1,0 +1,14 @@
+{{- if .flags.work -}}
+# vim:ft=fish
+function deps -d "Clean a Gradle build workspace."
+
+    command rm -rf build .gradle .idea .vscode .mypy_cache .pytest_cache .cache */.pytest_cache */.mypy_cache
+    command rm *.iml *.ipr *.iws */*.iml
+
+    command find . -type f -name '*.pyc' -delete
+    command find . -type d -name __pycache__ | xargs rm -rf
+    command find . -type d -name mainGeneratedDataTemplate | xargs rm -rf
+    command find . -type d -name mainGeneratedRest | xargs rm -rf
+    command find . -type d -name testGeneratedDataTemplate | xargs rm -rf
+end
+{{- end -}}

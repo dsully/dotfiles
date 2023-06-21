@@ -4,6 +4,7 @@ if not set -q $HOSTNAME
     set -Ux OS (uname -s)
 end
 
+set -gx XDG_BIN_HOME $HOME/.local/bin
 set -gx XDG_CACHE_HOME $HOME/.cache
 set -gx XDG_CONFIG_HOME $HOME/.config
 set -gx XDG_DATA_HOME $HOME/.local/share
@@ -14,18 +15,12 @@ set -gx LANG en_US.UTF-8
 set fish_greeting ''
 
 fish_add_path --append -g \
-    "$HOME/bin/share" \
-    "$HOME/bin/$OS" \
     "$HOME/.cargo/bin" \
     "$HOME/.local/bin" \
     "$HOME/.local/go/bin" \
     "$HOME/.local/share/nvim/mason/bin" \
     "$HOME/.volta/bin" \
     /Library/Apple/usr/bin
-
-for path in $HOME/bin/Sites/*
-    fish_add_path --append -g --move $path
-end
 
 # Set maxfiles limits higher.
 switch $OS

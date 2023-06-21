@@ -1,7 +1,6 @@
 # vim:ft=gotmpl
 **/.dmypy.json
 **/.mypy_cache
-**/Brewfile.lock.json
 .1password/
 .actrc
 .android
@@ -63,7 +62,6 @@
 .xargo/
 .yarn/
 .yarnrc
-bin/
 dev
 key.txt.age
 
@@ -83,6 +81,7 @@ Applications/
 Desktop/
 Documents/
 Library/
+Downloads/
 Mounts/
 Movies/
 Music/
@@ -96,6 +95,9 @@ Stuff/
 .config/kitty/
 .config/systemd/user/default.*
 .config/wezterm/
+!.local/bin/pbcopy
+!.local/bin/pbpaste
+!.local/bin/xdg-open
 .mullvad-expiry
 .nv/
 .selected_editor
