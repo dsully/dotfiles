@@ -134,7 +134,7 @@ function energy_and_sleep
     systemsetup -setrestartfreeze on &>/dev/null
 
     # Disable hibernation (speeds up entering sleep mode)
-    sudo pmset -a hibernatemode 0
+    sudo pmset -a hibernatemode 0 &>/dev/null
 
     # Remove the sleep image file to save disk space
     if test -e /private/var/vm/sleepimage
@@ -148,7 +148,7 @@ function energy_and_sleep
     end
 
     # Disable the sudden motion sensor as it’s not useful for SSDs
-    sudo pmset -a sms 0
+    sudo pmset -a sms 0 &>/dev/null
 end
 
 function siri

@@ -3,6 +3,7 @@
 # vim:ft=fish
 {{- $hash := include "dot_config/fish/fish_plugins.tmpl" | sha256sum -}}
 
+set CHEZMOI_SOURCE_DIR (chezmoi source-path)
 source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
 
 if test $SHELL != (command -v fish)

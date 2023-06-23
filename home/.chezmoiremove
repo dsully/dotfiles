@@ -14,17 +14,25 @@
 .wget-hsts
 .zshenv
 
+.config/.gitignore
+.config/.semgrep
+.config/caddy/build
 .config/fish/completions
+.config/fish/conf.d/.gitignore
 .config/fish/config.fish
+.config/fish/functions/et.fish
 .config/fish/functions/f.fish
-.config/fish/functions/git.fish
 .config/fish/functions/git-link.fish
+.config/fish/functions/git.fish
 .config/fish/functions/o.fish
+.config/fish/functions/sd-update.fish
 .config/fish/functions/topgrade.fish
 .config/git/.gitignore
 .config/homebrew
+.config/lolcate/.gitignore
 .config/matplotlib
 .config/topgrade
+.config/topgrade-sd.toml
 .config/wezterm/terminfo
 bin
 
