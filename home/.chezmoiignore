@@ -44,11 +44,12 @@
 .lemminx/
 .lesshst
 .lipki
-.local/
+.local/*/
 .luarocks/
 .midgard
 .mint
 .node_repl_history/
+node_modules/
 .npm/
 .prettierd/
 .pyhistory
@@ -92,8 +93,11 @@ Applications/
 Desktop/
 Documents/
 Downloads/
+# https://stackoverflow.com/questions/987142/make-gitignore-ignore-everything-except-a-few-files
+Library/*
+!Library/LaunchAgents
+Library/LaunchAgents/*
 !Library/LaunchAgents/localhost.*
-Library/
 Mounts/
 Movies/
 Music/

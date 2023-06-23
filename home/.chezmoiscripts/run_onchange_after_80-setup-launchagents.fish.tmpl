@@ -1,0 +1,36 @@
+#!{{ lookPath "fish" }}
+
+# vim:ft=fish
+
+# localhost.blackd.plist.tmpl hash: {{ include "Library/LaunchAgents/localhost.blackd.plist.tmpl" | sha256sum }}
+# localhost.pbcopy hash: {{ include "Library/LaunchAgents/localhost.pbcopy.plist" | sha256sum }}
+# localhost.pbpaste hash: {{ include "Library/LaunchAgents/localhost.pbpaste.plist" | sha256sum }}
+
+set CHEZMOI_SOURCE_DIR (chezmoi source-path)
+source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+
+if is_macos
+
+    task "Installing LauchAgents"
+
+    set agents \
+        blackd \
+        pbcopy \
+        pbpaste
+
+    for agent in $agents
+
+        sub_task $agent
+
+        set plist "$HOME/Library/LaunchAgents/localhost.$agent.plist"
+
+        if test -f $plist
+
+            if command launchctl list localhost.$agent >/dev/null 2>&1
+                command launchctl unload -w $plist
+            end
+
+            command launchctl load -w $plist
+        end
+    end
+end
