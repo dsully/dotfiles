@@ -19,7 +19,6 @@ only = [
     "cargo",
     "custom_commands",
     "git_repos",
-    "shell",
 {{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.idLike "debian")) }}
     "deb_get",
 {{- end }}
@@ -79,17 +78,17 @@ arguments = "--rebase --autostash"
 
 # Custom commands
 [commands]
-{{- if lookPath "rtx" -}}
+{{ if lookPath "rtx" -}}
 "RTX Plugins" = "rtx plugins update"
-{{- end -}}
+{{ end -}}
 
-{{- if lookPath "fish" -}}
+{{ if lookPath "fish" -}}
 "Fish Update Completions" = "fish_update_completions"
-{{- end -}}
+{{ end -}}
 
-{{- if lookPath "install-update" -}}
-"GitHub Tools" = "install-update upgrade"
-{{- end -}}
+{{ if lookPath "gitrel" -}}
+"GitHub Tools" = "gitrel update"
+{{ end }}
 
 [brew]
 greedy_cask = true
