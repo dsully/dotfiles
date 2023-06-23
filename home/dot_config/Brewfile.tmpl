@@ -99,9 +99,9 @@ brew "mysql@5.7"
 brew "openjdk"
 brew "openjdk@11"
 brew "openjdk@17"
-{{- end -}}
+{{ end }}
 {{/* */}}
-{{- if eq .chezmoi.os "darwin" -}}
+{{ if eq .chezmoi.os "darwin" }}
 {{ comment "" "#" }}
 {{ comment "# " "macOS Only" }}
 brew "caarlos0/tap/xdg-open-svc"
@@ -114,7 +114,7 @@ brew "pam-reattach"
 brew "telnet"
 {{- end }}
 {{/* */}}
-{{- if and (eq .chezmoi.chassis "laptop" .flags.personal) -}}
+{{- if .flags.personal -}}
 {{ comment "" "#" }}
 {{ comment "# " "Personal macOS Only" }}
 cask "airflow"
@@ -122,7 +122,7 @@ cask "batteries"
 cask "macdive"
 cask "mullvadvpn"
 cask "soulseek"
-{{- end }}
+{{- end -}}
 {{/* */}}
 {{- if eq .chezmoi.os "darwin" -}}
 {{ comment "" "#" }}
@@ -183,9 +183,9 @@ cask "microsoft-outlook"
 cask "microsoft-powerpoint"
 cask "microsoft-teams"
 cask "stay"
-{{-   if eq .chezmoi.chassis "desktop" -}}
+{{   if eq .chezmoi.chassis "desktop" -}}
 cask "shureplus-motiv"
-{{-   end -}}
+{{ end -}}
 cask "yubico-yubikey-manager"
 cask "zoom"
 {{- end -}}
@@ -194,18 +194,22 @@ cask "zoom"
 {{- if lookPath "mas" -}}
 {{ comment "" "#" }}
 {{ comment "# " "Common App Store" }}
-# mas "1Password for Safari", id: 1569813296
+mas "1Password for Safari", id: 1569813296
 mas "AdGuard for Safari", id: 1440147259
 mas "AutoMounter", id: 1160435653
 mas "Black Out", id: 1319884285
 mas "CotEditor", id: 1024640650
-# mas "Darkroom", id: 953286746
+{{ if eq .chezmoi.arch "arm64" -}}
+mas "Darkroom", id: 953286746
+{{- end }}
 mas "Dato", id: 1470584107
 mas "Deliveries", id: 290986013
 mas "DevCleaner", id: 1388020431
 mas "Discovery", id: 1381004916
-# mas "Flighty", id: 1358823008
-# mas "Ivory", id: 6444602274
+{{ if eq .chezmoi.arch "arm64" -}}
+mas "Flighty", id: 1358823008
+{{- end }}
+mas "Ivory", id: 6444602274
 mas "JSONPeep", id: 1458969831
 mas "Kagi Inc.", id: 1622835804
 mas "Marked 2", id: 890031187
@@ -239,8 +243,10 @@ mas "WiFi Signal", id: 525912054
 mas "WireGuard", id: 1451685025
 mas "WordService", id: 899972312
 mas "Yoink", id: 457622435
+{{ if ne .chezmoi.chassis "laptop" -}}
 mas "iMovie", id: 408981434
 mas "iPreview", id: 1519213509
+{{- end -}}
 {{/* */}}
 {{- if .flags.personal -}}
 {{ comment "" "#" }}
