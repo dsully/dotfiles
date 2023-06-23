@@ -1,0 +1,18 @@
+# Dirs / files to ignore.
+# Use the same syntax as gitignore(5).
+# Common patterns:
+#
+# .git
+# *~
+# vim:ft=gitignore
+.cache/
+.cargo/
+.direnv/
+{{ joinPath .chezmoi.homeDir ".local/state/nvim/swap/" }}
+{{ joinPath .chezmoi.homeDir ".local/state/nvim/undo/" }}
+.rustup/
+.venv/
+.volta/
+Library/
+Mounts/
+venv/

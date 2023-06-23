@@ -12,7 +12,6 @@ if type -q rye
     set PACKAGES \
         'black[d]' \
         frogmouth \
-        install-release \
         pdm \
         ruff
 
@@ -22,7 +21,6 @@ if type -q rye
         command rye install $package >/dev/null 2>&1
     end
 
-    success "Finished installing Python tools."
     echo
 else
     error "'rye' is not installed. It should be installed via Homebrew."

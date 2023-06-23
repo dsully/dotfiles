@@ -24,6 +24,7 @@
 .config/fish/fish_variables
 .config/lolcate/*/db.lz4
 .config/matplotlib
+.config/gitrel/state.json
 .config/zellij/auto
 .cups/
 .cursor/
