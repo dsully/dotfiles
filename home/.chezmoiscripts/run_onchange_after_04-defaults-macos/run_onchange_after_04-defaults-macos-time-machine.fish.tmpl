@@ -19,9 +19,5 @@ end
 
 if is_macos
     sudo -v
-
-    # Close any open System Preferences panes, to prevent them from overriding settings we’re about to change
-    command osascript -e 'tell application "System Preferences" to quit' >/dev/null 2>&1
-
     time_machine
 end

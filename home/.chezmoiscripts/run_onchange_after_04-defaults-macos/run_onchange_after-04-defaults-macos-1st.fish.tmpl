@@ -37,4 +37,6 @@ source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
 if is_macos
     sudo -v
     task "Setting macOS defaults"
+
+    command osascript -e 'tell application "System Preferences" to quit' >/dev/null 2>&1
 end

@@ -58,13 +58,9 @@ function dock
     defaults write com.apple.dock wvous-br-corner -int 0
     defaults write com.apple.dock wvous-br-modifier -int 0
 
-    killall cfprefsd Dock SystemUIServer >/dev/null 2>&1
-
     find "$HOME/Library/Application Support/Dock" -name "*.db" -maxdepth 1 -delete
 end
 
 if is_macos
-    command osascript -e 'tell application "System Preferences" to quit' >/dev/null 2>&1
-
     dock
 end

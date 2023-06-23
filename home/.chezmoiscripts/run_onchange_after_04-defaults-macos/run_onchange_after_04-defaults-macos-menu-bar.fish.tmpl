@@ -18,8 +18,6 @@ function menu_bar
     defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.clock" -bool false
     defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.bluetooth" -bool true
     defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.volume" -bool false
-
-    killall cfprefsd Dock SystemUIServer >/dev/null 2>&1
 end
 
 if is_macos
