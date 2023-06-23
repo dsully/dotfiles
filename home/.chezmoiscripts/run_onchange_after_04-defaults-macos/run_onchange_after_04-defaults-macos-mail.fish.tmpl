@@ -1,0 +1,26 @@
+#!{{ lookPath "fish" }}
+
+# vim:ft=fish
+
+set CHEZMOI_SOURCE_DIR (chezmoi source-path)
+source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+
+function mail
+    sub_task Mail
+
+    # Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app
+    defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
+
+    # Sort conversations in descending order (recent on the top)
+    defaults write com.apple.mail ConversationViewSortDescending -bool true
+
+    # Disable send and reply animations in Mail.app
+    defaults write com.apple.Mail DisableReplyAnimations -bool true
+    defaults write com.apple.Mail DisableSendAnimations -bool true
+
+    killall Mail >/dev/null 2>&1
+end
+
+if is_macos
+    mail
+end

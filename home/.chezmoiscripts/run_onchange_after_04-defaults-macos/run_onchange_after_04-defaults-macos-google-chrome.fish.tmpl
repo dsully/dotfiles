@@ -1,0 +1,28 @@
+#!{{ lookPath "fish" }}
+
+# vim:ft=fish
+
+set CHEZMOI_SOURCE_DIR (chezmoi source-path)
+source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+
+function google_chrome
+    sub_task "Google Chrome"
+
+    # Use the system-native print preview dialog
+    defaults write com.google.Chrome DisablePrintPreview -bool true
+    defaults write com.google.Chrome.canary DisablePrintPreview -bool true
+
+    # Expand the print dialog by default
+    defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
+    defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true
+
+    # https://support.google.com/chrome/thread/14193532?hl=en
+    defaults write com.google.Chrome ExternalProtocolDialogShowAlwaysOpenCheckbox -bool true
+
+    sudo defaults write /Library/Preferences/com.google.Keystone.plist AutoUpdate -bool false
+end
+
+if is_macos
+    sudo -v
+    google_chrome
+end

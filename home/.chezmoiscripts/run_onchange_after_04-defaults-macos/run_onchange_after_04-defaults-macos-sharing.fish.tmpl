@@ -1,0 +1,27 @@
+#!{{ lookPath "fish" }}
+
+# vim:ft=fish
+
+set CHEZMOI_SOURCE_DIR (chezmoi source-path)
+source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+
+function sharing
+    sub_task Sharing
+
+    # Turn on screen sharing
+    sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.screensharing.plist >/dev/null 2>&1
+    sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist >/dev/null 2>&1
+
+    # Turn on SSH.
+    sudo systemsetup -setremotelogin on >/dev/null
+
+    # Enable NTP
+    systemsetup -setusingnetworktime on &>/dev/null
+
+    killall cfprefsd Finder SystemUIServer >/dev/null 2>&1
+end
+
+if is_macos
+    sudo -v
+    sharing
+end
