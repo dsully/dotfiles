@@ -890,18 +890,12 @@ function periodic_tasks
     # (crontab -l || true; echo "0 * * * * ~/.cargo/bin/lolcate --all --update > /dev/null 2>&1") | crontab
     # (crontab -l || true; echo "# iCal Sucks\n@hourly /usr/bin/pkill -9 CalendarAgent") | crontab
     # (crontab -l || true; echo "# iCal Sucks\n@hourly /usr/bin/pkill -9 exchangesyncd") | crontab
-
-    # Load/reload backup launchd job
-    # if launchctl list local.restic_backup >/dev/null 2>&1
-    #     launchctl unload "~/Library/LaunchAgents/local.restic_backup.plist"
-    # end
-    # launchctl load "~/Library/LaunchAgents/local.restic_backup.plist"
 end
 
 if is_macos
 
     sudo -v
-    task "Setting macOS defaults."
+    task "Setting macOS defaults"
 
     # Close any open System Preferences panes, to prevent them from overriding settings we’re about to change
     command osascript -e 'tell application "System Preferences" to quit' >/dev/null 2>&1
@@ -938,7 +932,5 @@ if is_macos
     find "$HOME/Library/Application Support/Dock" -name "*.db" -maxdepth 1 -delete
 
     killall cfprefsd Dock Finder Safari SystemUIServer >/dev/null 2>&1
-
-    success "macOS is now configured"
     echo
 end

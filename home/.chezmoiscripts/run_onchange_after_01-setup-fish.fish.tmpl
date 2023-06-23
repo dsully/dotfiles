@@ -1,33 +1,30 @@
 #!{{ lookPath "fish" }}
 
-# ~/.config/fish/fish_plugins hash: {{ include "dot_config/fish/fish_plugins.tmpl" | sha256sum }}
 # vim:ft=fish
+{{- $hash := include "dot_config/fish/fish_plugins.tmpl" | sha256sum -}}
 
 source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
 
-printf "$blue"
-echo '
- ___ ___ ___ _  _
-| __|_ _/ __| || |
-| _| | |\__ \ __ |
-|_| |___|___/_||_|
-'
-printf "$normal"
-
-start "Setting up.."
-
 if test $SHELL != (command -v fish)
-    "info" "Changing default shell to fish"
+    start "Setting up Fish 🐠"
+
+    info "Changing default shell to fish"
     chsh -s (command -v fish)
 end
 
-# Set fisher install to be outside of ~/.config/fish
-# This variable is used at the top of fisher.fish
-set -gx fisher_path $HOME/.cache/fish
+if type -q fisher; and test -s $HOME/.config/fish/fish_plugins
 
-mkdir -p $fisher_path/completions $fisher_path/functions
+    # Set fisher install to be outside of ~/.config/fish
+    # This variable is used at the top of fisher.fish
+    set fisher_path $HOME/.cache/fish
 
-"start" "Running fisher update."
-fisher update >/dev/null
+    if not set -q fish_plugins_hash; or test $fish_plugins_hash != {{ $hash }}
+        start "Running 'fisher update' 🐠"
 
-success "Finished setting up fish shell."
+        # mkdir -p $fisher_path/completions $fisher_path/functions
+
+        fisher update >/dev/null 2>&1
+
+        set -U fish_plugins_hash {{ $hash }}
+    end
+end

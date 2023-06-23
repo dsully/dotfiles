@@ -22,6 +22,10 @@ if type -q cargo
         cargo-feature \
         # https://nexte.st
         cargo-nextest \
+        # https://github.com/kbknapp/cargo-outdated
+        cargo-outdated \
+        # https://github.com/cargo-bins/cargo-quickinstall
+        cargo-quickinstall \
         # https://github.com/birkenfeld/fddf
         fddf \
         # https://github.com/gitext-rs/git-dive
@@ -30,8 +34,12 @@ if type -q cargo
         gitnu \
         # https://github.com/scruffystuffs/jfmt.rs
         jfmt \
+        # https://github.com/mrjackwills/havn
+        havn \
         # https://github.com/acidnik/ppcp - Remove in favor of xcp?
         ppcp \
+        # https://github.com/TheWaWaR/simple-http-server
+        simple-http-server \
         # https://github.com/tarka/xcp/
         xcp
 
@@ -53,6 +61,11 @@ if type -q cargo
         set -a PACKAGES cargo-update
     end
 
+    # https://github.com/robiot/rustcat
+    if not type -q rcat
+        set -a PACKAGES rustcat
+    end
+
     task "Installing Rust tools. 🦀"
 
     for package in $PACKAGES
@@ -67,6 +80,7 @@ if type -q cargo
     set -l URLS \
         git+ssh://git@github.com/dsully/git-open \
         git+ssh://git@github.com/dsully/lolcate-rs \
+        git+ssh://git@github.com/dsully/gitrel \
         git+ssh://git@github.com/dsully/zoned
 
     if is_macos

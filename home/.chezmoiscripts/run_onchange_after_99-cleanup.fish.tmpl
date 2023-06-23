@@ -5,6 +5,8 @@
 
 source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
 
+task "Cleaning up..."
+
 if is_macos
     set APPS /Applications/GarageBand.app
     set HAS_APP false
@@ -33,4 +35,4 @@ rm -f "$HOME/.local/bin/chezmoi"
 rm -rf "$HOME/.bash*"
 rm -f "$HOME/.sudo_as_admin_successful"
 
-success "Finished clean up."
+echo

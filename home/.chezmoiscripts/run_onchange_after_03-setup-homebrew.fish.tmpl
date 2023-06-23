@@ -19,12 +19,16 @@ if ensure_homebrew
     set brewfile $HOME/.config/Brewfile
     set log $HOME/.cache/brewfile.log
 
+    task "Homebrew Packages 🍺"
+
     if test -f $brewfile
 
         command brew bundle --no-lock --no-upgrade --file=$brewfile >$log 2>&1 &
-        await "Installing Homebrew Packages 🍺"
+        await "Installing..."
 
     else
         warn "No Brewfile found, skipping Homebrew package installation."
     end
+
+    echo
 end

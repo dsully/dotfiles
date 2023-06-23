@@ -26,11 +26,11 @@ function add_pam_line
 
     sudo sed -i.bak -e "s|$FIRST_LINE|$FIRST_LINE\n$PAM_LINE|" $PAM_FILE
     sudo rm $PAM_FILE.bak
-
-    success "$TITLE is setup."
 end
 
 if is_macos
+    task "macOS TouchID for sudo"
+
     has_brew
 
     if test -z $BREW_PREFIX
@@ -47,4 +47,5 @@ if is_macos
     add_pam_line "auth       sufficient     pam_tid.so" "TouchID for sudo."
     add_pam_line "auth       optional       $PAM_REATTACH" "PAM Re-attach."
 
+    echo
 end

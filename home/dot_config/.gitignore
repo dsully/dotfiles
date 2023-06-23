@@ -1,9 +1,0 @@
-direnv/allow
-fish/fish_plugins
-fish/fish_variables
-op/
-raycast/
-syncthing
-systemd/user/*.wants
-systemd/user/stash.service
-zellij/auto
