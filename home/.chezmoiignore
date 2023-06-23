@@ -6,7 +6,8 @@
 .android
 .bashrc
 .cache/
-.cargo/
+!.cargo/config.toml
+.cargo/*/
 .checkip/
 .config/auth0/
 .config/beets/library.db
@@ -33,8 +34,7 @@
 .docker/
 .dotnet/
 .erg/
-.fabric_definitions_v2
-.fabric_definitions_v3
+.fabric*
 .fonts/
 .gradle/
 .hushlogin
