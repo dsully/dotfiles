@@ -56,7 +56,8 @@
 .rnd
 .ruff_cache/
 .rustup/
-.rye/
+!.rye/config.toml
+.rye/*/
 .shiv
 .skipbuddy
 .sqlite_history
@@ -90,8 +91,9 @@ key.txt.age
 Applications/
 Desktop/
 Documents/
-Library/
 Downloads/
+!Library/LaunchAgents/localhost.*
+Library/
 Mounts/
 Movies/
 Music/

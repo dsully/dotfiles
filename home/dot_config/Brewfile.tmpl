@@ -99,9 +99,9 @@ brew "mysql@5.7"
 brew "openjdk"
 brew "openjdk@11"
 brew "openjdk@17"
-{{ end }}
+{{- end -}}
 {{/* */}}
-{{ if eq .chezmoi.os "darwin" }}
+{{- if eq .chezmoi.os "darwin" -}}
 {{ comment "" "#" }}
 {{ comment "# " "macOS Only" }}
 brew "caarlos0/tap/xdg-open-svc"
@@ -114,7 +114,7 @@ brew "pam-reattach"
 brew "telnet"
 {{- end }}
 {{/* */}}
-{{- if .flags.personal -}}
+{{- if .flags.personal }}
 {{ comment "" "#" }}
 {{ comment "# " "Personal macOS Only" }}
 cask "airflow"
@@ -122,7 +122,7 @@ cask "batteries"
 cask "macdive"
 cask "mullvadvpn"
 cask "soulseek"
-{{- end -}}
+{{ end }}
 {{/* */}}
 {{- if eq .chezmoi.os "darwin" -}}
 {{ comment "" "#" }}
@@ -243,10 +243,10 @@ mas "WiFi Signal", id: 525912054
 mas "WireGuard", id: 1451685025
 mas "WordService", id: 899972312
 mas "Yoink", id: 457622435
-{{ if ne .chezmoi.chassis "laptop" -}}
+{{ if eq .chezmoi.hostname "dsully-md1" "jarvis" -}}
 mas "iMovie", id: 408981434
+{{- end }}
 mas "iPreview", id: 1519213509
-{{- end -}}
 {{/* */}}
 {{- if .flags.personal -}}
 {{ comment "" "#" }}

@@ -1,0 +1,7 @@
+# vim:ft=toml
+{{ if lookPath "sccache" }}
+[build]
+rustc-wrapper = "sccache"
+{{ end }}
+[net]
+git-fetch-with-cli = true
