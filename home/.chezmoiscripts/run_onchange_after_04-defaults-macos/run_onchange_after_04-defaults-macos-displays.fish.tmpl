@@ -16,15 +16,9 @@ function displays
 
     # Disable automatically adjust brightness
     sudo defaults write /Library/Preferences/com.apple.iokit.AmbientLightSensor "Automatic Display Enabled" -bool false
-
-    killall cfprefsd SystemUIServer >/dev/null 2>&1
 end
 
 if is_macos
     sudo -v
-
-    # Close any open System Preferences panes, to prevent them from overriding settings we’re about to change
-    command osascript -e 'tell application "System Preferences" to quit' >/dev/null 2>&1
-
     displays
 end

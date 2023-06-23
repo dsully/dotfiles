@@ -20,8 +20,5 @@ function activity_monitor
 end
 
 if is_macos
-    # Close any open System Preferences panes, to prevent them from overriding settings we’re about to change
-    command osascript -e 'tell application "System Preferences" to quit' >/dev/null 2>&1
-
     activity_monitor
 end

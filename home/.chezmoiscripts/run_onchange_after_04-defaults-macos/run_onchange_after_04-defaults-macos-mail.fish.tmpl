@@ -17,8 +17,6 @@ function mail
     # Disable send and reply animations in Mail.app
     defaults write com.apple.Mail DisableReplyAnimations -bool true
     defaults write com.apple.Mail DisableSendAnimations -bool true
-
-    killall Mail >/dev/null 2>&1
 end
 
 if is_macos

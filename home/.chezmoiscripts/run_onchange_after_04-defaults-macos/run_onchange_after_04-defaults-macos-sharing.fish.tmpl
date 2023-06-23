@@ -17,8 +17,6 @@ function sharing
 
     # Enable NTP
     systemsetup -setusingnetworktime on &>/dev/null
-
-    killall cfprefsd Finder SystemUIServer >/dev/null 2>&1
 end
 
 if is_macos

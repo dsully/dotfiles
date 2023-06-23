@@ -13,8 +13,6 @@ function siri
 
     # "disable" Show Siri in menu bar
     defaults write com.apple.Siri StatusMenuVisible -bool false
-
-    killall cfprefsd SystemUIServer >/dev/null 2>&1
 end
 
 if is_macos
