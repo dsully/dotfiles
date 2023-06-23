@@ -14,19 +14,12 @@ set -gx LANG en_US.UTF-8
 
 set fish_greeting ''
 
-fish_add_path --append -g \
+fish_add_path -g \
     "$HOME/.cargo/bin" \
     "$HOME/.local/bin" \
     "$HOME/.local/go/bin" \
     "$HOME/.local/share/nvim/mason/bin" \
-    "$HOME/.volta/bin" \
-    /Library/Apple/usr/bin
-
-# Set maxfiles limits higher.
-switch $OS
-    case Darwin
-        ulimit -n 131072
-end
+    "$HOME/.volta/bin"
 
 if status is-interactive
 
