@@ -1,3 +1,5 @@
+# vim:ft=gitconfig
+
 [user]
   name = Dan Sully
   useConfigOnly = true
@@ -21,15 +23,15 @@
     dc = diff --cached
     last = log -1 HEAD
     unstage = reset HEAD --
+{{ if lookPath "gh" }}
+    # https://hachyderm.io/@nedbat/109426516519513998
+    actions = "!f() { gh run list --branch $(git rev-parse --abbrev-ref HEAD); }; f"
 
     # Browse the repository on GitHub.
     browse = "!gh repo view --web"
-
+{{ end }}
     # Check out a pull request.
     pr = "!f() { git fetch -fu ${2:-origin} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
-    #
-    # https://hachyderm.io/@nedbat/109426516519513998
-    actions = "!f() { gh run list --branch $(git rev-parse --abbrev-ref HEAD); }; f"
 
     # Switch to a branch, creating it if necessary.
     br = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
@@ -43,23 +45,28 @@
 
     # Show the user email for the current repository.
     whoami = config user.email
+
 [advice]
     skippedCherryPicks = false
+
 [branch]
     autosetupmerge = true
     autosetuprebase = always
 
     # Show most recently changed branches first.
     sort = -committerdate
+
 [color]
     branch = auto
     interactive = auto
     status = auto
     ui = true
+
 [core]
     trustctime = false
+{{ if lookPath "diff-so-fancy" }}
     pager = diff-so-fancy | /usr/bin/less --tabs=4 -RFX
-
+{{ end }}
     # Make `git rebase` safer on macOS.
     # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
     trustctime = false
@@ -71,20 +78,30 @@
     navigate = true  # use n and N to move between diff sections
     noprefix = true
     renames = copies # Detect copies as well as renames.
+
+{{ if lookPath "git-dive" -}}
 [dive]
     theme = Nord
+{{ end }}
+
+{{ if lookPath "git-lfs" -}}
 [filter "lfs"]
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
     clean = git-lfs clean -- %f
+{{ end }}
+
 [help]
     # Automatically correct and execute mistyped commands.
     autocorrect = immediate
+
 [push]
     default = current
     autoSetupRemote = true
+
 [rebase]
     autosquash = true
+
 [status]
     relativePaths = true
