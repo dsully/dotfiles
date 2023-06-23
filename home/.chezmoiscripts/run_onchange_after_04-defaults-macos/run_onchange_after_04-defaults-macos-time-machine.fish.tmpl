@@ -1,0 +1,27 @@
+#!{{ lookPath "fish" }}
+
+# vim:ft=fish
+
+set CHEZMOI_SOURCE_DIR (chezmoi source-path)
+source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+
+function time_machine
+    sub_task "Time Machine"
+
+    # Prevent Time Machine from prompting to use new hard drives as backup volume.
+    defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
+
+    # Disable local Time Machine backups
+    sudo defaults write /Library/Preferences/com.apple.TimeMachine MobileBackups -bool false
+    sudo defaults write /Library/Preferences/com.apple.TimeMachine AutoBackup -bool false
+    sudo tmutil disable
+end
+
+if is_macos
+    sudo -v
+
+    # Close any open System Preferences panes, to prevent them from overriding settings we’re about to change
+    command osascript -e 'tell application "System Preferences" to quit' >/dev/null 2>&1
+
+    time_machine
+end

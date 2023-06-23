@@ -1,0 +1,41 @@
+#!{{ lookPath "fish" }}
+
+# vim:ft=fish
+
+set CHEZMOI_SOURCE_DIR (chezmoi source-path)
+source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+
+function security
+    sub_task Security
+
+    # GateKeeper: Enable app store and identified developers
+    sudo spctl --master-enable
+    sudo spctl --enable
+
+    # Turn on the firewall
+    sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 1
+
+    # Disable stealth mode
+    sudo defaults write /Library/Preferences/com.apple.alf stealthenabled -int 0
+
+    # Allow signed apps.
+    sudo defaults write /Library/Preferences/com.apple.alf allowsignedenabled -int 1
+
+    # Disable sending diagnostics data to apple
+    defaults write "/Library/Application Support/CrashReporter/DiagnosticMessagesHistory.plist" AutoSubmit -bool false
+    defaults write "/Library/Application Support/CrashReporter/DiagnosticMessagesHistory.plist" SeedAutoSubmit -bool false
+    defaults write "/Library/Application Support/CrashReporter/DiagnosticMessagesHistory.plist" AutoSubmitVersion -integer 4
+
+    # Disable sending diagnostics data to developers
+    defaults write "/Library/Application Support/CrashReporter/DiagnosticMessagesHistory.plist" ThirdPartyDataSubmit -bool false
+    defaults write "/Library/Application Support/CrashReporter/DiagnosticMessagesHistory.plist" ThirdPartyDataSubmitVersion -integer 4
+
+    # Ignore ARD as the following discussion to fix the sudo with touch ID in the terminal:
+    # https://apple.stackexchange.com/questions/411497/pam-tid-so-asks-for-password-instead-of-requesting-for-fingerprint-when-docked
+    defaults write com.apple.security.authorization ignoreArd -bool TRUE
+end
+
+if is_macos
+    sudo -v
+    security
+end

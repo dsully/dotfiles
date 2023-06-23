@@ -1,0 +1,157 @@
+#!{{ lookPath "fish" }}
+
+# vim:ft=fish
+
+set CHEZMOI_SOURCE_DIR (chezmoi source-path)
+source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+
+function safari
+    sub_task Safari
+
+    # Safari opens with: "All windows from last sessions"
+    defaults write com.apple.Safari AlwaysRestoreSessionAtLaunch -bool true
+
+    # Disable the standard delay in rendering a Web page.
+    defaults write com.apple.Safari WebKitInitialTimedLayoutDelay 0.25
+
+    # Hide Safari's bookmarks bar by default
+    defaults write com.apple.Safari ShowFavoritesBar -bool false
+
+    # Hide Safari's sidebar in Top Sites
+    defaults write com.apple.Safari ShowSidebarInTopSites -bool false
+
+    # Enabling Safari's debug menu
+    defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+
+    # Disable Safari notifications
+    defaults write com.apple.Safari CanPromptForPushNotifications -bool false
+
+    # Disable Safari’s thumbnail cache for History and Top Sites
+    defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
+
+    # Enable continuous spellchecking
+    defaults write com.apple.Safari WebContinuousSpellCheckingEnabled -bool true
+
+    # Disable auto-correct
+    defaults write com.apple.Safari WebAutomaticSpellingCorrectionEnabled -bool false
+
+    # Disable AutoFill
+    defaults write com.apple.Safari AutoFillFromAddressBook -bool false
+    defaults write com.apple.Safari AutoFillPasswords -bool false
+    defaults write com.apple.Safari AutoFillCreditCardData -bool false
+    defaults write com.apple.Safari AutoFillMiscellaneousForms -bool false
+
+    # Warn about fraudulent websites
+    defaults write com.apple.Safari WarnAboutFraudulentWebsites -bool true
+
+    # Disable Java
+    defaults write com.apple.Safari WebKitJavaEnabled -bool false
+    defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabled -bool false
+    defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabledForLocalFiles -bool false
+
+    # Remove preference pane which is just a symlink into Internet-Plugins
+    sudo rm -f /Library/PreferencePanes/JavaControlPanel.prefPane
+
+    # Remove Application support that is just symlinks into Internet-Plugins +
+    # highest installed Oracle Java version in a file for Preference Pane checks
+    # (that we just removed). Check carefully if you have anything else. I had
+    # just Java subdirectory under Oracle and just the symlinks + file as
+    # described above, so I could remove the whole Oracle directory.
+    sudo rm -rf /Library/Application\ Support/Oracle
+
+    # Remove the plugin itself
+    sudo rm -rf /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin
+
+    # Enable "Do Not Track"
+    defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
+
+    # Making Safari's search banners default to Contains instead of Starts With
+    defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
+
+    # Removing useless icons from Safari's bookmarks bar
+    defaults write com.apple.Safari ProxiesInBookmarksBar "()"
+
+    # Allow hitting the Backspace key to go to the previous page in history
+    # defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool true
+
+    # Enabling the Develop menu and the Web Inspector in Safari
+    defaults write com.apple.Safari IncludeDevelopMenu -bool true
+    defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
+    defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -bool true
+
+    # Show the full URL in the address bar (note: this still hides the scheme)
+    defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
+
+    # Set Safari’s home page to the favorites page.
+    # defaults write com.apple.Safari HomePage -string "favorites://"
+    defaults write com.apple.Safari HomePage -string "https://sully.org/dan/start/"
+
+    # New windows open with: "Homepage"
+    defaults write com.apple.Safari NewWindowBehavior -int 0
+
+    # New tabs open with: "Homepage"
+    defaults write com.apple.Safari NewTabBehavior -int 0
+
+    # Disable Preload Top Hit in the background
+    defaults write com.apple.Safari PreloadTopHit -bool false
+
+    # Disable Save articles for offline reading automatically
+    defaults write com.apple.Safari ReadingListSaveArticlesOfflineAutomatically -bool false
+
+    # Disable Include search engine suggestions
+    # defaults write com.apple.Safari SuppressSearchSuggestions -bool true
+
+    # Disable Include Safari Suggestions
+    defaults write com.apple.Safari UniversalSearchEnabled -bool false
+
+    # Disable Enable Quick Website Search
+    defaults write com.apple.Safari WebsiteSpecificSearchEnabled -bool false
+
+    # Disable Warn when visiting a fraudulent website
+    defaults write com.apple.Safari WarnAboutFraudulentWebsites -bool false
+
+    # Prevent Safari from opening ‘safe’ files automatically after downloading
+    defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
+
+    # Press Tab to highlight each item on a web page
+    defaults write com.apple.Safari WebKitTabToLinksPreferenceKey -bool true
+    defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2TabsToLinks -bool true
+
+    # Remove downloads list items
+    # 0 = manually
+    # 1 = when safari quits
+    # 2 = upon successful download
+    # 3 = after on day
+    defaults write com.apple.Safari DownloadsClearingPolicy -int 2
+
+    # Show icons in tabs
+    defaults write com.apple.Safari ShowIconsInTabs -bool true
+
+    # Command-clicking a link creates tabs
+    defaults write com.apple.Safari CommandClickMakesTabs -bool true
+
+    # Make new tabs open in foreground
+    defaults write com.apple.Safari OpenNewTabsInFront -bool false
+
+    # Command + 1 through 9 switches tabs
+    defaults write com.apple.Safari Command1Through9SwitchesTabs -bool false
+
+    # Try to prevent cross-site tracking
+    defaults write com.apple.Safari WebKitStorageBlockingPolicy -int 1
+
+    # Allow websites to check if ApplePay is enabled
+    defaults write com.apple.Safari WebKitPreferences.applePayCapabilityDisclosureAllowed -bool true
+
+    # Enable Extensions
+    defaults write com.apple.Safari ExtensionsEnabled -bool true
+
+    # Disable hyperlink auditing / tracking
+    defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2HyperlinkAuditingEnabled -bool false
+
+    killall Safari >/dev/null 2>&1
+end
+
+if is_macos
+    sudo -v
+    safari
+end

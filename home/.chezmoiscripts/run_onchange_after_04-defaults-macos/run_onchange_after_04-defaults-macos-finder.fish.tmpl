@@ -1,0 +1,114 @@
+#!{{ lookPath "fish" }}
+
+# vim:ft=fish
+
+set CHEZMOI_SOURCE_DIR (chezmoi source-path)
+source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+
+function finder
+    sub_task Finder
+
+    function plist-set-or-add
+        if not command /usr/libexec/PlistBuddy -c "Set $argv[1]" $argv[2..-1]
+
+            if not command /usr/libexec/PlistBuddy -c "Add $argv[1]" $argv[2..-1]
+
+                error "Unable to set or add plist with args: $argv"
+            end
+        end
+    end
+
+    # Force the Finder to gather all metadata first
+    defaults write com.apple.desktopservices UseBareEnumeration -bool true
+
+    # Avoid creation of .DS_Store files on network volumes.
+    # defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
+    # Disable Finder animations.
+    defaults write com.apple.finder DisableAllAnimations -bool true
+
+    # Finder > Preferences > Show warning before changing an extension
+    defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+    # Finder > Preferences > Show warning before removing from iCloud Drive
+    defaults write com.apple.finder FXEnableRemoveFromICloudDriveWarning -bool false
+
+    # Finder > View > As List
+    defaults write com.apple.finder FXPreferredViewStyle -string Nlsv
+
+    # Show icons for hard drives, servers, and removable media on the desktop.
+    defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+    defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
+    defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
+    defaults write com.apple.finder ShowMountedServersOnDesktop -bool false
+
+    # Set ~ as the default location for new Finder windows
+    defaults write com.apple.finder NewWindowTarget -string PfHm
+    defaults write com.apple.finder NewWindowTargetIsHome -bool true
+
+    # When performing a search, search the current folder by default
+    defaults write com.apple.finder FXDefaultSearchScope -string SCcf
+
+    # Expand the following File Info panes: "General", "Open with", and "Sharing & Permissions"
+    defaults write com.apple.finder FXInfoPanesExpanded -dict \
+        General -bool true \
+        OpenWith -bool true \
+        Privileges -bool true
+
+    # Sort folders on top
+    defaults write com.apple.finder _FXSortFoldersFirst -bool false
+
+    # Disable sidebar: Recent Tags
+    defaults write com.apple.finder ShowRecentTags -bool false
+
+    # Open folders in new Finder windows instead of tabs
+    defaults write com.apple.finder FinderSpawnTab -bool false
+
+    # Set the screenshot location:
+    defaults write com.apple.screencapture location "~/Library/Mobile Documents/com~apple~CloudDocs/Screenshots"
+
+    # Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
+    defaults write com.apple.screencapture type -string png
+
+    # Sort icon views by name
+    plist-set-or-add ":DesktopViewSettings:IconViewSettings:arrangeBy name" ~/Library/Preferences/com.apple.finder.plist
+    plist-set-or-add ":FK_StandardViewSettings:IconViewSettings:arrangeBy name" ~/Library/Preferences/com.apple.finder.plist
+    plist-set-or-add ":StandardViewSettings:IconViewSettings:arrangeBy name" ~/Library/Preferences/com.apple.finder.plist
+
+    # Show item info in icon views
+    plist-set-or-add ":DesktopViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
+    plist-set-or-add ":FK_StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
+    plist-set-or-add ":StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
+
+    # Minimize grid spacing in icon views
+    plist-set-or-add ":DesktopViewSettings:IconViewSettings:gridSpacing 1" ~/Library/Preferences/com.apple.finder.plist
+    plist-set-or-add ":FK_StandardViewSettings:IconViewSettings:gridSpacing 1" ~/Library/Preferences/com.apple.finder.plist
+    plist-set-or-add ":StandardViewSettings:IconViewSettings:gridSpacing 1" ~/Library/Preferences/com.apple.finder.plist
+
+    # Set the icon size in icon views
+    plist-set-or-add ":DesktopViewSettings:IconViewSettings:iconSize 64" ~/Library/Preferences/com.apple.finder.plist
+    plist-set-or-add ":FK_StandardViewSettings:IconViewSettings:iconSize 64" ~/Library/Preferences/com.apple.finder.plist
+    plist-set-or-add ":StandardViewSettings:IconViewSettings:iconSize 64" ~/Library/Preferences/com.apple.finder.plist
+
+    # Hide the export partition on work machines.
+    if test -d /export
+        sudo /usr/bin/setfile -a V /export
+    end
+
+    # Show the ~/Library folder
+    chflags nohidden ~/Library
+
+    # Show the /Volumes folder
+    sudo chflags nohidden /Volumes
+
+    killall cfprefsd Dock Finder SystemUIServer >/dev/null 2>&1
+end
+
+if is_macos
+    sudo -v
+
+    # Close any open System Preferences panes, to prevent them from overriding settings we’re about to change
+    command osascript -e 'tell application "System Preferences" to quit' >/dev/null 2>&1
+
+    finder
+end

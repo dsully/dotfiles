@@ -1,0 +1,27 @@
+#!{{ lookPath "fish" }}
+
+# vim:ft=fish
+
+set CHEZMOI_SOURCE_DIR (chezmoi source-path)
+source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+
+function menu_bar
+    sub_task "Menu Bar"
+
+    # Disable the flag / keyboard icon.
+    defaults write com.apple.TextInputMenu visible -bool false
+
+    # Disable menu bar transparency
+    defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
+
+    defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.appleuser" -bool false
+    defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.clock" -bool false
+    defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.bluetooth" -bool true
+    defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.volume" -bool false
+
+    killall cfprefsd Dock SystemUIServer >/dev/null 2>&1
+end
+
+if is_macos
+    menu_bar
+end

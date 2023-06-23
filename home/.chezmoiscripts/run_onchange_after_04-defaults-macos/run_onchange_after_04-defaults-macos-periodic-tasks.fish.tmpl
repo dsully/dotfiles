@@ -1,0 +1,19 @@
+#!{{ lookPath "fish" }}
+
+# vim:ft=fish
+
+set CHEZMOI_SOURCE_DIR (chezmoi source-path)
+source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+
+function periodic_tasks
+    sub_task "Periodic Tasks"
+
+    # TODO: Move to launchd?
+    # (crontab -l || true; echo "0 * * * * ~/.cargo/bin/lolcate --all --update > /dev/null 2>&1") | crontab
+    # (crontab -l || true; echo "# iCal Sucks\n@hourly /usr/bin/pkill -9 CalendarAgent") | crontab
+    # (crontab -l || true; echo "# iCal Sucks\n@hourly /usr/bin/pkill -9 exchangesyncd") | crontab
+end
+
+if is_macos
+    periodic_tasks
+end

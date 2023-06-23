@@ -1,0 +1,15 @@
+#!{{ lookPath "fish" }}
+
+# vim:ft=fish
+
+set CHEZMOI_SOURCE_DIR (chezmoi source-path)
+source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+
+function xcode
+    # Disable Xcode Cloud up-sell
+    defaults write com.apple.dt.Xcode XcodeCloudUpsellPromptEnabled -bool false
+end
+
+if is_macos
+    xcode
+end

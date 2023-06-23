@@ -1,0 +1,45 @@
+#!{{ lookPath "fish" }}
+
+# vim:ft=fish
+
+set CHEZMOI_SOURCE_DIR (chezmoi source-path)
+source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+
+function energy_and_sleep
+    sub_task "Energy & Sleep"
+
+    # Sleep the computer after 15 minutes.
+    sudo systemsetup -setcomputersleep 15 >/dev/null 2>&1
+
+    # Restart on power failure
+    systemsetup -setrestartpowerfailure on &>/dev/null
+
+    # Restart on freeze
+    systemsetup -setrestartfreeze on &>/dev/null
+
+    # Disable hibernation (speeds up entering sleep mode)
+    sudo pmset -a hibernatemode 0 &>/dev/null
+
+    # Remove the sleep image file to save disk space
+    if test -e /private/var/vm/sleepimage
+        sudo rm -f /private/var/vm/sleepimage
+
+        # Create a zero-byte file instead...
+        sudo touch /private/var/vm/sleepimage
+
+        # ...and make sure it can’t be rewritten
+        sudo chflags uchg /private/var/vm/sleepimage
+    end
+
+    # Disable the sudden motion sensor as it’s not useful for SSDs
+    sudo pmset -a sms 0 &>/dev/null
+end
+
+if is_macos
+    sudo -v
+
+    # Close any open System Preferences panes, to prevent them from overriding settings we’re about to change
+    command osascript -e 'tell application "System Preferences" to quit' >/dev/null 2>&1
+
+    energy_and_sleep
+end

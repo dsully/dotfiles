@@ -1,0 +1,22 @@
+#!{{ lookPath "fish" }}
+
+# vim:ft=fish
+
+set CHEZMOI_SOURCE_DIR (chezmoi source-path)
+source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+
+function siri
+    sub_task Siri
+
+    # "disable" Enable Ask Siri
+    defaults write com.apple.assistant.support "Assistant Enabled" -bool false
+
+    # "disable" Show Siri in menu bar
+    defaults write com.apple.Siri StatusMenuVisible -bool false
+
+    killall cfprefsd SystemUIServer >/dev/null 2>&1
+end
+
+if is_macos
+    siri
+end
