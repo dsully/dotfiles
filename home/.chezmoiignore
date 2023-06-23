@@ -96,6 +96,7 @@ Mounts/
 Movies/
 Music/
 Pictures/
+Public/
 Stuff/
 {{- end }}
 
