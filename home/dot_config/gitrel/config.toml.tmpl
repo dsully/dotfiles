@@ -2,46 +2,46 @@
 #
 [checkip]
 {{- if eq .chezmoi.os "linux" }}
-asset_re = 'linux_amd64'
+asset_re = "linux_amd64"
 {{- else }}
-asset_re = 'darwin'
+asset_re = "darwin"
 {{- end }}
-bin_name = 'checkip'
-repo = 'checkip'
-requested = '*'
-tag = '*'
-user = 'jreisinger'
+bin_name = "checkip"
+repo = "checkip"
+requested = "*"
+tag = "*"
+user = "jreisinger"
 
 [cyme]
 {{- if eq .chezmoi.os "linux" }}
-asset_re = 'x86_64-unknown-linux'
+asset_re = "x86_64-unknown-linux"
 {{- else }}
-asset_re = 'darwin'
+asset_re = "darwin"
 {{- end }}
-bin_name = 'cyme'
-repo = 'cyme'
-requested = '*'
-tag = '*'
-user = 'tuna-f1sh'
+bin_name = "cyme"
+repo = "cyme"
+requested = "*"
+tag = "*"
+user = "tuna-f1sh"
 
 [diff-so-fancy]
-asset_re = '^diff-so-fancy$'
-bin_name = 'diff-so-fancy'
-repo = 'diff-so-fancy'
-requested = '*'
-tag = '*'
-user = 'so-fancy'
+asset_re = "^diff-so-fancy$"
+bin_name = "diff-so-fancy"
+repo = "diff-so-fancy"
+requested = "*"
+tag = "*"
+user = "so-fancy"
 
 [gdrive]
 {{- if eq .chezmoi.os "linux" }}
-asset_re = 'linux'
+asset_re = "linux"
 {{- else }}
-asset_re = 'macos'
+asset_re = "macos"
 {{- end }}
 bin_name = "gdrive"
 repo = "gdrive"
 requested = "*"
-tag = '*'
+tag = "*"
 user = "glotlabs"
 
 [q]
@@ -55,5 +55,5 @@ asset_re = "darwin_amd64"
 {{- end }}
 repo = "q"
 requested = "*"
-tag = '*'
+tag = "*"
 user = "natesales"
