@@ -24,13 +24,6 @@ if status is-interactive
         set -gx HOMEBREW_NO_COMPAT 1
         set -gx HOMEBREW_NO_ENV_HINTS 1
 
-        # Tell build tools about our special prefix
-        if test $HOMEBREW_PREFIX != /usr/local
-            set -gx CFLAGS -I$HOMEBREW_PREFIX/include
-            set -gx CPPFLAGS -I$HOMEBREW_PREFIX/include
-            set -gx LDFLAGS -L$HOMEBREW_PREFIX/lib
-        end
-
         # https://github.com/Homebrew/homebrew-command-not-found
         builtin source $HOMEBREW_PREFIX/Library/Taps/homebrew/homebrew-command-not-found/handler.fish 2>/dev/null
 

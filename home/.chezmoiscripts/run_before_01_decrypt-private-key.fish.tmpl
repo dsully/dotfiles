@@ -3,15 +3,40 @@
 # vim:ft=fish
 # https://www.chezmoi.io/user-guide/frequently-asked-questions/encryption/
 
+set CHEZMOI_SOURCE_DIR (chezmoi source-path)
 source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+
+has_brew
 
 set CHEZMOI_DST "$HOME/.config/chezmoi"
 set CHEZMOI_KEY "$CHEZMOI_DST/key.txt"
+set DOAS_CONF "/etc/doas.conf"
+set AGE $HOMEBREW_PREFIX/bin/age
 
-if not test -f $CHEZMOI_KEY
-    brew
+if not set -q CHEZMOI_WORKING_TREE
+    set CHEZMOI_WORKING_TREE "$CHEZMOI_SOURCE_DIR/.."
+end
+
+# {{ $key_hash := include (joinPath .chezmoi.workingTree ".data/key.txt.age") | sha256sum }}
+# {{ $doas_hash := include (joinPath .chezmoi.workingTree ".data/doas.conf.age") | sha256sum }}
+
+if not set -q chezmoi_key_hash; or test "$chezmoi_key_hash" != {{ $key_hash }}
+    start "Decrytping chezmoi key."
 
     mkdir -p $CHEZMOI_DST
-    command age --decrypt --output $CHEZMOI_KEY "$CHEZMOI_WORKING_TREE/.data/key.txt.age"
+    command $AGE --decrypt --output $CHEZMOI_KEY "$CHEZMOI_WORKING_TREE/.data/key.txt.age"
     chmod 600 $CHEZMOI_KEY
+
+    set -U chezmoi_key_hash {{ $key_hash }}
+end
+
+if not set -q doas_conf_hash; or test "$doas_conf_hash" != {{ $doas_hash }}
+
+    if is_linux
+        start "Decrytping /etc/doas.conf"
+
+        command sudo $AGE --decrypt --identity $CHEZMOI_KEY --output $DOAS_CONF "$CHEZMOI_WORKING_TREE/.data/doas.conf.age"
+
+        set -U doas_conf_hash {{ $doas_hash }}
+    end
 end
