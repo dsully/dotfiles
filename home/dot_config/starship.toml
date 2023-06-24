@@ -5,7 +5,7 @@
 add_newline = false
 
 format = '''
-${custom.username}($hostname)\[$directory\] (\($golang$lua$python$rust$git_branch $git_status\))
+${custom.username}($hostname)\[$directory\] (\($golang$lua$python$rust$git_branch$git_status\))
 $character'''
 
 # Replace the '❯' symbol in the prompt with '➜'
@@ -76,7 +76,7 @@ symbol = ""
 
 [git_status]
 disabled = false
-format = "[$staged$modified]($style)"
+format = "[( $staged$modified)]($style)"
 modified = "*"
 staged = "+"
 style = "white"
