@@ -24,8 +24,11 @@
 .config/fish/fish_history
 .config/fish/fish_variables
 .config/gitrel/state.json
+.config/libvirt
 .config/lolcate/*/db.lz4
 .config/matplotlib
+.config/op
+.config/syncthing
 .config/zellij/auto
 .cups/
 .cursor-tutor/
@@ -36,6 +39,7 @@
 .erg/
 .fabric*
 .fonts/
+.gnupg
 .gradle/
 .hushlogin
 .ipython
@@ -44,7 +48,10 @@
 .lemminx/
 .lesshst
 .lipki
-.local/*/
+# For pbcopy, etc on Linux below.
+.local/*
+!.local/bin
+.local/bin/*
 .luarocks/
 .midgard
 .mint
@@ -84,7 +91,6 @@ key.txt.age
 .config/libvirt/
 .config/op/
 .config/raycast/
-.config/syncthing/
 .config/systemd/
 .proxyman/
 .proxyman-data/
@@ -111,6 +117,9 @@ Stuff/
 .config/cni/net.d/cni.lock
 .config/kitty/
 .config/systemd/user/default.*
+.config/systemd/user/multi-user.target.wants
+.config/vopono/locks/
+.config/vopono/mv/
 .config/wezterm/
 !.local/bin/pbcopy
 !.local/bin/pbpaste
@@ -120,9 +129,7 @@ Stuff/
 .selected_editor
 {{- end }}
 
-{{- if ne .chezmoi.hostname "server" }}
-.config/beets/config.yaml
-.config/beets/discogs_token.json
+{{- if eq .chezmoi.hostname "server" }}
 .scrypted/
 .stash/
 {{- end }}
