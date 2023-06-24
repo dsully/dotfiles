@@ -5,7 +5,7 @@
 add_newline = false
 
 format = '''
-${custom.username}($hostname)\[$directory\]($golang)($lua)($python)($rust) (\($git_branch $git_status\))
+${custom.username}($hostname)\[$directory\] (\($golang$lua$python$rust$git_branch $git_status\))
 $character'''
 
 # Replace the '❯' symbol in the prompt with '➜'
@@ -82,7 +82,7 @@ staged = "+"
 style = "white"
 
 [golang]
-format = '[$symbol]($style)'
+format = '[$symbol]($style) '
 symbol = '󰟓' # 
 
 [hostname]
@@ -90,15 +90,15 @@ format = '[$hostname](bold white):'
 ssh_only = true
 
 [lua]
-format = '[$symbol]($style)'
+format = '[$symbol]($style) '
 symbol = '󰢱'
 
 [python]
-format = '[$symbol]($style)'
+format = '[$symbol]($style) '
 symbol = '󰌠'
 
 [rust]
-format = '[$symbol]($style)'
+format = '[$symbol]($style) '
 symbol = '󱘗'
 
 # [username]
