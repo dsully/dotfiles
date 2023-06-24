@@ -51,9 +51,9 @@ install_homebrew() {
 install_package() {
     package="$1"
 
-    if ! command_exists $package; then
+    if ! command_exists "$package"; then
         start "Installing $package from Homebrew."
-        $BREW install -q $package
+        $BREW install -q "$package" >/dev/null 2>&1
     fi
 }
 

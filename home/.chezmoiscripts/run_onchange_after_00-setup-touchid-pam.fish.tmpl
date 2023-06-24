@@ -41,7 +41,7 @@ if is_macos
 
     if not test -e $PAM_REATTACH
         start "Installing pam_reattach"
-        brew install pam-reattach
+        brew install -q pam-reattach /dev/null 2>&1
     end
 
     add_pam_line "auth       sufficient     pam_tid.so" "TouchID for sudo."
