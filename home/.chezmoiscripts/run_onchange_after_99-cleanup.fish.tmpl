@@ -23,7 +23,7 @@ if is_macos
         start "Removing unwanted apps.."
 
         for app in $APPS
-            info "Removing $app"
+            start "Removing $app"
             sudo rm -rf $app
         end
     end

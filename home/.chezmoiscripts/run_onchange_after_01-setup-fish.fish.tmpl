@@ -9,8 +9,8 @@ source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
 if test $SHELL != (command -v fish)
     start "Setting up Fish 🐠"
 
-    info "Changing default shell to fish"
-    chsh -s (command -v fish)
+    start "Changing default shell to fish"
+    sudo chsh -s (command -v fish) $USER
 end
 
 if type -q fisher; and test -s $HOME/.config/fish/fish_plugins
@@ -21,8 +21,6 @@ if type -q fisher; and test -s $HOME/.config/fish/fish_plugins
 
     if not set -q fish_plugins_hash; or test $fish_plugins_hash != {{ $hash }}
         start "Running 'fisher update' 🐠"
-
-        # mkdir -p $fisher_path/completions $fisher_path/functions
 
         fisher update >/dev/null 2>&1
 

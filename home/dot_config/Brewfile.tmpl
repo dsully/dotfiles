@@ -114,7 +114,7 @@ brew "pam-reattach"
 brew "telnet"
 {{- end }}
 {{/* */}}
-{{- if .flags.personal }}
+{{- if and (eq .chezmoi.os "darwin") .flags.personal -}}
 {{ comment "" "#" }}
 {{ comment "# " "Personal macOS Only" }}
 cask "airflow"
