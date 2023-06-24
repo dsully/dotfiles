@@ -1,6 +1,8 @@
+{{- if lookPath "checkip" -}}
 {{- if and .flags.decrypt (not .flags.ephemeral) -}}
 ---
-# vim:ft=yaml
+# vim:ft=gotmpl.yaml
 MAXMIND_LICENSE_KEY: {{ .checkip.maxmind }}
 URLSCAN_API_KEY: {{ .checkip.urlscan }}
+{{- end -}}
 {{- end -}}

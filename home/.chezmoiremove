@@ -34,8 +34,9 @@
 .config/topgrade
 .config/topgrade-sd.toml
 .config/wezterm/terminfo
-bin
+bin/*
+bin/
 
-{{- if (or (eq .chezmoi.os "linux") (.flags.personal)) -}}
+{{ if (or (eq .chezmoi.os "linux") (.flags.personal)) }}
 .ideavimrc
 {{- end }}

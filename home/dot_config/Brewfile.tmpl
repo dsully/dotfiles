@@ -1,8 +1,7 @@
 # vim:ft=ruby
+tap "develerik/tools"
 tap "homebrew/bundle"
 tap "homebrew/command-not-found"
-tap "develerik/tools"
-tap "natesales/repo", "https://github.com/natesales/repo"
 {{/* */}}
 {{- if eq .chezmoi.os "darwin" -}}
 {{ comment "" "#" }}
@@ -12,12 +11,11 @@ tap "he3-app/he3"
 tap "homebrew/cask-fonts"
 tap "homebrew/services"
 tap "rajiv/fastmate"
-tap "scullionw/tap" # dirstat-rs
-tap "tuna-f1sh/taps" # cyme
 {{- end -}}
 {{/* */}}
 {{ comment "" "#" }}
 {{ comment "# " "Common between Linux & macOS" }}
+brew "age"
 brew "b3sum"
 brew "bandwhich"
 brew "bat"
@@ -42,8 +40,8 @@ brew "git"
 brew "git-lfs"
 brew "git-quick-stats"
 brew "glow"
-brew "gping"
 brew "go"
+brew "gping"
 brew "helix"
 brew "hexyl"
 brew "hyperfine"
@@ -57,7 +55,6 @@ brew "lsd"
 brew "macchina"
 brew "moar"
 brew "mtr"
-brew "natesales/repo/q"
 brew "neovim"
 brew "nomino"
 brew "onefetch"
@@ -68,7 +65,6 @@ brew "rsync"
 brew "rustup-init"
 brew "rye"
 brew "sccache"
-brew "scullionw/tap/dirstat-rs"
 brew "sd"
 brew "sqlite"
 brew "starship"
@@ -76,7 +72,6 @@ brew "tokei"
 brew "topgrade"
 brew "tree"
 brew "tree-sitter"
-brew "tuna-f1sh/taps/cyme"
 brew "unar"
 brew "unzip"
 brew "vivid"
