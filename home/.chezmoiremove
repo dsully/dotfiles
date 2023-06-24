@@ -28,9 +28,12 @@
 .config/fish/functions/sd-update.fish
 .config/fish/functions/topgrade.fish
 .config/git/.gitignore
+.config/git/private
 .config/homebrew
+.config/install_release/**
 .config/lolcate/.gitignore
 .config/matplotlib
+.config/repos/**
 .config/topgrade
 .config/topgrade-sd.toml
 .config/wezterm/terminfo
