@@ -43,6 +43,10 @@
     # View abbreviated SHA, description, and history graph of the latest 20 commits.
     l = log --pretty=oneline -n 20 --graph --abbrev-commit
 
+    # https://stackoverflow.com/questions/1337320/how-to-grep-commits-based-on-a-certain-string
+    # Find in a commit or changed word.
+    find = "log -G"
+
     # Show the user email for the current repository.
     whoami = config user.email
 
