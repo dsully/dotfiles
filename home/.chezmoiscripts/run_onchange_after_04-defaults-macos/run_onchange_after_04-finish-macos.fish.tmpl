@@ -36,8 +36,9 @@ set CHEZMOI_SOURCE_DIR (chezmoi source-path)
 source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
 
 if is_macos
-    sudo -v
-    task "Setting macOS defaults"
+    sub_task "Restarting system services"
 
-    command osascript -e 'tell application "System Preferences" to quit' >/dev/null 2>&1
+    killall cfprefsd Dock Finder SystemUIServer >/dev/null 2>&1
+
+    echo
 end
