@@ -61,6 +61,10 @@ if type -q cargo
         set -a PACKAGES cargo-update
     end
 
+    if not type -q ds
+        set -a PACKAGES dirstat-rs
+    end
+
     # https://github.com/robiot/rustcat
     if not type -q rcat
         set -a PACKAGES rustcat

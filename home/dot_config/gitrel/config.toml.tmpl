@@ -1,20 +1,28 @@
-{{ if eq .chezmoi.hostname "gpu" }}
-[gdrive]
-bin_name = "gdrive"
-repo = "gdrive"
-requested = "*"
-tag = '*'
-user = "glotlabs"
-{{- end -}}
-
+# vim:ft=toml
+#
 [checkip]
-asset_re = 'darwin_amd64'
+{{- if eq .chezmoi.os "linux" }}
+asset_re = 'linux_amd64'
+{{- else }}
+asset_re = 'darwin'
+{{- end }}
 bin_name = 'checkip'
 repo = 'checkip'
 requested = '*'
-strip = true
 tag = '*'
 user = 'jreisinger'
+
+[cyme]
+{{- if eq .chezmoi.os "linux" }}
+asset_re = 'x86_64-unknown-linux'
+{{- else }}
+asset_re = 'darwin'
+{{- end }}
+bin_name = 'cyme'
+repo = 'cyme'
+requested = '*'
+tag = '*'
+user = 'tuna-f1sh'
 
 [diff-so-fancy]
 asset_re = '^diff-so-fancy$'
@@ -24,4 +32,28 @@ requested = '*'
 tag = '*'
 user = 'so-fancy'
 
-# vim:ft=toml
+[gdrive]
+{{- if eq .chezmoi.os "linux" }}
+asset_re = 'linux'
+{{- else }}
+asset_re = 'macos'
+{{- end }}
+bin_name = "gdrive"
+repo = "gdrive"
+requested = "*"
+tag = '*'
+user = "glotlabs"
+
+[q]
+bin_name = "q"
+{{- if eq .chezmoi.os "linux" }}
+asset_re = "linux_amd64.tar.gz"
+{{- else if .flags.applesilicon }}
+asset_re = "darwin_arm64"
+{{- else }}
+asset_re = "darwin_amd64"
+{{- end }}
+repo = "q"
+requested = "*"
+tag = '*'
+user = "natesales"
