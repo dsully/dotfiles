@@ -1,6 +1,7 @@
-# [".config/nvim"]
-# url = "git@github.com:dsully/nvim.git"
-# type = "git-repo"
+[".config/nvim"]
+  url = "git@github.com:dsully/nvim.git"
+  type = "git-repo"
+  pull = { args = ["--rebase", "--autostash"] }
 
 [".config/fish/functions/fisher.fish"]
   type = "file"
