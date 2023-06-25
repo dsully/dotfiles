@@ -19,7 +19,7 @@ if type -q volta
     end
     {{- end -}}
 
-    if count $packages
+    if not test -z $packages
         start "Installing JavaScript tools"
 
         command volta install $packages >/dev/null 2>&1
