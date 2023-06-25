@@ -19,7 +19,7 @@ if is_macos
     end
 
     if test $HAS_APP = true
-        sudo -v
+        ask_sudo
         start "Removing unwanted apps.."
 
         for app in $APPS

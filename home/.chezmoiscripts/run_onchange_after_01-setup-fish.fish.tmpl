@@ -10,6 +10,7 @@ if test $SHELL != (command -v fish)
     start "Setting up Fish 🐠"
 
     start "Changing default shell to fish"
+    ask_sudo
     sudo chsh -s (command -v fish) $USER
 end
 
