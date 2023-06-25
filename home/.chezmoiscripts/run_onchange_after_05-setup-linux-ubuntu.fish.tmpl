@@ -18,7 +18,7 @@ function install_ubuntu_packages -a release
         set -a packages openjdk-21-jre-headless
     end
 
-    if count $packages
+    if not test -z $packages
         ask_sudo
 
         start "Installing Ubuntu packages"
@@ -30,8 +30,8 @@ end
 if is_linux
 
     if type -q lsb_release
-        set -l distro (lsb_release -is | grep -v "No LSB modules are available.")
-        set -l release (lsb_release -rs | grep -v "No LSB modules are available.")
+        set -l distro (lsb_release -is 2>&1| grep -v "No LSB modules are available.")
+        set -l release (lsb_release -rs 2>&1| grep -v "No LSB modules are available.")
 
         switch $distro
             case Ubuntu
