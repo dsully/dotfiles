@@ -148,10 +148,10 @@ function safari
     # Disable hyperlink auditing / tracking
     defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2HyperlinkAuditingEnabled -bool false
 
-    killall Safari >/dev/null 2>&1
 end
 
 if is_macos
-    sudo -v
+    ask_sudo
+    quit_app Safari
     safari
 end

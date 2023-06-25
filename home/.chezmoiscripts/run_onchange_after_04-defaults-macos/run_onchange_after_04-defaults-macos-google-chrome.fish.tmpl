@@ -23,6 +23,7 @@ function google_chrome
 end
 
 if is_macos
-    sudo -v
+    ask_sudo
+    quit_app "Google Chrome"
     google_chrome
 end

@@ -1,5 +1,6 @@
 #!/usr/bin/env fish
 
+set black (tput setaf 0)
 set red (tput setaf 1)
 set red_bg (tput setab 1)
 set green (tput setaf 2)
@@ -19,6 +20,29 @@ end
 
 if not set -q CHEZMOI_ARCH
     set CHEZMOI_ARCH (uname -m)
+end
+
+function ask_sudo
+    if command sudo -vn &>/dev/null
+        # Keep-alive: update existing sudo time stamp if set, otherwise do nothing.
+        command sudo -v
+    else
+        set tid (command grep -c pam_tid /etc/pam.d/sudo)
+
+        if is_macos; and test $tid -eq 1
+            tput civis
+            info "Use TouchID to authenticate for setup."
+        else
+            info "Please enter your password for setup: "
+        end
+
+        command sudo -v --prompt=""
+        tput cnorm
+    end
+end
+
+function quit_app -a app
+    command osascript -e "tell application '$app' to quit" >/dev/null 2>&1
 end
 
 # OS check functions
@@ -125,7 +149,7 @@ function error -a msg
     echo $red ✖ $red_bg $bold $white " ERROR " $normal $msg
 end
 
-function error -a msg
+function info -a msg
     echo $cyan ○ $white $msg $normal
 end
 
