@@ -1,0 +1,42 @@
+#!{{ lookPath "fish" }}
+
+# Install Ubuntu packages.
+# vim:ft=fish
+
+set CHEZMOI_SOURCE_DIR (chezmoi source-path)
+source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+
+function install_ubuntu_packages -a release
+    set -l packages
+
+    if not type -q sqlite3
+        set -a packages sqlite3 libsqlite3-dev
+    end
+
+    if not type -q java
+        set -a packages openjdk-21-jdk-headless
+        set -a packages openjdk-21-jre-headless
+    end
+
+    if count $packages
+        ask_sudo
+
+        start "Installing Ubuntu packages"
+
+        command sudo apt-get install -y $packages
+    end
+end
+
+if is_linux
+
+    if type -q lsb_release
+        set -l distro (lsb_release -is | grep -v "No LSB modules are available.")
+        set -l release (lsb_release -rs | grep -v "No LSB modules are available.")
+
+        switch $distro
+            case Ubuntu
+                install_ubuntu_packages $release
+        end
+    end
+
+end
