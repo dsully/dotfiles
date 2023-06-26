@@ -21,7 +21,7 @@
 {{-     $chassisType = "desktop" -}}
 {{-   end -}}
 {{- else -}}
-{{-   $chassisType = (output "hostnamectl" "--json=short" | mustFromJson).Chassis -}}
+{{-   $chassisType = (output (joinPath .chezmoi.sourceDir ".chezmoiscripts/.01-hostnamectl.sh") | mustFromJson ).Chassis -}}
 {{- end }}
 {{/* */}}
 {{/* Work around unreliable hostname on macOS */}}
