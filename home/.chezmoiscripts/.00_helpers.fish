@@ -28,9 +28,9 @@ function ask_sudo
         command sudo -v
     else
         set tid (command grep -c pam_tid /etc/pam.d/sudo)
+        tput civis
 
         if is_macos; and test $tid -eq 1
-            tput civis
             info "Use TouchID to authenticate for setup."
         else
             info "Please enter your password for setup: "

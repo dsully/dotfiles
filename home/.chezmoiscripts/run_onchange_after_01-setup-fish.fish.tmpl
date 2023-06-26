@@ -1,17 +1,42 @@
 #!{{ lookPath "fish" }}
 
 # vim:ft=fish
-{{- $hash := include "dot_config/fish/fish_plugins.tmpl" | sha256sum -}}
+{{ $hash := include "dot_config/fish/fish_plugins.tmpl" | sha256sum }}
 
-set CHEZMOI_SOURCE_DIR (chezmoi source-path)
-source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
 
-if test $SHELL != (command -v fish)
+ensure_homebrew
+
+set fish $HOMEBREW_PREFIX/bin/fish
+set username {{ quote .chezmoi.username }}
+
+function getshell
+    if is_macos
+        dscl . read "/Users/$username" UserShell | string replace -r '^UserShell: (.*)' '$1'
+    else
+        getent passwd $username | string replace -r '.*:([^:]+)$' '$1'
+    end
+end
+
+function setshell -a shell
+    if is_macos
+        sudo dscl . create "/Users/$username" UserShell $shell
+    else
+        sudo chsh -s $shell $username
+    end
+end
+
+if test (getshell) != $fish
     start "Setting up Fish 🐠"
-
-    start "Changing default shell to fish"
     ask_sudo
-    sudo chsh -s (command -v fish) $USER
+    start "Changing default shell to fish"
+
+    if not string match -eq (status fish-path) </etc/shells
+        echo "Adding $fish to /etc/shells..."
+        printf '%s\n' "$fish" | sudo tee -a /etc/shells >/dev/null
+    end
+
+    setshell $fish
 end
 
 if type -q fisher; and test -s $HOME/.config/fish/fish_plugins

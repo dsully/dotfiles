@@ -19,15 +19,15 @@ command_exists() {
 }
 
 has_brew() {
-    if [ "$HOMEBREW_PREFIX" != "" ]; then
+    if [ declare -p HOMEBREW_PREFIX &>/dev/null ]; then
         BREW="$HOMEBREW_PREFIX/bin/brew"
     else
         if [[ -x /opt/homebrew/bin/brew ]]; then
             BREW=/opt/homebrew/bin/brew
         elif [[ -x /usr/local/bin/brew ]]; then
             BREW=/usr/local/bin/brew
-        elif [[ -x /home/linuxbrew/.linuxbrew/brew ]]; then
-            BREW=/home/linuxbrew/.linuxbrew/brew
+        elif [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+            BREW=/home/linuxbrew/.linuxbrew/bin/brew
         else
             return 1
         fi

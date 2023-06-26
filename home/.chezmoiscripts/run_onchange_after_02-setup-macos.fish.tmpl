@@ -6,7 +6,7 @@ set CHEZMOI_SOURCE_DIR (chezmoi source-path)
 source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
 
 function install_rosetta
-    if not test -f /Library/Apple/usr/share/rosetta/rosetta1
+    if not test -f /Library/Apple/usr/share/rosetta/rosetta
         command softwareupdate --install-rosetta --agree-to-license >/dev/null 2>&1 &
         await "Installing Rosetta"
     end
