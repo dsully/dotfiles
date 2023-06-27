@@ -1,5 +1,65 @@
 # vim:ft=toml
 #
+[autorebase]
+{{- if eq .chezmoi.os "linux" }}
+asset_re = "autorebase-linux"
+{{- else }}
+asset_re = "autorebase-mac"
+{{- end }}
+bin_name = "autorebase"
+repo = "autorebase"
+requested = "*"
+tag = "*"
+user = "Timmmm"
+
+[cargo-binstall]
+{{- if eq .chezmoi.os "linux" }}
+asset_re = "x86_64-unknown-linux-musl.full"
+{{- else }}
+asset_re = "universal-apple-darwin.full"
+{{- end }}
+bin_name = "cargo-binstall"
+repo = "cargo-binstall"
+requested = "*"
+tag = "*"
+user = "cargo-bins"
+
+[cargo-nextest]
+{{- if eq .chezmoi.os "linux" }}
+asset_re = "x86_64-unknown-linux-musl"
+{{- else }}
+asset_re = "universal-apple-darwin"
+{{- end }}
+bin_name = "cargo-nextest"
+repo = "cargo-nextest"
+requested = "*"
+tag = "*"
+user = "nextest-rs"
+
+[cargo-outdated]
+{{- if eq .chezmoi.os "linux" }}
+asset_re = "x86_64-unknown-linux"
+{{- else }}
+asset_re = "x86_64-apple-darwin"
+{{- end }}
+bin_name = "cargo-outdated"
+repo = "cargo-outdated"
+requested = "*"
+tag = "*"
+user = "kbknapp"
+
+[cargo-sort]
+{{- if eq .chezmoi.os "linux" }}
+asset_re = "x86_64-unknown-linux"
+{{- else }}
+asset_re = "x86_64-apple-darwin"
+{{- end }}
+bin_name = "cargo-sort"
+repo = "cargo-sort"
+requested = "*"
+tag = "*"
+user = "DevinR528"
+
 [checkip]
 {{- if eq .chezmoi.os "linux" }}
 asset_re = "linux_amd64"
@@ -44,6 +104,54 @@ requested = "*"
 tag = "*"
 user = "glotlabs"
 
+[git-dive]
+{{- if eq .chezmoi.os "linux" }}
+asset_re = "x86_64-unknown-linux"
+{{- else }}
+asset_re = "x86_64-apple-darwin"
+{{- end }}
+bin_name = "git-dive"
+repo = "git-dive"
+requested = "*"
+tag = "*"
+user = "gitext-rs"
+
+[gitnu]
+{{- if eq .chezmoi.os "linux" }}
+asset_re = "x86_64-unknown-linux"
+{{- else }}
+asset_re = "x86_64-apple-darwin"
+{{- end }}
+bin_name = "git-nu"
+repo = "gitnu"
+requested = "*"
+tag = "*"
+user = "nguyenvukhang"
+
+[jfmt]
+{{- if eq .chezmoi.os "linux" }}
+asset_re = "jfmt_x86_64-unknown-linux-gnu"
+{{- else if .flags.applesilicon }}
+asset_re = "jfmt_aarch64-apple-darwin"
+{{- else }}
+asset_re = "jfmt_x86_64-apple-darwin"
+{{- end }}
+bin_name = "jfmt"
+repo = "jfmt.rs"
+requested = "*"
+tag = "*"
+user = "scruffystuffs"
+
+{{- if eq .chezmoi.os "linux" }}
+[lfs]
+bin_name = "lfs"
+asset_re = "lfs_*.zip"
+repo = "lfs"
+requested = "*"
+tag = "*"
+user = "Canop"
+{{- end }}
+
 [q]
 bin_name = "q"
 {{- if eq .chezmoi.os "linux" }}
@@ -57,3 +165,31 @@ repo = "q"
 requested = "*"
 tag = "*"
 user = "natesales"
+
+[rustcat]
+{{- if eq .chezmoi.os "linux" }}
+asset_re = "linux-x86_64"
+{{- else if .flags.applesilicon }}
+asset_re = "darwin-aarch64"
+{{- else }}
+asset_re = "darwin-x86_64"
+{{- end }}
+bin_name = "rcat"
+repo = "rustcat"
+requested = "*"
+tag = "*"
+user = "robiot"
+
+[simple-http-server]
+{{- if eq .chezmoi.os "linux" }}
+asset_re = "^x86_64-unknown-linux-musl-simple-http-server$"
+{{- else if .flags.applesilicon }}
+asset_re = "^aarch64-apple-darwin-simple-http-server$"
+{{- else }}
+asset_re = "^x86_64-apple-darwin-simple-http-server$"
+{{- end }}
+bin_name = "simple-http-server"
+repo = "simple-http-server"
+requested = "*"
+tag = "*"
+user = "TheWaWaR"
