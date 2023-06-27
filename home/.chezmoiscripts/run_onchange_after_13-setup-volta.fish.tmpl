@@ -3,8 +3,7 @@
 # Install JavaScript tools via volta
 # vim:ft=fish
 
-set CHEZMOI_SOURCE_DIR (chezmoi source-path)
-source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
 
 if type -q volta
     set packages

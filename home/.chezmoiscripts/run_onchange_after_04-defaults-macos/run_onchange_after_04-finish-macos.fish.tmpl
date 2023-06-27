@@ -32,8 +32,7 @@
 # hash: {{ include ".chezmoiscripts/run_onchange_after_04-defaults-macos/run_onchange_after_04-defaults-macos-trackpad.fish.tmpl" | sha256sum }}
 # hash: {{ include ".chezmoiscripts/run_onchange_after_04-defaults-macos/run_onchange_after_04-defaults-macos-xcode.fish.tmpl" | sha256sum }}
 
-set CHEZMOI_SOURCE_DIR (chezmoi source-path)
-source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
 
 if is_macos
     sub_task "Restarting system services"

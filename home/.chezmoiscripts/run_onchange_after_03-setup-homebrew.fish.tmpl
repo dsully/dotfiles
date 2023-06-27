@@ -3,8 +3,7 @@
 # vim:ft=fish
 # Brewfile hash: {{ include (joinPath .chezmoi.homeDir ".config/Brewfile") | sha256sum }}
 
-set CHEZMOI_SOURCE_DIR (chezmoi source-path)
-source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
 
 function is_appleid_logged_in
     # Determine whether we are logged in to an Apple ID

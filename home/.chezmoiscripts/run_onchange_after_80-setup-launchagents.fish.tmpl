@@ -6,8 +6,7 @@
 # localhost.pbcopy hash: {{ include "Library/LaunchAgents/localhost.pbcopy.plist" | sha256sum }}
 # localhost.pbpaste hash: {{ include "Library/LaunchAgents/localhost.pbpaste.plist" | sha256sum }}
 
-set CHEZMOI_SOURCE_DIR (chezmoi source-path)
-source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
 
 if is_macos
 
