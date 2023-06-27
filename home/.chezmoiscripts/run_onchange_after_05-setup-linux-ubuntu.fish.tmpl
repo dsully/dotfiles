@@ -3,8 +3,7 @@
 # Install Ubuntu packages.
 # vim:ft=fish
 
-set CHEZMOI_SOURCE_DIR (chezmoi source-path)
-source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
 
 function install_ubuntu_packages -a release
     set -l packages

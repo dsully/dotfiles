@@ -3,8 +3,7 @@
 # Install Python tools via rye.
 # vim:ft=fish
 
-set CHEZMOI_SOURCE_DIR (chezmoi source-path)
-source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
 
 if type -q rye
     task "Installing Python tools. 🐍"

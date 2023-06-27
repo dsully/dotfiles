@@ -2,8 +2,7 @@
 
 # vim:ft=fish
 
-set CHEZMOI_SOURCE_DIR (chezmoi source-path)
-source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
 
 function install_rosetta
     if not test -f /Library/Apple/usr/share/rosetta/rosetta

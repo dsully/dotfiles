@@ -3,7 +3,7 @@
 # vim:ft=fish
 # /etc/pam.d/sudo hash: {{ include "/etc/pam.d/sudo" | sha256sum }}
 
-source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
 
 set PAM_FILE "/etc/pam.d/sudo"
 set FIRST_LINE "# sudo: auth account password session"

@@ -3,8 +3,7 @@
 # vim:ft=fish
 # https://www.chezmoi.io/user-guide/frequently-asked-questions/encryption/
 
-set CHEZMOI_SOURCE_DIR (chezmoi source-path)
-source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
 
 has_brew
 
@@ -14,7 +13,7 @@ set DOAS_CONF "/etc/doas.conf"
 set AGE $HOMEBREW_PREFIX/bin/age
 
 if not set -q CHEZMOI_WORKING_TREE
-    set CHEZMOI_WORKING_TREE "$CHEZMOI_SOURCE_DIR/.."
+    set CHEZMOI_WORKING_TREE "{{ .chezmoi.sourceDir }}/.."
 end
 
 # {{ $key_hash := include (joinPath .chezmoi.workingTree ".data/key.txt.age") | sha256sum }}

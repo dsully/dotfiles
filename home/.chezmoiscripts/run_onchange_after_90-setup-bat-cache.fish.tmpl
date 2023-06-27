@@ -4,6 +4,8 @@
 
 # bat Justfile syntax hash: {{ include "dot_config/bat/syntaxes/Just.sublime-syntax" | sha256sum }}
 
+source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
+
 if type -q bat
     bat cache --build >/dev/null
 end
