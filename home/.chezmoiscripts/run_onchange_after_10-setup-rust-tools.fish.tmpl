@@ -3,54 +3,28 @@
 # Install Rust tools.
 # vim:ft=fish
 
-set CHEZMOI_SOURCE_DIR (chezmoi source-path)
-source "$CHEZMOI_SOURCE_DIR/.chezmoiscripts/.00_helpers.fish"
+source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
 
 if type -q cargo
 
     # Install packages via Cargo.
     set -l PACKAGES \
-        # https://github.com/Timmmm/autorebase
-        autorebase \
         # https://github.com/RustSec/rustsec/tree/main/cargo-audit
         cargo-audit \
-        # https://github.com/cargo-bins/cargo-binstall
-        cargo-binstall \
         # https://github.com/matthiaskrgr/cargo-cache
         cargo-cache \
         # https://github.com/Riey/cargo-feature
         cargo-feature \
-        # https://nexte.st
-        cargo-nextest \
-        # https://github.com/kbknapp/cargo-outdated
-        cargo-outdated \
         # https://github.com/cargo-bins/cargo-quickinstall
         cargo-quickinstall \
-        # https://github.com/devinr528/cargo-sort
-        cargo-sort \
         # https://github.com/birkenfeld/fddf
         fddf \
-        # https://github.com/gitext-rs/git-dive
-        git-dive \
-        # https://github.com/nguyenvukhang/gitnu - git status wrapper.
-        gitnu \
-        # https://github.com/scruffystuffs/jfmt.rs
-        jfmt \
         # https://github.com/mrjackwills/havn
         havn \
         # https://github.com/acidnik/ppcp - Remove in favor of xcp?
         ppcp \
-        # https://github.com/TheWaWaR/simple-http-server
-        simple-http-server \
         # https://github.com/tarka/xcp/
         xcp
-
-    if is_linux
-        # https://github.com/Canop/lfs
-        if not type -q lfs
-            set -a PACKAGES lfs
-        end
-    end
 
     # These packages don't map to their CLI name.
     # https://github.com/killercup/cargo-edit
@@ -65,11 +39,6 @@ if type -q cargo
 
     if not type -q ds
         set -a PACKAGES dirstat-rs
-    end
-
-    # https://github.com/robiot/rustcat
-    if not type -q rcat
-        set -a PACKAGES rustcat
     end
 
     task "Installing Rust tools. 🦀"
@@ -99,6 +68,25 @@ if type -q cargo
         sub_task "Installing $url" "◆"
 
         command cargo --quiet install --git $url
+    end
+
+    # Clean up packages now handled by gitrel.
+    set -a UNINSTALL \
+        autorebase \
+        cargo-binstall \
+        cargo-nextest \
+        cargo-outdated \
+        cargo-sort \
+        git-dive \
+        gitnu \
+        jfmt \
+        rustcat \
+        simple-http-server
+
+    sub_task "Uninstalling old packages." "◆"
+
+    for bin in $UNINSTALL
+        command cargo --quiet uninstall $bin >/dev/null 2>&1
     end
 
     echo
