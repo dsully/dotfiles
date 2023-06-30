@@ -37,6 +37,7 @@
 .config/topgrade
 .config/topgrade-sd.toml
 .config/wezterm/terminfo
+.local/bin/jfmt
 bin/*
 bin/
 

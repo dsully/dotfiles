@@ -146,27 +146,27 @@ function sub_task -a message char -d "Print a sub-task header."
 end
 
 function error -a msg
-    echo $red ✖ $red_bg $bold $white " ERROR " $normal $msg
+    echo "$red ✖ $red_bg$bold$white ERROR $normal$msg"
 end
 
 function info -a msg
-    echo $cyan ○ $white $msg $normal
+    echo "$cyan ○ $white$msg$normal"
 end
 
 function prompt -a msg
-    echo $blue ▶ $bold $white $msg $normal
+    echo "$blue ▶ $bold$white$msg$normal"
 end
 
 function start -a msg
-    echo $green ▶ $bold $white $msg $normal
+    echo "$green ▶ $bold$white$msg$normal"
 end
 
 function success -a msg
-    echo $green ✔ $bold $white $msg $normal
+    echo "$green ✔ $bold$white$msg$normal"
 end
 
 function warn -a msg
-    echo $orange ◆ $bold $orange_bg $black " WARNING " $normal $msg
+    echo "$orange ◆ $bold$orange_bg$black WARNING $normal$msg"
 end
 
 function await -a message success -d "Await last background job with a spinner."
