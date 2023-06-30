@@ -142,7 +142,7 @@ function sub_task -a message char -d "Print a sub-task header."
         set -f char "▶"
     end
 
-    echo "$green  $char" $bold $white $message $normal
+    echo "$green  $char $bold$white$message$normal"
 end
 
 function error -a msg
