@@ -1,0 +1,144 @@
+#!{{ lookPath "fish" }}
+
+# vim:ft=fish
+
+# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/accessibility.yaml") | sha256sum }}
+# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/activity_monitor.yaml") | sha256sum }}
+# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/audio.yaml") | sha256sum }}
+# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/calendar.yaml") | sha256sum }}
+# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/contacts.yaml") | sha256sum }}
+# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/displays.yaml") | sha256sum }}
+# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/dock.yaml") | sha256sum }}
+# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/finder.yaml") | sha256sum }}
+# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/globals.yaml") | sha256sum }}
+# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/google-chrome.yaml") | sha256sum }}
+# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/keyboard.yaml") | sha256sum }}
+# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/mac-app-store.yaml") | sha256sum }}
+# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/mail.yaml") | sha256sum }}
+# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/menu-bar.yaml") | sha256sum }}
+# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/messages.yaml") | sha256sum }}
+# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/photos.yaml") | sha256sum }}
+# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/safari.yaml") | sha256sum }}
+# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/security.yaml") | sha256sum }}
+# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/siri.yaml") | sha256sum }}
+# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/spotlight.yaml") | sha256sum }}
+# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/terminal.yaml") | sha256sum }}
+# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/text-edit.yaml") | sha256sum }}
+# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/time-machine.yaml") | sha256sum }}
+# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/trackpad.yaml") | sha256sum }}
+# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/xcode.yaml") | sha256sum }}
+
+source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
+
+function system
+    sub_task "Enable / Disable System Services"
+
+    # Turn on screen sharing
+    sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.screensharing.plist >/dev/null 2>&1
+    sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist >/dev/null 2>&1
+
+    # Disable game center. Who uses that thing?
+    sudo launchctl unload -w /System/Library/LaunchAgents/com.apple.gamed.plist 2>/dev/null
+
+    # Turn on SSH.
+    sudo systemsetup -setremotelogin on >/dev/null
+
+    # Enable NTP
+    sudo systemsetup -setusingnetworktime on &>/dev/null
+
+    # Disable Time Machine
+    sudo tmutil disable
+
+    # Hide the export partition on work machines.
+    if test -d /export
+        sudo /usr/bin/setfile -a V /export
+    end
+
+    # Show the ~/Library folder
+    chflags nohidden ~/Library
+
+    # Show the /Volumes folder
+    sudo chflags nohidden /Volumes
+
+    # GateKeeper: Enable app store and identified developers
+    sudo spctl --master-enable
+    sudo spctl --enable
+
+    sub_task "Disable Java"
+
+    # Remove Java preference pane which is just a symlink into Internet-Plugins
+    sudo rm -f /Library/PreferencePanes/JavaControlPanel.prefPane
+
+    # Remove Application support that is just symlinks into Internet-Plugins +
+    # highest installed Oracle Java version in a file for Preference Pane checks
+    # (that we just removed). Check carefully if you have anything else. I had
+    # just Java subdirectory under Oracle and just the symlinks + file as
+    # described above, so I could remove the whole Oracle directory.
+    sudo rm -rf /Library/Application\ Support/Oracle
+
+    # Remove the plugin itself
+    sudo rm -rf /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin
+
+    # Disable Chrome auto-updating.
+    sudo defaults write /Library/Preferences/com.google.Keystone.plist AutoUpdate -bool false
+
+    sub_task "Set Energy & Sleep"
+
+    # Sleep the computer after 15 minutes.
+    sudo systemsetup -setcomputersleep 15 >/dev/null 2>&1
+
+    # Restart on power failure
+    systemsetup -setrestartpowerfailure on &>/dev/null
+
+    # Restart on freeze
+    systemsetup -setrestartfreeze on &>/dev/null
+
+    # Disable hibernation (speeds up entering sleep mode)
+    sudo pmset -a hibernatemode 0 &>/dev/null
+
+    # Remove the sleep image file to save disk space
+    if test -e /private/var/vm/sleepimage
+        sudo rm -f /private/var/vm/sleepimage
+
+        # Create a zero-byte file instead...
+        sudo touch /private/var/vm/sleepimage
+
+        # ...and make sure it can’t be rewritten
+        sudo chflags uchg /private/var/vm/sleepimage
+    end
+
+    # Disable the sudden motion sensor as it’s not useful for SSDs
+    sudo pmset -a sms 0 &>/dev/null
+
+    sub_task "Enable Startup Chime"
+
+    # Enable Sosumi
+    sudo nvram StartupMute=%00
+
+end
+
+if is_macos
+    # TODO: Move to launchd?
+    # (crontab -l || true; echo "0 * * * * ~/.cargo/bin/lolcate --all --update > /dev/null 2>&1") | crontab
+    # (crontab -l || true; echo "# iCal Sucks\n@hourly /usr/bin/pkill -9 CalendarAgent") | crontab
+    # (crontab -l || true; echo "# iCal Sucks\n@hourly /usr/bin/pkill -9 exchangesyncd") | crontab
+
+    task "Setting macOS defaults"
+
+    if type -q macos-defaults
+        macos-defaults apply {{ (joinPath .chezmoi.workingTree ".data/macos-defaults/") }}
+    end
+
+    killall SystemUIServer >/dev/null 2>&1
+
+    # Dock clean up.
+    find "$HOME/Library/Application Support/Dock" -name "*.db" -maxdepth 1 -delete
+
+    echo
+    task "Applying System Modifications"
+
+    command osascript -e 'tell application "System Preferences" to quit' >/dev/null 2>&1
+
+    system
+    echo
+end

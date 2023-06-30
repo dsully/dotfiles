@@ -1,0 +1,12 @@
+---
+description: Trackpad
+data:
+  # Enable tap to click for this user and for the login screen
+  com.apple.AppleMultitouchTrackpad:
+    Clicking: true
+
+  com.apple.driver.AppleBluetoothMultitouch.trackpad:
+    Clicking: true
+
+  NSGlobalDomain:
+    com.apple.mouse.tapBehavior: 1
