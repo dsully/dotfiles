@@ -2,6 +2,11 @@
 extends: default
 
 rules:
-  line-length:
-    max: 160
-    level: warning
+  comments:
+    min-spaces-from-content: 1
+
+  line-length: disable
+
+  truthy:
+    allowed-values: ["true", "false"]
+    check-keys: false
