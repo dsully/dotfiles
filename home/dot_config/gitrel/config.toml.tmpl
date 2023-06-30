@@ -126,20 +126,6 @@ asset_re = "x86_64-unknown-linux"
 asset_re = "x86_64-apple-darwin"
 {{- end }}
 
-[jfmt]
-user = "scruffystuffs"
-repo = "jfmt.rs"
-bin_name = "jfmt"
-tag = "*"
-requested = "*"
-{{- if eq .chezmoi.os "linux" }}
-asset_re = "jfmt_x86_64-unknown-linux-gnu"
-{{- else if .flags.applesilicon }}
-asset_re = "jfmt_aarch64-apple-darwin"
-{{- else }}
-asset_re = "jfmt_x86_64-apple-darwin"
-{{- end }}
-
 {{- if eq .chezmoi.os "linux" }}
 [lfs]
 user = "Canop"

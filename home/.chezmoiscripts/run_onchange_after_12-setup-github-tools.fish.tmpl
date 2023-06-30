@@ -9,11 +9,11 @@ source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
 
 if type -q gitrel
 
-    start "Installing GitHub tools"
+    start "Installing GitHub Tools"
 
     command gitrel update >/dev/null 2>&1
 
     echo
 else
-    error "'gitrel' is not installed. It should be installed via Rust Tools"
+    error "'gitrel' is not installed. It should be installed by Rust Tools"
 end

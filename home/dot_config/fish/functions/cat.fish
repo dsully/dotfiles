@@ -26,8 +26,8 @@ function cat --wraps=bat --description 'Use bat instead of cat'
         end
 
     # https://jless.io
-    else if contains $ext $structured_extensions; and type -q jless
-        jless $argv
+    # else if contains $ext $structured_extensions; and type -q jless
+    #     jless $argv
 
     else if contains $ext $image_extensions; and test $TERM = xterm-kitty
         kitty +kitten icat $argv
