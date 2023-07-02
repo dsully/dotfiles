@@ -73,7 +73,6 @@ brew "topgrade"
 brew "tree"
 brew "tree-sitter"
 brew "typos-cli"
-brew "unar"
 brew "unzip"
 brew "vivid"
 brew "volta"
@@ -108,6 +107,7 @@ brew "mas"
 brew "openjdk"
 brew "pam-reattach"
 brew "telnet"
+brew "unar"
 {{- end }}
 {{/* */}}
 {{- if and (eq .chezmoi.os "darwin") .flags.personal -}}
@@ -152,9 +152,6 @@ cask "rapidapi"
 cask "raycast"
 cask "renamer"
 cask "retrobatch"
-{{ if eq .chezmoi.arch "arm64" -}}
-cask "rewind"
-{{ end -}}
 cask "rocket"
 cask "screens"
 cask "signal"
