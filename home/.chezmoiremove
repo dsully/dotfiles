@@ -35,6 +35,7 @@
 .config/matplotlib
 .config/repos/**
 .config/topgrade
+.config/topgrade.toml
 .config/topgrade-sd.toml
 .config/wezterm/terminfo
 .local/bin/jfmt
