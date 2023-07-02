@@ -53,13 +53,13 @@ if type -q cargo
 
     # My tools / forked / git-only.
     set -l URLS \
-        https://github.com/dsully/macos-defaults \
         https://github.com/dsully/git-open \
         https://github.com/dsully/lolcate-rs \
         https://github.com/dsully/gitrel \
         https://github.com/dsully/zoned
 
     if is_macos
+        set -a URLS https://github.com/dsully/macos-defaults
         set -a URLS https://github.com/alexwlchan/safari.rs
     end
 
