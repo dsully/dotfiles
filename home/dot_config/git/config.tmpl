@@ -16,6 +16,9 @@
 [includeIf  "hasconfig:remote.*.url:https://github.com/**/**"]
     path = ~/.config/git/.github
 
+[includeIf  "gitdir:{{- .chezmoi.homeDir -}}/dev/home/"]
+    path = ~/.config/git/.github
+
 [alias]
     a = commit --amend
     aa = add --all
