@@ -157,7 +157,7 @@ bin_name = "rcat"
 tag = "*"
 requested = "*"
 {{- if eq .chezmoi.os "linux" }}
-asset_re = "linux-x86_64"
+asset_re = "linux-x86_64$"
 {{- else if .flags.applesilicon }}
 asset_re = "darwin-aarch64"
 {{- else }}
