@@ -1,0 +1,25 @@
+---
+description: Rocket.app
+data:
+  net.matthewpalmer.Rocket:
+    deactivated-apps:
+      - Slack
+      - HipChat
+      - Xcode
+      - Terminal
+      - iTerm2
+      - Sublime Text
+      - Sublime Text 2
+      - kitty
+      - Screens
+      - Quicken
+      - Code
+      - Finder
+      - WezTerm
+      - Raycast
+      - Machato
+      - QuickGPT
+    hot-key-b8-iaK-thyib-yoV-Kep-It: ":"
+    launch-at-login: true
+    override-system-voiceover: true
+    rocket-pro-macrelease: true
