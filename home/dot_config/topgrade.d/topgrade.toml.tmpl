@@ -57,10 +57,10 @@ cleanup = true
 # Additional git repositories to pull
 repos = [
 {{- if eq .chezmoi.hostname "jarvis" }}
-    "~/src/*/",
-    "~/src/rust/*/",
-    "~/src/neovim/*/",
-    "~/src/neovim/dots/*/",
+    "{{- .chezmoi.homeDir -}}/src/*/",
+    "{{- .chezmoi.homeDir -}}/src/rust/*/",
+    "{{- .chezmoi.homeDir -}}/src/neovim/*/",
+    "{{- .chezmoi.homeDir -}}/src/neovim/dots/*/",
 {{- else if eq .chezmoi.hostname "gpu" }}
     "/bits/apps/automatic/extensions/*",
     "/bits/apps/stable-diffusion-webui/extensions/*",
@@ -68,7 +68,7 @@ repos = [
 ]
 
 # Don't pull the predefined git repos
-#predefined_repos = false
+pull_predefined = false
 
 # Arguments to pass Git when pulling Repositories
 arguments = "--rebase --autostash"
