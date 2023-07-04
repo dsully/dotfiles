@@ -55,11 +55,9 @@ if type -q cargo
     set -l URLS \
         https://github.com/dsully/git-open \
         https://github.com/dsully/lolcate-rs \
-        https://github.com/dsully/gitrel \
-        https://github.com/dsully/zoned
+        https://github.com/dsully/gitrel
 
     if is_macos
-        set -a URLS https://github.com/dsully/macos-defaults
         set -a URLS https://github.com/alexwlchan/safari.rs
     end
 
@@ -78,9 +76,12 @@ if type -q cargo
         cargo-nextest \
         cargo-outdated \
         cargo-sort \
+        cloudflare-dns-updater \
         git-dive \
         gitnu \
         jfmt \
+        macos-defaults \
+        reddit-saves \
         rustcat \
         simple-http-server
 
