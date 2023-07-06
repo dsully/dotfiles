@@ -2,15 +2,16 @@
 
 # vim:ft=fish
 
-# localhost.blackd.plist.tmpl hash: {{ include "Library/LaunchAgents/localhost.blackd.plist.tmpl" | sha256sum }}
-# localhost.pbcopy hash: {{ include "Library/LaunchAgents/localhost.pbcopy.plist" | sha256sum }}
-# localhost.pbpaste hash: {{ include "Library/LaunchAgents/localhost.pbpaste.plist" | sha256sum }}
+# localhost.blackd.plist.tmpl hash: {{ include (joinPath .chezmoi.workingTree "home/Library/LaunchAgents/localhost.blackd.plist.tmpl") | sha256sum }}
+# localhost.maxfiles.plist.tmpl hash: {{ include (joinPath .chezmoi.workingTree "home/Library/LaunchAgents/localhost.maxfiles.plist.tmpl") | sha256sum }}
+# localhost.pbcopy.plist.tmpl hash: {{ include (joinPath .chezmoi.workingTree "home/Library/LaunchAgents/localhost.pbcopy.plist.tmpl") | sha256sum }}
+# localhost.pbpaste.plist.tmpl hash: {{ include (joinPath .chezmoi.workingTree "home/Library/LaunchAgents/localhost.pbpaste.plist.tmpl") | sha256sum }}
 
 source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
 
 if is_macos
 
-    task "Installing LauchAgents"
+    task "Installing LaunchAgents"
 
     set agents \
         blackd \

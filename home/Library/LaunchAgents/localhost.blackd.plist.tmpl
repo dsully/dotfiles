@@ -1,3 +1,4 @@
+{{- if eq .chezmoi.os "darwin" }}
 {{- if stat (joinPath .chezmoi.homeDir ".rye/shims/blackd") -}}
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -13,5 +14,5 @@
         <true />
     </dict>
 </plist>
-<!-- vim:ft=xml -->
+{{- end -}}
 {{- end -}}

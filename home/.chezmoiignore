@@ -121,6 +121,7 @@ Stuff/
 .config/vopono/locks/
 .config/vopono/mv/
 .config/wezterm/
+Library/
 !.local/bin/pbcopy
 !.local/bin/pbpaste
 !.local/bin/xdg-open
