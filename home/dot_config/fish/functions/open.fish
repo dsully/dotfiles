@@ -8,8 +8,10 @@ function open --description 'Remotely open a for the current or given path.'
     else
         # If this is a git repository, and we have git-open, open the remote URL.
         # Call with --print otherwise this doesn't work when running via SSH as I want --background
-        if type -q git-open
-            set -f path (command git-open --print (git rev-parse --show-toplevel))
+        set -l git (command git rev-parse --show-toplevel >/dev/null 2>&1)
+
+        if test $status -eq 0; and type -q git-open
+            set -f path (command git-open --print $git)
         else
             # Otherwise use the PWD if no arguments were passed.
             set -f path $PWD
