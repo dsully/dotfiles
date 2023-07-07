@@ -152,20 +152,6 @@ requested = "*"
 asset_re = "lfs_*.zip"
 {{- end }}
 
-{{- if eq .chezmoi.os "darwin" }}
-[macos-defaults]
-user = "dsully"
-repo = "macos-defaults"
-bin_name = "macos-defaults"
-tag = "*"
-requested = "*"
-{{- if .flags.applesilicon }}
-asset_re = "aarch64"
-{{- else }}
-asset_re = "x86_64"
-{{- end }}
-{{- end }}
-
 [q]
 user = "natesales"
 repo = "q"
@@ -178,20 +164,6 @@ asset_re = "linux_amd64.tar.gz"
 asset_re = "darwin_arm64"
 {{- else }}
 asset_re = "darwin_amd64"
-{{- end }}
-
-[reddit-saves]
-user = "dsully"
-repo = "reddit-saves"
-bin_name = "reddit-saves"
-tag = "*"
-requested = "*"
-{{- if eq .chezmoi.os "darwin" }}
-{{- if .flags.applesilicon }}
-asset_re = "aarch64"
-{{- else }}
-asset_re = "x86_64"
-{{- end }}
 {{- end }}
 
 [rustcat]
