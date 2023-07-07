@@ -6,6 +6,12 @@ data:
   com.apple.AppleMultitouchTrackpad:
     Clicking: true
 
+    # Two fingers for double click.
+    TrackpadRightClick: true
+
+    # Lookup & data detectors with 3 finger click.
+    TrackpadThreeFingerTapGesture: 2
+
   com.apple.driver.AppleBluetoothMultitouch.trackpad:
     Clicking: true
 
