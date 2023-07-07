@@ -7,6 +7,7 @@ tap "homebrew/command-not-found"
 {{ comment "" "#" }}
 {{ comment "# " "macOS specific taps." }}
 tap "caarlos0/tap" # xdg-open-svc
+tap "dsully/tap"
 tap "he3-app/he3"
 tap "homebrew/cask-fonts"
 tap "homebrew/services"
@@ -100,6 +101,7 @@ brew "openjdk@17"
 {{ comment "" "#" }}
 {{ comment "# " "macOS Only" }}
 brew "caarlos0/tap/xdg-open-svc"
+brew "dsully/tap/macos-defaults"
 brew "gcc"
 brew "gnu-sed"
 brew "gnu-tar"
@@ -118,6 +120,7 @@ cask "batteries"
 cask "macdive"
 cask "mullvadvpn"
 cask "soulseek"
+brew "dsully/tap/reddit-saves"
 {{ end }}
 {{/* */}}
 {{- if eq .chezmoi.os "darwin" -}}
