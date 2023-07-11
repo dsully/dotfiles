@@ -77,11 +77,7 @@ bin_name = "cloudflare-dns-updater"
 tag = "*"
 requested = "*"
 {{- if eq .chezmoi.os "darwin" }}
-{{- if .flags.applesilicon }}
 asset_re = "aarch64-apple"
-{{- else }}
-asset_re = "x86_64-apple"
-{{- end }}
 {{- else if eq .chezmoi.os "linux" }}
 asset_re = "x86_64-unknown-linux"
 {{- end }}
@@ -160,10 +156,8 @@ tag = "*"
 requested = "*"
 {{- if eq .chezmoi.os "linux" }}
 asset_re = "linux_amd64.tar.gz"
-{{- else if .flags.applesilicon }}
-asset_re = "darwin_arm64"
 {{- else }}
-asset_re = "darwin_amd64"
+asset_re = "darwin_arm64"
 {{- end }}
 
 [rustcat]
@@ -174,10 +168,8 @@ tag = "*"
 requested = "*"
 {{- if eq .chezmoi.os "linux" }}
 asset_re = "linux-x86_64$"
-{{- else if .flags.applesilicon }}
-asset_re = "darwin-aarch64"
 {{- else }}
-asset_re = "darwin-x86_64"
+asset_re = "darwin-aarch64"
 {{- end }}
 
 [simple-http-server]
@@ -188,8 +180,6 @@ tag = "*"
 requested = "*"
 {{- if eq .chezmoi.os "linux" }}
 asset_re = "^x86_64-unknown-linux-musl-simple-http-server$"
-{{- else if .flags.applesilicon }}
-asset_re = "^aarch64-apple-darwin-simple-http-server$"
 {{- else }}
-asset_re = "^x86_64-apple-darwin-simple-http-server$"
+asset_re = "^aarch64-apple-darwin-simple-http-server$"
 {{- end }}

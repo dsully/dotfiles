@@ -5,6 +5,12 @@
 
 source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
 
+if not type -q cargo; and type -q rustup-init
+    start "Installing Rust Toolchain.."
+
+    command rustup-init --no-modify-path -q -y >/dev/null 2>&1
+end
+
 if type -q cargo
 
     # Install packages via Cargo.
