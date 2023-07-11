@@ -12,11 +12,11 @@ if type -q volta
         set -a packages node
     end
 
-    {{- if .flags.work -}}
+    {{ if .flags.work }}
     if not type -q npm-groovy-lint
         set -a packages npm-groovy-lint
     end
-    {{- end -}}
+    {{ end }}
 
     if not test -z $packages
         start "Installing JavaScript tools"
