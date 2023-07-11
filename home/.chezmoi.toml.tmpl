@@ -70,7 +70,6 @@ recipient = "age1agm9desexf47g2mp02zeqq98fcvpxjmq2sg3k8d30w5ych5xj3mqx8lgn5"
     chezmoi.chassis = "{{ $chassisType }}"
     chezmoi.hostname = "{{ $hostname }}"
 
-    flags.applesilicon = {{ and (eq .chezmoi.os "darwin") (eq .chezmoi.arch "arm64") }}
     flags.decrypt = {{ $decrypt }}
     flags.ephemeral = {{ $ephemeral }}
     flags.headless = {{ $headless }}
