@@ -47,7 +47,7 @@ function system
     sudo systemsetup -setusingnetworktime on &>/dev/null
 
     # Disable Time Machine
-    sudo tmutil disable
+    sudo /usr/bin/tmutil disable
 
     # Hide the export partition on work machines.
     if test -d /export

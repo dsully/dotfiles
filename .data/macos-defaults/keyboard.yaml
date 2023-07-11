@@ -71,42 +71,384 @@ data:
     # Enabling full keyboard access for all controls (enable Tab in modal dialogs, menu windows, etc.)
     AppleKeyboardUIMode: 3
 
-  com.apple.universalaccess:
-    # Disable "Enable Slow Keys"
-    slowKey: false
-
   com.apple.symbolichotkeys:
     AppleSymbolicHotKeys:
       # Disable invert colors
-      - "21":
-          enabled: false
+      # "21":
+      #     enabled: false
+      #
+      # # Turn Dock hiding on / off
+      # "52":
+      #     enabled: false
+      #
+      # # Turn VoiceOver on / off
+      # "59":
+      #     enabled: false
+      #
+      # # Disable Spotlight on Cmd-Space so Alfred/Raycast can use it.
+      # "64":
+      #     enabled: false
+      #
+      # "65":
+      #     enabled: false
+      #
+      # # Disable Mission Control move keys:
+      # # Left
+      # "79":
+      #     enabled: false
+      #
+      # "80":
+      #     enabled: false
+      #
+      # # Right
+      # "81":
+      #     enabled: false
+      #
+      # "82":
+      #     enabled: false
 
-      # Turn Dock hiding on / off
-      - "52":
-          enabled: false
+      "231":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 65535
+            - 0
+      "12":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 122
+            - 8650752
+      "21":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 56
+            - 28
+            - 1835008
+      "226":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 65535
+            - 0
+      "13":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 98
+            - 8650752
+      "232":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 65535
+            - 0
+      "31":
+        enabled: true
+        value:
+          type: standard
+          parameters:
+            - 52
+            - 21
+            - 1441792
+      "7":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 120
+            - 8650752
+      "227":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 65535
+            - 0
+      "32":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 126
+            - 8650752
+      "8":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 99
+            - 8650752
+      "9":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 118
+            - 8650752
+      "33":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 125
+            - 8650752
+      "228":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 65535
+            - 0
+      "25":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 46
+            - 47
+            - 1835008
+      "215":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 65535
+            - 0
+      "60":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 32
+            - 49
+            - 262144
+      "26":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 44
+            - 43
+            - 1835008
+      "175":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 65535
+            - 0
+      "52":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 100
+            - 2
+            - 1572864
+      "61":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 32
+            - 49
+            - 786432
+      "229":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 65535
+            - 0
 
-      # Turn VoiceOver on / off
-      - "59":
-          enabled: false
-
-      # Disable Spotlight on Cmd-Space so Alfred/Raycast can use it.
-      - "64":
-          enabled: false
-
-      - "65":
-          enabled: false
-
-      # Disable Mission Control move keys:
-      # Left
-      - "79":
-          enabled: false
-
-      - "80":
-          enabled: false
-
-      # Right
-      - "81":
-          enabled: false
-
-      - "82":
-          enabled: false
+      "216":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 65535
+            - 0
+      "36":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 103
+            - 8388608
+      "162":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 96
+            - 9961472
+      "222":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 65535
+            - 0
+      "28":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 51
+            - 20
+            - 1179648
+      "217":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 65535
+            - 0
+      "29":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 51
+            - 20
+            - 1441792
+      "64":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 32
+            - 49
+            - 1048576
+      "223":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 65535
+            - 0
+      "218":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 65535
+            - 0
+      "65":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 32
+            - 49
+            - 1572864
+      "57":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 100
+            - 8650752
+      "224":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 65535
+            - 0
+      "219":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 65535
+            - 0
+      "184":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 53
+            - 23
+            - 1179648
+      "10":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 96
+            - 8650752
+      "230":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 65535
+            - 0
+      "59":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 96
+            - 9437184
+      "190":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 113
+            - 12
+            - 8388608
+      "225":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 65535
+            - 0
+      "11":
+        enabled: false
+        value:
+          type: standard
+          parameters:
+            - 65535
+            - 97
+            - 8650752

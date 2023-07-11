@@ -23,6 +23,9 @@ if [ "$(ps otty= $$)" != '?' ]; then
     stdin='/dev/tty'
 fi
 
+# Set the path for everything else.
+export PATH=/opt/homebrew/bin:/home/linuxbrew:$HOME/.cargo/bin:$HOME/.local/bin:$PATH
+
 "$chezmoi" init --apply --exclude encrypted "$@" "$USER" <$stdin
 
 # Re-run to generate data.toml.
