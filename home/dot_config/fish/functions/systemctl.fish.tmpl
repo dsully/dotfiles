@@ -2,13 +2,13 @@
 # vim:ft=fish
 function systemctl --description 'wraps privileged and user systemctl commands to use sudo when necessary' -w systemctl
 
-    set -l user_commands \
+    set -f user_commands \
         list-units list-unit-files list-jobs list-timers \
         list-sockets list-dependencies list-machines \
         is-active is-enabled is-failed \
         status show help get-default show-environment cat
 
-    set -l root_commands start stop reload restart try-restart \
+    set -f root_commands start stop reload restart try-restart \
         reload-or-restart try-reload-or-restart isolate kill clean \
         set-property reset-failed enable disable reenable preset \
         preset-all mask unmask link revert add-wants add-requires \
@@ -16,8 +16,16 @@ function systemctl --description 'wraps privileged and user systemctl commands t
         daemon-reload daemon-reexec default rescue emergency halt poweroff reboot \
         kexec exit switch-root suspend hibernate hybrid-sleep suspend-then-hibernate
 
-    if contains -- --user $argv; or not contains -- $argv[1] $root_commands
+    if test -d $HOME/.config/systemd/user
+        set -f user_services (fd --base-directory $HOME/.config/systemd/user --maxdepth 1 .service | cut -f 1 -d '.')
+    end
+
+    if set -q user_services; and contains -- $argv[2] $user_services
+        command systemctl --user $argv
+
+    else if contains -- --user $argv; or not contains -- $argv[1] $root_commands
         command systemctl $argv
+
     else
         command doas systemctl $argv
     end
