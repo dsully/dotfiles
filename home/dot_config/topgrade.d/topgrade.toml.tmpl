@@ -61,7 +61,7 @@ repos = [
     "{{- .chezmoi.homeDir -}}/src/rust/*/",
     "{{- .chezmoi.homeDir -}}/src/neovim/*/",
     "{{- .chezmoi.homeDir -}}/src/neovim/dots/*/",
-{{- else if eq .chezmoi.hostname "gpu" }}
+{{- else if eq .chezmoi.hostname "server" }}
     "/bits/apps/automatic/extensions/*",
     "/bits/apps/stable-diffusion-webui/extensions/*",
 {{- end }}
