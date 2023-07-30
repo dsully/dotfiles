@@ -20,6 +20,11 @@ if type -q rye
         command rye install $package >/dev/null 2>&1
     end
 
+    {{ if eq .chezmoi.hostname "server" -}}
+    sub_task "Installing liquidctl"
+    command rye install --git https://github.com/liquidctl/liquidctl liquidctl
+    {{- end }}
+
     echo
 else
     error "'rye' is not installed. It should be installed via Homebrew."
