@@ -20,9 +20,9 @@ end
 
 function setshell -a shell
     if is_macos
-        sudo dscl . create "/Users/$username" UserShell $shell
+        command sudo dscl . create "/Users/$username" UserShell $shell
     else
-        sudo chsh -s $shell $username
+        command sudo chsh -s $shell $username
     end
 end
 
@@ -33,7 +33,7 @@ if test (getshell) != $fish
 
     if not string match -eq (status fish-path) </etc/shells
         echo "Adding $fish to /etc/shells..."
-        printf '%s\n' "$fish" | sudo tee -a /etc/shells >/dev/null
+        printf '%s\n' "$fish" | command sudo tee -a /etc/shells >/dev/null
     end
 
     setshell $fish

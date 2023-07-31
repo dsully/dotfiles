@@ -24,7 +24,7 @@ if is_macos
 
         for app in $APPS
             start "Removing $app"
-            sudo rm -rf $app
+            ask_sudo rm -rf $app
         end
     end
 end

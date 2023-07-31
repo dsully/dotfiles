@@ -34,58 +34,58 @@ function system
     sub_task "Enable / Disable System Services"
 
     # Turn on screen sharing
-    sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.screensharing.plist >/dev/null 2>&1
-    sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist >/dev/null 2>&1
+    ask_sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.screensharing.plist >/dev/null 2>&1
+    ask_sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist >/dev/null 2>&1
 
     # Disable game center. Who uses that thing?
-    sudo launchctl unload -w /System/Library/LaunchAgents/com.apple.gamed.plist 2>/dev/null
+    ask_sudo launchctl unload -w /System/Library/LaunchAgents/com.apple.gamed.plist 2>/dev/null
 
     # Turn on SSH.
-    sudo systemsetup -setremotelogin on >/dev/null
+    ask_sudo systemsetup -setremotelogin on >/dev/null
 
     # Enable NTP
-    sudo systemsetup -setusingnetworktime on &>/dev/null
+    ask_sudo systemsetup -setusingnetworktime on &>/dev/null
 
     # Disable Time Machine
-    sudo /usr/bin/tmutil disable
+    ask_sudo /usr/bin/tmutil disable
 
     # Hide the export partition on work machines.
     if test -d /export
-        sudo /usr/bin/setfile -a V /export
+        ask_sudo /usr/bin/setfile -a V /export
     end
 
     # Show the ~/Library folder
     chflags nohidden ~/Library
 
     # Show the /Volumes folder
-    sudo chflags nohidden /Volumes
+    ask_sudo chflags nohidden /Volumes
 
     # GateKeeper: Enable app store and identified developers
-    sudo spctl --master-enable
-    sudo spctl --enable
+    ask_sudo spctl --master-enable
+    ask_sudo spctl --enable
 
     sub_task "Disable Java"
 
     # Remove Java preference pane which is just a symlink into Internet-Plugins
-    sudo rm -f /Library/PreferencePanes/JavaControlPanel.prefPane
+    ask_sudo rm -f /Library/PreferencePanes/JavaControlPanel.prefPane
 
     # Remove Application support that is just symlinks into Internet-Plugins +
     # highest installed Oracle Java version in a file for Preference Pane checks
     # (that we just removed). Check carefully if you have anything else. I had
     # just Java subdirectory under Oracle and just the symlinks + file as
     # described above, so I could remove the whole Oracle directory.
-    sudo rm -rf /Library/Application\ Support/Oracle
+    ask_sudo rm -rf /Library/Application\ Support/Oracle
 
     # Remove the plugin itself
-    sudo rm -rf /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin
+    ask_sudo rm -rf /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin
 
     # Disable Chrome auto-updating.
-    sudo defaults write /Library/Preferences/com.google.Keystone.plist AutoUpdate -bool false
+    ask_sudo defaults write /Library/Preferences/com.google.Keystone.plist AutoUpdate -bool false
 
     sub_task "Set Energy & Sleep"
 
     # Sleep the computer after 15 minutes.
-    sudo systemsetup -setcomputersleep 15 >/dev/null 2>&1
+    ask_sudo systemsetup -setcomputersleep 15 >/dev/null 2>&1
 
     # Restart on power failure
     systemsetup -setrestartpowerfailure on &>/dev/null
@@ -94,26 +94,26 @@ function system
     systemsetup -setrestartfreeze on &>/dev/null
 
     # Disable hibernation (speeds up entering sleep mode)
-    sudo pmset -a hibernatemode 0 &>/dev/null
+    ask_sudo pmset -a hibernatemode 0 &>/dev/null
 
     # Remove the sleep image file to save disk space
     if test -e /private/var/vm/sleepimage
-        sudo rm -f /private/var/vm/sleepimage
+        ask_sudo rm -f /private/var/vm/sleepimage
 
         # Create a zero-byte file instead...
-        sudo touch /private/var/vm/sleepimage
+        ask_sudo touch /private/var/vm/sleepimage
 
         # ...and make sure it can’t be rewritten
-        sudo chflags uchg /private/var/vm/sleepimage
+        ask_sudo chflags uchg /private/var/vm/sleepimage
     end
 
     # Disable the sudden motion sensor as it’s not useful for SSDs
-    sudo pmset -a sms 0 &>/dev/null
+    ask_sudo pmset -a sms 0 &>/dev/null
 
     sub_task "Enable Startup Chime"
 
     # Enable Sosumi
-    sudo nvram StartupMute=%00
+    ask_sudo nvram StartupMute=%00
 
 end
 
