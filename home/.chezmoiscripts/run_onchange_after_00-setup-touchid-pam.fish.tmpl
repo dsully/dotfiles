@@ -24,8 +24,8 @@ function add_pam_line
     ask_sudo
     start "Setting up $TITLE"
 
-    sudo sed -i.bak -e "s|$FIRST_LINE|$FIRST_LINE\n$PAM_LINE|" $PAM_FILE
-    sudo rm $PAM_FILE.bak
+    command sudo sed -i.bak -e "s|$FIRST_LINE|$FIRST_LINE\n$PAM_LINE|" $PAM_FILE
+    command sudo rm $PAM_FILE.bak
 end
 
 if is_macos
