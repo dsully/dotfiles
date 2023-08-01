@@ -19,11 +19,10 @@
 #
 # More examples can be found here:
 #  https://developer.1password.com/docs/ssh/agent/config
-{{ if .flags.personal }}
 [[ssh-keys]]
-item = "{{- .chezmoi.hostname -}}"
 vault = "Services"
-{{ else if .flags.work }}
+
+{{ if .flags.work -}}
 [[ssh-keys]]
 vault = "Work"
 {{ end -}}
