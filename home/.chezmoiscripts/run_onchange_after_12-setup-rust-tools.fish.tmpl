@@ -53,7 +53,7 @@ if type -q cargo
         sub_task "Installing $package"
 
         if not type -q $package
-            command cargo --quiet install $package
+            command cargo binstall -q -y $package
         end
     end
 
