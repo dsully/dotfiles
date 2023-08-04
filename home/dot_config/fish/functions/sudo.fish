@@ -1,5 +1,10 @@
 function sudo -d "doas wrapper."
 
+    if not type -q doas
+        command sudo $argv
+        return
+    end
+
     argparse --ignore-unknown h/help i/login n/non_interactive s/shell u/user= -- $argv
 
     if set -q _flag_help
@@ -37,7 +42,12 @@ Based on <https://github.com/jirutka/doas-sudo-shim/issues>.
     set -x SUDO_UID (id -u)
     set -x SUDO_USER (id -un)
 
-    set -l USER_SHELL (getent passwd $user or "root" | awk -F: '{print $NF}')
+    switch $OS
+        case Darwin
+            set USER_SHELL (dscl . -read /Users/dsully UserShell | cut -d' ' -f2)
+        case Linux
+            set USER_SHELL (getent passwd $user or "root" | awk -F: '{print $NF}')
+    end
 
     if test (count $argv) -eq 0
         if set -q _flag_i
@@ -52,6 +62,6 @@ Based on <https://github.com/jirutka/doas-sudo-shim/issues>.
     else if set -q _flag_shell
         command doas $_flag_non_interactive $_flag_user $USER_SHELL -c "$SHELL $argv"
     else
-        command doas $_flag_non_interactive $_flag_user $argv
+        command doas $_flag_non_interactive $_flag_user -c "$argv"
     end
 end
