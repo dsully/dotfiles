@@ -1,0 +1,10 @@
+# iotop configuration file
+# empty lines are ignored, comments start with #
+# each line contains a single option
+
+--help-type=none
+--only
+--delay=1
+--grtype=io
+--si
+--threshold=2
