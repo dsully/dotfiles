@@ -1,38 +1,122 @@
-{{- if and .flags.decrypt (eq .chezmoi.hostname "gpu") -}}
-{
-	acme_dns cloudflare {{ .cloudflare.api_token }}
-	default_sni gpu.sully.org
-	http_port 80
-	https_port 443
-}
-
-breadboard.sully.org {
+{{- if and .flags.decrypt (eq .chezmoi.hostname "server") -}}
+*.sully.org {
+	# Enable gzip, zstd compression
 	encode zstd gzip
-	reverse_proxy http://127.0.0.1:4200
-}
 
-captions.sully.org {
-	encode zstd gzip
-	reverse_proxy http://127.0.0.1:1337
-}
+	log {
+		output file /var/log/caddy/access.log {
+			roll_size 64mb
+			roll_keep 5
+			roll_keep_for 720h
+		}
+	}
 
-crashplan-gpu.sully.org {
-	encode zstd gzip
-	reverse_proxy http://127.0.0.1:5800
-}
+	tls {
+	        dns cloudflare {{ .cloudflare.api_token }}
+	}
 
-invoke.sully.org {
-	encode zstd gzip
-	reverse_proxy http://127.0.0.1:3000
-}
+	@syncthing host syncthing.sully.org
+	handle @syncthing {
+		reverse_proxy http://127.0.0.1:8384
+	}
 
-sd.sully.org {
-	encode zstd gzip
-	reverse_proxy http://127.0.0.1:7860
-}
+	@plex host plex.sully.org
+	handle @plex {
+		reverse_proxy http://127.0.0.1:32400 {
+			header_up Origin {remote_host}
+			header_up Referer {remote_host}
+			header_up X-Real-IP {upstream_hostport}
+		}
+	}
 
-train.sully.org {
-	encode zstd gzip
-	reverse_proxy http://127.0.0.1:7861
+	@dl host dl.sully.org
+	handle @dl {
+		reverse_proxy http://localhost:9091 {
+			header_down Cache-Control "no-cache, no-store, must-revalidate"
+			header_up Host 127.0.0.1:9091
+			header_up -Origin
+			header_up -Referer
+		}
+	}
+
+	@crashplan host crashplan.sully.org
+	handle @crashplan {
+		reverse_proxy http://127.0.0.1:5800
+	}
+
+	@homebridge host homebridge.sully.org
+	handle @homebridge {
+		reverse_proxy http://127.0.0.1:8081
+	}
+
+	@radarr host radarr.sully.org
+	handle @radarr {
+		reverse_proxy http://127.0.0.1:7878
+	}
+
+	@sonarr host sonarr.sully.org
+	handle @sonarr {
+		reverse_proxy http://127.0.0.1:8989
+	}
+
+	@prowlarr host prowlarr.sully.org
+	handle @prowlarr {
+		reverse_proxy http://127.0.0.1:9696
+	}
+
+	@stash host stash.sully.org
+	handle @stash {
+		reverse_proxy http://127.0.0.1:9999 {
+			# header_up Host {upstream_hostport}
+			# header_up X-Forwarded-Host {host}
+			# header_up X-Real-IP {remote_host}
+			# header_up X-Forwarded-For {remote_host}
+			# header_up X-Forwarded-Port {server_port}
+			# header_up X-Forwarded-Proto {scheme}
+		}
+	}
+
+	@scrypted host scrypted.sully.org
+	handle @scrypted {
+		reverse_proxy https://127.0.0.1:10443 {
+			header_up Host scrypted.sully.org
+			header_up X-Forwarded-Proto https
+
+			transport http {
+				tls
+				tls_insecure_skip_verify
+			}
+		}
+	}
+
+	@breadboard host breadboard.sully.org
+	handle @breadboard {
+		reverse_proxy http://127.0.0.1:4200
+	}
+
+	@captions host captions.sully.org
+	handle @captions {
+		reverse_proxy http://127.0.0.1:1337
+	}
+
+	@invoke host invoke.sully.org
+	handle @invoke {
+		reverse_proxy http://127.0.0.1:3000
+	}
+
+	@pose host pose.sully.org
+	handle @pose {
+		reverse_proxy http://127.0.0.1:5173
+	}
+
+	@sd host sd.sully.org
+	handle @sd {
+		reverse_proxy http://127.0.0.1:7860
+	}
+
+	@train host train.sully.org
+	handle @train {
+		reverse_proxy http://127.0.0.1:7861
+	}
 }
 {{- end -}}
