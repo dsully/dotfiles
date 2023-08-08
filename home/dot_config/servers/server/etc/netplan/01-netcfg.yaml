@@ -3,12 +3,13 @@ network:
   renderer: "networkd"
   ethernets:
     eth0:
+      # enp3s0:
       accept-ra: true
-      addresses: ["10.0.0.102/24"]
+      addresses: ["10.0.0.100/24"]
       dhcp4: false
       dhcp6: false
       match:
-        macaddress: 58:11:22:6a:2d:17
+        macaddress: 3c:8c:f8:60:18:c1
       optional: false
       routes:
         - to: default
