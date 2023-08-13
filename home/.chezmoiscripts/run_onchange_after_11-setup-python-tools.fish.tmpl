@@ -17,12 +17,15 @@ if type -q rye
     for package in $PACKAGES
         sub_task "Installing $package"
 
-        command rye install $package >/dev/null 2>&1
+        command rye install -f $package >/dev/null 2>&1
     end
+
+    sub_task "Installing ptpython REPL"
+    command rye install --extra-requirement ipython --extra-requirement jedi -f ptpython >/dev/null 2>&1
 
     {{ if eq .chezmoi.hostname "server" -}}
     sub_task "Installing liquidctl"
-    command rye install --git https://github.com/liquidctl/liquidctl liquidctl
+    command rye install --git https://github.com/liquidctl/liquidctl -f liquidctl >/dev/null 2>&1
     {{- end }}
 
     echo
