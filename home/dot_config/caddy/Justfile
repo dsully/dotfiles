@@ -3,11 +3,16 @@
 # We need linode on electricrain.
 EXTRA := if env_var("HOSTNAME") == "zap" { "--with github.com/ocomsoft/caddy2_linode" } else { "" }
 
-default: xcaddy build
+default: xcaddy build install
 
 xcaddy:
     @echo "Installing xcaddy..."
     @go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
 
 build:
-    @xcaddy build --with github.com/caddy-dns/cloudflare {{EXTRA}}
+    @xcaddy build master --with github.com/caddy-dns/cloudflare {{EXTRA}}
+
+install:
+    @sudo mv caddy /usr/bin/caddy
+    @systemctl stop caddy
+    @systemctl start caddy
