@@ -9,7 +9,6 @@ function deps -d "Write out Gradle dependencies."
         set project (basename (pwd))
     end
 
-    set output (./gradlew ":$project:dependencies" 2>&1)
-    echo $output > "deps.$project.txt"
+    ./gradlew ":$project:dependencies" > "deps.$project.txt" 2>&1
 end
 {{- end -}}
