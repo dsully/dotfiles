@@ -60,8 +60,8 @@ Based on <https://github.com/jirutka/doas-sudo-shim/issues>.
         command doas $_flag_non_interactive $_flag_user $USER_SHELL -l -c "cd $HOME; $SHELL $argv"
 
     else if set -q _flag_shell
-        command doas $_flag_non_interactive $_flag_user $USER_SHELL -c "$SHELL $argv"
+        command doas $_flag_non_interactive $_flag_user $USER_SHELL $SHELL $argv
     else
-        command doas $_flag_non_interactive $_flag_user -c "$argv"
+        command doas $_flag_non_interactive $_flag_user $argv
     end
 end
