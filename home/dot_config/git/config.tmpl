@@ -4,14 +4,11 @@
   name = Dan Sully
   useConfigOnly = true
 
+[include]
+    path = ~/.config/git/.github
+
 [includeIf  "hasconfig:remote.*.url:ssh://org-*@github.com/**"]
     path = ~/.config/git/.work
-
-[includeIf  "hasconfig:remote.*.url:git@github.com:**/**"]
-    path = ~/.config/git/.github
-
-[includeIf  "hasconfig:remote.*.url:https://github.com/**/**"]
-    path = ~/.config/git/.github
 
 [alias]
     a = commit --amend
