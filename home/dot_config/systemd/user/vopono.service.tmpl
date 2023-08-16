@@ -1,0 +1,23 @@
+{{- if eq .chezmoi.hostname "server" -}}
+# vim:ft=systemd
+[Unit]
+Description=Vopono
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/vopono -v exec \
+    --interface=eth0 \
+    --forward=9091 \
+    --provider=Mullvad \
+    --protocol=Wireguard \
+    --open-ports=54891 \
+    --custom-netns-name=mullvad \
+    --server=usa-ussjc001 \
+    --keep-alive \
+    '/usr/bin/qbittorrent-nox --webui-port=9091 --profile=/torrents'
+Type=simple
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
+{{- end -}}
