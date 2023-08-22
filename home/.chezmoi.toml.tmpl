@@ -15,7 +15,7 @@
 {{/* Determine what kind of computer this is. */}}
 {{- $chassisType := "desktop" -}}
 {{- if eq .chezmoi.os "darwin" -}}
-{{-   if contains "MacBook" (output "sysctl" "-n" "hw.model") -}}
+{{-   if contains "MacBook" (output "/usr/sbin/system_profiler" "-json" "SPHardwareDataType") -}}
 {{-     $chassisType = "laptop" -}}
 {{-   else -}}
 {{-     $chassisType = "desktop" -}}
