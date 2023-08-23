@@ -172,6 +172,7 @@ cask "wezterm"
 {{- if .flags.work -}}
 {{ comment "" "#" }}
 {{ comment "# " "Work Casks" }}
+cask "ddpm"
 cask "jetbrains-toolbox"
 cask "microsoft-auto-update"
 cask "microsoft-outlook"
@@ -238,7 +239,7 @@ mas "WiFi Signal", id: 525912054
 mas "WireGuard", id: 1451685025
 mas "WordService", id: 899972312
 mas "Yoink", id: 457622435
-{{ if eq .chezmoi.hostname "dsully-md1" "jarvis" -}}
+{{ if eq .chezmoi.hostname "jarvis" -}}
 mas "iMovie", id: 408981434
 {{- end }}
 mas "iPreview", id: 1519213509
