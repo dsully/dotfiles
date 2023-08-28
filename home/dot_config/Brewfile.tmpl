@@ -16,6 +16,7 @@ tap "rajiv/fastmate"
 {{/* */}}
 {{ comment "" "#" }}
 {{ comment "# " "Common between Linux & macOS" }}
+brew "act"
 brew "age"
 brew "b3sum"
 brew "bandwhich"
@@ -89,7 +90,6 @@ brew "zoxide"
 {{- if .flags.work -}}
 {{ comment "" "#" }}
 {{ comment "# " "Work Only" }}
-brew "act"
 brew "grpcurl"
 brew "mysql@5.7"
 brew "openjdk"
@@ -133,6 +133,7 @@ cask "bartender"
 cask "cleanshot"
 cask "daisydisk"
 cask "dash"
+cask "ddpm"
 cask "devtoys"
 cask "discord"
 cask "downie"
@@ -156,8 +157,10 @@ cask "renamer"
 cask "retrobatch"
 cask "rocket"
 cask "screens"
+cask "shureplus-motiv"
 cask "signal"
 cask "soulver"
+cask "stay"
 cask "superduper"
 cask "suspicious-package"
 cask "syncthing"
@@ -172,17 +175,12 @@ cask "wezterm"
 {{- if .flags.work -}}
 {{ comment "" "#" }}
 {{ comment "# " "Work Casks" }}
-cask "ddpm"
 cask "jetbrains-toolbox"
 cask "microsoft-auto-update"
 cask "microsoft-outlook"
 cask "microsoft-powerpoint"
 cask "microsoft-teams"
 cask "orbstack"
-cask "stay"
-{{   if eq .chezmoi.chassis "desktop" -}}
-cask "shureplus-motiv"
-{{ end -}}
 cask "yubico-yubikey-manager"
 cask "zoom"
 {{- end -}}
@@ -196,15 +194,11 @@ mas "AdGuard for Safari", id: 1440147259
 mas "AutoMounter", id: 1160435653
 mas "Black Out", id: 1319884285
 mas "CotEditor", id: 1024640650
-{{ if eq .chezmoi.arch "arm64" -}}
 mas "Darkroom", id: 953286746
-{{- end }}
 mas "Dato", id: 1470584107
 mas "DevCleaner", id: 1388020431
 mas "Discovery", id: 1381004916
-{{ if eq .chezmoi.arch "arm64" -}}
 mas "Flighty", id: 1358823008
-{{- end }}
 mas "Ivory", id: 6444602274
 mas "JSONPeep", id: 1458969831
 mas "Kagi Inc.", id: 1622835804
@@ -233,9 +227,7 @@ mas "Tweaks for Twitter", id: 1567751529
 mas "Userscripts-Mac-App", id: 1463298887
 mas "Wavelength", id: 1584865627
 mas "WiFi Explorer", id: 494803304
-{{ if eq .chezmoi.chassis "laptop" -}}
 mas "WiFi Signal", id: 525912054
-{{ end -}}
 mas "WireGuard", id: 1451685025
 mas "WordService", id: 899972312
 mas "Yoink", id: 457622435
