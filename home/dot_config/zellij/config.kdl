@@ -48,12 +48,10 @@ keybinds clear-defaults=true {
         bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
         bind "j" "Down" { ScrollDown; }
         bind "k" "Up" { ScrollUp; }
-        bind "Ctrl f" "PageDown" "Right" "l" { PageScrollDown; }
-        bind "Ctrl b" "PageUp" "Left" "h" { PageScrollUp; }
+        bind "Ctrl f" "PageDown" "Right" "l" "Ctrl ]" "Ctrl u" { PageScrollDown; }
+        bind "Ctrl b" "PageUp" "Left" "h" "Ctrl [" "Ctrl d" { PageScrollUp; }
         bind "d" { HalfPageScrollDown; }
         bind "u" { HalfPageScrollUp; }
-        bind "Ctrl ]" { PageScrollDown; }
-        bind "Ctrl [" { PageScrollUp; }
         // uncomment this and adjust key if using copy_on_select=false
         // bind "Alt c" { Copy; }
     }
