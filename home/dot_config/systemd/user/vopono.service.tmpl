@@ -5,7 +5,7 @@ Description=Vopono
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/vopono -v exec \
+ExecStart=/usr/bin/vopono exec \
     --interface=eth0 \
     --forward=9091 \
     --provider=Mullvad \
@@ -13,8 +13,7 @@ ExecStart=/usr/bin/vopono -v exec \
     --open-ports=54891 \
     --custom-netns-name=mullvad \
     --server=usa-ussjc001 \
-    --keep-alive \
-    '/usr/bin/qbittorrent-nox --webui-port=9091 --profile=/torrents'
+    '/usr/bin/qbittorrent-nox --webui-port=9091 --profile=/bits/media/torrents'
 Type=simple
 Restart=on-failure
 
