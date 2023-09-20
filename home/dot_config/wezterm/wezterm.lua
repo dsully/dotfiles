@@ -243,8 +243,8 @@ return {
         { key = "0", mods = "CMD|SHIFT", action = "ResetFontSize" },
 
         { key = "f", mods = "CMD", action = act.Search({ CaseInSensitiveString = "" }) },
-        { key = 'n', mods = 'CMD', action = act.SpawnWindow },
-        { key = 'q', mods = 'CMD', action = act.QuitApplication },
+        { key = "n", mods = "CMD", action = act.SpawnCommandInNewWindow({ cwd = wezterm.home_dir }) },
+        { key = "q", mods = "CMD", action = act.QuitApplication },
         { key = "t", mods = "CMD", action = act({ SpawnCommandInNewTab = { cwd = wezterm.home_dir } }) },
         { key = "w", mods = "CMD", action = act.CloseCurrentTab({ confirm = false }) },
 
