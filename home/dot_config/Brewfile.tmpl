@@ -1,11 +1,9 @@
-# vim:ft=gottexttmpl.ruby
+{{- /*- "vim:ft=gotexttmpl.ruby" */ -}}
 tap "develerik/tools"
 tap "homebrew/bundle"
 tap "homebrew/command-not-found"
 {{/* */}}
 {{- if eq .chezmoi.os "darwin" -}}
-{{ comment "" "#" }}
-{{ comment "# " "macOS specific taps." }}
 tap "artginzburg/tap" # sudo-touchid
 tap "caarlos0/tap" # xdg-open-svc
 tap "dsully/tap"
@@ -14,9 +12,7 @@ tap "homebrew/cask-fonts"
 tap "homebrew/services"
 tap "rajiv/fastmate"
 {{- end -}}
-{{/* */}}
-{{ comment "" "#" }}
-{{ comment "# " "Common between Linux & macOS" }}
+{{/* Common between Linux & macOS */}}
 brew "act"
 brew "age"
 brew "b3sum"
@@ -37,6 +33,7 @@ brew "fclones"
 brew "fd"
 brew "fish"
 brew "fselect"
+brew "fswatch"
 brew "fzf"
 brew "gh"
 brew "git"
@@ -53,7 +50,7 @@ brew "jenv"
 brew "jless"
 brew "jq"
 brew "just"
-brew "libmagic" # Needed for "install-release"
+brew "lpeg"
 brew "lsd"
 brew "macchina"
 brew "moar"
@@ -87,23 +84,20 @@ brew "yq"
 brew "zellij"
 brew "zenith"
 brew "zoxide"
-{{/* */}}
+{{/* Work Only */}}
 {{- if .flags.work -}}
-{{ comment "" "#" }}
-{{ comment "# " "Work Only" }}
 brew "grpcurl"
-brew "mysql@5.7"
+brew "mysql@5.7", restart_service: true
 brew "openjdk"
 brew "openjdk@11"
 brew "openjdk@17"
 {{- end -}}
-{{/* */}}
-{{- if eq .chezmoi.os "darwin" -}}
-{{ comment "" "#" }}
-{{ comment "# " "macOS Only" }}
+{{/* macOS only */}}
+{{- if eq .chezmoi.os "darwin" }}
 brew "artginzburg/tap/sudo-touchid"
 brew "caarlos0/tap/xdg-open-svc"
 brew "dsully/tap/macos-defaults"
+brew "bash"
 brew "gcc"
 brew "gnu-sed"
 brew "gnu-tar"
@@ -112,21 +106,18 @@ brew "openjdk"
 brew "pam-reattach"
 brew "telnet"
 brew "unar"
-{{- end }}
-{{/* */}}
+brew "wordnet"
+{{- end -}}
+{{/* Personal macOS only */}}
 {{- if and (eq .chezmoi.os "darwin") .flags.personal -}}
-{{ comment "" "#" }}
-{{ comment "# " "Personal macOS Only" }}
 cask "airflow"
 cask "macdive"
 cask "mullvadvpn"
 cask "soulseek"
 brew "dsully/tap/reddit-saves"
 {{ end }}
-{{/* */}}
+{{/* Casks for macOS */}}
 {{- if eq .chezmoi.os "darwin" -}}
-{{ comment "" "#" }}
-{{ comment "# " "Casks:" }}
 cask "1password"
 cask "1password-cli"
 cask "android-platform-tools"
@@ -173,24 +164,22 @@ cask "transmit"
 cask "visual-studio-code"
 cask "warp"
 cask "wezterm"
-{{/* */}}
+cask "zed"
+{{/* Work Casks */}}
 {{- if .flags.work -}}
-{{ comment "" "#" }}
-{{ comment "# " "Work Casks" }}
 cask "jetbrains-toolbox"
 cask "microsoft-auto-update"
 cask "microsoft-outlook"
 cask "microsoft-powerpoint"
 cask "microsoft-teams"
+cask "openin"
 cask "orbstack"
+cask "querious"
 cask "yubico-yubikey-manager"
 cask "zoom"
 {{- end -}}
-{{/* */}}
 {{/* Don't include Mac App Store until the "mas" CLI is installed. */}}
-{{- if lookPath "mas" -}}
-{{ comment "" "#" }}
-{{ comment "# " "Common App Store" }}
+{{- if lookPath "mas" }}
 mas "1Password for Safari", id: 1569813296
 mas "AdGuard for Safari", id: 1440147259
 mas "AutoMounter", id: 1160435653
@@ -211,6 +200,7 @@ mas "Numbers", id: 409203825
 mas "PDF Expert", id: 1055273043
 mas "Pages", id: 409201541
 mas "Paprika Recipe Manager 3", id: 1303222628
+mas "Parcel", id: 639968404
 mas "Patterns", id: 429449079
 mas "Pixelmator Pro", id: 1289583905
 mas "Play", id: 1596506190
@@ -233,7 +223,7 @@ mas "WiFi Signal", id: 525912054
 mas "WireGuard", id: 1451685025
 mas "WordService", id: 899972312
 mas "Yoink", id: 457622435
-{{ if eq .chezmoi.hostname "jarvis" -}}
+{{- if eq .chezmoi.hostname "jarvis" -}}
 mas "iMovie", id: 408981434
 {{- end }}
 mas "iPreview", id: 1519213509
@@ -244,15 +234,11 @@ mas "iPreview", id: 1519213509
 mas "Book Tracker", id: 1496543317
 mas "Brother P-touch Editor", id: 1453365242
 {{- end -}}
-{{/* */}}
+{{/* Work App Store */}}
 {{- if .flags.work -}}
-{{ comment "" "#" }}
-{{ comment "# " "Work App Store" }}
-mas "Agenda", id: 1287445660
 mas "Disk Speed Test", id: 425264550
 mas "Keynote", id: 409183694
 mas "Microsoft To Do", id: 1274495053
-mas "MindNode", id: 1289197285
 {{- end -}}
 {{- end -}}
 {{- end -}}
