@@ -19,7 +19,7 @@ command_exists() {
 }
 
 has_brew() {
-    if [ declare -p HOMEBREW_PREFIX &>/dev/null ]; then
+    if declare -p HOMEBREW_PREFIX &>/dev/null ; then
         BREW="$HOMEBREW_PREFIX/bin/brew"
     else
         if [[ -x /opt/homebrew/bin/brew ]]; then
@@ -62,6 +62,11 @@ install_homebrew
 if has_brew; then
     install_package age
     install_package fish
+
+    # Install a LaunchDaemon to always keep PAM TouchID enabled.
+    install_package artginzburg/tap/sudo-touchid
+
+    sudo brew services start sudo-touchid
 
     if [[ $CHEZMOI_OS == darwin ]]; then
         install_package mas

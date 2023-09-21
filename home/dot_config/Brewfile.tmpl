@@ -6,6 +6,7 @@ tap "homebrew/command-not-found"
 {{- if eq .chezmoi.os "darwin" -}}
 {{ comment "" "#" }}
 {{ comment "# " "macOS specific taps." }}
+tap "artginzburg/tap" # sudo-touchid
 tap "caarlos0/tap" # xdg-open-svc
 tap "dsully/tap"
 tap "he3-app/he3"
@@ -100,6 +101,7 @@ brew "openjdk@17"
 {{- if eq .chezmoi.os "darwin" -}}
 {{ comment "" "#" }}
 {{ comment "# " "macOS Only" }}
+brew "artginzburg/tap/sudo-touchid"
 brew "caarlos0/tap/xdg-open-svc"
 brew "dsully/tap/macos-defaults"
 brew "gcc"
