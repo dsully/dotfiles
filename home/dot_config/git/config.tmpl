@@ -83,6 +83,10 @@
     theme = Nord
 {{ end }}
 
+[fetch]
+    # https://stackoverflow.com/questions/60458452/how-can-i-list-all-remote-existing-branches-in-git
+    prune = true
+
 {{ if lookPath "git-lfs" -}}
 [filter "lfs"]
     smudge = git-lfs smudge -- %f
