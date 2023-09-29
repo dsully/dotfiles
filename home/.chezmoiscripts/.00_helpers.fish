@@ -27,10 +27,9 @@ function ask_sudo
         # Keep-alive: update existing sudo time stamp if set, otherwise do nothing.
         command sudo -v
     else
-        set tid (command grep -c pam_tid /etc/pam.d/sudo)
         tput civis
 
-        if is_macos; and test $tid -eq 1
+        if is_macos
             info "Use TouchID to authenticate for setup."
         else
             info "Please enter your password for setup: "

@@ -1,10 +1,8 @@
-{{- /*- "vim:ft=gotexttmpl.ruby" */ -}}
 tap "develerik/tools"
 tap "homebrew/bundle"
 tap "homebrew/command-not-found"
 {{/* */}}
 {{- if eq .chezmoi.os "darwin" -}}
-tap "artginzburg/tap" # sudo-touchid
 tap "caarlos0/tap" # xdg-open-svc
 tap "dsully/tap"
 tap "he3-app/he3"
@@ -94,7 +92,6 @@ brew "openjdk@17"
 {{- end -}}
 {{/* macOS only */}}
 {{- if eq .chezmoi.os "darwin" }}
-brew "artginzburg/tap/sudo-touchid"
 brew "caarlos0/tap/xdg-open-svc"
 brew "dsully/tap/macos-defaults"
 brew "bash"
@@ -107,8 +104,8 @@ brew "pam-reattach"
 brew "telnet"
 brew "unar"
 brew "wordnet"
-{{- end -}}
-{{/* Personal macOS only */}}
+{{- end }}
+{{/* */}}
 {{- if and (eq .chezmoi.os "darwin") .flags.personal -}}
 cask "airflow"
 cask "macdive"

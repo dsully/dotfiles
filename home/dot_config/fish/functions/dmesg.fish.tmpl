@@ -1,5 +1,4 @@
 {{- if eq .chezmoi.os "linux" -}}
-# vim:ft=fish
 function dmesg --wraps dmesg
 
     set -l cmd (command -v dmesg)
