@@ -63,12 +63,10 @@ if has_brew; then
     install_package age
     install_package fish
 
-    # Install a LaunchDaemon to always keep PAM TouchID enabled.
-    install_package artginzburg/tap/sudo-touchid
-
-    sudo brew services start sudo-touchid
-
     if [[ $CHEZMOI_OS == darwin ]]; then
+        # Sonoma+ allows a sudo_local file in /etc/pam.d/
+        sudo cp -f "${HOME}/.config/system/etc/pam.d/sudo_local" /etc/pam.d/sudo_local
+
         install_package mas
     fi
 else
