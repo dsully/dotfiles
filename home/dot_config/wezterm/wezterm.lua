@@ -53,6 +53,30 @@ local hyperlink_rules = function()
     return rules
 end
 
+local icons = {
+    ["bash"] = wezterm.nerdfonts.dev_terminal,
+    ["btop"] = wezterm.nerdfonts.md_chart_areaspline,
+    ["cargo"] = wezterm.nerdfonts.dev_rust,
+    ["curl"] = wezterm.nerdfonts.fa_cloud_download,
+    ["docker"] = wezterm.nerdfonts.linux_docker,
+    ["docker-compose"] = wezterm.nerdfonts.linux_docker,
+    ["fish"] = wezterm.nerdfonts.dev_terminal,
+    ["gh"] = wezterm.nerdfonts.dev_github_badge,
+    ["git"] = wezterm.nerdfonts.dev_git,
+    ["go"] = wezterm.nerdfonts.md_language_go,
+    ["htop"] = wezterm.nerdfonts.md_chart_areaspline,
+    ["lua"] = wezterm.nerdfonts.seti_lua,
+    ["make"] = wezterm.nerdfonts.seti_makefile,
+    ["node"] = wezterm.nerdfonts.md_nodejs,
+    ["nvim"] = wezterm.nerdfonts.custom_vim,
+    ["ruby"] = wezterm.nerdfonts.cod_ruby,
+    ["sudo"] = wezterm.nerdfonts.fa_hashtag,
+    ["topgrade"] = wezterm.nerdfonts.md_rocket_launch,
+    ["vim"] = wezterm.nerdfonts.custom_vim,
+    ["wget"] = wezterm.nerdfonts.fa_cloud_download,
+    ["xh"] = wezterm.nerdfonts.fa_cloud_download,
+}
+
 ---@diagnostic disable-next-line: unused-local
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
     --
@@ -63,13 +87,17 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
     end
 
     local process_name = basename(tab.active_pane.foreground_process_name)
-    local pane_title = tab.active_pane.title
+    local pane_title = (tab.tab_title and #tab.tab_title > 0) and tab.tab_title or tab.active_pane.title
 
     if process_name == "nvim" then
-        pane_title = pane_title:gsub("^(nvim %S+) .*", "%1")
+        pane_title = pane_title:gsub("^nvim (%S+) .*", "%1")
     end
 
     pane_title = pane_title:gsub("^Zellij .+%[(%S+)%]", "%1")
+
+    if icons[process_name] then
+        pane_title = icons[process_name] .. " " .. (pane_title or "")
+    end
 
     local has_unseen_output = false
 
@@ -101,13 +129,14 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
     end
 
     if tab.is_active then
-        table.insert(output, { Background = { Color = colors.gray.base } })
+        table.insert(output, { Background = { Color = colors.gray.bright } })
+        table.insert(output, { Attribute = { Intensity = "Bold" } })
+        table.insert(output, { Attribute = { Italic = true } })
     else
         table.insert(output, { Background = { Color = colors.black.base } })
     end
-
     -- Ensure that the titles fit in the available space, and that we have room for the edges.
-    local title = wezterm.truncate_right(string.format("%d: %s", tab.tab_index + 1, pane_title), max_width - 2)
+    local title = wezterm.truncate_right(string.format("%d: %s", tab.tab_index + 1, pane_title), max_width - 3)
 
     table.insert(output, { Text = title })
     table.insert(output, { Background = { Color = colors.black.base } })
