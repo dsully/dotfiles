@@ -17,13 +17,13 @@
     dc = diff --cached
     last = log -1 HEAD
     unstage = reset HEAD --
-{{ if lookPath "gh" }}
+
     # https://hachyderm.io/@nedbat/109426516519513998
     actions = "!f() { gh run list --branch $(git rev-parse --abbrev-ref HEAD); }; f"
 
     # Browse the repository on GitHub.
     browse = "!gh repo view --web"
-{{ end }}
+
     # Check out a pull request.
     pr = "!f() { git fetch -fu ${2:-origin} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
 
@@ -72,6 +72,7 @@
     # Speed up commands involving untracked files such as `git status`.
     # https://git-scm.com/docs/git-update-index#_untracked_cache
     untrackedCache = true
+
 [diff]
     navigate = true  # use n and N to move between diff sections
     noprefix = true
