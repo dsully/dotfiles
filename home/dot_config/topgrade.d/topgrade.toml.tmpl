@@ -55,7 +55,7 @@ cleanup = true
 [git]
 #max_concurrency = 5
 # Additional git repositories to pull
-repos = [
+pull_only_repos = [
 {{- if eq .chezmoi.hostname "jarvis" }}
     "{{- .chezmoi.homeDir -}}/src/*/",
     "{{- .chezmoi.homeDir -}}/src/rust/*/",
@@ -71,7 +71,7 @@ repos = [
 pull_predefined = false
 
 # Arguments to pass Git when pulling Repositories
-arguments = "--rebase --autostash"
+pull_arguments = "--rebase --autostash"
 
 # Commands to run before anything
 [pre_commands]
@@ -79,17 +79,17 @@ arguments = "--rebase --autostash"
 
 # Custom commands
 [commands]
-{{ if lookPath "rtx" -}}
-"RTX Plugins" = "rtx plugins update"
-{{ end -}}
+# {{ if lookPath "rtx" -}}
+# "RTX Plugins" = "rtx plugins update"
+# {{ end -}}
 
-{{ if lookPath "fish" -}}
-"Fish Update Completions" = "fish_update_completions"
-{{ end -}}
+# {{ if lookPath "fish" -}}
+# "Fish Update Completions" = "fish_update_completions"
+# {{ end -}}
 
-{{ if lookPath "gitrel" -}}
-"GitHub Tools" = "gitrel update"
-{{ end }}
+# {{ if lookPath "gitrel" -}}
+# "GitHub Tools" = "gitrel update"
+# {{ end }}
 
 [brew]
 greedy_cask = true
