@@ -1,9 +1,9 @@
 #!{{ lookPath "fish" }}
 
-# Install GitHub tools via git-rel
+# Install GitHub tools via 'released'
 # vim:ft=fish
 #
-# Config file hash: {{ include "dot_config/gitrel/config.toml.tmpl" | sha256sum }}
+# Config file hash: {{ include "dot_config/released/config.toml.tmpl" | sha256sum }}
 
 source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
 
@@ -11,9 +11,9 @@ if type -q gitrel
 
     start "Installing GitHub Tools"
 
-    command gitrel update >/dev/null 2>&1
+    command released update
 
     echo
 else
-    error "'gitrel' is not installed. It should be installed by Rust Tools"
+    error "'released' is not installed. It should be installed by Rust Tools"
 end
