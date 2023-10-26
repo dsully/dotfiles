@@ -135,8 +135,9 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
     else
         table.insert(output, { Background = { Color = colors.black.base } })
     end
+
     -- Ensure that the titles fit in the available space, and that we have room for the edges.
-    local title = wezterm.truncate_right(string.format("%d: %s", tab.tab_index + 1, pane_title), max_width - 3)
+    local title = wezterm.truncate_right(string.format("%d: %s", tab.tab_index + 1, pane_title), max_width)
 
     table.insert(output, { Text = title })
     table.insert(output, { Background = { Color = colors.black.base } })
