@@ -68,11 +68,11 @@ local icons = {
     ["lua"] = wezterm.nerdfonts.seti_lua,
     ["make"] = wezterm.nerdfonts.seti_makefile,
     ["node"] = wezterm.nerdfonts.md_nodejs,
-    ["nvim"] = wezterm.nerdfonts.custom_vim,
+    ["nvim"] = "", -- wezterm.nerdfonts.custom_neovim,
     ["ruby"] = wezterm.nerdfonts.cod_ruby,
     ["sudo"] = wezterm.nerdfonts.fa_hashtag,
     ["topgrade"] = wezterm.nerdfonts.md_rocket_launch,
-    ["vim"] = wezterm.nerdfonts.custom_vim,
+    ["vim"] = wezterm.nerdfonts.custom_neovim,
     ["wget"] = wezterm.nerdfonts.fa_cloud_download,
     ["xh"] = wezterm.nerdfonts.fa_cloud_download,
 }
@@ -137,7 +137,8 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
     end
 
     -- Ensure that the titles fit in the available space, and that we have room for the edges.
-    local title = wezterm.truncate_right(string.format("%d: %s", tab.tab_index + 1, pane_title), max_width)
+    -- local title = wezterm.truncate_right(string.format("%d: %s", tab.tab_index + 1, pane_title), max_width)
+    local title = string.format("%d: %s", tab.tab_index + 1, pane_title)
 
     table.insert(output, { Text = title })
     table.insert(output, { Background = { Color = colors.black.base } })
@@ -147,8 +148,13 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 end)
 
 return {
-    font = wezterm.font("Menlo", { stretch = "Expanded" }),
+    -- Fallback to Hack Nerd Fonts until a new Wezterm is released with the Neovim icon.
+    font = wezterm.font_with_fallback({
+        { family = "Menlo", stretch = "Expanded" },
+        "Hack Nerd Font Mono",
+    }),
     font_size = 16.3,
+
     custom_block_glyphs = true,
     harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
     unicode_version = 14,
