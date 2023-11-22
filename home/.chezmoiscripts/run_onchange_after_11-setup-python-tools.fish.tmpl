@@ -9,10 +9,8 @@ if type -q rye
     task "Installing Python tools. 🐍"
 
     set PACKAGES \
-        'black[d]' \
         frogmouth \
-        pdm \
-        ruff
+        pdm
 
     for package in $PACKAGES
         sub_task "Installing $package"

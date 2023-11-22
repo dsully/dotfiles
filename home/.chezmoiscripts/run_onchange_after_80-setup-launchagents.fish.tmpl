@@ -2,7 +2,6 @@
 
 # vim:ft=fish
 
-# localhost.blackd.plist.tmpl hash: {{ include (joinPath .chezmoi.workingTree "home/Library/LaunchAgents/localhost.blackd.plist.tmpl") | sha256sum }}
 # localhost.maxfiles.plist.tmpl hash: {{ include (joinPath .chezmoi.workingTree "home/Library/LaunchAgents/localhost.maxfiles.plist.tmpl") | sha256sum }}
 # localhost.pbcopy.plist.tmpl hash: {{ include (joinPath .chezmoi.workingTree "home/Library/LaunchAgents/localhost.pbcopy.plist.tmpl") | sha256sum }}
 # localhost.pbpaste.plist.tmpl hash: {{ include (joinPath .chezmoi.workingTree "home/Library/LaunchAgents/localhost.pbpaste.plist.tmpl") | sha256sum }}
@@ -14,7 +13,6 @@ if is_macos
     task "Installing LaunchAgents"
 
     set agents \
-        blackd \
         pbcopy \
         pbpaste
 
