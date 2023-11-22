@@ -60,7 +60,7 @@ layout_nodejs() {
 layout_python() {
     if [[ -d "$PWD/venv" ]]; then
         export VIRTUAL_ENV="$PWD/venv"
-    elif [[ -d "$PWD/.venv" ]]; then
+    else
         export VIRTUAL_ENV="$PWD/.venv"
     fi
 
@@ -93,7 +93,6 @@ layout_pdm() {
     if [[ -f .pep582 ]]; then
 
         # Activate PEP 582 (faster equivalent to `pdm --pep582`)
-        # shellcheck disable=SC1091
         source .pep582
         PATH_add "$PWD"/__pypackages__/*/bin
 
@@ -103,16 +102,10 @@ layout_pdm() {
 }
 
 layout_pygradle() {
-    PATH_add "$VIRTUAL_ENV/bin"
-
     REPO="$(basename "$PWD")"
-    VIRTUAL_ENV="$(expand_path "../build/$REPO/environments/development-venv")"
+    export VIRTUAL_ENV="$(expand_path "../build/$REPO/environments/development-venv")"
 
-    if [ -x "$VIRTUAL_ENV/bin/python" ]; then
-        PATH_add "$VIRTUAL_ENV/bin"
-
-        export VIRTUAL_ENV
-    fi
+    PATH_add "$VIRTUAL_ENV/bin"
 }
 
 if [[ ! -s .envrc ]]; then
