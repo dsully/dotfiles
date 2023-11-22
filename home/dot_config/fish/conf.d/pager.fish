@@ -1,11 +1,11 @@
 if status is-interactive
 
     if type -q moar
-        set -gx MOAR '--statusbar=bold --no-linenumbers --no-clear-on-exit --style=nord --colors=16M --wrap --quit-if-one-screen'
         set -gx PAGER moar
-        set -gx MANPAGER moar
+        set -gx MOAR "-statusbar bold -no-linenumbers -no-clear-on-exit -style nord -colors 16M -wrap -quit-if-one-screen"
 
-        abbr --add less moar
+    else if type -q ov
+        set -gx PAGER "ov --exit-write --quit-if-one-screen"
 
     else
         # Make less behave with XDG
@@ -14,13 +14,9 @@ if status is-interactive
         end
 
         set -gx PAGER "less -FiRSwX"
-        set -gx MANPAGER "less -FiRSwX"
-
         set -gx LESSKEY "$XDG_CACHE_HOME"/less/lesskey
         set -gx LESSHISTFILE /dev/null
     end
 
-    if type -q bat
-        set -gx BAT_PAGER "$PAGER"
-    end
+    set -gx MANPAGER $PAGER
 end
