@@ -1,3 +1,3 @@
-function less --wraps=less --description 'Wrap less if necessary'
+function less --wraps=bat --description 'Use bat instead of less'
     command bat $argv
 end
