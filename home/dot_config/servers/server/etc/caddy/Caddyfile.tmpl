@@ -1,4 +1,10 @@
 {{- if and .flags.decrypt (eq .chezmoi.hostname "server") -}}
+{
+	default_sni server.sully.org
+	http_port 80
+	https_port 443
+}
+
 *.sully.org {
 	# Enable gzip, zstd compression
 	encode zstd gzip
@@ -12,68 +18,91 @@
 	}
 
 	tls {
-	        dns cloudflare {{ .cloudflare.api_token }}
+		dns cloudflare {{ .cloudflare.api_token }}
 	}
 
 	@syncthing host syncthing.sully.org
 	handle @syncthing {
-		reverse_proxy http://127.0.0.1:8384
+		reverse_proxy https://127.0.0.1:8384 {
+			header_up Host syncthing.sully.org
+			header_up X-Forwarded-Proto https
+
+			transport http {
+				tls
+				tls_insecure_skip_verify
+			}
+		}
 	}
 
 	@plex host plex.sully.org
 	handle @plex {
-		reverse_proxy http://127.0.0.1:32400 {
-			header_up Origin {remote_host}
-			header_up Referer {remote_host}
-			header_up X-Real-IP {upstream_hostport}
-		}
+		reverse_proxy 127.0.0.1:32400
 	}
 
 	@dl host dl.sully.org
 	handle @dl {
 		reverse_proxy http://localhost:9091 {
-			header_down Cache-Control "no-cache, no-store, must-revalidate"
 			header_up Host 127.0.0.1:9091
+
 			header_up -Origin
 			header_up -Referer
+
+			# QBittorrent will block the theme with its content security policy you need to change or remove the CSP header.
+			header_down -content-security-policy
+			header_down -x-frame-options
+			header_down -x-webkit-csp
+			header_down -x-xss-protection
 		}
 	}
 
-	@crashplan host crashplan.sully.org
-	handle @crashplan {
-		reverse_proxy http://127.0.0.1:5800
+	#@crashplan host crashplan.sully.org
+	#handle @crashplan {
+	#	reverse_proxy 127.0.0.1:5800
+	#}
+
+	@overseerr host overseerr.sully.org
+	handle @overseerr {
+		reverse_proxy 127.0.0.1:5055
 	}
 
 	@homebridge host homebridge.sully.org
 	handle @homebridge {
-		reverse_proxy http://127.0.0.1:8081
+		reverse_proxy 127.0.0.1:8581
+	}
+
+	@resilio host resilio.sully.org
+	handle @resilio {
+		reverse_proxy 127.0.0.1:8888 {
+			transport http {
+				tls
+				tls_insecure_skip_verify
+			}
+		}
 	}
 
 	@radarr host radarr.sully.org
 	handle @radarr {
-		reverse_proxy http://127.0.0.1:7878
+		reverse_proxy 127.0.0.1:7878
 	}
 
 	@sonarr host sonarr.sully.org
 	handle @sonarr {
-		reverse_proxy http://127.0.0.1:8989
+		reverse_proxy 127.0.0.1:8989
 	}
 
 	@prowlarr host prowlarr.sully.org
 	handle @prowlarr {
-		reverse_proxy http://127.0.0.1:9696
+		reverse_proxy 127.0.0.1:9696
+	}
+
+	@subtitles host subtitles.sully.org
+	handle @subtitles {
+		reverse_proxy 127.0.0.1:6767
 	}
 
 	@stash host stash.sully.org
 	handle @stash {
-		reverse_proxy http://127.0.0.1:9999 {
-			# header_up Host {upstream_hostport}
-			# header_up X-Forwarded-Host {host}
-			# header_up X-Real-IP {remote_host}
-			# header_up X-Forwarded-For {remote_host}
-			# header_up X-Forwarded-Port {server_port}
-			# header_up X-Forwarded-Proto {scheme}
-		}
+		reverse_proxy 127.0.0.1:9999
 	}
 
 	@scrypted host scrypted.sully.org
@@ -91,32 +120,37 @@
 
 	@breadboard host breadboard.sully.org
 	handle @breadboard {
-		reverse_proxy http://127.0.0.1:4200
+		reverse_proxy 127.0.0.1:4200
 	}
 
 	@captions host captions.sully.org
 	handle @captions {
-		reverse_proxy http://127.0.0.1:1337
+		reverse_proxy 127.0.0.1:1337
+	}
+
+	@comfy host comfy.sully.org
+	handle @comfy {
+		reverse_proxy 127.0.0.1:8188
 	}
 
 	@invoke host invoke.sully.org
 	handle @invoke {
-		reverse_proxy http://127.0.0.1:3000
+		reverse_proxy 127.0.0.1:9090
 	}
 
 	@pose host pose.sully.org
 	handle @pose {
-		reverse_proxy http://127.0.0.1:5173
+		reverse_proxy 127.0.0.1:5173
 	}
 
 	@sd host sd.sully.org
 	handle @sd {
-		reverse_proxy http://127.0.0.1:7860
+		reverse_proxy 127.0.0.1:7860
 	}
 
 	@train host train.sully.org
 	handle @train {
-		reverse_proxy http://127.0.0.1:7861
+		reverse_proxy 127.0.0.1:7861
 	}
 }
 {{- end -}}
