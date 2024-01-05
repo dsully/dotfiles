@@ -1,0 +1,45 @@
+Host *
+  AddKeysToAgent yes
+  Compression yes
+  ForwardAgent yes
+  UseKeychain yes
+  IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+  SetEnv SSH_CLIENT_OS={{- .chezmoi.os | title }} SSH_CLIENT_HOME={{- .chezmoi.homeDir }}
+
+Host * !github.com
+  ControlPath /tmp/ssh_mux_%h_%p_%r
+  ControlMaster auto
+  ControlPersist no
+  ServerAliveInterval 10
+
+  # https://carlosbecker.com/posts/pbcopy-pbpaste-open-ssh/
+  # Homebrew xdg-open-svc
+  RemoteForward [localhost]:2224 [127.0.0.1]:2224
+  RemoteForward [localhost]:2225 [127.0.0.1]:2225
+  RemoteForward [localhost]:2226 [127.0.0.1]:2226
+
+Host er
+  HostName electricrain.com.
+
+Host work
+  HostName 10.0.0.98
+
+Host sisyphus
+  HostName 10.0.0.153
+  User pi
+
+Host unifi gateway 10.0.0.1
+  HostName 10.0.0.1
+  User root
+  LocalForward 27017 127.0.0.1:27117
+
+Host nvr 10.0.0.2
+  HostName 10.0.0.2
+  User root
+
+Host server
+  HostName 10.0.0.100
+
+Host github.com
+  User git
+  HostName github.com.
