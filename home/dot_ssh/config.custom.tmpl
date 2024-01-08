@@ -8,8 +8,10 @@ Host *
   AddKeysToAgent yes
   Compression yes
   ForwardAgent yes
+{{- if eq .chezmoi.os "darwin" -}}
   UseKeychain yes
   IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+{{ end }}
   SetEnv SSH_CLIENT_OS={{- .chezmoi.os | title }} SSH_CLIENT_HOME={{- .chezmoi.homeDir }}
 
 Host * !github.com
