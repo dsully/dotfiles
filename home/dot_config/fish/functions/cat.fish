@@ -36,6 +36,6 @@ function cat --wraps=bat --description 'Use bat instead of cat'
         wezterm imgcat $argv
 
     else
-        command bat $argv
+        command bat --pager='$PAGER $MOAR' $argv
     end
 end
