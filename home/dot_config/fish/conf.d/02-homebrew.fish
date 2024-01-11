@@ -24,6 +24,8 @@ if status is-interactive
         set -gx HOMEBREW_NO_COMPAT 1
         set -gx HOMEBREW_NO_ENV_HINTS 1
 
+        set -gx DYLD_LIBRARY_PATH $HOMEBREW_PREFIX/lib
+
         # https://github.com/Homebrew/homebrew-command-not-found
         builtin source $HOMEBREW_PREFIX/Library/Taps/homebrew/homebrew-command-not-found/handler.fish 2>/dev/null
 
