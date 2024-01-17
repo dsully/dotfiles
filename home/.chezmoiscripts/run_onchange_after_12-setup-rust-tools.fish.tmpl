@@ -19,6 +19,8 @@ if type -q cargo
         cargo-audit \
         # https://github.com/matthiaskrgr/cargo-cache
         cargo-cache \
+        # https://github.com/axodotdev/cargo-dist
+        cargo-dist \
         # https://github.com/Riey/cargo-feature
         cargo-feature \
         # https://github.com/cargo-bins/cargo-quickinstall
@@ -57,9 +59,7 @@ if type -q cargo
 
     # My tools / forked / git-only.
     set -l URLS \
-        https://github.com/dsully/git-open \
-        https://github.com/dsully/lolcate-rs \
-        https://github.com/dsully/gitrel
+        https://github.com/dsully/lolcate-rs
 
     if is_macos
         set -a URLS https://github.com/alexwlchan/safari.rs

@@ -16,12 +16,6 @@ alias = "autorebase"
 asset_pattern = ""
 file_pattern = "autorebase"
 
-["axodotdev/cargo-dist"]
-name = "axodotdev/cargo-dist"
-alias = "cargo-dist"
-asset_pattern = ""
-file_pattern = "cargo-dist"
-
 ["cargo-bins/cargo-binstall"]
 name = "cargo-bins/cargo-binstall"
 alias = "cargo-binstall"
