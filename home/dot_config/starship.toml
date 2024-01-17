@@ -59,6 +59,7 @@ when = "sudo -vn &>/dev/null"
 # https://github.com/starship/starship/issues/4003
 # https://github.com/TsekNet/dotfiles/commit/23caa887ee7350fdb4cd91522b97555b5a962974
 [custom.username]
+ignore_timeout = true
 when = "test $USER != 'dsully'"
 format = "[$output](red bold)@"
 command = "echo $USER"
