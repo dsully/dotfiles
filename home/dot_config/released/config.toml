@@ -40,6 +40,12 @@ alias = "git-dive"
 asset_pattern = ""
 file_pattern = "git-dive"
 
+["gitext-rs/git-stack"]
+name = "gitext-rs/git-stack"
+alias = "git-stack"
+asset_pattern = ""
+file_pattern = "git-stack"
+
 ["glotlabs/gdrive"]
 name = "glotlabs/gdrive"
 alias = "gdrive"
