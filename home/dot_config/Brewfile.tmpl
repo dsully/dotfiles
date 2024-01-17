@@ -1,5 +1,8 @@
 tap "homebrew/bundle"
 tap "homebrew/command-not-found"
+tap "homebrew/core"
+tap "afnanenayet/tap"
+tap "dsully/tap"
 {{/* */}}
 {{- if eq .chezmoi.os "darwin" -}}
 tap "caarlos0/tap" # xdg-open-svc
@@ -11,6 +14,7 @@ tap "rajiv/fastmate"
 {{- end -}}
 {{/* Common between Linux & macOS */}}
 brew "act"
+brew "afnanenayet/tap/diffsitter"
 brew "age"
 brew "b3sum"
 brew "bandwhich"
@@ -22,9 +26,9 @@ brew "croc"
 brew "curl"
 brew "dasel"
 brew "direnv"
+brew "dsully/tap/released"
 brew "dua-cli"
 brew "dust"
-brew "erdtree"
 brew "fclones"
 brew "fd"
 brew "fish"
@@ -41,6 +45,7 @@ brew "helix"
 brew "hexyl"
 brew "hyperfine"
 brew "iperf3"
+brew "ipmitool"
 brew "jenv"
 brew "jless"
 brew "jq"
@@ -101,13 +106,12 @@ brew "openjdk"
 brew "pam-reattach"
 brew "telnet"
 brew "unar"
-brew "wordnet"
 {{- end }}
 {{/* */}}
 {{- if and (eq .chezmoi.os "darwin") .flags.personal -}}
-cask "airflow"
 cask "macdive"
 cask "mullvadvpn"
+cask "protonvpn"
 cask "soulseek"
 brew "dsully/tap/reddit-saves"
 {{ end }}
@@ -128,13 +132,16 @@ cask "downie"
 cask "electorrent"
 cask "fastmate"
 cask "font-hack-nerd-font"
+cask "font-input"
 cask "font-jetbrains-mono"
 cask "google-chrome"
 cask "he3"
 cask "iina"
+cask "keka"
 cask "mailbutler"
 cask "mist"
 cask "monodraw"
+cask "obsidian"
 cask "ogdesign-eagle"
 cask "proxyman"
 cask "quicken"
@@ -158,7 +165,7 @@ cask "tower"
 cask "transmit"
 cask "visual-studio-code"
 cask "wezterm"
-cask "zed"
+cask "whatsapp"
 {{/* Work Casks */}}
 {{- if .flags.work -}}
 cask "jetbrains-toolbox"
@@ -178,12 +185,15 @@ mas "1Password for Safari", id: 1569813296
 mas "AdGuard for Safari", id: 1440147259
 mas "AutoMounter", id: 1160435653
 mas "Black Out", id: 1319884285
+mas "Consent-O-Matic", id: 1606897889
+mas "Control Panel for Twitter", id: 1668516167
 mas "CotEditor", id: 1024640650
 mas "Darkroom", id: 953286746
 mas "Dato", id: 1470584107
 mas "DevCleaner", id: 1388020431
 mas "Discovery", id: 1381004916
 mas "Flighty", id: 1358823008
+mas "Hyperduck", id: 6444667067
 mas "Ivory", id: 6444602274
 mas "JSONPeep", id: 1458969831
 mas "Kagi Inc.", id: 1622835804
@@ -207,6 +217,8 @@ mas "SmugMug", id: 1115348888
 mas "Spark", id: 1176895641
 mas "StopTheMadness", id: 1376402589
 mas "Tailscale", id: 1475387142
+mas "TestFlight", id: 899247664
+mas "The Camelizer", id: 1532579087
 mas "TrashMe 3", id: 1490879410
 mas "Tripsy", id: 1429967544
 mas "Tweaks for Twitter", id: 1567751529
@@ -226,6 +238,13 @@ mas "iPreview", id: 1519213509
 {{ comment "# " "Personal App Store" }}
 mas "Book Tracker", id: 1496543317
 mas "Brother P-touch Editor", id: 1453365242
+mas "Draw Things", id: 6444050820
+mas "HomeLog", id: 1584408332
+mas "Infuse", id: 1136220934
+mas "OpenCat", id: 6445999201
+mas "OptiClean", id: 6452387177
+mas "Photomator", id: 1444636541
+mas "Radiance", id: 1573366225
 {{- end -}}
 {{/* Work App Store */}}
 {{- if .flags.work -}}
