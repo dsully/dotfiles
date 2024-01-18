@@ -89,9 +89,6 @@ brew "zoxide"
 {{- if .flags.work -}}
 brew "grpcurl"
 brew "mysql@5.7", restart_service: true
-brew "openjdk"
-brew "openjdk@11"
-brew "openjdk@17"
 {{- end -}}
 {{/* macOS only */}}
 {{- if eq .chezmoi.os "darwin" }}
@@ -102,7 +99,6 @@ brew "gcc"
 brew "gnu-sed"
 brew "gnu-tar"
 brew "mas"
-brew "openjdk"
 brew "pam-reattach"
 brew "telnet"
 brew "unar"
@@ -139,6 +135,7 @@ cask "he3"
 cask "iina"
 cask "keka"
 cask "mailbutler"
+cask "microsoft-openjdk"
 cask "mist"
 cask "monodraw"
 cask "obsidian"
