@@ -5,14 +5,17 @@ Description=Vopono
 After=network.target
 
 [Service]
+WorkingDirectory=%h/.config/vopono
 ExecStart=/usr/bin/vopono exec \
     --interface=eth0 \
     --forward=9091 \
-    --provider=Mullvad \
+    --provider=custom \
     --protocol=Wireguard \
-    --open-ports=54891 \
-    --custom-netns-name=mullvad \
-    --server=usa-ussjc001 \
+    --custom-netns-name=vpn \
+    --custom=protonvpn-us-ca80.conf \
+    --no-killswitch \
+    --allow-host-access \
+    --protonvpn-port-forwarding \
     '/usr/bin/qbittorrent-nox --webui-port=9091 --profile=/bits/media/torrents'
 Type=simple
 Restart=on-failure
