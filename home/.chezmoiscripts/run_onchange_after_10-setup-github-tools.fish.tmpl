@@ -7,7 +7,7 @@
 
 source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
 
-if type -q gitrel
+if type -q released
 
     start "Installing GitHub Tools"
 
@@ -15,5 +15,5 @@ if type -q gitrel
 
     echo
 else
-    error "'released' is not installed. It should be installed by Rust Tools"
+    error "'released' is not installed. It should be installed via Homebrew tap"
 end
