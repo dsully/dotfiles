@@ -5,7 +5,7 @@ function sudo -d "doas wrapper."
         return
     end
 
-    argparse --ignore-unknown h/help i/login n/non_interactive s/shell u/user= -- $argv
+    argparse --ignore-unknown h/help i/login n/non_interactive S/shell u/user= -- $argv
 
     if set -q _flag_help
         echo """Usage:
