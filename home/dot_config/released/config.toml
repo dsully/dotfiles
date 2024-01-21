@@ -10,23 +10,11 @@ alias = "simple-http-server"
 asset_pattern = ""
 file_pattern = "simple-http-server"
 
-["Timmmm/autorebase"]
-name = "Timmmm/autorebase"
-alias = "autorebase"
-asset_pattern = ""
-file_pattern = "autorebase"
-
 ["cargo-bins/cargo-binstall"]
 name = "cargo-bins/cargo-binstall"
 alias = "cargo-binstall"
-asset_pattern = 'cargo-binstall-{arch}.*{os}\.zip$'
+asset_pattern = 'cargo-binstall-{arch}.*{os}\.(zip|tgz)$'
 file_pattern = "cargo-binstall"
-
-["dsully/macos-defaults"]
-name = "dsully/macos-defaults"
-alias = "macos-defaults"
-asset_pattern = ""
-file_pattern = "macos-defaults"
 
 ["dsully/zoned"]
 name = "dsully/zoned"
@@ -67,7 +55,7 @@ file_pattern = "cargo-outdated"
 ["natesales/q"]
 name = "natesales/q"
 alias = "q"
-asset_pattern = ""
+asset_pattern = 'q_.*?_{os}_{arch}.tar.gz$'
 file_pattern = "q"
 
 ["nguyenvukhang/gitnu"]
@@ -79,7 +67,7 @@ file_pattern = "git-nu"
 ["robiot/rustcat"]
 name = "robiot/rustcat"
 alias = "rustcat"
-asset_pattern = ""
+asset_pattern = 'rcat-.*?-{os}-{arch}$'
 file_pattern = "rcat"
 
 ["so-fancy/diff-so-fancy"]
