@@ -52,12 +52,6 @@ alias = "cargo-outdated"
 asset_pattern = ""
 file_pattern = "cargo-outdated"
 
-["natesales/q"]
-name = "natesales/q"
-alias = "q"
-asset_pattern = 'q_.*?_{os}_{arch}.tar.gz$'
-file_pattern = "q"
-
 ["nguyenvukhang/gitnu"]
 name = "nguyenvukhang/gitnu"
 alias = "gitnu"
@@ -67,7 +61,7 @@ file_pattern = "git-nu"
 ["robiot/rustcat"]
 name = "robiot/rustcat"
 alias = "rustcat"
-asset_pattern = 'rcat-.*?-{os}-{arch}$'
+asset_pattern = "rcat-.*?-{os}-{arch}$"
 file_pattern = "rcat"
 
 ["so-fancy/diff-so-fancy"]
@@ -75,6 +69,12 @@ name = "so-fancy/diff-so-fancy"
 alias = "diff-so-fancy"
 asset_pattern = ""
 file_pattern = "diff-so-fancy"
+
+["taiki-e/cargo-llvm-cov"]
+name = "taiki-e/cargo-llvm-cov"
+alias = "cargo-llvm-cov"
+asset_pattern = ""
+file_pattern = "cargo-llvm-cov"
 
 ["tuna-f1sh/cyme"]
 name = "tuna-f1sh/cyme"
