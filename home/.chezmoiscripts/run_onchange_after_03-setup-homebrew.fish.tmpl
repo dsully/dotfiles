@@ -22,6 +22,9 @@ if ensure_homebrew
 
     if test -f $brewfile
 
+        # This uses a nonstandard repo path.
+        command brew tap natesales/repo https://github.com/natesales/repo
+
         command brew bundle --no-lock --no-upgrade --file=$brewfile >$log 2>&1 &
         await "Installing..."
 
