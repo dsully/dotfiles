@@ -55,7 +55,7 @@ cleanup = true
 [git]
 #max_concurrency = 5
 # Additional git repositories to pull
-pull_only_repos = [
+repos = [
 {{- if eq .chezmoi.hostname "jarvis" }}
     "{{- .chezmoi.homeDir -}}/src/*/",
     "{{- .chezmoi.homeDir -}}/src/rust/*/",
@@ -71,7 +71,7 @@ pull_only_repos = [
 pull_predefined = false
 
 # Arguments to pass Git when pulling Repositories
-pull_arguments = "--rebase --autostash"
+arguments = "--rebase --autostash"
 
 # Commands to run before anything
 [pre_commands]
