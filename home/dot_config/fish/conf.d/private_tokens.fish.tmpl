@@ -9,4 +9,5 @@ set -gx OP_SERVICE_ACCOUNT_TOKEN {{ .onepassword.service_token }}
 
 set -gx GITHUB_TOKEN $GITHUB_API_TOKEN
 set -gx OPENAI_API_KEY $OPENAI_KEY
+set -gx OATMEAL_OPENAI_TOKEN $OPENAI_KEY
 {{- end -}}
