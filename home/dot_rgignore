@@ -6,4 +6,5 @@ venv/
 *.ipr
 *.egg-info
 node_modules/*
+.stversions
 .yarn
