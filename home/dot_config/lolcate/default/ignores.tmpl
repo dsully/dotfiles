@@ -8,6 +8,7 @@
 .cache/
 .cargo/
 .direnv/
+{{ joinPath .chezmoi.homeDir ".local/go/" }}
 {{ joinPath .chezmoi.homeDir ".local/state/nvim/swap/" }}
 {{ joinPath .chezmoi.homeDir ".local/state/nvim/undo/" }}
 .rustup/
@@ -15,4 +16,5 @@
 .volta/
 Library/
 Mounts/
+node_modules/
 venv/
