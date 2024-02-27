@@ -9,6 +9,8 @@ function deps -d "Write out Gradle dependencies."
         set project (basename (pwd))
     end
 
-    ./gradlew ":$project:dependencies" > "deps.$project.txt" 2>&1
+    set root (git rev-parse --show-toplevel)
+
+    cd $root && ./gradlew ":$project:dependencies" > "$root/deps.$project.txt" 2>&1
 end
 {{- end -}}
