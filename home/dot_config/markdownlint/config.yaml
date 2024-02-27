@@ -23,7 +23,8 @@ MD003:
 # MD004/ul-style - Unordered list style
 MD004:
   # List style
-  style: "consistent"
+  # Don't enforce consistency between * and - , it's fine to have both.
+  style: false
 
 # MD005/list-indent - Inconsistent indentation for list items at the same level
 MD005: true
