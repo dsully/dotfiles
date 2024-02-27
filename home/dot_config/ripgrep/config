@@ -1,11 +1,21 @@
-# Because who cares about case!?
 --smart-case
 
 # Include dot files.
 --hidden
+
+# Ignores
+--glob=!.git/
+--glob=!LICENSE
+--glob=!Cargo.lock
+--glob=!package-lock.json
+--glob=!yarn.lock
 
 # --sort=path
 
 # Don't let ripgrep vomit really long lines to my terminal, and show a preview.
 --max-columns=150
 --max-columns-preview
+
+# Add "web" type.
+--type-add
+web:*.{html,css,js}*
