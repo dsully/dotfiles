@@ -62,8 +62,8 @@ repos = [
     "{{- .chezmoi.homeDir -}}/src/neovim/*/",
     "{{- .chezmoi.homeDir -}}/src/neovim/dots/*/",
 {{- else if eq .chezmoi.hostname "server" }}
-    "/bits/apps/automatic/extensions/*",
-    "/bits/apps/stable-diffusion-webui/extensions/*",
+    "/ai/apps/automatic/extensions/*",
+    "/ai/apps/stable-diffusion-webui/extensions/*",
 {{- end }}
 ]
 
