@@ -1,0 +1,35 @@
+CompileFlags: # Tweak the parse settings
+  Add: [-xc++, -Wall] # treat all files as C++, enable more warnings
+  Remove: [] # strip all other warning-related flags
+  Compiler: clang++ # Change argv[0] of compile flags to `clang++`
+
+Diagnostics:
+  ClangTidy:
+    Add: [
+        bugprone-*
+        performance-*,
+        portability-*,
+        readability-*,
+        google-*,
+        misc-*,
+        modernize-*,
+      ]
+    Remove: modernize-use-trailing-return-type
+    CheckOptions:
+      readability-identifier-naming.VariableCase: CamelCase
+  UnusedIncludes: Strict
+
+Completion:
+  AllScopes: true
+
+Hover:
+  ShowAKA: true
+
+InlayHints:
+  Designators: true
+  Enabled: true
+  ParameterNames: true
+  DeducedTypes: true
+
+Index:
+  StandardLibrary: Yes
