@@ -59,6 +59,12 @@ if type -q cargo
         end
     end
 
+    # git-trim doesn't have binaries for Apple Silicon, so we need to build it.
+    if not type -q git-trim
+        sub_task "Installing git-trim"
+        command cargo install -q git-trim
+    end
+
     # My tools / forked / git-only.
     set -l URLS \
         https://github.com/dsully/lolcate-rs
