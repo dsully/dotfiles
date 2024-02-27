@@ -157,7 +157,7 @@ return {
 
     custom_block_glyphs = true,
     harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
-    unicode_version = 14,
+    unicode_version = 15,
 
     adjust_window_size_when_changing_font_size = false,
     animation_fps = 1,
