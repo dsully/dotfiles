@@ -15,6 +15,8 @@
     aa = add --all
     co = checkout
     dc = diff --cached
+    # https://blog.gitbutler.com/git-tips-2-new-stuff-in-git/
+    fpush = push --force-with-lease
     last = log -1 HEAD
     unstage = reset HEAD --
 
@@ -60,6 +62,9 @@
     status = auto
     ui = true
 
+[column]
+    ui = auto
+
 [core]
     trustctime = false
 {{ if lookPath "diff-so-fancy" }}
@@ -85,8 +90,12 @@
 {{ end }}
 
 [fetch]
+    # Delete local tracking branches if remote is gone.
     # https://stackoverflow.com/questions/60458452/how-can-i-list-all-remote-existing-branches-in-git
     prune = true
+    fsckObjects = true
+    # Cache commit graph to speed up graph log / push operations on fetch.
+    writeCommitGraph = true
 
 {{ if lookPath "git-lfs" -}}
 [filter "lfs"]
@@ -109,6 +118,10 @@
 
 [rebase]
     autosquash = true
+
+[rerere]
+    enabled = true
+    autoUpdate = true
 
 [status]
     relativePaths = true
