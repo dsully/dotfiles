@@ -47,6 +47,10 @@
         "exts": ["go"]
       },
       {
+        "command": "rustfmt --edition 2021",
+        "exts": ["rs"]
+      },
+      {
         "command": "shellharden --transform {{file_path}}",
         "exts": ["bash", "env", "sh", "zsh"],
         "stdin": false
@@ -69,7 +73,5 @@
     "indentWidth": 4,
     "lineWidth": 160
   },
-  "toml": {
-    "associations": ["pyproject.toml"]
-  }
+  "toml": {}
 }
