@@ -1,7 +1,7 @@
 function rm --wraps=rip --description 'Safe remove'
     if type -q rip
         # Check if the first argument is "-r" or "-rf" and remove it if it matches
-        if string match -q -e -- "-r*" $argv[1]
+        if string match -q -e -- "^-r*" $argv[1]
             set -e argv[1]
         end
 
