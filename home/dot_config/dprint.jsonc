@@ -49,15 +49,6 @@
       {
         "command": "rustfmt --edition 2021",
         "exts": ["rs"]
-      },
-      {
-        "command": "shellharden --transform {{file_path}}",
-        "exts": ["bash", "env", "sh", "zsh"],
-        "stdin": false
-      },
-      {
-        "command": "shfmt -i 2 -ci -sr -s -bn {{file_path}}",
-        "exts": ["bash", "env", "sh", "zsh"]
       }
     ]
   },
