@@ -14,19 +14,11 @@
 {{- end -}}
 {{/* Determine what kind of computer this is. */}}
 {{- $chassisType := "desktop" -}}
-{{- if eq .chezmoi.os "darwin" -}}
-{{-   if contains "MacBook" (output "/usr/sbin/system_profiler" "-json" "SPHardwareDataType") -}}
-{{-     $chassisType = "laptop" -}}
-{{-   else -}}
-{{-     $chassisType = "desktop" -}}
-{{-   end -}}
-{{- else -}}
-{{-   $chassisType = (output (joinPath .chezmoi.sourceDir ".chezmoiscripts/.01-hostnamectl.sh") | mustFromJson ).Chassis -}}
-{{- end }}
+{{- $chassisType = (output (joinPath .chezmoi.sourceDir ".chezmoiscripts/.01-hostnamectl.sh") | mustFromJson ).Chassis -}}
 {{/* */}}
 {{/* Work around unreliable hostname on macOS */}}
 {{- if eq .chezmoi.os "darwin" -}}
-{{-   $hostname = output "scutil" "--get" "ComputerName" | trim -}}
+{{-   $hostname = (output (joinPath .chezmoi.sourceDir ".chezmoiscripts/.01-hostnamectl.sh") | mustFromJson ).Hostname -}}
 {{- end -}}
 {{/* */}}
 {{/* Boolean settings. */}}
