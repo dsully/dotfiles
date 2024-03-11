@@ -1,16 +1,21 @@
 brew "dsully/tap/reddit-saves"
+cask "fission"
 cask "macdive"
 cask "mullvadvpn"
 cask "protonvpn"
 cask "soulseek"
 cask "vmware-fusion"
+cask "whatsapp"
 mas "Book Tracker", id: 1496543317
 mas "Brother P-touch Editor", id: 1453365242
+mas "Consent-O-Matic", id: 1606897889
+mas "Control Panel for Twitter", id: 1668516167
 mas "Draw Things", id: 6444050820
 mas "Globetrotter", id: 6469319235
 mas "GoPro Quik", id: 561350520
 mas "Guernika", id: 1660407508
 mas "HomeLog", id: 1584408332
+mas "Hyperduck", id: 6444667067
 mas "Infuse", id: 1136220934
 mas "OptiClean", id: 6452387177
 mas "Phiewer (lite)", id: 1226444549
@@ -20,4 +25,5 @@ mas "Pixelmator Pro", id: 1289583905
 mas "Radiance", id: 1573366225
 mas "SD Gallery", id: 6445901857
 mas "Sogni", id: 6450021857
+mas "iMovie", id: 408981434
 mas "iMovie", id: 408981434

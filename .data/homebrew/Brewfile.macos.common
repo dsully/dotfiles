@@ -5,7 +5,6 @@ tap "homebrew/services"
 tap "rajiv/fastmate"
 brew "caarlos0/tap/xdg-open-svc"
 brew "dsully/tap/macos-defaults"
-brew "dsully/tap/reddit-saves"
 brew "gcc"
 brew "gettext"
 brew "gnu-sed"
@@ -30,7 +29,6 @@ cask "discord"
 cask "downie"
 cask "electorrent"
 cask "fastmate"
-cask "fission"
 cask "font-hack-nerd-font"
 cask "font-input"
 cask "font-jetbrains-mono"
@@ -62,20 +60,17 @@ cask "tower"
 cask "transmit"
 cask "visual-studio-code"
 cask "wezterm"
-cask "whatsapp"
 mas "1Password for Safari", id: 1569813296
+mas "Actions", id: 1586435171
 mas "AdGuard for Safari", id: 1440147259
 mas "AutoMounter", id: 1160435653
 mas "Black Out", id: 1319884285
-mas "Consent-O-Matic", id: 1606897889
-mas "Control Panel for Twitter", id: 1668516167
 mas "CotEditor", id: 1024640650
 mas "Darkroom", id: 953286746
 mas "Dato", id: 1470584107
 mas "DevCleaner", id: 1388020431
 mas "Discovery", id: 1381004916
 mas "Flighty", id: 1358823008
-mas "Hyperduck", id: 6444667067
 mas "Ivory", id: 6444602274
 mas "JSONPeep", id: 1458969831
 mas "Keynote", id: 409183694
@@ -105,7 +100,6 @@ mas "TestFlight", id: 899247664
 mas "The Camelizer", id: 1532579087
 mas "TrashMe 3", id: 1490879410
 mas "Tripsy", id: 1429967544
-mas "Tweaks for Reddit", id: 1524828965
 mas "Userscripts-Mac-App", id: 1463298887
 mas "WiFi Explorer", id: 494803304
 mas "WiFi Signal", id: 525912054
