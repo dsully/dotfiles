@@ -3,6 +3,14 @@ function extract -d 'unarchive any file type'
         echo "Error: No file specified."
         return 1
     end
+
+    if type -q unar
+        unar $argv
+    else
+        echo "Error: unarchive function not found."
+        return 1
+    end
+
     set -l f $argv
     if test -f $f
         switch $f
