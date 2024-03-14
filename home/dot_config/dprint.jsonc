@@ -18,39 +18,12 @@
     "https://plugins.dprint.dev/g-plane/markup_fmt-v0.5.1.wasm",
     "https://plugins.dprint.dev/g-plane/malva-v0.1.5.wasm",
     "https://plugins.dprint.dev/sql-0.2.0.wasm",
-    "https://plugins.dprint.dev/RubixDev/stylua-v0.2.1.wasm",
-    "https://plugins.dprint.dev/exec-0.4.4.json@c207bf9b9a4ee1f0ecb75c594f774924baf62e8e53a2ce9d873816a408cecbf7"
+    "https://plugins.dprint.dev/RubixDev/stylua-v0.2.1.wasm"
   ],
   "biome": {
     "indentStyle": "space",
     "lineWidth": 80,
     "trailingComma": "es5"
-  },
-  "exec": {
-    "commands": [
-      {
-        "command": "buildifier {{file_path}}",
-        "exts": ["bzl"],
-        "fileNames": ["BUILD"],
-        "stdin": false
-      },
-      {
-        "command": "caddy fmt -",
-        "fileNames": ["Caddyfile"]
-      },
-      {
-        "command": "fish_indent",
-        "exts": ["fish"]
-      },
-      {
-        "command": "gofumpt",
-        "exts": ["go"]
-      },
-      {
-        "command": "rustfmt --edition 2021",
-        "exts": ["rs"]
-      }
-    ]
   },
   "markup": {
     "formatComments": true,
