@@ -16,12 +16,6 @@ alias = "cargo-binstall"
 asset_pattern = 'cargo-binstall-{arch}.*{os}\.(zip|tgz)$'
 file_pattern = "cargo-binstall"
 
-["dsully/zoned"]
-name = "dsully/zoned"
-alias = "zoned"
-asset_pattern = ""
-file_pattern = "zoned"
-
 ["gitext-rs/git-dive"]
 name = "gitext-rs/git-dive"
 alias = "git-dive"
