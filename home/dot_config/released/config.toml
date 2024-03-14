@@ -1,15 +1,3 @@
-["DevinR528/cargo-sort"]
-name = "DevinR528/cargo-sort"
-alias = "cargo-sort"
-asset_pattern = ""
-file_pattern = "cargo-sort"
-
-["TheWaWaR/simple-http-server"]
-name = "TheWaWaR/simple-http-server"
-alias = "simple-http-server"
-asset_pattern = ""
-file_pattern = "simple-http-server"
-
 ["cargo-bins/cargo-binstall"]
 name = "cargo-bins/cargo-binstall"
 alias = "cargo-binstall"
