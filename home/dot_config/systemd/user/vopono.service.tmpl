@@ -15,7 +15,8 @@ ExecStart=/usr/bin/vopono exec \
     --custom=protonvpn-us-ca80.conf \
     --no-killswitch \
     --allow-host-access \
-    --protonvpn-port-forwarding \
+    --custom-port-forwarding=protonvpn \
+    --port-forwarding-callback=%h/.local/bin/qbit-port-updater \
     '/usr/bin/qbittorrent-nox --webui-port=9091 --profile=/bits/media/torrents'
 Type=simple
 Restart=on-failure
