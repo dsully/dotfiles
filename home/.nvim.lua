@@ -5,12 +5,8 @@ vim.api.nvim_create_autocmd("BufWritePost", {
             return
         end
 
-        local chezmoi_apply_cmd = {
-            "chezmoi",
-            "apply",
-            vim.fn.systemlist({ "chezmoi", "target-path", args.file })[1],
-        }
+        local target = vim.system({ "chezmoi", "target-path", args.file }, { text = true }):wait()
 
-        vim.system(chezmoi_apply_cmd, { text = true }):wait()
+        vim.system({ "chezmoi", "apply", "--force", vim.trim(target.stdout) }):wait()
     end,
 })
