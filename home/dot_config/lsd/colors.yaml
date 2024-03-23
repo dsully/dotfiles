@@ -26,8 +26,8 @@
 # aurora-nord14 #a3be8c, [163, 190, 140]
 # aurora-nord15 #b48ead, [180, 142, 173]
 
-user: [229, 233, 240] # snow-storm-nord5
-group: [229, 233, 240] # snow-storm-nord5
+user: "#e5e9f0"
+group: "#e5e9f0"
 
 # file-type:
 #   file:
@@ -53,30 +53,30 @@ group: [229, 233, 240] # snow-storm-nord5
 #   special: cyan
 
 permission:
-  read: [143, 188, 187] # frost-nord7
-  write: [136, 192, 208] # frost-nord8
-  exec: [236, 239, 244] # snow-storm-nord6
+  read: "#8fbcbb"
+  write: "#88c0d0"
+  exec: "#eceff4"
 
-  exec-sticky: [191, 97, 106] # aurora-nord11
-  no-access: [236, 239, 244] # snow-storm-nord6
+  exec-sticky: "#bf616a"
+  no-access: "#eceff4"
 
 date:
-  hour-old: [236, 239, 244] # snow-storm-nord6
-  day-old: [229, 233, 240] # snow-storm-nord5
-  older: [216, 222, 233] # snow-storm-nord4
+  hour-old: "#eceff4"
+  day-old: "#e5e9f0"
+  older: "#d8dee9"
 
 size:
-  none: [143, 188, 187] # frost-nord7
-  small: [136, 192, 208] # frost-nord8
-  medium: [129, 161, 193] # frost-nord9
-  large: [94, 129, 172] # frost-nord10
+  none: "#8fbcbb"
+  small: "#88c0d0"
+  medium: "#81a1c1"
+  large: "#5e81ac"
 
 inode:
-  valid: [136, 192, 208] # frost-nord8
-  invalid: [191, 97, 106] # aurora-nord11
+  valid: "#88c0d0"
+  invalid: "#bf616a"
 
 links:
-  valid: [136, 192, 208] # frost-nord8
-  invalid: [191, 97, 106] # aurora-nord11
+  valid: "#88c0d0"
+  invalid: "#bf616a"
 
-tree-edge: [191, 97, 106] # aurora-nord11
+tree-edge: "#bf616a"
