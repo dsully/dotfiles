@@ -56,5 +56,13 @@ if status is-interactive
     set -gx NORD_COLORS "--color=bg+:#3B4252,bg:#2E3440,spinner:#81A1C1,hl:#616E88,fg:#D8DEE9,header:#616E88"
     set -gx NORD_COLORS "$NORD_COLORS,info:#81A1C1,pointer:#81A1C1,marker:#81A1C1,fg+:#81A1C1,prompt:#81A1C1,hl+:#81A1C1"
 
-    set -gx OPENAI_MODEL "gpt-4-turbo-preview"
+    set -gx OPENAI_MODEL gpt-4-turbo-preview
+
+    abbr --add df "df -h"
+    abbr --add du "du -h"
+    abbr --add f8 flake8
+    abbr --add fd "fd --full-path"
+    abbr --add less bat
+    abbr --add mkdir "mkdir -p"
+    abbr --add more bat
 end

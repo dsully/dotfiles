@@ -337,6 +337,7 @@ return {
         { event = { Down = { streak = 1, button = "Left" } }, mods = "CMD", action = act.Nop },
     },
     mouse_wheel_scrolls_tabs = false,
+    notification_handling = "AlwaysShow",
 
     scrollback_lines = 50000,
 
