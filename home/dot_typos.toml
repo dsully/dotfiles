@@ -1,19 +1,16 @@
 [default]
-extend-ignore-identifiers-re = [
-]
+extend-ignore-identifiers-re = [  ]
 
 [files]
-extend-exclude = [
-]
-
+extend-exclude = [  ]
 
 [default.extend-words]
 # Ignore false-positives
+AKS = "AKS"
+aks = "aks"
+doas = "doas"
+electricrain = "electricrain"
 enew = "enew"
 nd = "nd"
 noice = "noice"
-doas = "doas"
-electricrain = "electricrain"
 ratatui = "ratatui"
-AKS = "AKS"
-aks = "aks"
