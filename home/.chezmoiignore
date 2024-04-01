@@ -4,6 +4,7 @@
 .1password/
 .actrc
 .android
+.bash_history
 .bash_sessions
 .bashrc
 .cache/
