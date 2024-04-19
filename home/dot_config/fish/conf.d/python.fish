@@ -17,4 +17,42 @@ if status is-interactive
     if test -f $startup
         set -gx PYTHONSTARTUP $startup
     end
+
+    function __auto_source_venv --on-variable PWD --description "Activate/Deactivate virtualenv on directory change"
+        status --is-command-substitution; and return
+
+        # Check if we are inside a git directory
+        if git rev-parse --show-toplevel &>/dev/null
+            set gitdir (builtin realpath (git rev-parse --show-toplevel))
+            set repo (basename $gitdir)
+            set cwd (pwd -P)
+
+            # Most common right now, so check for it first.
+            set pygradle "$gitdir/build/$repo/environments/development-venv/bin/activate.fish"
+
+            if test -e $pygradle
+                source $pygradle &>/dev/null
+                return
+            end
+
+            # While we are still inside the git directory, find the closest
+            # virtualenv starting from the current directory.
+            while string match "$gitdir*" "$cwd" &>/dev/null
+
+                for venv in .venv venv
+                    if test -e "$cwd/$venv/bin/activate.fish"
+                        source "$cwd/$venv/bin/activate.fish" &>/dev/null
+                        return
+                    end
+                end
+
+                set cwd (path dirname "$cwd")
+            end
+        end
+
+        # If virtualenv activated but we are not in a git directory, deactivate.
+        if test -n "$VIRTUAL_ENV"
+            deactivate
+        end
+    end
 end
