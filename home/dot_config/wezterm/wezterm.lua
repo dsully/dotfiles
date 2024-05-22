@@ -147,14 +147,70 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
     return output
 end)
 
+local fonts = {
+    -- Argon and Neon are sans-serif.
+    neon = "MonaspiceNe Nerd Font Mono",
+    argon = "MonaspiceAr Nerd Font Mono",
+    xenon = "MonaspiceXe Nerd Font Mono",
+    radon = "MonaspiceRn Nerd Font Mono",
+    krypton = "MonaspiceKr Nerd Font Mono",
+}
+
 return {
     -- Fallback to Hack Nerd Fonts until a new Wezterm is released with the Neovim icon.
     font = wezterm.font_with_fallback({
+        {
+            family = fonts.neon,
+            harfbuzz_features = {
+                "calt",
+                "liga",
+                "ss01=0", -- ligatures related to the equals glyph like != and ===.
+                "ss02=0", -- ligatures related to the greater than or less than operators.
+                "ss03=0", -- ligatures related to arrows like -> and =>.
+                "ss04=0", -- ligatures related to markup, like </ and />.
+                "ss05=0", -- ligatures related to the F# programming language, like |>.
+                "ss06=0", -- ligatures related to repeated uses of # such as ## or ###.
+                "ss07=0", -- ligatures related to the asterisk like ***.
+                "ss08=0", -- ligatures related to combinations like .= or .-.
+            },
+            style = "Normal",
+            weight = "Regular",
+        },
         { family = "Menlo", stretch = "Expanded" },
-        "Hack Nerd Font Mono",
+        { family = "Hack Nerd Font Mono" },
     }),
-    font_size = 16.3,
+    font_rules = {
+        { -- Italic
+            intensity = "Normal",
+            italic = true,
+            font = wezterm.font({
+                family = fonts.neon,
+                style = "Italic",
+            }),
+        },
+        { -- Bold
+            intensity = "Bold",
+            italic = false,
+            font = wezterm.font({
+                family = fonts.neon,
+                weight = "Bold",
+            }),
+        },
+        { -- Bold Italic
+            intensity = "Bold",
+            italic = true,
+            font = wezterm.font({
+                family = fonts.neon,
+                style = "Italic",
+                weight = "Bold",
+            }),
+        },
+    },
+    cell_width = 1,
+    line_height = 1,
+    font_size = 17,
 
+    -- This needs to be on for my Neovim status line to render correctly.
     custom_block_glyphs = true,
     harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
     unicode_version = 15,
@@ -163,6 +219,9 @@ return {
     animation_fps = 1,
     bold_brightens_ansi_colors = true,
     check_for_updates = false,
+
+    -- Next version to expand tabs.
+    -- tab_bar_fill = true,
 
     color_scheme = "nordfox",
     color_schemes = {
