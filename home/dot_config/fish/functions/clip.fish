@@ -1,11 +1,19 @@
-function clip --description "Copy file to clipboard"
+function clip --description "Copy files to clipboard"
+    set contents ""
 
-    if test (command file $argv | command grep -c -E "text|JSON") -eq 1
-        command cat "$argv" | command pbcopy
-        echo "Contents of $argv are in the clipboard."
-        return 0
+    for file in $argv
+        if test (command file $file | command grep -c -E "text|JSON") -eq 1
+            set contents "$contents\n" (command cat "$file")
+            echo "Contents of $file are added to the clipboard buffer."
+        else
+            echo "File \"$file\" is not plain text."
+        end
     end
 
-    echo "File \"$argv\" is not plain text."
-    return 1
+    if test -n "$contents"
+        echo -n $contents | command pbcopy
+        echo "All valid file contents are now in the clipboard."
+    else
+        echo "No valid files to copy to the clipboard."
+    end
 end
