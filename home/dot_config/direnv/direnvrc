@@ -80,7 +80,7 @@ layout_rye() {
   export VIRTUAL_ENV
 }
 
-layout_pygradle() {
+layout_pygradle2() {
   REPO="$(basename "$PWD")"
   VIRTUAL_ENV="$(expand_path "../build/$REPO/environments/development-venv")"
 
