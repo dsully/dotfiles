@@ -48,11 +48,14 @@ if status is-interactive
 
                 set cwd (path dirname "$cwd")
             end
-        end
+        else
 
-        # If virtualenv activated but we are not in a git directory, deactivate.
-        if test -n "$VIRTUAL_ENV"
-            deactivate
+            # If virtualenv activated but we are not in a git directory, deactivate.
+            if functions --query deactivate
+                if test -n "$VIRTUAL_ENV"
+                    deactivate
+                end
+            end
         end
     end
 end
