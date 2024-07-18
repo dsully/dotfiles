@@ -1,9 +1,10 @@
 # Bootstrap and build Caddy.
 # We need linode on electricrain.
+# Downgrade to a 2.7.5 compatible version.
 
-EXTRA := if env_var("HOSTNAME") == "zap" { "--with github.com/ocomsoft/caddy2_linode" } else { "" }
+EXTRA := if env_var("HOSTNAME") == "zap" { "--with github.com/caddy-dns/linode@b63fbb996d" } else { "" }
 
-default: xcaddy build install
+default: xcaddy build install clean
 
 xcaddy:
     @echo "Installing xcaddy..."
@@ -16,3 +17,6 @@ install:
     @sudo mv caddy /usr/bin/caddy
     @systemctl restart caddy
     @caddy json-schema --output schema.json
+
+clean:
+    @sudo /usr/bin/rm -rf ~/.local/go
