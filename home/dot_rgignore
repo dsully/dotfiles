@@ -7,4 +7,6 @@ venv/
 *.egg-info
 node_modules/*
 .stversions
+.tox
+.venv
 .yarn

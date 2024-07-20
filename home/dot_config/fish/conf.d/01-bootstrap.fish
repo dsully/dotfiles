@@ -65,4 +65,7 @@ if status is-interactive
     abbr --add less bat
     abbr --add mkdir "mkdir -p"
     abbr --add more bat
+
+    # Delete git remote branch tab completion.
+    complete -e -f -c git -n '__fish_git_using_command checkout' -n 'not contains -- -- (commandline -opc)' -ka '(__fish_git_unique_remote_branches)' -d 'Unique Remote Branch'
 end
