@@ -4,8 +4,6 @@ if status is-interactive
     if not set -q HOMEBREW_PREFIX
         if test -d /opt/homebrew
             set -Ux HOMEBREW_PREFIX /opt/homebrew
-        else if test -d /usr/local/Homebrew
-            set -Ux HOMEBREW_PREFIX /usr/local
         else if test -d /home/linuxbrew/.linuxbrew
             set -Ux HOMEBREW_PREFIX /home/linuxbrew/.linuxbrew
         end
