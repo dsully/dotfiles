@@ -68,9 +68,10 @@
     ui = auto
 
 [core]
+    # autocrlf = input    # normalize line endings on commit (but not checkout)
     trustctime = false
-{{ if lookPath "diff-so-fancy" }}
-    pager = diff-so-fancy | /usr/bin/less --tabs=4 -RFX
+{{ if lookPath "delta" }}
+    pager = delta
 {{ end }}
     # Make `git rebase` safer on macOS.
     # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
@@ -79,6 +80,65 @@
     # Speed up commands involving untracked files such as `git status`.
     # https://git-scm.com/docs/git-update-index#_untracked_cache
     untrackedCache = true
+
+[credential]
+    helper = cache
+
+[credential "https://github.com"]
+    helper = !gh auth git-credential
+
+[credential "https://gist.github.com"]
+    helper = !gh auth git-credential
+
+{{ if lookPath "delta" }}
+[interactive]
+   diffFilter = delta --color-only
+{{ end }}
+
+[add.interactive]
+    # required for git 2.37.0
+    useBuiltin = false 
+
+[delta]
+    hyperlinks = true
+    keep-plus-minus-markers = false
+    line-numbers = false
+    navigate = true
+    relative-paths = true
+    side-by-side = false
+    true-color = always
+
+    bg-green = "#8aa872"
+    bg-red = "#a54e56"
+
+    blame-code-style = syntax
+    blame-format = "{author:<18} {commit:<6} {timestamp:<15}"
+    blame-palette = "#2E3440" "#3B4252" "#434C5E"
+    file-added-label = [+]
+    file-copied-label = [==]
+    file-modified-label = [*]
+    file-removed-label = [-]
+    file-renamed-label = [->]
+    file-style = omit
+    file-transformation = "s,(.*),  $1,"
+    hunk-header-decoration-style = blue ul
+    hunk-header-file-style = blue bold
+    hunk-header-line-number-style = white bold
+    hunk-header-style = file line-number syntax bold italic
+    hunk-label = 
+
+    minus-emph-style = white bg-red
+    minus-non-emph-style = syntax normal
+    minus-style = white bg-red
+    plus-emph-style = black bg-green
+    plus-non-emph-style = syntax normal
+    plus-style = black bg-green
+
+    syntax-theme = Nord
+    # Don't color the entire background, just the changed portions
+    width = variable 
+    whitespace-error-style = black bold
+    zero-style = syntax
 
 [diff]
     navigate = true  # use n and N to move between diff sections
@@ -127,3 +187,12 @@
 
 [status]
     relativePaths = true
+    submoduleSummary = true
+
+[url "git@github.com:"]
+    insteadOf = "gh:"
+    pushInsteadOf = "github:"
+    pushInsteadOf = "git://github.com/"
+
+[url "git://github.com/"]
+    insteadOf = "github:"
