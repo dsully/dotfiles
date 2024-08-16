@@ -8,6 +8,7 @@ set -gx XDG_BIN_HOME $HOME/.local/bin
 set -gx XDG_CACHE_HOME $HOME/.cache
 set -gx XDG_CONFIG_HOME $HOME/.config
 set -gx XDG_DATA_HOME $HOME/.local/share
+set -gx XDG_PICTURES_DIR $HOME/iCloud/Screenshots
 set -gx XDG_STATE_HOME $HOME/.local/state
 
 set -gx LANG en_US.UTF-8
@@ -56,7 +57,8 @@ if status is-interactive
     set -gx NORD_COLORS "--color=bg+:#3B4252,bg:#2E3440,spinner:#81A1C1,hl:#616E88,fg:#D8DEE9,header:#616E88"
     set -gx NORD_COLORS "$NORD_COLORS,info:#81A1C1,pointer:#81A1C1,marker:#81A1C1,fg+:#81A1C1,prompt:#81A1C1,hl+:#81A1C1"
 
-    set -gx OPENAI_MODEL gpt-4-turbo-preview
+    # https://platform.openai.com/docs/models/gpt-4o
+    set -gx OPENAI_MODEL gpt-4o-2024-08-06
 
     abbr --add df "df -h"
     abbr --add du "du -h"
