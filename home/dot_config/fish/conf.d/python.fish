@@ -13,9 +13,6 @@ if status is-interactive
     set -gx POETRY_CONFIG_DIR $XDG_CONFIG_HOME/poetry
     set -gx POETRY_DATA_DIR $XDG_DATA_HOME/poetry
 
-    set -gx UV_PREVIEW 1
-    set -gx UV_PYTHON_INSTALL_DIR $XDG_DATA_HOME/uv/python
-
     set -gx PYTHONDONTWRITEBYTECODE 1
 
     set -l startup $XDG_CONFIG_HOME/python/startup.py
