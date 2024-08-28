@@ -8,9 +8,7 @@ source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
 if type -q volta
     set packages
 
-    if not type -q node
-        set -a packages node
-    end
+    set -a packages node@21.7.1 yarn@1.22.22
 
     {{ if .flags.work }}
     if not type -q npm-groovy-lint
