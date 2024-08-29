@@ -70,6 +70,7 @@ node_modules/
 .rye/*/
 .shiv
 .skipbuddy
+.sonarlint
 .sqlite_history
 .ssh/authorized*
 .ssh/config
