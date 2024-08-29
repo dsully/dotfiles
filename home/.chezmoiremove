@@ -17,7 +17,6 @@
 .config/.gitignore
 .config/.semgrep
 .config/caddy/build
-.config/fish/completions
 .config/fish/conf.d/.gitignore
 .config/fish/config.fish
 .config/fish/functions/et.fish
