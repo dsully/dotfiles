@@ -4,11 +4,16 @@
 .1password/
 .actrc
 .android
+.authncli
 .bash_history
 .bash_sessions
 .bashrc
+.buf/
+.bw/
+.bwrc-remote
 .cache/
 .cargo/
+.cfg2-cache
 .checkip/
 .config/auth0/
 .config/beets/library.db
@@ -25,6 +30,7 @@
 .config/dlv/
 .config/fish/fish_history
 .config/fish/fish_variables
+.config/gh/hosts.yml
 .config/gitrel/state.json
 .config/libvirt
 .config/lolcate/*/db.lz4
@@ -41,6 +47,7 @@
 .erg/
 .fabric*
 .fonts/
+.go
 .gnupg
 .gradle/
 .hushlogin
@@ -49,7 +56,10 @@
 .keras/
 .lemminx/
 .lesshst
+.licliauth/
 .lipki
+.lipy-*
+.lldb/
 # For pbcopy, etc on Linux below.
 .local/*
 !.local/bin
@@ -57,9 +67,12 @@
 .luarocks/
 .midgard
 .mint
+.mysql_history
 .node_repl_history/
 node_modules/
 .npm/
+.oracle_jre_usage/
+.orbstack/
 .prettierd/
 .pyhistory
 .python_history
@@ -76,7 +89,8 @@ node_modules/
 .ssh/config
 .ssh/id_*
 .ssh/*key*
-.ssh/known_hosts*
+.ssh/known_*
+.ssh/manage-ssh/
 .sudo_as_admin_successful
 .terminfo/
 .terraform.d/
