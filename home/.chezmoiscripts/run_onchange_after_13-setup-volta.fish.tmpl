@@ -6,19 +6,13 @@
 source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
 
 if type -q volta
-    set packages
 
-    set -a packages node@21.7.1 yarn@1.22.22
+    start "Installing JavaScript tools"
+    command volta install "node@21.7.1" "yarn@1.22.22" >/dev/null 2>&1
 
     {{ if .flags.work }}
     if not type -q npm-groovy-lint
-        set -a packages npm-groovy-lint
+        command volta install npm-groovy-lint >/dev/null 2>&1
     end
     {{ end }}
-
-    if not test -z $packages
-        start "Installing JavaScript tools"
-
-        command volta install $packages >/dev/null 2>&1
-    end
 end
