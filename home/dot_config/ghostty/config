@@ -165,7 +165,7 @@ adjust-cursor-thickness =
 #
 # This configuration can be changed at runtime but will not affect existing
 # terminals. Only new terminals will use the new configuration.
-grapheme-width-method = legacy
+grapheme-width-method = unicode
 
 # A named theme to use. The available themes are currently hardcoded to the
 # themes that ship with Ghostty. On macOS, this list is in the `Ghostty.app/
