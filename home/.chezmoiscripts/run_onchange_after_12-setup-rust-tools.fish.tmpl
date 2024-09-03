@@ -32,13 +32,13 @@ if type -q cargo
         # https://github.com/mrjackwills/havn
         havn \
         # https://github.com/tarka/xcp/
-        xcp
-
-    # These packages don't map to their CLI name.
-    # https://github.com/killercup/cargo-edit
-    if not type -q cargo-add
-        set -a PACKAGES cargo-edit
-    end
+        xcp \
+        #
+        cargo-autoinherit \
+        cargo-shear \
+        cargo-unused-features \
+        codesort \
+        protols
 
     # https://github.com/nabijaczleweli/cargo-update
     if not type -q cargo-install-update
