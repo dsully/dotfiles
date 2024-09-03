@@ -16,10 +16,11 @@ extend-ignore-words-re = [
 [files]
 extend-exclude = [  ]
 
-[default.extend-words]
-AKS = "AKS"
-aks = "aks"
-electricrain = "electricrain"
+  [default.extend-words]
+  AKS = "AKS"
+  aks = "aks"
+  electricrain = "electricrain"
+  protols = "protols"
 
 [type.fish.extend-words]
 doas = "doas"
@@ -27,6 +28,8 @@ doas = "doas"
 [type.lua.extend-words]
 enew = "enew"
 noice = "noice"
+vhyrro = "vhyrro"
+"}," = "},"
 
 [type.rust.extend-words]
 ratatui = "ratatui"
