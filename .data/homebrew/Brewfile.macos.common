@@ -4,8 +4,7 @@ tap "homebrew/services"
 tap "rajiv/fastmate"
 brew "caarlos0/tap/xdg-open-svc"
 brew "dsully/tap/macos-defaults"
-brew "font-hack-nerd-font"
-brew "font-monaspace-nerd-font",
+brew "font-monaspace",
 brew "gcc"
 brew "gettext"
 brew "gnu-sed"
@@ -45,7 +44,6 @@ cask "raycast"
 cask "renamer"
 cask "retrobatch"
 cask "rocket"
-cask "screens"
 cask "signal"
 cask "soulver"
 cask "stay"
@@ -101,7 +99,6 @@ mas "WiFi Explorer", id: 494803304
 mas "WiFi Signal", id: 525912054
 mas "WireGuard", id: 1451685025
 mas "WordService", id: 899972312
-mas "Xcode", id: 497799835
 mas "Yoink", id: 457622435
 mas "com.kagimacOS.Kagi-Search", id: 1622835804
 mas "iPreview", id: 1519213509

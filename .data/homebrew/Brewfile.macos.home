@@ -4,7 +4,6 @@ cask "macdive"
 cask "mullvadvpn"
 cask "protonvpn"
 cask "soulseek"
-cask "vmware-fusion"
 cask "whatsapp"
 mas "Book Tracker", id: 1496543317
 mas "Brother P-touch Editor", id: 1453365242
