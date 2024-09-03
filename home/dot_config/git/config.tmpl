@@ -12,12 +12,36 @@
 
 [alias]
     a = commit --amend
+    amend = commit --amend
+    untrack = rm --cached
+    unadd = restore --staged
+
+    # Diff of last commit
+    dlc = diff --cached HEAD^ 
+
+    # list all defined aliases
+    aliases = config --get-regexp alias
+
+    # Find very first commit
+    first = rev-list --max-parents=0 HEAD
+
+    # what would be merged
+    incoming = log HEAD..@{upstream}
+
+    # what would be pushed
+    outgoing = log @{upstream}..HEAD
+    ; outgoing = log @{u}..
+
+    # List all commits (on this branch) made by me
+    mycommits = log --author=dsully
+
     aa = add --all
     co = checkout
     dc = diff --cached
     # https://blog.gitbutler.com/git-tips-2-new-stuff-in-git/
     fpush = push --force-with-lease
     last = log -1 HEAD
+    st = status -sb
     unstage = reset HEAD --
 
     # https://hachyderm.io/@nedbat/109426516519513998
@@ -38,6 +62,8 @@
     # View abbreviated SHA, description, and history graph of the latest 20 commits.
     l = log --pretty=oneline -n 20 --graph --abbrev-commit
 
+    lp = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --decorate --date=short --color --decorate
+
     # https://stackoverflow.com/questions/1337320/how-to-grep-commits-based-on-a-certain-string
     # Find in a commit or changed word.
     find = "log -G"
@@ -45,8 +71,67 @@
     # https://stackoverflow.com/a/48650112/81120
     prune-branches = "!git remote prune origin && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -D"
 
+    # Show git root dir
+    root = rev-parse --show-toplevel
+
+    # Sync with upstream by doing pull --rebase on current branch, followed with GC
+    sync-up = !"git fetch && git rebase @{u} && git gc --auto --quiet"
+
     # Show the user email for the current repository.
     whoami = config user.email
+
+    # bc = branch changes
+    bc = "!export MASTER_BRANCH=$(git branch -r | grep -Po 'HEAD -> \\K.*$') && git diff --name-only $MASTER_BRANCH | fzf --ansi --preview 'git diff --color=always $MASTER_BRANCH {}' --bind 'enter:become($EDITOR {})'"
+    pending = "!git log $(git describe --tags --abbrev=0)..HEAD --oneline"
+
+    review = "!nvim -c \"DiffviewFileHistory --range=origin/HEAD...HEAD --right-only --no-merges\""
+
+    ####
+    jump = !/usr/share/git/git-jump/git-jump
+    co = checkout
+    lg = log --color --graph \
+        --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' \
+        --abbrev-commit --
+    killbranches = !git branch --merged | grep -v '^*' \
+                   | grep -v master | xargs git branch -d 2> /dev/null
+    pr = !hub pull-request -b $(git branch | grep -v '^*' | awk '{print($1)}' | fzf)
+    prs = !hub pr list --format='%pC%i%Creset %au: %t %l %n ▸ %U%n%n' -o updated
+    fixup = !git commit --fixup $(git rev-parse HEAD)
+    serve = !git daemon --reuseaddr --verbose --base-path=. --export-all ./.git
+    br = !git ls-remote -h . | awk '{print(substr($NF, 12))}' | fzf | xargs git checkout
+    dsf = !git diff --color "$@" | diffr | less --tabs=4 -RFX
+    filter-commits = "!sh -c 'git log --pretty=format:\"%h - %an: %s\" $1 \
+        | fzf --no-sort \
+        | cut -d \" \" -f1 ' -"
+    ; cpl = "!sh -c 'git log --pretty=format:\"%h - %an: %s\" $1 \
+    ;     | fzf --no-sort \
+    ;     | cut -d \" \" -f1 \
+    ;     | xargs git cherry-pick -x ' -"
+    ; reset-file = "!sh -c 'git status --short \
+    ;     | fzf --no-sort \
+    ;     | cut -d \" \" -f3 \
+    ;     | xargs git checkout ' -"
+    ; fixup-to = !git commit --fixup=$(git filter-commits)
+    ; prune-all = !git remote | xargs -n1 git remote prune
+    ; co-recurse = !sh -c 'git checkout $1 && git submodule update --recursive' -
+    ; ls-branch = !git ls-tree --name-only -r
+    ; co-file = "!sh -c 'git ls-branch $1 \
+    ;     | fzf \
+    ;     | xargs git checkout $1 -- ' -"
+    ; cp-file = "!sh -c 'git ls-branch -r $1 \
+    ;     | fzf \
+    ;     | xargs -I {} git diff ..$1 -- {} \
+    ;     | git apply -3 ' -"
+    ; b = branch --sort=authordate -vv
+    ; cr = "!sh -c 'git recent \
+    ;     | fzf \
+    ;     | xargs git checkout $1 ' -"
+    ; recent = for-each-ref --count=20 --sort=-committerdate refs/heads/ --format="%(refname:short)"
+    ; overview = log --all --since='2 weeks' --oneline --no-merges
+    ; recap = !git log --all --oneline --no-merges --author=$(git config user.email)
+    ; today = !git log --since=00:00:00 --all --oneline --no-merges --author=$(git config user.email)
+    ; st = !$EDITOR '+Gedit :'
+    ; fa = "!git ls-files -m -o --exclude-standard | fzf --print0 -m | xargs -0 -t -o git add"
 
 [advice]
     skippedCherryPicks = false
