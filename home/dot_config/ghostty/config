@@ -82,7 +82,7 @@ font-feature = -ss08 # ligatures related to combinations like .= or .-.
 # depending on your `window-inherit-font-size` setting. If that setting is
 # true, only the first window will be affected by this change since all
 # subsequent windows will inherit the font size of the previous window.
-font-size = 17.5
+font-size = 16
 
 # Force one or a range of Unicode codepoints to map to a specific named font.
 # This is useful if you want to support special symbols or if you want to use
@@ -466,7 +466,7 @@ window-inherit-working-directory = false
 # focused window. If no window was previously focused, the default font size
 # will be used. If this is false, the default font size specified in the
 # configuration `font-size` will be used.
-window-inherit-font-size = true
+window-inherit-font-size = false
 
 # Valid values:
 #
