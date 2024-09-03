@@ -26,3 +26,6 @@ data:
     # Ignore ARD as the following discussion to fix the sudo with touch ID in the terminal:
     # https://apple.stackexchange.com/questions/411497/pam-tid-so-asks-for-password-instead-of-requesting-for-fingerprint-when-docked
     ignoreArd: true
+
+  com.apple.loginwindow:
+    autoLoginUser: true
