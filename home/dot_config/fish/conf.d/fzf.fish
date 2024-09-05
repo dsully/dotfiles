@@ -13,8 +13,8 @@ if status is-interactive
         # Bind Ctrl-t to use fzf for the current directory.
         fzf_configure_bindings --directory=\ct
 
-        # Bind Ctrl-e for cd history
-        bind \ce fzf_path_history
+        # Bind Ctrl-h for cd history
+        bind \ch fzf_path_history
     end
 end
 
