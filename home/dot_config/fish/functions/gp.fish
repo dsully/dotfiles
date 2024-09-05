@@ -1,12 +1,22 @@
-function gp --wraps="git pull" -d "git pull rebase"
+function gp -d "git pull and autorebase and trim branches that have been merged"
 
-    echo "Pulling with rebase and autostash ..."
+    set current (git branch --show-current)
 
-    command git pull --rebase --autostash $argv
+    if type -q autorebase
+        echo "Pulling and autorebasing onto '$current' branch..."
+        autorebase --include-non-local --slow --onto $current
+    else
+        echo "Pulling ..."
+        git pull
+    end
 
     if test $status -eq 0
 
-        echo "Pruning local branches that have been merged ..."
-        git prune-branches
+        if type -q git-trim
+            echo "Pruning local branches that have been merged ..."
+            git trim --no-update
+        else
+            echo "Install git-trim via 'cargo binstall -y git-trim'"
+        end
     end
 end

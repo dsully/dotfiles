@@ -253,19 +253,23 @@
     autocorrect = immediate
 
 [init]
-    defaultBranch = main
+    defaultBranch = master
 
 [mergetool]
     cmd = nvim +"DiffviewOpen"
     hideResolved = true      # Don't show merge conflicts that have already been resolved by git in the mergetool diff.
     prompt = false           # Don't confirm that I want to open the difftool every time.
 
+[pull]
+    rebase = true
+
 [push]
-    default = current
+    default = upstream
     autoSetupRemote = true
 
 [rebase]
     autosquash = true
+    autoStash = true
 
 [rerere]
     enabled = true
