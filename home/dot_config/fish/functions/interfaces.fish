@@ -30,17 +30,21 @@ function get_ip_address
     set -l device $argv[1]
 
     if test "$OS" = Darwin
-        ipconfig getifaddr $device 2>/dev/null
+        set -f ipv4 (ipconfig getifaddr $device)
+        set -f ipv6 (ifconfig $device | awk '/inet6 / && !/fe80::/ {print $2}')
     else if test "$OS" = Linux
-        ip -4 addr show $device | awk '/inet / {print $2}' | cut -d/ -f1
+        set -f ipv4 (ip -4 addr show $device | awk '/inet / {print $2}' | cut -d/ -f1)
+        set -f ipv6 (ip -6 addr show $device | awk '/inet6 / && !/fe80::/ {print $2}' | cut -d/ -f1)
     end
+
+    echo $ipv4 $ipv6
 end
 
 function interfaces
     if test "$OS" = Darwin
-        set net_interfaces (macos_interfaces)
+        set net_interfaces (macos_interfaces | sort)
     else if test "$OS" = Linux
-        set net_interfaces (linux_interfaces)
+        set net_interfaces (linux_interfaces | sort)
     else
         echo "Unsupported operating system: $OS"
         return 1
@@ -57,25 +61,20 @@ function interfaces
     set -lx reset '\x1B\e[0m'
 
     for interface in $net_interfaces
-        set -l device (string split ":" $interface)[1]
+        set -l device (string trim (string split ":" $interface)[1])
         set -l interface_type (string split ":" $interface)[2]
-        set -l ip_address (get_ip_address $device)
 
-        if test -n "$ip_address"
-            set -l entry (printf "%-18s %s" $device (echo -en "$blue$ip_address$reset"))
-
-            switch $interface_type
-                case "USB 10/100/1G/2.5G LAN"
-                    set -a ethernet_interfaces $entry
-                case Ethernet
-                    set -a ethernet_interfaces $entry
-                case Loopback
-                    set -a loopback_interfaces $entry
-                case Wi-Fi
-                    set -a wifi_interfaces $entry
-                case '*'
-                    set -a other_interfaces $entry
-            end
+        switch $interface_type
+            case "USB 10/100/1G/2.5G LAN"
+                set -a ethernet_interfaces $device
+            case Ethernet
+                set -a ethernet_interfaces $device
+            case Loopback
+                set -a loopback_interfaces $device
+            case Wi-Fi
+                set -a wifi_interfaces $device
+            case '*'
+                set -a other_interfaces $device
         end
     end
 
@@ -86,7 +85,20 @@ function interfaces
 
         if test (count $interfaces) -gt 0
             echo -e $green$type$reset":"
-            printf "  %s\n" (string join \n $interfaces | sort)
+
+            for device in $interfaces
+                echo "    $device"
+
+                set -l addresses (string split " " (get_ip_address $device) | sort)
+
+                if test (count $addresses) -gt 1
+
+                    for ip in $addresses
+                        echo -e "        $blue$ip$reset"
+                    end
+                end
+            end
+
             echo
         end
     end
