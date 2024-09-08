@@ -1,5 +1,5 @@
 # Bootstrap
-if not set -q $HOSTNAME
+if not set -q HOSTNAME
     set -Ux HOSTNAME (hostname -f | cut -d . -f 1)
     set -Ux OS (uname -s)
 end
@@ -27,8 +27,7 @@ if status is-interactive
     # Set fisher and auto-generated .fish files to be outside of ~/.config/fish
     # This will get picked up by $__fish_vendor_*
     set -g fish_cache $XDG_CACHE_HOME/fish
-    set -ga fish_complete_path $fish_cache/completions
-    set -ga fish_function_path $fish_cache/functions
+    set -U fisher_path $fish_cache
 
     # Turn on vi keybindings
     # set -g fish_key_bindings fish_vi_key_bindings
@@ -60,6 +59,7 @@ if status is-interactive
     # https://platform.openai.com/docs/models/gpt-4o
     set -gx OPENAI_MODEL gpt-4o-2024-08-06
 
+    abbr --add dc cd
     abbr --add df "df -h"
     abbr --add du "du -h"
     abbr --add f8 flake8
