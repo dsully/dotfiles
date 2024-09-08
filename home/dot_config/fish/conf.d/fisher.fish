@@ -1,13 +1,16 @@
-# https://github.com/jorgebucaran/fisher/issues/640#issuecomment-1172984768
-if status is-login
+set --query _fisher_path_initialized && exit
+set --global _fisher_path_initialized
 
-    if set -q fisher_path; and test -d $fisher_path/conf.d
+if test -z "$fisher_path" || test "$fisher_path" = "$__fish_config_dir"
+    exit
+end
 
-        for file in $fisher_path/conf.d/*.fish
-            if not test -f (string replace -r "^.*/" $__fish_config_dir/conf.d/ -- $file)
-                and test -f $file && test -r $file
-                builtin source $file 2>/dev/null
-            end
-        end
+set fish_complete_path $fish_complete_path[1] $fisher_path/completions $fish_complete_path[2..]
+set fish_function_path $fish_function_path[1] $fisher_path/functions $fish_function_path[2..]
+
+for file in $fisher_path/conf.d/*.fish
+    if ! test -f (string replace --regex "^.*/" $__fish_config_dir/conf.d/ -- $file)
+        and test -f $file && test -r $file
+        source $file
     end
 end
