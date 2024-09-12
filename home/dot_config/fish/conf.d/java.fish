@@ -1,6 +1,6 @@
 if status is-interactive
 
-    if type -q jenv
+    if command -q jenv
         fish_add_path --append -g --move $HOME/.jenv/bin $HOME/.jenv/shims
 
         set -gx JENV_SHELL fish

@@ -1,6 +1,10 @@
 # https://github.com/PatrickF1/fzf.fish
 
-set -gx FZF_DEFAULT_OPTS --cycle --filepath-word --height=50% --info=hidden --border=sharp $NORD_COLORS
+set -gx FD_OPTIONS "--hidden --follow --exclude .git"
+
+set -gx FZF_DEFAULT_OPTS "--cycle --filepath-word --height=50% --info=hidden --border=sharp $PICKER_COLORS"
+set -gx FZF_DEFAULT_COMMAND "fd --type f --type l $FD_OPTIONS"
+set -gx FZF_CTRL_T_COMMAND "fd $FD_OPTIONS"
 
 if functions -q fzf_configure_bindings
     # set fzf_preview_file_cmd bat --line-range :100 --color=always --plain

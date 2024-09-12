@@ -2,7 +2,7 @@ function gp -d "git pull and autorebase and trim branches that have been merged"
 
     set current (git branch --show-current)
 
-    if type -q autorebase
+    if command -q autorebase
         echo "Pulling and autorebasing onto '$current' branch..."
         autorebase --include-non-local --slow --onto $current
     else

@@ -1,6 +1,6 @@
 function sudo -d "doas wrapper."
 
-    if not type -q doas
+    if not command -q doas
         command sudo $argv
         return
     end
@@ -33,7 +33,7 @@ Based on <https://github.com/jirutka/doas-sudo-shim/issues>.
         set -f _flag_user -u $_flag_user
     end
 
-    if set -q $_flag_non_interactive; and set -q _flag_shell
+    if set -q _flag_non_interactive; and set -q _flag_shell
         echo "sudo: you may not specify both the '-i' and '-s' options" >&2
         exit 1
     end

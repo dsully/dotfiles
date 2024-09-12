@@ -1,7 +1,7 @@
 set --query _fisher_path_initialized && exit
 set --global _fisher_path_initialized
 
-if test -z "$fisher_path" || test "$fisher_path" = "$__fish_config_dir"
+if not string length --quiet "$fisher_path" || test "$fisher_path" = "$__fish_config_dir"
     exit
 end
 

@@ -1,9 +1,9 @@
 # Defined in /var/folders/3q/x_nn53z13p35x0qrrx7n8bz40003dm/T//fish.CPuVJ8/top.fish @ line 2
-function top --wraps='btop / htop / top'
+function top --wraps=btop
 
-    if type -q btop
+    if command -q btop
         command btop $argv
-    else if type -q htop
+    else if command -q htop
         command htop $argv
     else
         switch $OS
