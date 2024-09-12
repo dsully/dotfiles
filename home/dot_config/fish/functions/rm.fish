@@ -1,12 +1,15 @@
 function rm --wraps=rip --description 'Safe remove'
-    if type -q rip
-        # Check if the first argument is "-r" or "-rf" and remove it if it matches
-        if string match -q -e -- "-r*" $argv[1]
-            set -e argv[1]
+    if command -q rip
+        set processed_args
+
+        for arg in $argv
+            if not echo $arg | grep -q -E '^-r$|^-rf$|^-f$'
+                set processed_args $processed_args $arg
+            end
         end
 
         # Call `rip` with the potentially modified arguments
-        command rip $argv
+        command rip $processed_args
     else
         # Fallback to regular `rm` if `rip` is not available
         command rm $argv

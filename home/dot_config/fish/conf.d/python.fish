@@ -21,6 +21,18 @@ if status is-interactive
         set -gx PYTHONSTARTUP $startup
     end
 
+    if command -q ruff
+        set -f linter ruff
+        set -f args "check $argv"
+    else
+        set -f linter flake8
+        set -f args "--config $XDG_CONFIG_HOME/flake8/config $args"
+    end
+
+    function f8 --wraps $linter
+        $linter $args
+    end
+
     function __auto_source_venv --on-variable PWD --description "Activate/Deactivate virtualenv on directory change"
         status --is-command-substitution; and return
 

@@ -1,4 +1,4 @@
-function chezmoi --wraps=chezmoi
+function cm --wraps=chezmoi
 
     # Don't create a sub-shell for 'cd'
     if test "$argv" = cd
@@ -9,7 +9,7 @@ function chezmoi --wraps=chezmoi
 
     else if set -q argv[1]; and test $argv[1] = rm
         # Old habits.
-        command chezmoi remove $argv[2..-1]
+        command chezmoi --force forget $argv[2..-1]
     else
         command chezmoi $argv
     end

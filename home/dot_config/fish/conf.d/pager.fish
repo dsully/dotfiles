@@ -1,10 +1,10 @@
 if status is-interactive
 
-    if type -q moar
+    if command -q moar
         set -gx PAGER moar
         set -gx MOAR "-statusbar bold -no-linenumbers -no-clear-on-exit -style nord -colors 16M -wrap -quit-if-one-screen"
 
-    else if type -q ov
+    else if command -q ov
         set -gx PAGER "ov --exit-write --quit-if-one-screen"
 
     else

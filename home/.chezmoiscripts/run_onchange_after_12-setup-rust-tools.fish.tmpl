@@ -5,18 +5,22 @@
 
 source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
 
-if not type -q cargo; and type -q rustup-init
+if not command -q cargo; and command -q rustup
     start "Installing Rust Toolchain.."
 
-    command rustup-init --no-modify-path -q -y >/dev/null 2>&1
+    command rustup toolchain install stable >/dev/null 2>&1
 end
 
-if type -q cargo
+if command -q cargo
 
     # Install packages via Cargo.
     set -l PACKAGES \
+        # https://github.com/Timmmm/autorebase
+        autorebase \
         # https://github.com/RustSec/rustsec/tree/main/cargo-audit
         cargo-audit \
+        # https://github.com/mainmatter/cargo-autoinherit
+        cargo-autoinherit \
         # https://github.com/matthiaskrgr/cargo-cache
         cargo-cache \
         # https://github.com/JanLikar/cargo-clone
@@ -27,42 +31,44 @@ if type -q cargo
         cargo-feature \
         # https://github.com/cargo-bins/cargo-quickinstall
         cargo-quickinstall \
+        # https://github.com/boshen/cargo-shear
+        cargo-shear \
+        # https://github.com/TimonPost/cargo-unused-features
+        cargo-unused-features \
+        # https://github.com/Canop/codesort
+        codesort \
         # https://github.com/birkenfeld/fddf
         fddf \
+        # https://github.com/foriequal0/git-trim
+        git-trim \
         # https://github.com/mrjackwills/havn
         havn \
         # https://github.com/tarka/xcp/
-        xcp \
-        #
-        cargo-autoinherit \
-        cargo-shear \
-        cargo-unused-features \
-        codesort \
-        protols
+        xcp
 
     # https://github.com/nabijaczleweli/cargo-update
-    if not type -q cargo-install-update
+    if not command -q cargo-install-update
         set -a PACKAGES cargo-update
     end
 
-    if not type -q ds
+    if not command -q ds
         set -a PACKAGES dirstat-rs
     end
 
     task "Installing Rust tools. 🦀"
 
+    if command -q cargo-binstall
+        set -f installer "cargo binstall -q -y"
+    else
+        set -f installer "cargo install -q"
+    end
+
     for package in $PACKAGES
         sub_task "Installing $package"
 
-        if not type -q $package
-            command cargo binstall -q -y $package
+        if not command -q $package
+            command $installer $package
         end
-    end
-
-    # git-trim doesn't have binaries for Apple Silicon, so we need to build it.
-    if not type -q git-trim
-        sub_task "Installing git-trim"
-        command cargo install -q git-trim
     end
 
     # My tools / forked / git-only.
@@ -78,32 +84,10 @@ if type -q cargo
     for url in $URLS
         sub_task "Installing $url" "◆"
 
-        command cargo --quiet install --git $url
-    end
-
-    # Clean up packages now handled by gitrel.
-    set -a UNINSTALL \
-        autorebase \
-        cargo-binstall \
-        cargo-nextest \
-        cargo-outdated \
-        cargo-sort \
-        cloudflare-dns-updater \
-        git-dive \
-        gitnu \
-        jfmt \
-        macos-defaults \
-        reddit-saves \
-        rustcat \
-        simple-http-server
-
-    sub_task "Uninstalling old packages." "◆"
-
-    for bin in $UNINSTALL
-        command cargo --quiet uninstall $bin >/dev/null 2>&1
+        command $installer --git $url
     end
 
     echo
 else
-    error "Rust is not installed. It should be installed via Homebrew."
+    error "'rustup' is not installed. It should be installed via Homebrew."
 end

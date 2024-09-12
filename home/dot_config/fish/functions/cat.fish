@@ -19,20 +19,19 @@ function cat --wraps=bat --description 'Use bat instead of cat'
     if contains $ext $markdown_extensions; and $md_exe
 
         # https://github.com/Textualize/frogmouth
-        if type -q frogmouth
+        if command -q frogmouth
             frogmouth $argv[1]
-        else if type -q glow
+        else if command -q glow
             glow -p $argv[1]
         end
 
-    # https://jless.io
-    # else if contains $ext $structured_extensions; and type -q jless
-    #     jless $argv
+    else if contains $ext $image_extensions; and test $TERM = xterm-ghostty
+        viu $argv
 
     else if contains $ext $image_extensions; and test $TERM = xterm-kitty
         kitty +kitten icat $argv
 
-    else if contains $ext $image_extensions; and type -q wezterm
+    else if contains $ext $image_extensions; and command -q wezterm
         wezterm imgcat $argv
 
     else

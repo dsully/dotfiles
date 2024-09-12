@@ -29,5 +29,10 @@ if status is-interactive
 
         fish_add_path --append -g --move $HOMEBREW_PREFIX/{,s}bin
         fish_add_path -g --move $HOMEBREW_PREFIX/opt/curl/bin
+        fish_add_path -g --move $HOMEBREW_PREFIX/opt/unzip/bin
+
+        if not contains $HOMEBREW_PREFIX/share/info $INFOPATH
+            set -gx INFOPATH $HOMEBREW_PREFIX/share/info $INFOPATH
+        end
     end
 end
