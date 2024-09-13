@@ -1,3 +1,8 @@
+## ░█▀▀░▀█▀░█▀█░█▀▄░█▀▀░█░█░▀█▀░█▀█
+## ░▀▀█░░█░░█▀█░█▀▄░▀▀█░█▀█░░█░░█▀▀
+## ░▀▀▀░░▀░░▀░▀░▀░▀░▀▀▀░▀░▀░▀▀▀░▀░░
+## CROSS-SHELL PROMPT
+
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
@@ -5,7 +10,7 @@
 add_newline = false
 
 format = '''
-${custom.username}($hostname)\[$directory\] (\($golang$lua$python$rust$git_branch$git_status\))
+${custom.username}${custom_sudo}($hostname)\[$directory\] (\($golang$lua$nodejs$python$rust$zig$git_branch$git_status$status\))
 $character'''
 
 # Replace the '❯' symbol in the prompt with '➜'
@@ -15,14 +20,13 @@ success_symbol = '\$'
 
 [custom.direnv]
 format = "[$symbol]($style)"
-symbol = "  "
 style = "blue"
+symbol = "  "
 when = "env | grep -E '^DIRENV_FILE='"
 
 # https://github.com/starship/starship/discussions/1252#discussioncomment-194627
 # https://github.com/starship/starship/discussions/1252#discussioncomment-838901
 [custom.giturl]
-description = "Display symbol for remote Git server"
 command = """
 GIT_REMOTE=$(command git ls-remote --get-url 2> /dev/null)
 if [[ "$GIT_REMOTE" =~ "github" ]]; then
@@ -38,19 +42,19 @@ else
 fi
 printf "$GIT_REMOTE_SYMBOL"
 """
-when = 'git rev-parse --is-inside-work-tree 2> /dev/null'
-shell = ["bash", "--noprofile", "--norc"]
 format = "$output"
+shell = [ "bash", "--noprofile", "--norc" ]
+when = 'git rev-parse --is-inside-work-tree 2> /dev/null'
 
 [custom.python_env]
-when = 'test -n "$VIRTUAL_ENV"'
-format = "[\\($output\\)]($style) "
 command = "basename $VIRTUAL_ENV"
+format = "[\\($output\\)]($style) "
 style = "bold green"
+when = 'test -n "$VIRTUAL_ENV"'
 
 [custom.sudo]
-description = "Valid sudo timestamp marker"
 command = "echo -n ''"
+description = "Valid sudo timestamp marker"
 format = "[$symbol$output]($style) "
 shell = [ "bash", "--noprofile", "--norc" ]
 style = "bold red"
@@ -59,11 +63,11 @@ when = "sudo -vn &>/dev/null"
 # https://github.com/starship/starship/issues/4003
 # https://github.com/TsekNet/dotfiles/commit/23caa887ee7350fdb4cd91522b97555b5a962974
 [custom.username]
-ignore_timeout = true
-when = "test $USER != 'dsully'"
-format = "[$output](red bold)@"
 command = "echo $USER"
+format = "[$output](red bold)@"
+ignore_timeout = true
 style = "bold red"
+when = "test $USER != 'dsully'"
 
 [directory]
 fish_style_pwd_dir_length = 1
@@ -84,7 +88,7 @@ style = "white"
 
 [golang]
 format = '[$symbol]($style) '
-symbol = '󰟓' # 
+symbol = '󰟓'
 
 [hostname]
 format = '[$hostname](bold white):'
@@ -92,7 +96,11 @@ ssh_only = true
 
 [lua]
 format = '[$symbol]($style) '
-symbol = '󰢱'
+symbol = "󰢱"
+
+[nodejs]
+format = '[$symbol($version)]($style) '
+symbol = "󰎙"
 
 [python]
 format = '[$symbol]($style) '
@@ -106,3 +114,22 @@ symbol = '󱘗'
 # format = '[$user]($style)@'
 # style_root = 'bold red'
 # style_user = 'cyan'
+
+[zig]
+format = '[$symbol($version)]($style) '
+symbol = ""                            # nf-seti-zig
+
+[status]
+disabled = false
+map_symbol = true
+not_executable_symbol = " " # nf-fa-times_circle
+not_found_symbol = " "      # nf-fa-question_circle
+sigint_symbol = " "         # nf-fa-stop_circle
+signal_symbol = "󰉁 "         # nf-md-flash
+success_symbol = ""
+symbol = ""                 # nf-fa-exclamation
+# recognize_signal_code = false
+# pipestatus = true
+format = ' [$symbol$status]($style)'
+pipestatus_format = ' \[$pipestatus\] => [$symbol$common_meaning$signal_name$maybe_int]($style)'
+pipestatus_separator = "|"
