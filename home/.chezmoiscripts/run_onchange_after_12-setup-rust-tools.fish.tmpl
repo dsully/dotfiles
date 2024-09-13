@@ -58,9 +58,9 @@ if command -q cargo
     task "Installing Rust tools. 🦀"
 
     if command -q cargo-binstall
-        set -f installer "cargo binstall -q -y"
+        set -f installer cargo binstall -q -y
     else
-        set -f installer "cargo install -q"
+        set -f installer cargo install -q
     end
 
     for package in $PACKAGES
@@ -72,19 +72,13 @@ if command -q cargo
     end
 
     # My tools / forked / git-only.
-    set -l URLS \
-        https://github.com/dsully/lolcate-rs
+    echo
+    sub_task "Installing lolcate-rs" "◆"
+    command $installer --git https://github.com/dsully/lolcate-rs lolcate-rs
 
     if is_macos
-        set -a URLS https://github.com/alexwlchan/safari.rs
-    end
-
-    echo
-
-    for url in $URLS
-        sub_task "Installing $url" "◆"
-
-        command $installer --git $url
+        sub_task "Installing safari.rs" "◆"
+        command $installer --git https://github.com/alexwlchan/safari.rs safari.rs
     end
 
     echo
