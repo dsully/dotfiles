@@ -3,28 +3,28 @@ colors:
   # (https://www.nordtheme.com/docs/colors-and-palettes)
 
   # Polar night
-  polar-night-nord0 : '2e3440'  # #2e3440, [46, 52, 64]
-  polar-night-nord1 : '3b4252'  # #3b4252, [59, 66, 82]
-  polar-night-nord2 : '434c5e'  # #434c5e, [67, 76, 94]
-  polar-night-nord3 : '4c566a'  # #4c566a, [76, 86, 106]
+  polar-night-nord0 : '2e3440'
+  polar-night-nord1 : '3b4252'
+  polar-night-nord2 : '434c5e'
+  polar-night-nord3 : '4c566a'
 
   # Snow storm
-  snow-storm-nord4 : 'd8dee9'  # #d8dee9, [216, 222, 233]
-  snow-storm-nord5 : 'e5e9f0'  # #e5e9f0, [229, 233, 240]
-  snow-storm-nord6 : 'eceff4'  # #eceff4, [236, 239, 244]
+  snow-storm-nord4 : 'd8dee9'
+  snow-storm-nord5 : 'e5e9f0'
+  snow-storm-nord6 : 'eceff4'
 
   # Frost
-  frost-nord7 : '8fbcbb'  # #8fbcbb, [143, 188, 187]
-  frost-nord8 : '88c0d0'  # #88c0d0, [136, 192, 208]
-  frost-nord9 : '81a1c1'  # #81a1c1, [129, 161, 193]
-  frost-nord10 : '5e81ac' # #5e81ac, [94, 129, 172]
+  frost-nord7 : '8fbcbb'
+  frost-nord8 : '88c0d0'
+  frost-nord9 : '81a1c1'
+  frost-nord10 : '5e81ac'
 
   # Aurora
-  aurora-nord11 : 'bf616a'  # #bf616a, [191, 97, 106]
-  aurora-nord12 : 'd08770'  # #d08770, [208, 135, 112]
-  aurora-nord13 : 'ebcb8b'  # #ebcb8b, [235, 203, 139]
-  aurora-nord14 : 'a3be8c'  # #a3be8c, [163, 190, 140]
-  aurora-nord15 : 'b48ead'  # #b48ead, [180, 142, 173]
+  aurora-nord11 : 'bf616a'
+  aurora-nord12 : 'd08770'
+  aurora-nord13 : 'ebcb8b'
+  aurora-nord14 : 'a3be8c'
+  aurora-nord15 : 'b48ead'
 
 core:
   regular_file:

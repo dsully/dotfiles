@@ -20,6 +20,7 @@ extend-exclude = [  ]
   AKS = "AKS"
   aks = "aks"
   electricrain = "electricrain"
+  iterm = "iterm"
   protols = "protols"
 
 [type.fish.extend-words]

@@ -63,18 +63,6 @@ if not string length --quiet $LS_COLORS; and command -q vivid
     set -Ux LS_COLORS (vivid generate nord)
 end
 
-# nord_dark_black '#2e3440'
-# nord_black '#3b4252'
-# nord_gray '#4c566a'
-# nord_dark_white '#d8dee9'
-# nord_blue '#81a1c1'
-# nord_red '#bf616a'
-# nord_green '#a3be8c'
-
-# Set Nord as the fzf & skim color scheme: https://github.com/junegunn/fzf/blob/master/ADVANCED.md
-set -gx PICKER_COLORS "--color=bg+:#3b4252,bg:#2e3440,spinner:#81a1c1,hl:#616e88,fg:#d8dee9,header:#616e88"
-set -gx PICKER_COLORS "$PICKER_COLORS,info:#81a1c1,pointer:#bf616a,marker:#bf616a,fg+:#81a1c1,prompt:#81a1c1,hl+:#81a1c1"
-
 # Delete git remote branch tab completion.
 complete -e -f -c git -n '__fish_git_using_command checkout' \
     -n 'not contains -- -- (commandline -opc)' \
