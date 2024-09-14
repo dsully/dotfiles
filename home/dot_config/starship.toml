@@ -81,7 +81,7 @@ symbol = ""
 
 [git_status]
 disabled = false
-format = "[( $staged$modified)]($style)"
+format = "[($staged$modified)]($style) "
 modified = "*"
 staged = "+"
 style = "white"
@@ -130,6 +130,6 @@ success_symbol = ""
 symbol = ""                 # nf-fa-exclamation
 # recognize_signal_code = false
 # pipestatus = true
-format = ' [$symbol$status]($style)'
+format = '[$symbol$status]($style)'
 pipestatus_format = ' \[$pipestatus\] => [$symbol$common_meaning$signal_name$maybe_int]($style)'
 pipestatus_separator = "|"
