@@ -23,6 +23,8 @@ set -gx PICKER_ARGS --ansi \
     --bind "ctrl-/:toggle-preview" \
     --bind "ctrl-a:select-all+clear-screen+become(nvim {+})" \
     --bind "ctrl-d:deselect-all" \
+    --bind "ctrl-k:preview-half-page-up" \
+    --bind "ctrl-j:preview-half-page-down" \
     --bind "ctrl-y:execute-silent(echo -n {} | pbcopy)+clear-screen+abort" \
     --border=sharp \
     --cycle \
