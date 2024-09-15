@@ -10,7 +10,7 @@
 add_newline = false
 
 format = '''
-${custom.username}${custom_sudo}($hostname)\[$directory\] (\($golang$lua$nodejs$python$rust$zig$git_branch$git_status\) $status)
+${custom.username}${custom_sudo}($hostname)\[$directory\]( \($golang$lua$nodejs$python$rust$zig$git_branch$git_status\))( $status)
 $character'''
 
 # Replace the '❯' symbol in the prompt with '➜'
@@ -121,15 +121,12 @@ style = "white"
 
 [status]
 disabled = false
-map_symbol = true
-not_executable_symbol = " " # nf-fa-times_circle
-not_found_symbol = " "      # nf-fa-question_circle
-sigint_symbol = " "         # nf-fa-stop_circle
-signal_symbol = "󰉁 "         # nf-md-flash
-success_symbol = ""
-symbol = ""                 # nf-fa-exclamation
-# recognize_signal_code = false
-# pipestatus = true
 format = '\[[$symbol$status]($style)\]'
-pipestatus_format = ' \[$pipestatus\] => [$symbol$common_meaning$signal_name$maybe_int]($style)'
-pipestatus_separator = "|"
+map_symbol = true
+not_executable_symbol = " "            # nf-fa-times_circle
+not_found_symbol = " "                 # nf-fa-question_circle
+pipestatus = true
+sigint_symbol = " "                    # nf-fa-stop_circle
+signal_symbol = "󰉁 "                    # nf-md-flash
+success_symbol = ""
+symbol = ""                            # nf-fa-exclamation
