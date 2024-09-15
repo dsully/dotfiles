@@ -8,8 +8,7 @@ function cm --wraps=chezmoi
         command chezmoi diff --reverse $argv[2..-1]
 
     else if set -q argv[1]; and test $argv[1] = rm
-        # Old habits.
-        command chezmoi --force forget $argv[2..-1]
+        command chezmoi --force destroy $argv[2..-1]
     else
         command chezmoi $argv
     end

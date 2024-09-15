@@ -6,8 +6,9 @@ if status is-interactive
             --bind=ctrl-z:ignore \
             --exit-0 \
             --inline-info \
-            --no-sort \
             --layout reverse-list \
+            --preview "_fzf_preview_file {+}" \
+            --no-sort \
             --select-1
 
         zoxide init fish --cmd j | source

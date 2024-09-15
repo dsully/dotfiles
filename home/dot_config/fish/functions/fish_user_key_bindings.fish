@@ -1,8 +1,8 @@
-function up
+function cd-up
     prevd; and commandline -f repaint
 end
 
-function down
+function cd-down
     # If no next item in forward history pick a new path.
     if test (count $dirnext) -eq 0
         set --local path $(fd -t d -d 2 . | fzf)
@@ -16,6 +16,6 @@ end
 function fish_user_key_bindings
     status is-interactive || exit
 
-    bind \co up
-    bind \cn down
+    bind \co cd-up
+    bind \cn cd-down
 end
