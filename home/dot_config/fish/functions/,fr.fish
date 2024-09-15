@@ -8,16 +8,3 @@ function ,fr --description 'Fuzzy search and cd to a Git repository in ghq' --wr
 
     commandline -f repaint
 end
-
-# https://kau.sh/blog/magic-enter-shell/
-function __magic_enter_fr
-    set -l cmd (commandline)
-    commandline -f repaint
-    if test -z "$cmd"
-        commandline -r (,fr)
-        commandline -f suppress-autosuggestion
-    end
-    commandline -f execute
-end
-
-bind ,fr __magic_enter_fr
