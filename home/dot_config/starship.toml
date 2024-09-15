@@ -10,7 +10,7 @@
 add_newline = false
 
 format = '''
-${custom.username}${custom_sudo}($hostname)\[$directory\] (\($golang$lua$nodejs$python$rust$zig$git_branch$git_status$status\))
+${custom.username}${custom_sudo}($hostname)\[$directory\] (\($golang$lua$nodejs$python$rust$zig$git_branch$git_status\) $status)
 $character'''
 
 # Replace the '❯' symbol in the prompt with '➜'
@@ -74,18 +74,6 @@ fish_style_pwd_dir_length = 1
 format = '[$path]($style)'
 style = "cyan"
 
-[git_branch]
-format = '[$branch]($style)'
-style = "bold white"
-symbol = ""
-
-[git_status]
-disabled = false
-format = "[($staged$modified)]($style)"
-modified = "*"
-staged = "+"
-style = "white"
-
 [golang]
 format = '[$symbol]($style) '
 symbol = '󰟓'
@@ -119,6 +107,18 @@ symbol = '󱘗'
 format = '[$symbol($version)]($style) '
 symbol = ""                            # nf-seti-zig
 
+[git_branch]
+format = '[$branch]($style)'
+style = "bold white"
+symbol = ""
+
+[git_status]
+disabled = false
+format = "[($staged$modified)]($style)"
+modified = "*"
+staged = "+"
+style = "white"
+
 [status]
 disabled = false
 map_symbol = true
@@ -130,6 +130,6 @@ success_symbol = ""
 symbol = ""                 # nf-fa-exclamation
 # recognize_signal_code = false
 # pipestatus = true
-format = '[$symbol$status]($style)'
+format = '\[[$symbol$status]($style)\]'
 pipestatus_format = ' \[$pipestatus\] => [$symbol$common_meaning$signal_name$maybe_int]($style)'
 pipestatus_separator = "|"
