@@ -81,7 +81,7 @@ symbol = ""
 
 [git_status]
 disabled = false
-format = "[($staged$modified)]($style) "
+format = "[($staged$modified)]($style)"
 modified = "*"
 staged = "+"
 style = "white"
