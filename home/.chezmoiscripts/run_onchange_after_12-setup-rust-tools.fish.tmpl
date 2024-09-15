@@ -15,8 +15,6 @@ if command -q cargo
 
     # Install packages via Cargo.
     set -l PACKAGES \
-        # https://github.com/Timmmm/autorebase
-        autorebase \
         # https://github.com/RustSec/rustsec/tree/main/cargo-audit
         cargo-audit \
         # https://github.com/mainmatter/cargo-autoinherit
@@ -73,12 +71,15 @@ if command -q cargo
 
     # My tools / forked / git-only.
     echo
+    sub_task "Installing autorebase" "◆"
+    command cargo install --git https://github.com/Timmmm/autorebase
+
     sub_task "Installing lolcate-rs" "◆"
-    command $installer --git https://github.com/dsully/lolcate-rs lolcate-rs
+    command cargo install --git https://github.com/dsully/lolcate-rs
 
     if is_macos
         sub_task "Installing safari.rs" "◆"
-        command $installer --git https://github.com/alexwlchan/safari.rs safari.rs
+        command cargo install --git https://github.com/alexwlchan/safari.rs
     end
 
     echo
