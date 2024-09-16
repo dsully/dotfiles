@@ -71,6 +71,8 @@
     # https://stackoverflow.com/a/48650112/81120
     prune-branches = "!git remote prune origin && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -D"
 
+    rescue = !git fsck --full --no-reflogs --unreachable --lost-found | grep commit | cut -d\\  -f3 | xargs -n 1 git log -n 1 --pretty=oneline > .git/lost-found.txt
+
     # Show git root dir
     root = rev-parse --show-toplevel
 
