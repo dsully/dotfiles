@@ -4,6 +4,6 @@ function ,ff --description 'Find and open files with fzf'
     fzf \
         $PICKER_ARGS \
         --bind "change:reload:$FZF_DEFAULT_COMMAND {q} || true" \
-        --bind "enter:clear-screen+become(nvim {+})" \
+        --bind 'enter:become(''nvim {} > "$(command tty)")' \
         --preview "_fzf_preview_file {+}"
 end
