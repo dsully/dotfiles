@@ -5,9 +5,8 @@ if status is-interactive
         set -gx _ZO_FZF_OPTS $FZF_DEFAULT_OPTS \
             --bind=ctrl-z:ignore \
             --exit-0 \
-            --inline-info \
-            --layout reverse-list \
-            --preview "_fzf_preview_file {+}" \
+            --info=default \
+            --layout=reverse-list \
             --no-sort \
             --select-1
 
