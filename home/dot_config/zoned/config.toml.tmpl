@@ -1,5 +1,8 @@
 {{- if and .flags.decrypt (not .flags.ephemeral) -}}
+hostname = "{{- .chezmoi.hostname -}}.{{- .cloudflare.domain -}}"
+{{- if eq .chezmoi.chassis "laptop" }}
+ssid = "{{- .cloudflare.ssid -}}"
+{{ end -}}
 token = "{{- .cloudflare.api_token -}}"
 zoneid = "{{- .cloudflare.zone_id -}}"
-hostname = "{{- .chezmoi.hostname -}}.{{- .cloudflare.domain -}}"
 {{ end -}}
