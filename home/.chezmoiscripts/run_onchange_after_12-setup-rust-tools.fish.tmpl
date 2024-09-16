@@ -29,12 +29,16 @@ function install --description "Install a Rust package with optional URL and bin
         if command -q $binary
             return
         end
+    else
+        if command -q $package
+            return
+        end
     end
 
     sub_task "Installing $package"
 
     if test -n "$url"
-        command cargo binstall -q --git $url $package
+        command cargo binstall -q -y --git $url $package
     else
         command cargo binstall -q -y $package
     end
@@ -62,8 +66,6 @@ if command -q cargo
         cargo-quickinstall \
         # https://github.com/boshen/cargo-shear
         cargo-shear \
-        # https://github.com/TimonPost/cargo-unused-features
-        cargo-unused-features \
         # https://github.com/Canop/codesort
         codesort \
         # https://github.com/birkenfeld/fddf
