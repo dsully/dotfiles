@@ -22,7 +22,7 @@ function install_ubuntu_packages -a release
 
         start "Installing Ubuntu packages"
 
-        command sudo apt-get install -y $packages
+        command sudo apt-get install -y $packages >/dev/null 2>&1
     end
 end
 

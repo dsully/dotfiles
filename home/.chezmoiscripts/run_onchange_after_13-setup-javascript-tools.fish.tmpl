@@ -1,0 +1,28 @@
+#!{{ lookPath "fish" }}
+
+# Install JavaScript tools via volta
+# vim:ft=fish
+
+source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
+
+if type -q volta
+
+    task "Installing JavaScript tools. ☕"
+
+    set packages \
+        "node@21.7.1" \
+        "yarn@1.22.22" \
+        devmoji
+
+    {{ if .flags.work }}
+    set -a packages npm-groovy-lint
+    {{ end }}
+
+    for package in $packages
+        sub_task "Installing $package"
+
+        command volta install --quiet $package
+    end
+
+    echo
+end

@@ -4,14 +4,8 @@
 
 source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
 
-function install_rosetta
-    if not test -f /Library/Apple/usr/share/rosetta/rosetta
-        command softwareupdate --install-rosetta --agree-to-license >/dev/null 2>&1 &
-        await "Installing Rosetta"
-    end
-end
-
-function install_xcode_command_line_tools
+if is_macos
+    task "Installing macOS Tools"
 
     if not test -e /Library/Developer/CommandLineTools/usr/bin/git
 
@@ -19,16 +13,6 @@ function install_xcode_command_line_tools
         xcode-select --install >/dev/null 2>&1
         read -p "" -sn1
     end
-end
-
-if is_macos
-    task "Installing macOS Tools"
-
-    if is_arm64
-        install_rosetta
-    end
-
-    install_xcode_command_line_tools
 
     echo
 end

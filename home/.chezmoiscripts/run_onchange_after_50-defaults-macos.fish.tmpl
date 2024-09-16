@@ -123,6 +123,9 @@ if is_macos
     # (crontab -l || true; echo "# iCal Sucks\n@hourly /usr/bin/pkill -9 CalendarAgent") | crontab
     # (crontab -l || true; echo "# iCal Sucks\n@hourly /usr/bin/pkill -9 exchangesyncd") | crontab
 
+    # Mount point for SMB
+    mkdir -p $HOME/Mounts/bits
+
     task "Setting macOS defaults"
 
     if type -q macos-defaults
