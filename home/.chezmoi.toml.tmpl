@@ -47,7 +47,7 @@
 {{-   $data = include (joinPath .chezmoi.sourceDir "dot_config/chezmoi/encrypted_private_data.toml.age") | decrypt -}}
 {{-   $decrypt = true }}
 {{- else if not $ephemeral -}}
-{{-   writeToStdout "WARNING: Please re-run chezmoi init again to complete chezmoi.yaml data setup.\n\n" -}}
+{{-   writeToStdout "WARNING: Please re-run chezmoi init again to complete chezmoi.toml data setup.\n\n" -}}
 {{- end -}}
 {{/* */}}
 color = true

@@ -5,14 +5,6 @@
 
 source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
 
-function is_appleid_logged_in
-    # Determine whether we are logged in to an Apple ID
-    # (not sure if this works in case an Apple ID account exists but is logged out)
-    defaults read MobileMeAccounts Accounts > /dev/null 2>&1
-
-    return $status
-end
-
 if ensure_homebrew
 
     set brewfile $HOME/.config/Brewfile

@@ -40,10 +40,6 @@ function ask_sudo
     end
 end
 
-function quit_app -a app
-    command osascript -e "tell application '$app' to quit" >/dev/null 2>&1
-end
-
 # OS check functions
 function is_macos
     test $CHEZMOI_OS = darwin
@@ -51,40 +47,6 @@ end
 
 function is_linux
     test $CHEZMOI_OS = linux
-end
-
-function is_arm64
-    test $CHEZMOI_ARCH = arm64
-end
-
-# Machine check functions
-function is_headless_machine
-    test (chezmoi execute-template '{{ get .flags "headless" }}') = true
-end
-
-function is_personal_machine
-    test (chezmoi execute-template '{{ get .flags "personal" }}') = true
-end
-
-function is_work_machine
-    test (chezmoi execute-template '{{ get .flags "work" }}') = true
-end
-
-# Ensure OS
-function ensure_darwin
-    if not is_macos
-        error "Unexpected OS ($CHEZMOI_OS), expected macOS!"
-        exit 1
-    end
-
-    return 0
-end
-
-function ensure_linux
-    if not is_linux
-        error "Unexpected OS ($CHEZMOI_OS), expected Linux!"
-        exit 1
-    end
 end
 
 # Ensure Homebrew
