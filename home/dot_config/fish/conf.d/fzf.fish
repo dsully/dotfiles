@@ -12,7 +12,7 @@
 set -gx PICKER_COLORS "--color=bg+:#3b4252,bg:#2e3440,spinner:#81a1c1,hl:#616e88,fg:#d8dee9,header:#616e88,border:#4c566a"
 set -gx PICKER_COLORS "$PICKER_COLORS,info:#81a1c1,pointer:#bf616a,marker:#bf616a,fg+:#81a1c1,prompt:#81a1c1,hl+:#81a1c1"
 
-set -gx FD_OPTIONS "--color always --hidden --follow --exclude .git"
+set -gx FD_OPTIONS "--color always --hidden --follow --exclude .git --one-file-system"
 
 set -gx FZF_DEFAULT_OPTS "--ansi --cycle --filepath-word --height=50% --info=hidden --layout=reverse-list --border=sharp $PICKER_COLORS"
 set -gx FZF_DEFAULT_COMMAND "fd --type f --type l $FD_OPTIONS"
