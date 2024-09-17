@@ -22,7 +22,7 @@ set -gx FZF_CTRL_T_COMMAND "fd --type f $FD_OPTIONS"
 # Default arguments for file and grep pickers.
 set -gx PICKER_ARGS --ansi \
     --bind "ctrl-/:toggle-preview" \
-    --bind "ctrl-a:select-all+clear-screen+become(nvim {+})" \
+    --bind 'ctrl-a:select-all+become(''nvim {+} > "$(command tty)")' \
     --bind "ctrl-d:deselect-all" \
     --bind "ctrl-k:preview-half-page-up" \
     --bind "ctrl-j:preview-half-page-down" \
@@ -39,40 +39,80 @@ set -gx PICKER_ARGS --ansi \
     --no-scrollbar \
     --preview-window 'up,50%,wrap,border-bottom,+{2}/3'
 
-function _preview_file_content
-    set -f path $argv[1]
-    set -f bat_args --color=always --plain --line-range :100
+function _fzf_grep --description 'Ripgrep and open files with fzf'
+    argparse 'q/query=' 't/type=' -- $argv
 
-    if test (count $argv) -gt 1
-        set -f bat_args --color=always --plain --highlight-line $argv[2]
+    set FZF_DEFAULT_COMMAND rg --column --line-number --no-binary --no-heading
+    set QUERY
+
+    if test -n "$_flag_type"
+        set FZF_DEFAULT_COMMAND $FZF_DEFAULT_COMMAND --type $_flag_type
+    end
+
+    if test -n "$_flag_query"
+        set QUERY --query $_flag_query
+    end
+
+    fzf \
+        $PICKER_ARGS \
+        --bind "change:reload:$FZF_DEFAULT_COMMAND {q} || true" \
+        --bind 'enter:become(''nvim {1}:{2}:{3} > "$(command tty)")' \
+        --bind "start:reload:$FZF_DEFAULT_COMMAND '{q}'" \
+        --delimiter : \
+        --preview "_preview_file_content --path {1} --line {2} --column {3}" \
+        $QUERY
+end
+
+function _preview_file_content --description 'Preview file content'
+    argparse 'p/path=' 'l/line=' 'c/column=' -- $argv
+
+    if not set -q _flag_path
+        echo "Error: --path is required."
+        return 1
+    end
+
+    set path $_flag_path
+    set line $_flag_line
+    set column $_flag_column
+
+    set bat_args --color=always --plain
+
+    if test -n "$line"
+        set bat_args $bat_args --highlight-line $line
+
+    else if test -n "$column"
+        set bat_args $bat_args --highlight-line $line:$column
+    else
+        set bat_args $bat_args --line-range :50
     end
 
     switch $path
         case "*.md"
-            glow -s dark $path
+            # Use 'see' instead?
+            command glow -s dark $path
+
         case "*.plist"
-            plutil -p $path
+            command plutil -p $path
+
         case "*"
-            set mime (file -b --mime-type $path)
+            set mime (command file -b --mime-type $path)
 
             switch $mime[1]
                 case "text/*"
-                    bat $bat_args $path
+                    command bat $bat_args $path
+
                 case application/json
-                    bat $bat_args -l json $path
+                    command bat $bat_args -l json $path
+
                 case image/{gif,jpeg,png,svg+xml,webp}
-                    TERM=xterm-kitty viu $argv
-                case application/{msword,vnd.{ms-excel,ms-powerpoint},pdf} image/{heic,x-icns}
-                    # set tmp (mktemp -d)
-                    # qlmanage -t -s (math $COLUMNS x 8) -o $tmp $argv &>/dev/null
-                    # preview $tmp/*
-                    # rm -r $tmp
-                    file -b $path
-                    echo "($mime[1])"
+                    set -l TERM xterm-kitty
+                    command viu $path
+
                 case application/{gzip,java-archive,x-{7z-compressed,bzip2,chrome-extension,rar,tar,xar},zip}
-                    7z l $path | tail -n +12
+                    command 7z l $path | command tail -n +12
+
                 case "*"
-                    file -b $argv
+                    command file -b $argv
                     echo "($mime[1])"
             end
     end
@@ -82,30 +122,36 @@ end
 function __magic_enter_ff
     set -l cmd (commandline)
     commandline -f repaint
+
     if test -z "$cmd"
         commandline -r (,ff)
         commandline -f suppress-autosuggestion
     end
+
     commandline -f execute
 end
 
 function __magic_enter_fg
     set -l cmd (commandline)
     commandline -f repaint
+
     if test -z "$cmd"
         commandline -r (,fg)
         commandline -f suppress-autosuggestion
     end
+
     commandline -f execute
 end
 
 function __magic_enter_fr
     set -l cmd (commandline)
     commandline -f repaint
+
     if test -z "$cmd"
         commandline -r (,fr)
         commandline -f suppress-autosuggestion
     end
+
     commandline -f execute
 end
 
