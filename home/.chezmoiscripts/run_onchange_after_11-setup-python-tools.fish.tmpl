@@ -24,6 +24,9 @@ if type -q uv
     command uv tool install --force --from git+https://github.com/liquidctl/liquidctl liquidctl >/dev/null 2>&1
     {{- end }}
 
+    sub_task "Upgrading all tools"
+    command uv tool upgrade --all >/dev/null 2>&1
+
     echo
 else
     error "'uv' is not installed. It should be installed via Homebrew."
