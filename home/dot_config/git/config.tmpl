@@ -242,6 +242,10 @@
     # Cache commit graph to speed up graph log / push operations on fetch.
     writeCommitGraph = true
 
+[filter "gitignore"]
+    clean = "sed '/#gitignore$/d'"
+    smudge = cat
+
 {{ if lookPath "git-lfs" -}}
 [filter "lfs"]
     smudge = git-lfs smudge -- %f

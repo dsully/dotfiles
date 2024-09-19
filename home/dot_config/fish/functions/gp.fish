@@ -14,7 +14,7 @@ function gp -d "git pull and autorebase and trim branches that have been merged"
 
         if type -q git-trim
             echo "Pruning local branches that have been merged ..."
-            git trim --no-update
+            git trim --no-confirm --no-update
         else
             echo "Install git-trim via 'cargo binstall -y git-trim'"
         end
