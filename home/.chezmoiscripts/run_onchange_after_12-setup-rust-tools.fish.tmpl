@@ -12,7 +12,7 @@ if not command -q cargo; and command -q rustup
 end
 
 function install --description "Install a Rust package with optional URL and binary check"
-    argparse 'p/package=' 'u/url=' 'b/binary=' -- $argv
+    argparse 'p/package=' 'u/url=' 'b/binary=' 'B/branch=' -- $argv
 
     if not set -q _flag_package
         echo "Error: --package is required."
@@ -23,6 +23,7 @@ function install --description "Install a Rust package with optional URL and bin
     set -l package $_flag_package
     set -l url $_flag_url
     set -l binary $_flag_binary
+    set -l branch $_flag_branch
 
     # If binary is provided, check if it exists
     if test -n "$binary"
@@ -37,11 +38,17 @@ function install --description "Install a Rust package with optional URL and bin
 
     sub_task "Installing $package"
 
+    set args cargo binstall -q -y $package
+
     if test -n "$url"
-        command cargo binstall -q -y --git $url $package
-    else
-        command cargo binstall -q -y $package
+        set -a args --git $url
     end
+
+    if test -n "$branch"
+        set -a args --branch $branch
+    end
+
+    eval $args
 end
 
 if command -q cargo
@@ -90,7 +97,9 @@ if command -q cargo
         install --package $package
     end
 
+    # My personal tools and forks.
     install --package autorebase --url https://github.com/Timmmm/autorebase
+    install --package git-trim --url https://github.com/dsully/git-trim --branch dsully/quiet
     install --package lolcate --url https://github.com/dsully/lolcate-rs
 
     if is_macos
