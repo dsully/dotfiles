@@ -31,11 +31,7 @@ set -g fish_cache $XDG_CACHE_HOME/fish
 set -U fisher_path $fish_cache
 
 # Turn on vi keybindings
-# set -g fish_key_bindings fish_vi_key_bindings
-# set -g fish_key_bindings fish_hybrid_key_bindings
-# bind --all \t accept-autosuggestion
-bind --all \t complete
-# https://github.com/fish-shell/fish-shell/issues/3299
+set -g fish_key_bindings fish_hybrid_key_bindings
 
 set -gx HISTFILE $XDG_DATA_HOME/fish/fish_history
 

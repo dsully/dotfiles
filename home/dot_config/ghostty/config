@@ -1,4 +1,9 @@
-# https://github.com/megalithic/dotfiles/blob/631fab98890c6f97f01d0bea018a50c27bd01314/config/ghostty/config#L4
+# Run:
+#
+#   ghostty +show-config --default --docs
+#
+# to get the default config
+
 #
 # The font families to use.
 #
