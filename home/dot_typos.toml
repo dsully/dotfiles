@@ -33,4 +33,5 @@ vhyrro = "vhyrro"
 "}," = "},"
 
 [type.rust.extend-words]
+juxt = "juxt"
 ratatui = "ratatui"
