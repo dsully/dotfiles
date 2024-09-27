@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>label</key>
+        <string>localhost.lolcate</string>
+
+        <key>ProgramArguments</key>
+        <array>
+            <string>/Users/dsully/.cargo/bin/lolcate</string>
+            <string>--all</string>
+            <string>--update</string>
+        </array>
+
+        <key>RunAtLoad</key>
+        <true></true>
+
+        <!-- <key>Nice</key> -->
+        <!-- <integer>1</integer> -->
+
+        <!-- Every 6 hours -->
+        <!-- <key>StartInterval</key> -->
+        <!-- <integer>21600</integer> -->
+        <key>StartCalendarInterval</key>
+        <array>
+            <dict>
+                <key>Hour</key>
+                <integer>0</integer>
+            </dict>
+            <dict>
+                <key>Hour</key>
+                <integer>6</integer>
+            </dict>
+            <dict>
+                <key>Hour</key>
+                <integer>12</integer>
+            </dict>
+            <dict>
+                <key>Hour</key>
+                <integer>18</integer>
+            </dict>
+        </array>
+
+        <key>ProcessType</key>
+        <string>Background</string>
+        <key>LowPriorityIO</key>
+        <true></true>
+
+        <!-- <key>StandardErrorPath</key> -->
+        <!-- <string>/tmp/AlTest1.err</string> -->
+        <!---->
+        <!-- <key>StandardOutPath</key> -->
+        <!-- <string>/tmp/AlTest1.out</string> -->
+    </dict>
+</plist>
