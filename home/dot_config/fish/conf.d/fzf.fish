@@ -22,7 +22,7 @@ set -gx FZF_CTRL_T_COMMAND "fd --type f $FD_OPTIONS"
 # Default arguments for file and grep pickers.
 set -gx PICKER_ARGS --ansi \
     --bind "ctrl-/:toggle-preview" \
-    --bind 'ctrl-a:select-all+become(''nvim {+} > "$(command tty)")' \
+    --bind 'ctrl-a:select-all+execute(''nvim {+} > "$(command tty)")' \
     --bind "ctrl-d:deselect-all" \
     --bind "ctrl-k:preview-half-page-up" \
     --bind "ctrl-j:preview-half-page-down" \
@@ -53,10 +53,11 @@ function _fzf_grep --description 'Ripgrep and open files with fzf'
         set QUERY --query $_flag_query
     end
 
+    # FIXME: This doesn't work for select-all.
     fzf \
         $PICKER_ARGS \
         --bind "change:reload:$FZF_DEFAULT_COMMAND {q} || true" \
-        --bind 'enter:become(''nvim {1}:{2}:{3} > "$(command tty)")' \
+        --bind 'enter:execute(''nvim {1}:{2}:{3} > "$(command tty)")' \
         --bind "start:reload:$FZF_DEFAULT_COMMAND '{q}'" \
         --delimiter : \
         --preview "_preview_file_content --path {1} --line {2} --column {3}" \
