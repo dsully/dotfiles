@@ -56,15 +56,27 @@ layout_pdm() {
 }
 
 layout_uv() {
-    export VIRTUAL_ENV="$PWD/.venv"
-    export UV_ACTIVE=1
-    PATH_add "$VIRTUAL_ENV/bin"
+    if [[ -d ".venv" ]]; then
+        VIRTUAL_ENV="$PWD/.venv"
+    fi
+
+    if [[ -z $VIRTUAL_ENV || ! -d $VIRTUAL_ENV ]]; then
+        log_status "No uv project exists. Executing 'uv init' to create one."
+        uv init --no-readme
+        rm hello.py
+        uv venv
+        VIRTUAL_ENV="$PWD/.venv"
+    fi
 
     # Install, if deps are outdated
-    if [[ ! -d .venv || uv.lock -nt "$(echo .venv/lib/python*/site-packages)" ]]; then
+    if [[ uv.lock -nt "$(echo .venv/lib/python*/site-packages)" ]]; then
         uv sync --frozen
-        touch .venv/lib/python*/site-packages
+        touch "$VIRTUAL_ENV"/lib/python*/site-packages
     fi
+
+    PATH_add "$VIRTUAL_ENV/bin"
+    export UV_ACTIVE=1
+    export VIRTUAL_ENV
 
     watch_file uv.lock
 }
