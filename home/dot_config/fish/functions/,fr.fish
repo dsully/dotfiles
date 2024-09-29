@@ -1,10 +1,11 @@
 function ,fr --description 'Fuzzy search and cd to a Git repository in ghq' --wraps ghq
-    ghq list | fzf $PICKER_ARGS --tiebreak=index | perl -pe 'chomp if eof' | read line
+    set -l query (commandline -b)
 
-    if [ $line ]
-        ghq root | read dir
-        cd "$dir/$line"
-    end
+    [ -n "$query" ]; and set flags --query="$query"; or set flags
+
+    command ghq list --full-path | fzf $PICKER_ARGS --tiebreak=index $flags | read select
+
+    [ -n "$select" ]; and cd "$select"
 
     commandline -f repaint
 end
