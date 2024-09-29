@@ -31,7 +31,8 @@ set -g fish_cache $XDG_CACHE_HOME/fish
 set -U fisher_path $fish_cache
 
 # Turn on vi keybindings
-set -g fish_key_bindings fish_hybrid_key_bindings
+# This doesn't work with "magic enter"
+# set -g fish_key_bindings fish_hybrid_key_bindings
 
 set -gx HISTFILE $XDG_DATA_HOME/fish/fish_history
 
