@@ -30,8 +30,9 @@ function gs -d "git sync: fetch, autorebase and trim branches that have been mer
     if test $status -eq 0
 
         if type -q git-trim
+            echo
             echo "Pruning local branches that have been merged ..."
-            git trim --no-confirm --no-update
+            git trim --no-confirm --no-update --quiet
         else
             echo "Install git-trim via 'cargo binstall -y git-trim'"
         end
