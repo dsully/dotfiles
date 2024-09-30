@@ -1,13 +1,14 @@
 {{- if .flags.decrypt -}}
 set -gx CLOUDFLARE_API_TOKEN {{ .cloudflare.api_token }}
-set -gx GITHUB_API_TOKEN {{ .github.tokens.api_pat }}
+set -gx GITHUB_API_TOKEN {{ .github.tokens.personal }}
 set -gx HF_TOKEN {{ .huggingface.token }}
 set -gx OPENAI_KEY {{ .openai.token }}
+set -gx ANTHROPIC_API_KEY {{ .anthropic.token }}
+set -gx GEMINI_API_KEY {{ .google.gemini.token }}
 
 set -gx OP_ACCOUNT {{ .onepassword.account }}
 set -gx OP_SERVICE_ACCOUNT_TOKEN {{ .onepassword.service_token }}
 
 set -gx GITHUB_TOKEN $GITHUB_API_TOKEN
 set -gx OPENAI_API_KEY $OPENAI_KEY
-set -gx OATMEAL_OPENAI_TOKEN $OPENAI_KEY
 {{- end -}}
