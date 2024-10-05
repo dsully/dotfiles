@@ -1215,7 +1215,7 @@ window-theme = auto
 # Changing this value at runtime will only affect new windows.
 #
 # This setting is only supported on macOS.
-window-colorspace = srgb
+window-colorspace = display-p3
 
 # The initial window size. This size is in terminal grid cells by default.
 # Both values must be set to take effect. If only one value is set, it is
@@ -1277,7 +1277,7 @@ window-width = 172
 # The default value is `default`.
 #
 # This is currently only supported on macOS. This has no effect on Linux.
-window-save-state = default
+window-save-state = always
 
 # Resize the window in discrete increments of the focused surface's cell size.
 # If this is disabled, surfaces are resized in pixel increments. Currently
@@ -1649,26 +1649,16 @@ custom-shader-animation = true
 # native fullscreen, but make the window fullscreen without animations and
 # using a new space. It's faster than the native fullscreen mode since it
 # doesn't use animations.
-# 
-# Important: tabs DO NOT WORK in this mode. Non-native fullscreen removes
-# the titlebar and macOS native tabs require the titlebar. If you use tabs,
-# you should not use this mode.
-# 
-# If you fullscreen a window with tabs, the currently focused tab will
-# become fullscreen while the others will remain in a separate window in
-# the background. You can switch to that window using normal window-switching
-# keybindings such as command+tilde. When you exit fullscreen, the window
-# will return to the tabbed state it was in before.
-# 
+#
+# Warning: tabs do not work with a non-native fullscreen window. This
+# can be fixed but is looking for contributors to help. See issue #392.
+#
 # Allowable values are:
-# 
+#
 #   * `visible-menu` - Use non-native macOS fullscreen, keep the menu bar visible
 #   * `true` - Use non-native macOS fullscreen, hide the menu bar
 #   * `false` - Use native macOS fullscreen
-# 
-# Changing this option at runtime works, but will only apply to the next
-# time the window is made fullscreen. If a window is already fullscreen,
-# it will retain the previous setting until fullscreen is exited.
+#
 macos-non-native-fullscreen = false
 
 # The style of the macOS titlebar. Available values are: "native",
