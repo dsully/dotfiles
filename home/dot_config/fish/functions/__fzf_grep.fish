@@ -32,5 +32,16 @@ function __fzf_grep --description 'Ripgrep and open files with fzf'
     # No files selected
     test (count $selected_files) -eq 0; and return 0
 
-    commandline "nvim $selected_files"
+    set -l filenames
+
+    for element in $selected_files
+        set -l parts (string split -f 1 -f 2 -f 3 -- ':' $element)
+        set -l file $parts[1]
+        set -l line $parts[2]
+        set -l column $parts[3]
+
+        set -a filenames "$file:$line:$column"
+    end
+
+    commandline "nvim $filenames"
 end
