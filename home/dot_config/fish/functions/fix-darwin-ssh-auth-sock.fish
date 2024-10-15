@@ -1,5 +1,6 @@
 function fix-darwin-ssh-auth-sock --description "Fix SSH_AUTH_SOCK on macOS"
-    echo "SSH_AUTH_SOCK is $SSH_AUTH_SOCK"
+    echo "Current SSH_AUTH_SOCK is $SSH_AUTH_SOCK"
+
     set uid (id -u "$USER")
     set target "gui/$uid/com.openssh.ssh-agent"
 
@@ -17,7 +18,9 @@ function fix-darwin-ssh-auth-sock --description "Fix SSH_AUTH_SOCK on macOS"
         return 0
     end
 
-    set -x SSH_AUTH_SOCK "$path"
+    set -gx SSH_AUTH_SOCK "$path"
+
+    echo "Updated SSH_AUTH_SOCK is $SSH_AUTH_SOCK"
 
     if ssh-add -l
         echo "ssh-add -l ran successfully"
