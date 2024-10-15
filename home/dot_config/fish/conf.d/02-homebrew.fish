@@ -1,6 +1,6 @@
+# Brew is installed in different places depending on OS and architecture.
 if status is-interactive
 
-    # Brew is installed in different places depending on OS and architecture.
     if not set -q HOMEBREW_PREFIX
         if test -d /opt/homebrew
             set -Ux HOMEBREW_PREFIX /opt/homebrew

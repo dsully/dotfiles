@@ -1,9 +1,5 @@
 if status is-interactive
 
-    # Don't break virtualenv's on brew upgrade
-    set -gx PIPX_DEFAULT_PYTHON $HOMEBREW_PREFIX/bin/python3
-    set -gx PIPX_HOME $XDG_DATA_HOME/pipx
-
     set -gx PIP_CACHE_DIR $XDG_CACHE_HOME/pip
     set -gx PIP_CONFIG_FILE $XDG_CONFIG_HOME/pip/pip.conf
     set -gx PIP_DISABLE_PIP_VERSION_CHECK 1
@@ -19,6 +15,12 @@ if status is-interactive
 
     if test -f $startup
         set -gx PYTHONSTARTUP $startup
+    end
+
+    # https://rye-up.com
+    if test -d $HOME/.rye
+        set -gx RYE_HOME $HOME/.rye
+        fish_add_path -g $RYE_HOME/shims
     end
 
     if command -q ruff
