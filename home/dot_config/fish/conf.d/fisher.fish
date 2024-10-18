@@ -14,3 +14,10 @@ for file in $fisher_path/conf.d/*.fish
         source $file
     end
 end
+
+# jhillyerd/plugin-git tries to protect against loading and sets fisher_path based
+# on fish_config_dir which isn't the same as the one we're using
+if test -f $fisher_path/functions/__git.init.fish
+    source $fisher_path/functions/__git.init.fish
+    __git.init
+end
