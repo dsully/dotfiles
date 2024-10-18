@@ -27,8 +27,8 @@ fish_config theme choose Nordish
 
 # Set fisher and auto-generated .fish files to be outside of ~/.config/fish
 # This will get picked up by $__fish_vendor_*
-set -g fish_cache $XDG_CACHE_HOME/fish
-set -U fisher_path $fish_cache
+set -gx fish_cache $XDG_CACHE_HOME/fish
+set -gx fisher_path $fish_cache
 
 # Turn on vi keybindings
 # This doesn't work with "magic enter"
