@@ -31,7 +31,7 @@ function x -a file --description 'Extract archive'
             case "*.tgz"
                 $TAR xzf $file
             case "*.zip"
-                $UNZIP $file
+                7z x $file
             case "*.Z"
                 uncompress $file
             case "*.7z"
