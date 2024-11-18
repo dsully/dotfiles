@@ -11,7 +11,40 @@ if status is-interactive; and command -q zellij
 
     # Automatically attach if a session doesn't exist.
     if not set -q ZELLIJ; and test -e "$XDG_CONFIG_HOME/zellij/auto"
-        zellij attach -c $HOSTNAME
+        command zellij attach -c $HOSTNAME
     end
 
+    # https://github.com/zellij-org/zellij/discussions/2889
+    function zellij_update_tabname
+        if set -q ZELLIJ
+            set current_dir $PWD
+
+            if test $current_dir = $HOME
+                set tab_name "~"
+            else
+                set tab_name (basename $current_dir)
+            end
+
+            if fish_git_prompt >/dev/null
+                set git_root (git rev-parse --show-superproject-working-tree)
+
+                if test -z "$git_root"
+                    set git_root (git rev-parse --show-toplevel)
+                end
+
+                # If we are in a subdirectory of the git root, use the relative path
+                if test (string lower "$git_root") != (string lower "$current_dir")
+                    set tab_name (basename $git_root)/(basename $current_dir)
+                end
+            end
+
+            command nohup zellij action rename-tab $tab_name >/dev/null 2>&1
+        end
+    end
+
+    # Auto update tab name on directory change
+    #
+    function __zellij_update_tabname --on-variable PWD --description "Update zellij tab name on directory change"
+        zellij_update_tabname
+    end
 end
