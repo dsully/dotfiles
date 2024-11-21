@@ -44,7 +44,20 @@ if status is-interactive; and command -q zellij
 
     # Auto update tab name on directory change
     #
-    function __zellij_update_tabname --on-variable PWD --description "Update zellij tab name on directory change"
-        zellij_update_tabname
+    # function __zellij_update_tabname --on-variable PWD --description "Update zellij tab name on directory change"
+    #     zellij_update_tabname
+    # end
+
+    function __fish_update_zellij_tabname_prompt --on-event fish_prompt
+        if set -q ZELLIJ
+            zellij action rename-tab "fish $(prompt_pwd)"
+        end
+    end
+
+    function __fish_update_zellij_tabname_preexec --on-event fish_preexec
+        if set -q ZELLIJ
+            set cmd "$(string split " " $argv[1])"
+            zellij action rename-tab "$cmd $(prompt_pwd)"
+        end
     end
 end
