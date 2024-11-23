@@ -14,7 +14,7 @@ Host *
 {{- end }}
   SetEnv SSH_CLIENT_OS={{- .chezmoi.os | title }} SSH_CLIENT_HOME={{- .chezmoi.homeDir }}
 
-Host * !github.com
+Host * !github.com !electricrain.com
   ControlPath /tmp/ssh_mux_%h_%p_%r
   ControlMaster auto
   ControlPersist no
@@ -27,8 +27,7 @@ Host * !github.com
   RemoteForward [localhost]:2226 [127.0.0.1]:2226
 
 Host er
-  AddressFamily inet6
-  HostName electricrain.com.
+  HostName electricrain.com
 
 Host work
   HostName 10.0.0.98
@@ -46,11 +45,19 @@ Host nvr 10.0.0.2
   HostName 10.0.0.2
   User root
 
+Host switch 10.0.0.3
+  HostName 10.0.0.3
+  User ubnt
+
 Host server
   HostName 10.0.0.100
 
 Host jarvis
   HostName 10.0.0.97
+
+Host travel
+  HostName 192.168.8.1
+  User root
 
 Host github.com
   User git
