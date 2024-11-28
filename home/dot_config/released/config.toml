@@ -1,65 +1,23 @@
-["cargo-bins/cargo-binstall"]
-name = "cargo-bins/cargo-binstall"
-alias = "cargo-binstall"
-asset_pattern = 'cargo-binstall-{arch}.*{os}\.(zip|tgz)$'
-file_pattern = "cargo-binstall"
-
-["coder3101/protols"]
-name = "coder3101/protols"
-alias = "protols"
-asset_pattern = ""
-file_pattern = "protols"
-
 ["gitext-rs/git-dive"]
-name = "gitext-rs/git-dive"
 alias = "git-dive"
 asset_pattern = ""
 file_pattern = "git-dive"
+name = "gitext-rs/git-dive"
 
 ["gitext-rs/git-stack"]
-name = "gitext-rs/git-stack"
 alias = "git-stack"
 asset_pattern = ""
 file_pattern = "git-stack"
-
-["glotlabs/gdrive"]
-name = "glotlabs/gdrive"
-alias = "gdrive"
-asset_pattern = ""
-file_pattern = "gdrive"
+name = "gitext-rs/git-stack"
 
 ["jreisinger/checkip"]
-name = "jreisinger/checkip"
 alias = "checkip"
 asset_pattern = ""
 file_pattern = "checkip"
-
-["nguyenvukhang/gitnu"]
-name = "nguyenvukhang/gitnu"
-alias = "gitnu"
-asset_pattern = ""
-file_pattern = "git-nu"
-
-["robiot/rustcat"]
-name = "robiot/rustcat"
-alias = "rustcat"
-asset_pattern = "rcat-.*?-{os}-{arch}$"
-file_pattern = "rcat"
-
-["so-fancy/diff-so-fancy"]
-name = "so-fancy/diff-so-fancy"
-alias = "diff-so-fancy"
-asset_pattern = ""
-file_pattern = "diff-so-fancy"
-
-["taiki-e/cargo-llvm-cov"]
-name = "taiki-e/cargo-llvm-cov"
-alias = "cargo-llvm-cov"
-asset_pattern = ""
-file_pattern = "cargo-llvm-cov"
+name = "jreisinger/checkip"
 
 ["tuna-f1sh/cyme"]
-name = "tuna-f1sh/cyme"
 alias = "cyme"
 asset_pattern = ""
 file_pattern = "cyme"
+name = "tuna-f1sh/cyme"
