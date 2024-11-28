@@ -53,24 +53,24 @@ if command -q cargo
 
     # Install packages via Cargo.
     set -l PACKAGES \
-        # https://github.com/mainmatter/cargo-autoinherit
-        cargo-autoinherit \
-        # https://github.com/matthiaskrgr/cargo-cache
         cargo-cache \
-        # https://github.com/JanLikar/cargo-clone
-        cargo-clone \
-        # https://github.com/axodotdev/cargo-dist
-        cargo-dist \
-        # https://github.com/cargo-bins/cargo-quickinstall
-        cargo-quickinstall \
-        # https://github.com/boshen/cargo-shear
-        cargo-shear \
-        # https://github.com/Canop/codesort
         codesort \
-        # https://github.com/birkenfeld/fddf
         fddf \
-        # https://github.com/tarka/xcp/
         xcp
+
+    {{ if ne .chezmoi.hostname "zap" -}}
+    set -a PACKAGES \
+        cargo-autoinherit \
+        cargo-clone \
+        cargo-dist \
+        cargo-duplicates \
+        cargo-features-manager \
+        cargo-insta \
+        cargo-msrv \
+        cargo-run-bin \
+        cargo-shear \
+        cargo-unused-features
+    {{ end -}}
 
     # https://github.com/nabijaczleweli/cargo-update
     if not command -q cargo-install-update
