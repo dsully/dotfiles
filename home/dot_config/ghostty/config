@@ -1,10 +1,3 @@
-# Run:
-#
-#   ghostty +show-config --default --docs
-#
-# to get the default config
-
-#
 # The font families to use.
 #
 # You can generate the list of valid values using the CLI:
@@ -56,7 +49,7 @@
 #
 # Changing this configuration at runtime will only affect new terminals, i.e.
 # new windows, tabs, etc.
-font-family = "Monaspace Neon"
+font-family =
 
 font-family-bold =
 font-family-italic =
@@ -140,7 +133,7 @@ font-feature =
 # depending on your `window-inherit-font-size` setting. If that setting is
 # true, only the first window will be affected by this change since all
 # subsequent windows will inherit the font size of the previous window.
-font-size = 16
+font-size = 13
 
 # A repeatable configuration to set one or more font variations values for
 # a variable font. A variable font is a single font, usually with a filename
@@ -185,7 +178,7 @@ font-codepoint-map =
 
 # Draw fonts with a thicker stroke, if supported. This is only supported
 # currently on macOS.
-font-thicken = true
+font-thicken = false
 
 # All of the configurations behavior adjust various metrics determined by the
 # font. The values can be integers (1, -1, etc.) or a percentage (20%, -15%,
@@ -214,7 +207,7 @@ font-thicken = true
 #     that things like status lines continue to look aligned.
 adjust-cell-width =
 
-adjust-cell-height = 5%
+adjust-cell-height =
 adjust-font-baseline =
 adjust-underline-position =
 adjust-underline-thickness =
@@ -271,9 +264,14 @@ grapheme-width-method = unicode
 # Example: `hinting`, `no-hinting`, `force-autohint`, `no-force-autohint`
 freetype-load-flags = hinting,force-autohint,monochrome,autohint
 
-# A theme to use. If the theme is an absolute pathname, Ghostty will attempt
-# to load that file as a theme. If that file does not exist or is inaccessible,
-# an error will be logged and no other directories will be searched.
+# A theme to use. This can be a built-in theme name, a custom theme
+# name, or an absolute path to a custom theme file. Ghostty also supports
+# specifying a different them to use for light and dark mode. Each
+# option is documented below.
+#
+# If the theme is an absolute pathname, Ghostty will attempt to load that
+# file as a theme. If that file does not exist or is inaccessible, an error
+# will be logged and no other directories will be searched.
 #
 # If the theme is not an absolute pathname, two different directories will be
 # searched for a file name that matches the theme. This is case sensitive on
@@ -293,23 +291,47 @@ freetype-load-flags = hinting,force-autohint,monochrome,autohint
 #
 # To see a list of available themes, run `ghostty +list-themes`.
 #
+# A theme file is simply another Ghostty configuration file. They share
+# the same syntax and same configuration options. A theme can set any valid
+# configuration option so please do not use a theme file from an untrusted
+# source. The built-in themes are audited to only set safe configuration
+# options.
+#
+# Some options cannot be set within theme files. The reason these are not
+# supported should be self-evident. A theme file cannot set `theme` or
+# `config-file`. At the time of writing this, Ghostty will not show any
+# warnings or errors if you set these options in a theme file but they will
+# be silently ignored.
+#
 # Any additional colors specified via background, foreground, palette, etc.
 # will override the colors specified in the theme.
-theme = nord
+#
+# To specify a different theme for light and dark mode, use the following
+# syntax: `light:theme-name,dark:theme-name`. For example:
+# `light:rose-pine-dawn,dark:rose-pine`. Whitespace around all values are
+# trimmed and order of light and dark does not matter. Both light and dark
+# must be specified in this form. In this form, the theme used will be
+# based on the current desktop environment theme.
+#
+# There are some known bugs with light/dark mode theming. These will
+# be fixed in a future update:
+#
+#   - macOS: titlebar tabs style is not updated when switching themes.
+#
+theme =
 
 # Background color for the window.
-background = #2e3440
+background = #282c34
 
 # Foreground color for the window.
-foreground = #d8dee9
+foreground = #ffffff
 
 # The foreground and background color for selection. If this is not set, then
 # the selection color is just the inverted window background and foreground
 # (note: not to be confused with the cell bg/fg).
-selection-foreground = #2e3440
+selection-foreground =
 
-selection-background = #d8dee9
-
+selection-background =
 # Swap the foreground and background colors of cells for selection. This
 # option overrides the `selection-foreground` and `selection-background`
 # options.
@@ -338,28 +360,22 @@ minimum-contrast = 1
 #
 # For definitions on all the codes [see this cheat
 # sheet](https://www.ditig.com/256-colors-cheat-sheet).
-palette = 0=#2e3440
-palette = 1=#bf616a
-palette = 2=#a3be8c
-palette = 3=#ebcb8b
-palette = 4=#81a1c1
-palette = 5=#b48ead
-palette = 6=#88c0d0
-palette = 7=#e5e9f0
-palette = 8=#4c566a
-palette = 9=#bf616a
-palette = 10=#a3be8c
-palette = 11=#ebcb8b
-palette = 12=#81a1c1
-palette = 13=#b48ead
-palette = 14=#88c0d0
-palette = 15=#8fbcbb
-# palette = 16=#D08770
-# palette = 17=#5E81AC
-# palette = 18=#3B4252
-# palette = 19=#434C5E
-# palette = 20=#D8DEE9
-# palette = 21=#ECEFF4
+palette = 0=#1d1f21
+palette = 1=#cc6666
+palette = 2=#b5bd68
+palette = 3=#f0c674
+palette = 4=#81a2be
+palette = 5=#b294bb
+palette = 6=#8abeb7
+palette = 7=#c5c8c6
+palette = 8=#666666
+palette = 9=#d54e53
+palette = 10=#b9ca4a
+palette = 11=#e7c547
+palette = 12=#7aa6da
+palette = 13=#c397d8
+palette = 14=#70c0b1
+palette = 15=#eaeaea
 palette = 16=#000000
 palette = 17=#00005f
 palette = 18=#000087
@@ -602,7 +618,7 @@ palette = 254=#e4e4e4
 palette = 255=#eeeeee
 
 # The color of the cursor. If this is not set, a default will be chosen.
-cursor-color = #d8dee9
+cursor-color =
 
 # Swap the foreground and background colors of the cell under the cursor. This
 # option overrides the `cursor-color` and `cursor-text` options.
@@ -651,7 +667,7 @@ cursor-style = block
 #   * `true`
 #   * `false`
 #
-cursor-style-blink = true
+cursor-style-blink =
 
 # The color of the text under the cursor. If this is not set, a default will
 # be chosen.
@@ -672,11 +688,10 @@ cursor-text =
 # way to implement it.
 cursor-click-to-move = true
 
-# Hide the mouse immediately when typing. The mouse becomes visible again when
-# the mouse is used. The mouse is only hidden if the mouse cursor is over the
-# active terminal surface.
-#
-# macOS: This feature requires macOS 15.0 (Sequoia) or later.
+# Hide the mouse immediately when typing. The mouse becomes visible again
+# when the mouse is used (button, movement, etc.). Platform-specific behavior
+# may dictate other scenarios where the mouse is shown. For example on macOS,
+# the mouse is shown again when a new window, tab, or split is created.
 mouse-hide-while-typing = false
 
 # Determines whether running programs can detect the shift key pressed with a
@@ -912,7 +927,7 @@ x11-instance-name =
 #   * `home` - The home directory of the executing user.
 #
 #   * `inherit` - The working directory of the launching process.
-working-directory = home
+working-directory =
 
 # Key bindings. The format is `trigger=action`. Duplicate triggers will
 # overwrite previously set values. The list of actions is available in
@@ -1209,13 +1224,13 @@ window-vsync = true
 # If true, new windows and tabs will inherit the working directory of the
 # previously focused window. If no window was previously focused, the default
 # working directory will be used (the `working-directory` option).
-window-inherit-working-directory = false
+window-inherit-working-directory = true
 
 # If true, new windows and tabs will inherit the font size of the previously
 # focused window. If no window was previously focused, the default font size
 # will be used. If this is false, the default font size specified in the
 # configuration `font-size` will be used.
-window-inherit-font-size = false
+window-inherit-font-size = true
 
 # Valid values:
 #
@@ -1236,12 +1251,14 @@ window-decoration = true
 # The font that will be used for the application's window and tab titles.
 #
 # This is currently only supported on macOS.
-window-title-font-family = "Monaspace Neon"
+window-title-font-family =
 
 # The theme to use for the windows. Valid values:
 #
 #   * `auto` - Determine the theme based on the configured terminal
-#      background color.
+#      background color. This has no effect if the "theme" configuration
+#      has separate light and dark themes. In that case, the behavior
+#      of "auto" is equivalent to "system".
 #   * `system` - Use the system theme.
 #   * `light` - Use the light theme regardless of system theme.
 #   * `dark` - Use the dark theme regardless of system theme.
@@ -1292,9 +1309,9 @@ window-colorspace = srgb
 # window-decorations), then this will work as expected.
 #
 # Windows smaller than 10 wide by 4 high are not allowed.
-window-height = 50
+window-height = 0
 
-window-width = 172
+window-width = 0
 # Whether to enable saving and restoring window state. Window state includes
 # their position, size, tabs, splits, etc. Some window state requires shell
 # integration, such as preserving working directories. See `shell-integration`
@@ -1325,7 +1342,7 @@ window-width = 172
 # The default value is `default`.
 #
 # This is currently only supported on macOS. This has no effect on Linux.
-window-save-state = always
+window-save-state = default
 
 # Resize the window in discrete increments of the focused surface's cell size.
 # If this is disabled, surfaces are resized in pixel increments. Currently
@@ -1338,7 +1355,7 @@ window-step-resize = false
 #     or at the end if there are no focused tabs.
 #
 #   * `end` - Insert the new tab at the end of the tab list.
-window-new-tab-position = end
+window-new-tab-position = current
 
 # This controls when resize overlays are shown. Resize overlays are a
 # transient popup that shows the size of the terminal while the surfaces are
@@ -1473,7 +1490,22 @@ click-repeat-interval = 0
 #
 # Cycles are not allowed. If a cycle is detected, an error will be logged and
 # the configuration file will be ignored.
-config-file =
+#
+# Configuration files are loaded after the configuration they're defined
+# within in the order they're defined. **THIS IS A VERY SUBTLE BUT IMPORTANT
+# POINT.** To put it another way: configuration files do not take effect
+# until after the entire configuration is loaded. For example, in the
+# configuration below:
+#
+# ```
+# config-file = "foo"
+# a = 1
+# ```
+#
+# If "foo" contains `a = 2`, the final value of `a` will be 2, because
+# `foo` is loaded after the configuration file that configures the
+# nested `config-file` value.
+config-file = "local"
 
 # When this is true, the default configuration file paths will be loaded.
 # The default configuration file paths are currently only the XDG
@@ -1631,7 +1663,7 @@ shell-integration = detect
 #   * `title` - Set the window title via shell integration.
 #
 # Example: `cursor`, `no-cursor`, `sudo`, `no-sudo`, `title`, `no-title`
-shell-integration-features = no-cursor,sudo,title
+shell-integration-features = cursor,no-sudo,title
 
 # Sets the reporting format for OSC sequences that request color information.
 # Ghostty currently supports OSC 10 (foreground), OSC 11 (background), and
@@ -1721,7 +1753,6 @@ custom-shader-animation = true
 # keybindings such as command+tilde. When you exit fullscreen, the window
 # will return to the tabbed state it was in before.
 #
-#
 # Allowable values are:
 #
 #   * `visible-menu` - Use non-native macOS fullscreen, keep the menu bar visible
@@ -1744,6 +1775,13 @@ macos-non-native-fullscreen = false
 # This makes a more seamless window appearance but looks a little less
 # typical for a macOS application and may not work well with all themes.
 #
+# The "transparent" style will also update in real-time to dynamic
+# changes to the window background color, i.e. via OSC 11. To make this
+# more aesthetically pleasing, this only happens if the terminal is
+# a window, tab, or split that borders the top of the window. This
+# avoids a disjointed appearance where the titlebar color changes
+# but all the topmost terminals don't match.
+#
 # The "tabs" style is a completely custom titlebar that integrates the
 # tab bar into the titlebar. This titlebar always matches the background
 # color of the terminal. There are some limitations to this style:
@@ -1763,7 +1801,7 @@ macos-non-native-fullscreen = false
 # most cases.
 #
 # Changing this option at runtime only applies to new windows.
-macos-titlebar-style = tabs
+macos-titlebar-style = transparent
 
 # Whether the proxy icon in the macOS titlebar is visible. The proxy icon
 # is the icon that represents the folder of the current working directory.
@@ -1771,6 +1809,11 @@ macos-titlebar-style = tabs
 # titlebar.
 #
 # The proxy icon is only visible with the native macOS titlebar style.
+#
+# Valid values are:
+#
+#   * `visible` - Show the proxy icon.
+#   * `hidden` - Hide the proxy icon.
 #
 # The default value is `visible`.
 #
@@ -1794,7 +1837,7 @@ macos-titlebar-proxy-icon = visible
 # will be treated as *Alt* regardless of this setting. (i.e. `alt+ctrl+a`).
 #
 # This does not work with GLFW builds.
-macos-option-as-alt = true
+macos-option-as-alt = false
 
 # Whether to enable the macOS window shadow. The default value is true.
 # With some window managers and window transparency settings, you may
