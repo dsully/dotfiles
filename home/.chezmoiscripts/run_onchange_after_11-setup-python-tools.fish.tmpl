@@ -17,7 +17,7 @@ if type -q uv
     # end
 
     sub_task "Installing ptpython REPL"
-    command uv tool install --force --with ipython --with jedi -f ptpython >/dev/null 2>&1
+    command uv tool install --force --with ipython --with jedi ptpython >/dev/null 2>&1
 
     {{ if eq .chezmoi.hostname "server" -}}
     sub_task "Installing liquidctl"
