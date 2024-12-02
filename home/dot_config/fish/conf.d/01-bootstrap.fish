@@ -13,7 +13,7 @@ set -gx XDG_STATE_HOME $HOME/.local/state
 
 set -gx LANG en_US.UTF-8
 
-set fish_greeting ''
+set -g fish_greeting ""
 
 fish_add_path -g \
     "$HOME/.cargo/bin" \

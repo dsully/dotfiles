@@ -1,5 +1,6 @@
 function cat --wraps=bat --description 'Use bat instead of cat'
 
+    # If no arguments are given, read from stdin.
     if isatty stdin; and not set -q argv[1]
         command cat -
         return
@@ -14,26 +15,14 @@ function cat --wraps=bat --description 'Use bat instead of cat'
     # Escape --version and similar.
     set -f ext (string split "." -- $argv[1])[-1]
 
-    set -f md_exe type -q frogmouth; or type -q glow
+    if contains $ext $markdown_extensions; and type -q see
+        command see $argv[1]
 
-    if contains $ext $markdown_extensions; and $md_exe
+    else if contains $ext $markdown_extensions; and type -q glow
+        command glow --pager $argv[1]
 
-        # https://github.com/Textualize/frogmouth
-        if command -q frogmouth
-            frogmouth $argv[1]
-        else if command -q glow
-            glow -p $argv[1]
-        end
-
-    else if contains $ext $image_extensions; and test $TERM = xterm-ghostty
+    else if contains $ext $image_extensions
         viu $argv
-
-    else if contains $ext $image_extensions; and test $TERM = xterm-kitty
-        kitty +kitten icat $argv
-
-    else if contains $ext $image_extensions; and command -q wezterm
-        wezterm imgcat $argv
-
     else
         command bat $argv
     end
