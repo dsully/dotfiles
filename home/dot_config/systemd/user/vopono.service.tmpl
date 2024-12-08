@@ -2,7 +2,8 @@
 # vim:ft=systemd
 [Unit]
 Description=Vopono
-After=network.target
+Wants=network-online.target
+After=local-fs.target network-online.target nss-lookup.target
 
 [Service]
 WorkingDirectory=%h/.config/vopono
@@ -19,8 +20,9 @@ ExecStart=/usr/bin/vopono exec \
     --port-forwarding-callback=%h/.local/bin/qbit-port-updater \
     '/usr/bin/qbittorrent-nox --webui-port=9091 --profile=/bits/media/torrents'
 Type=simple
+PrivateTmp=false
 Restart=on-failure
 
 [Install]
 WantedBy=default.target
-{{- end -}}
+{{- end }}
