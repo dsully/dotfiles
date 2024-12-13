@@ -52,7 +52,6 @@ cask "raycast"
 cask "renamer"
 cask "retrobatch"
 cask "rocket"
-cask "screens-connect"
 cask "signal"
 cask "soulver"
 cask "stay"
@@ -68,7 +67,6 @@ mas "Actions", id: 1586435171
 mas "AllMyBatteries", id: 1621263412
 mas "AutoMounter", id: 1160435653
 mas "Black Out", id: 1319884285
-mas "Cookie DNT Privacy for Safari", id: 1594049656
 mas "CotEditor", id: 1024640650
 mas "Croissant", id: 6670288979
 mas "Darkroom", id: 953286746
@@ -104,10 +102,8 @@ mas "TestFlight", id: 899247664
 mas "The Camelizer", id: 1532579087
 mas "TrashMe 3", id: 1490879410
 mas "Tripsy", id: 1429967544
-mas "WiFi Explorer", id: 494803304
 mas "WiFi Signal", id: 525912054
 mas "Wipr", id: 1662217862
-mas "WireGuard", id: 1451685025
 mas "WordService", id: 899972312
 mas "Yoink", id: 457622435
 mas "com.kagimacOS.Kagi-Search", id: 1622835804
