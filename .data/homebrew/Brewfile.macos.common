@@ -6,7 +6,7 @@ tap "lihaoyun6/tap"
 tap "rajiv/fastmate"
 brew "caarlos0/tap/xdg-open-svc"
 brew "dsully/tap/macos-defaults"
-brew "font-monaspace",
+brew "font-monaspace"
 brew "gcc"
 brew "gettext"
 brew "gnu-sed"
