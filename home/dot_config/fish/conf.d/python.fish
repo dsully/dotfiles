@@ -43,10 +43,11 @@ if status is-interactive
             set cwd (pwd -P)
 
             # Most common right now, so check for it first.
-            set pygradle "$gitdir/build/$repo/environments/development-venv/bin/activate.fish"
+            set venv "$gitdir/build/$repo/environments/development-venv"
 
-            if test -e $pygradle
-                source $pygradle &>/dev/null
+            if test -x "$venv/bin/python3"
+                set -gx VIRTUAL_ENV $venv
+                fish_add_path "$venv/bin"
                 return
             end
 
@@ -55,8 +56,9 @@ if status is-interactive
             while string match "$gitdir*" "$cwd" &>/dev/null
 
                 for venv in .venv venv
-                    if test -e "$cwd/$venv/bin/activate.fish"
-                        source "$cwd/$venv/bin/activate.fish" &>/dev/null
+                    if test -x "$venv/bin/python3"
+                        set -gx VIRTUAL_ENV $venv
+                        fish_add_path "$venv/bin"
                         return
                     end
                 end
@@ -64,12 +66,10 @@ if status is-interactive
                 set cwd (path dirname "$cwd")
             end
         else
-
             # If virtualenv activated but we are not in a git directory, deactivate.
-            if functions --query deactivate
-                if test -n "$VIRTUAL_ENV"
-                    deactivate
-                end
+            if test -n "$VIRTUAL_ENV"
+                fish_remove_path "$VIRTUAL_ENV/bin"
+                set -e VIRTUAL_ENV
             end
         end
     end
