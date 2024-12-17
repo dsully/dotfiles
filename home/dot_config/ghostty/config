@@ -208,12 +208,37 @@ font-thicken = false
 adjust-cell-width =
 
 adjust-cell-height =
+# Distance in pixels from the bottom of the cell to the text baseline.
+# Increase to move baseline UP, decrease to move baseline DOWN.
 adjust-font-baseline =
+
+# Distance in pixels from the top of the cell to the top of the underline.
+# Increase to move underline DOWN, decrease to move underline UP.
 adjust-underline-position =
+
+# Thickness in pixels of the underline.
 adjust-underline-thickness =
+
+# Distance in pixels from the top of the cell to the top of the strikethrough.
+# Increase to move strikethrough DOWN, decrease to move underline UP.
 adjust-strikethrough-position =
+
+# Thickness in pixels of the strikethrough.
 adjust-strikethrough-thickness =
+
+# Distance in pixels from the top of the cell to the top of the overline.
+# Increase to move overline DOWN, decrease to move underline UP.
+adjust-overline-position =
+
+# Thickness in pixels of the overline.
+adjust-overline-thickness =
+
+# Thickness in pixels of the bar cursor and outlined rect cursor.
 adjust-cursor-thickness =
+
+# Thickness in pixels of box drawing characters.
+adjust-box-thickness =
+
 # The method to use for calculating the cell width of a grapheme cluster.
 # The default value is `unicode` which uses the Unicode standard to determine
 # grapheme width. This results in correct grapheme width but may result in
@@ -266,7 +291,7 @@ freetype-load-flags = hinting,force-autohint,monochrome,autohint
 
 # A theme to use. This can be a built-in theme name, a custom theme
 # name, or an absolute path to a custom theme file. Ghostty also supports
-# specifying a different them to use for light and dark mode. Each
+# specifying a different theme to use for light and dark mode. Each
 # option is documented below.
 #
 # If the theme is an absolute pathname, Ghostty will attempt to load that
@@ -734,6 +759,10 @@ mouse-scroll-multiplier = 1
 # The opacity level (opposite of transparency) of the background. A value of
 # 1 is fully opaque and a value of 0 is fully transparent. A value less than 0
 # or greater than 1 will be clamped to the nearest valid value.
+#
+# On macOS, background opacity is disabled when the terminal enters native
+# fullscreen. This is because the background becomes gray and it can cause
+# widgets to show through which isn't generally desirable.
 background-opacity = 1
 
 # A positive value enables blurring of the background when background-opacity
@@ -870,9 +899,6 @@ link-url = true
 # does not apply to tabs, splits, etc. However, this setting will apply to all
 # new windows, not just the first one.
 #
-# On macOS, this always creates the window in native fullscreen. Non-native
-# fullscreen is not currently supported with this setting.
-#
 # On macOS, this setting does not work if window-decoration is set to
 # "false", because native fullscreen on macOS requires window decorations
 # to be set.
@@ -881,6 +907,12 @@ fullscreen = false
 # The title Ghostty will use for the window. This will force the title of the
 # window to be this title at all times and Ghostty will ignore any set title
 # escape sequences programs (such as Neovim) may send.
+#
+# This configuration can be reloaded at runtime. If it is set, the title
+# will update for all windows. If it is unset, the next title change escape
+# sequence will be honored but previous changes will not retroactively
+# be set. This latter case may require you restart programs such as neovim
+# to get the new title.
 title =
 
 # The setting that will change the application class value.
@@ -1446,7 +1478,7 @@ clipboard-paste-protection = true
 clipboard-paste-bracketed-safe = true
 
 # The total amount of bytes that can be used for image data (i.e. the Kitty
-# image protocol) per terminal scren. The maximum value is 4,294,967,295
+# image protocol) per terminal screen. The maximum value is 4,294,967,295
 # (4GiB). The default is 320MB. If this is set to zero, then all image
 # protocols will be disabled.
 #
@@ -1824,20 +1856,41 @@ macos-titlebar-style = transparent
 # editor, etc.
 macos-titlebar-proxy-icon = visible
 
-# If `true`, the *Option* key will be treated as *Alt*. This makes terminal
-# sequences expecting *Alt* to work properly, but will break Unicode input
-# sequences on macOS if you use them via the *Alt* key. You may set this to
-# `false` to restore the macOS *Alt* key unicode sequences but this will break
-# terminal sequences expecting *Alt* to work.
+# macOS doesn't have a distinct "alt" key and instead has the "option"
+# key which behaves slightly differently. On macOS by default, the
+# option key plus a character will sometimes produces a Unicode character.
+# For example, on US standard layouts option-b produces "∫". This may be
+# undesirable if you want to use "option" as an "alt" key for keybindings
+# in terminal programs or shells.
 #
-# The values `left` or `right` enable this for the left or right *Option*
-# key, respectively.
+# This configuration lets you change the behavior so that option is treated
+# as alt.
+#
+# The default behavior (unset) will depend on your active keyboard
+# layout. If your keyboard layout is one of the keyboard layouts listed
+# below, then the default value is "true". Otherwise, the default
+# value is "false". Keyboard layouts with a default value of "true" are:
+#
+#   - U.S. Standard
+#   - U.S. International
 #
 # Note that if an *Option*-sequence doesn't produce a printable character, it
 # will be treated as *Alt* regardless of this setting. (i.e. `alt+ctrl+a`).
 #
+# Explicit values that can be set:
+#
+# If `true`, the *Option* key will be treated as *Alt*. This makes terminal
+# sequences expecting *Alt* to work properly, but will break Unicode input
+# sequences on macOS if you use them via the *Alt* key.
+#
+# You may set this to `false` to restore the macOS *Alt* key unicode
+# sequences but this will break terminal sequences expecting *Alt* to work.
+#
+# The values `left` or `right` enable this for the left or right *Option*
+# key, respectively.
+#
 # This does not work with GLFW builds.
-macos-option-as-alt = false
+macos-option-as-alt =
 
 # Whether to enable the macOS window shadow. The default value is true.
 # With some window managers and window transparency settings, you may
@@ -1956,10 +2009,17 @@ gtk-single-instance = desktop
 gtk-titlebar = true
 
 # Determines the side of the screen that the GTK tab bar will stick to.
-# Top, bottom, left, and right are supported. The default is top.
+# Top, bottom, left, right, and hidden are supported. The default is top.
 #
 # If this option has value `left` or `right` when using Adwaita, it falls
-# back to `top`.
+# back to `top`. `hidden`, meaning that tabs don't exist, is not supported
+# without using Adwaita, falling back to `top`.
+#
+# When `hidden` is set and Adwaita is enabled, a tab button displaying the
+# number of tabs will appear in the title bar. It has the ability to open a
+# tab overview for displaying tabs. Alternatively, you can use the
+# `toggle_tab_overview` action in a keybind if your window doesn't have a
+# title bar, or you can switch tabs with keybinds.
 gtk-tabs-location = top
 
 # Determines the appearance of the top and bottom bars when using the
