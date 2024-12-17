@@ -92,7 +92,6 @@ node_modules/
 .ssh/known_*
 .ssh/manage-ssh/
 .sudo_as_admin_successful
-.terminfo/
 .terraform.d/
 .ufl_setupdone
 .viminfo
@@ -136,14 +135,12 @@ Virtual Machines.localized
 {{- end }}
 
 {{- if eq .chezmoi.os "linux" }}
-.config/alacritty/
 .config/cni/net.d/cni.lock
 .config/kitty/
 .config/systemd/user/default.*
 .config/systemd/user/multi-user.target.wants
 .config/vopono/locks/
 .config/vopono/mv/
-.config/wezterm/
 Library/
 !.local/bin/pbcopy
 !.local/bin/pbpaste
