@@ -19,7 +19,6 @@ fish_add_path -g \
     "$HOME/.cargo/bin" \
     "$HOME/.local/bin" \
     "$HOME/.local/go/bin" \
-    "$HOME/.local/share/nvim/mason/bin" \
     "$HOME/.volta/bin"
 
 # $XDG_CONFIG_HOME/fish/themes/nordish.fish
@@ -41,11 +40,6 @@ set -gx GOPATH $HOME/.local/go
 set -gx GO111MODULE on
 
 set -gx RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/ripgrep/config
-
-# Node/Volta
-set -gx NODE_REPL_HISTORY /dev/null
-set -gx NO_UPDATE_NOTIFIER 1 # used by npm: https://github.com/yeoman/update-notifier/issues/180
-set -gx VOLTA_HOME "$HOME/.volta"
 
 # Silence direnv logging. Hook is invoked via vendor_conf.d/
 set -gx DIRENV_LOG_FORMAT ""
