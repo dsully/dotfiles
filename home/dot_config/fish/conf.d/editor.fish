@@ -11,6 +11,8 @@ if status is-interactive
 
         set -gx EDITOR nvim
 
+        fish_add_path -g $HOME/.local/share/nvim/mason/bin
+
     else if command -q vim
         set -gx EDITOR vim
     else

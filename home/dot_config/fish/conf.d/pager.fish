@@ -4,6 +4,10 @@ if status is-interactive
         set -gx PAGER moar
         set -gx MOAR "-statusbar bold -no-linenumbers -no-clear-on-exit -style nord -colors 16M -wrap -quit-if-one-screen"
 
+        if command -q bat
+            set -gx BAT_PAGER 'moar -no-linenumbers -quit-if-one-screen'
+        end
+
     else if command -q ov
         set -gx PAGER "ov --exit-write --quit-if-one-screen"
 

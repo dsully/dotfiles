@@ -15,11 +15,7 @@ set -gx LANG en_US.UTF-8
 
 set -g fish_greeting ""
 
-fish_add_path -g \
-    "$HOME/.cargo/bin" \
-    "$HOME/.local/bin" \
-    "$HOME/.local/go/bin" \
-    "$HOME/.volta/bin"
+fish_add_path -g $XDG_BIN_HOME
 
 # $XDG_CONFIG_HOME/fish/themes/nordish.fish
 fish_config theme choose Nordish
@@ -44,14 +40,14 @@ set -gx RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/ripgrep/config
 # Silence direnv logging. Hook is invoked via vendor_conf.d/
 set -gx DIRENV_LOG_FORMAT ""
 
-# https://platform.openai.com/docs/models/gpt-4o
-set -gx OPENAI_MODEL gpt-4o-2024-08-06
-
 abbr --add dc cd
 
 # Set `LS_COLORS` via https://github.com/sharkdp/vivid
-if not string length --quiet $LS_COLORS; and command -q vivid
-    set -Ux LS_COLORS (vivid generate nord)
+if status is-interactive
+
+    if not string length --quiet $LS_COLORS; and command -q vivid
+        set -Ux LS_COLORS (vivid generate nord)
+    end
 end
 
 # Delete git remote branch tab completion.
