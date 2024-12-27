@@ -1,3 +1,4 @@
+# Define these here instead of in functions/<command>.fish, so that rust-analyzer won't call it this way.
 function clippy --wraps="cargo clippy" --description "Run clippy"
     cargo clippy --all-features --all-targets -- -Dclippy::all -Dunused_imports
 end
@@ -31,4 +32,8 @@ function rcheck --wraps="cargo check" --description "Run cargo check"
             set_color normal
             cargo doc --all-features
         end
+end
+
+if status is-interactive
+    fish_add_path -g $HOME/.cargo/bin
 end
