@@ -5,6 +5,7 @@ set -gx HF_TOKEN {{ .huggingface.token }}
 set -gx OPENAI_KEY {{ .openai.token }}
 set -gx ANTHROPIC_API_KEY {{ .anthropic.token }}
 set -gx GEMINI_API_KEY {{ .google.gemini.token }}
+set -gx OLLAMA_URL {{ .ollama.url }}
 
 set -gx OP_ACCOUNT {{ .onepassword.account }}
 set -gx OP_SERVICE_ACCOUNT_TOKEN {{ .onepassword.service_token }}
