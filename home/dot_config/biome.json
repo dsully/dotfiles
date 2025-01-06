@@ -1,12 +1,14 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.6.4/schema.json",
-  "formatter": {
-    "enabled": true,
-    "attributePosition": "multiline",
-    "indentStyle": "space",
-    "lineWidth": 120
-  },
-  "linter": {
-    "enabled": true
-  }
+    "$schema": "https://biomejs.dev/schemas/1.6.4/schema.json",
+    "formatter": {
+        "enabled": true,
+        "attributePosition": "multiline",
+        "indentStyle": "space",
+        "indentWidth": 4,
+        "lineWidth": 120,
+        "useEditorconfig": true
+    },
+    "linter": {
+        "enabled": true
+    }
 }
