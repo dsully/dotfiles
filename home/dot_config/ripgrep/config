@@ -1,3 +1,5 @@
+# https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
+#
 # Only search with case sensitivity if there is mixed case
 --smart-case
 
@@ -8,14 +10,23 @@
 --pretty
 
 # Ignores
---glob=!.git/
---glob=!node_modules/
---glob=!LICENSE
---glob=!Cargo.lock
---glob=!package-lock.json
---glob=!yarn.lock
---glob=!target/
+--glob=!**/node_modules/*
 --glob=!*hammerspoon*
+--glob=!.cache/*
+--glob=!.git/*
+--glob=!Cargo.lock
+--glob=!LICENSE
+--glob=!Library/*
+--glob=!Movies/*
+--glob=!coverage/*
+--glob=!dist/*
+--glob=!log/*
+--glob=!node_modules/
+--glob=!package-lock.json
+--glob=!target/
+--glob=!tmp/*
+--glob=!vendor/*
+--glob=!yarn.lock
 
 # Don't let ripgrep vomit really long lines to my terminal, and show a preview.
 --max-columns=150
