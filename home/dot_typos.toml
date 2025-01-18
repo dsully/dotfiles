@@ -1,7 +1,15 @@
 [default]
-extend-ignore-identifiers-re = [
+extend-ignore-re = [
+  # git commit hashes in CHANGELOG.md
+  "\\[[0-9a-f]{7}\\]",
+  # Line ignore with trailing # spellchecker:disable-line
+  "(?Rm)^.*(#|--|//)\\s*spellchecker:disable-line$",
+  # Line block with # spellchecker:<on|off>
+  "(?s)(#|--|//|)\\s*spellchecker:off.*?\\n\\s*(#|--|//)\\s*spellchecker:on",
+  # TLS strings
   "\\bTLS_[A-Z0-9_]+(_anon_[A-Z0-9_]+)?\\b",
 ]
+
 extend-ignore-words-re = [
   # In my experience, false positive detection in typos occurred for short words.
   #
@@ -14,14 +22,30 @@ extend-ignore-words-re = [
 ]
 
 [files]
-extend-exclude = [  ]
+extend-exclude = [
+  "*.css",
+  "*.lock",
+  "*.min.css",
+  "*.min.js",
+  "*.plist",
+  "*lock.json",
+  ".git/",
+  ".github/",
+  ".typos.toml",
+  "_typos.toml",
+  "go.mod",
+  "go.sum",
+  "node_modules",
+  "pnpm-lock.yaml",
+  "typos.toml",
+  "vendor/**/*",
+]
 
   [default.extend-words]
   AKS = "AKS"
   aks = "aks"
   electricrain = "electricrain"
   iterm = "iterm"
-  noice = "noice"
   protols = "protols"
 
 [type.fish.extend-words]
@@ -29,6 +53,7 @@ doas = "doas"
 
 [type.lua.extend-words]
 enew = "enew"
+noice = "noice"
 vhyrro = "vhyrro"
 "}," = "},"
 
