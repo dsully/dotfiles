@@ -7,8 +7,8 @@
 [include]
     path = ~/.config/git/.github
 
-[includeIf  "hasconfig:remote.*.url:ssh://org-*@github.com/**"]
-    path = ~/.config/git/.work
+; [includeIf  "hasconfig:remote.*.url:ssh://org-*@github.com/**"]
+;     path = ~/.config/git/.work
 
 [alias]
     a = commit --amend
@@ -304,3 +304,11 @@ root = ~/dev/home
 [ghq "https://github.com/work/"]
 vcs = git
 root = ~/dev/work
+
+[gitbutler]
+    aiOpenAIKeyOption = bringYourOwn
+    aiOpenAIModelName = gpt-4o-mini
+    aiModelProvider = anthropic
+    aiAnthropicKeyOption = bringYourOwn
+    aiAnthropicModelName = claude-3-5-sonnet-20240620
+    diffLengthLimit = 50000
