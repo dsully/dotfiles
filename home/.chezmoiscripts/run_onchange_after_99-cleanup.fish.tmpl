@@ -29,9 +29,9 @@ if is_macos
 end
 
 # Clean up bootstrapped executables.
-rm -f "$HOME/.local/bin/chezmoi"
+/bin/rm -rf "$HOME/.local/bin/chezmoi"
 
-rm -rf "$HOME/.bash*"
-rm -f "$HOME/.sudo_as_admin_successful"
+/bin/rm -rf "$HOME/.bash*"
+/bin/rm -rf "$HOME/.sudo_as_admin_successful"
 
 echo
