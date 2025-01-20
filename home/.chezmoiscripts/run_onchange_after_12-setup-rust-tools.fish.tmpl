@@ -1,7 +1,6 @@
 #!{{ lookPath "fish" }}
 
 # Install Rust tools.
-# vim:ft=fish
 
 source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
 
@@ -69,7 +68,9 @@ if command -q cargo
         cargo-msrv \
         cargo-run-bin \
         cargo-shear \
-        cargo-unused-features
+        cargo-unused-features \
+        # https://github.com/uros-5/jinja-lsp
+        jinja-lsp
     {{ end -}}
 
     # https://github.com/nabijaczleweli/cargo-update
@@ -95,6 +96,9 @@ if command -q cargo
     end
 
     echo
+
+    # FIXME
+    go install github.com/Gelio/go-global-update@latest
 else
     error "'rustup' is not installed. It should be installed via Homebrew."
 end

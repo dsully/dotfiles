@@ -1,6 +1,6 @@
 #!{{ lookPath "bash" }}
 
-# vim:ft=bash
+# vim:ft=bash.gotmpl
 set -eufo pipefail
 
 declare -r red="$(tput setaf 1)"
@@ -11,64 +11,66 @@ declare -r normal="$(tput sgr0)" # Reset / No Color
 declare -r bold="$(tput bold)"
 
 start() {
-  printf "${green}▶ ${normal}${bold}$1${normal}\n"
+    printf "${green}▶ ${normal}${bold}$1${normal}\n"
 }
 
 command_exists() {
-  type "${1}" > /dev/null 2>&1
+    type "${1}" > /dev/null 2>&1
 }
 
 has_brew() {
-  if declare -p HOMEBREW_PREFIX &> /dev/null; then
-    BREW="$HOMEBREW_PREFIX/bin/brew"
-  else
-    if [[ -x /opt/homebrew/bin/brew ]]; then
-      BREW=/opt/homebrew/bin/brew
-    elif [[ -x /usr/local/bin/brew ]]; then
-      BREW=/usr/local/bin/brew
-    elif [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
-      BREW=/home/linuxbrew/.linuxbrew/bin/brew
+    if declare -p HOMEBREW_PREFIX &> /dev/null; then
+        BREW="$HOMEBREW_PREFIX/bin/brew"
     else
-      return 1
+        if [[ -x /opt/homebrew/bin/brew ]]; then
+            BREW=/opt/homebrew/bin/brew
+        elif [[ -x /usr/local/bin/brew ]]; then
+            BREW=/usr/local/bin/brew
+        elif [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+            BREW=/home/linuxbrew/.linuxbrew/bin/brew
+        else
+            return 1
+        fi
+
+        eval "$("$BREW" shellenv)"
     fi
 
-    eval "$("$BREW" shellenv)"
-  fi
+    export BREW=$BREW
 
-  export BREW=$BREW
-
-  return 0
+    return 0
 }
 
 install_homebrew() {
-  if ! command_exists brew; then
-    start "Installing Homebrew.."
+    if ! command_exists brew; then
+        start "Installing Homebrew.."
 
-    bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  fi
+        bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    fi
 }
 
 install_package() {
-  package="$1"
+    package="$1"
 
-  if ! command_exists "$package"; then
-    start "Installing $package from Homebrew."
-    "$BREW" install -q "$package" > /dev/null 2>&1
-  fi
+    if ! command_exists "$package"; then
+        start "Installing $package from Homebrew."
+        "$BREW" install -q "$package" > /dev/null 2>&1
+    fi
 }
 
 install_homebrew
 
 if has_brew; then
-  install_package age
-  install_package fish
+    install_package age
+    install_package fish
 
-  if [[ $CHEZMOI_OS == darwin ]]; then
-    # Sonoma+ allows a sudo_local file in /etc/pam.d/
-    sudo cp -f "${HOME}/.config/system/etc/pam.d/sudo_local" /etc/pam.d/sudo_local
+    if [[ $CHEZMOI_OS == darwin ]]; then
+        export CHEZMOI_HOME "{{ .chezmoi.sourceDir }}/dot_config"
 
-    install_package mas
-  fi
+        # Sonoma+ allows a sudo_local file in /etc/pam.d/
+        sudo cp -f "${CHEZMOI_HOME}/.config/system/etc/pam.d/sudo_local" /etc/pam.d/sudo_local
+
+        install_package mas
+    fi
 else
-  printf "${red}✖ ${red_bg}${bold}${white} ERROR ${normal} Can't find Homebrew in the PATH.${normal}\n"
+    printf "${red}✖ ${red_bg}${bold}${white} ERROR ${normal} Can't find Homebrew in the PATH.${normal}\n"
 fi
