@@ -1,6 +1,5 @@
 #!{{ lookPath "fish" }}
 
-# vim:ft=fish
 {{ $hash := include "dot_config/fish/fish_plugins.tmpl" | sha256sum }}
 
 source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"

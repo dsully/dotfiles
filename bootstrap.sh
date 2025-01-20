@@ -1,5 +1,15 @@
 #!/bin/sh -e
 
+set -o errexit # abort on nonzero exitstatus
+set -o nounset # abort on unbound variable
+
+if [ ! -e /Library/Developer/CommandLineTools/usr/bin/git ]; then
+
+    start "Installing Apple Developer CLI Tools. Press any key when the installation has completed."
+    xcode-select --install > /dev/null 2>&1
+    read -r "" -sn1
+fi
+
 if ! command -v chezmoi > /dev/null; then
     bin_dir="${XDG_BIN_HOME:-$HOME/.local/bin}"
     chezmoi="$bin_dir/chezmoi"

@@ -1,5 +1,3 @@
-# vim:ft=toml
-
 [misc]
 # Don't ask for confirmations
 assume_yes = true
@@ -19,13 +17,17 @@ only = [
 {{- end }}
     "cargo",
     "custom_commands",
-    "git_repos",
-{{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.idLike "debian")) }}
+    "github_cli_extensions",
+    "go",
+    "uv",
+    "volta_packages",
+{{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "ubuntu")) }}
     "deb_get",
 {{- end }}
 {{- if eq .chezmoi.os "linux" }}
     "system",
 {{- end }}
+    "git_repos",
 ]
 
 # Do not ask to retry failed steps (default: false)
@@ -35,7 +37,7 @@ no_retry = true
 run_in_tmux = false
 
 # List of remote machines with Topgrade installed on them
-# remote_topgrades = ["dsully-md1", "jarvis", "server", "zap"]
+# remote_topgrades = ["jarvis", "server", "zap"]
 
 # Arguments to pass SSH when upgrading remote systems
 #ssh_arguments = "-o ConnectTimeout=2"
@@ -83,9 +85,10 @@ arguments = "--rebase --autostash"
 # "RTX Plugins" = "rtx plugins update"
 # {{ end -}}
 
-# {{ if lookPath "fish" -}}
-# "Fish Update Completions" = "fish_update_completions"
-# {{ end -}}
+{{ if lookPath "fish" -}}
+"Fish Update Completions" = "fish_update_completions"
+"Fisher Update" = "fisher update >/dev/null 2>&1"
+{{ end -}}
 
 {{ if lookPath "released" -}}
 "GitHub Tools" = "released update"
