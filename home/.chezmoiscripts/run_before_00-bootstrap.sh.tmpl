@@ -67,7 +67,7 @@ if has_brew; then
         export CHEZMOI_HOME="{{ .chezmoi.sourceDir }}/dot_config"
 
         # Sonoma+ allows a sudo_local file in /etc/pam.d/
-        sudo cp -f "${CHEZMOI_HOME}/.config/system/etc/pam.d/sudo_local" /etc/pam.d/sudo_local
+        sudo cp -f "${CHEZMOI_HOME}/system/etc/pam.d/sudo_local" /etc/pam.d/sudo_local
 
         install_package mas
     fi
