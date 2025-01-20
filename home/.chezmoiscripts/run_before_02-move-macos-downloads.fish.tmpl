@@ -7,7 +7,7 @@ function move_downloads_folder
     if test -d $HOME/Downloads; and not test -L $HOME/Downloads
         start "Moving ~/Downloads to symlink into iCloud."
 
-        mv $HOME/Downloads $HOME/Downloads.original
+        sudo mv $HOME/Downloads $HOME/Downloads.original
     end
 
     # For whatever reason, using symlink_Downloads.tmpl and the 'mv' doesn't work with chezmoi's state machine.
