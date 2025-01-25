@@ -7,13 +7,13 @@ source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
 if type -q uv
     task "Installing Python tools. 🐍"
 
-    # set PACKAGES frogmouth
-    #
-    # for package in $PACKAGES
-    #     sub_task "Installing $package"
-    #
-    #     command uv tool install --force $package >/dev/null 2>&1
-    # end
+    set PACKAGES pyproject-fmt rstcheck yamllint
+
+    for package in $PACKAGES
+        sub_task "Installing $package"
+
+        command uv tool install --force $package >/dev/null 2>&1
+    end
 
     sub_task "Installing ptpython REPL"
     command uv tool install --force --with ipython --with jedi ptpython >/dev/null 2>&1
