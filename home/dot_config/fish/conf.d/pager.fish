@@ -22,5 +22,6 @@ if status is-interactive
         set -gx LESSHISTFILE /dev/null
     end
 
+    set -gx BAT_THEME Nord
     set -gx MANPAGER $PAGER
 end
