@@ -1,4 +1,4 @@
-# vim:ft=gotmpl.gitignore
+# vim:ft=gitignore
 .CFUserTextEncoding
 .bash_history
 .bash_logout
@@ -14,6 +14,7 @@
 .wget-hsts
 .zshenv
 
+.cache/wezterm/terminfo
 .config/.gitignore
 .config/.semgrep
 .config/caddy/build
@@ -36,11 +37,6 @@
 .config/topgrade
 .config/topgrade.toml
 .config/topgrade-sd.toml
-.config/wezterm/terminfo
 .local/bin/jfmt
 bin/*
 bin/
-
-{{ if (or (eq .chezmoi.os "linux") (.flags.personal)) }}
-.ideavimrc
-{{- end }}
