@@ -23,4 +23,8 @@
 #   Example 1: use the C++ syntax for .ino files
 #   Example 2: Use ".gitignore"-style highlighting for ".ignore" files
 --map-syntax "*.ivy:XML"
+--map-syntax ".dockerignore:Git Ignore"
+--map-syntax ".eslintignore:Git Ignore"
+--map-syntax ".eslintrc:JSON"
+--map-syntax ".lua-format:YAML"
 --map-syntax ".luacheckrc:Lua"
