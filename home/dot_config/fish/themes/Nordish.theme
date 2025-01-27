@@ -1,4 +1,6 @@
 # Nord Colors / Theme
+#
+# Syntax Highlighting Colors
 fish_color_autosuggestion 81a1c1
 fish_color_cancel -r
 fish_color_command 81a1c1
@@ -22,6 +24,8 @@ fish_color_search_match ebcb8b --background=434c5e
 fish_color_selection e5e9f0 --bold --background=434c5e
 fish_color_user a3be8c
 fish_color_valid_path --underline
+
+# Completion Pager Colors
 fish_pager_color_completion normal
 fish_pager_color_description ebcb8b
 fish_pager_color_prefix normal --bold --underline
