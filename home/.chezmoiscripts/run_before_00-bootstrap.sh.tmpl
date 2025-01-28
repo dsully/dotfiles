@@ -62,9 +62,10 @@ install_homebrew
 if has_brew; then
     install_package age
     install_package fish
-    install_package pam-reattach
 
     if [[ $CHEZMOI_OS == darwin ]]; then
+        install_package pam-reattach
+
         export CHEZMOI_HOME="{{ .chezmoi.sourceDir }}/dot_config"
 
         # Sonoma+ allows a sudo_local file in /etc/pam.d/
