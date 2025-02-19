@@ -31,11 +31,8 @@ set -gx fisher_path $fish_cache
 
 set -gx HISTFILE $XDG_DATA_HOME/fish/fish_history
 
-# Move Golang's path out of $HOME
-set -gx GOPATH $HOME/.local/go
-set -gx GO111MODULE on
-
 set -gx RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/ripgrep/config
+set -gx TREE_SITTER_DIR $XDG_CONFIG_HOME/tree-sitter
 
 # Silence direnv logging. Hook is invoked via vendor_conf.d/
 set -gx DIRENV_LOG_FORMAT ""
