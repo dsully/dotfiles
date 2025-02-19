@@ -73,6 +73,9 @@
     # Automatically correct and execute mistyped commands.
     autocorrect = immediate
 
+[init]
+    defaultBranch = main
+
 [mergetool]
     cmd = nvim
     hideResolved = true      # Don't show merge conflicts that have already been resolved by git in the mergetool diff.

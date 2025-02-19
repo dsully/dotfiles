@@ -21,6 +21,9 @@ shell-integration-features = no-cursor,sudo,title
 
 macos-titlebar-proxy-icon = hidden
 
+# Allow for Option-P, etc.
+clipboard-paste-protection = false
+
 keybind = super+alt+shift+j=write_scrollback_file:open
 keybind = super+shift+j=write_scrollback_file:paste
 
