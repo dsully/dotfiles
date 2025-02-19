@@ -9,6 +9,8 @@
 # Inserts a blank line between shell prompts
 add_newline = false
 
+command_timeout = 1000
+
 format = '''
 ${custom.username}${custom_sudo}($hostname)\[$directory\]( \($golang$lua$nodejs$python$rust$zig$git_branch$git_status\))( $status)
 $character'''
