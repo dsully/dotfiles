@@ -61,9 +61,9 @@ if status is-interactive
     if command -q fzf
         command fzf --fish | source
 
-        bind ,ff __magic_enter_ff
-        bind ,fg __magic_enter_fg
-        bind ,fr __magic_enter_fr
+        bind 'comma,f,f' __magic_enter_ff
+        bind 'comma,f,g' __magic_enter_fg
+        bind 'comma,f,r' __magic_enter_fr
 
     end
 end
