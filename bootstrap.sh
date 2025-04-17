@@ -38,6 +38,11 @@ export PATH=/opt/homebrew/bin:/home/linuxbrew:"$HOME"/.cargo/bin:"$HOME"/.local/
 
 "$chezmoi" init --apply --exclude encrypted "$@" "$USER" < "$stdin"
 
+export NIX_INSTALLER_EXTRA_CONF="trusted-users = @wheel"
+export NIX_INSTALLER_FORCE=1
+export NIX_INSTALLER_ENABLE_FLAKES=1
+export NIX_INSTALLER_NO_CONFIRM=1
+
 # Re-run to generate data.toml.
 if [ $? -eq 0 ]; then
     "$chezmoi" apply --force
