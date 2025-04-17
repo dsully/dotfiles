@@ -20,6 +20,7 @@
 --glob=!Movies/*
 --glob=!coverage/*
 --glob=!dist/*
+--glob=!flake.lock
 --glob=!log/*
 --glob=!node_modules/
 --glob=!package-lock.json

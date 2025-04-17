@@ -3,6 +3,8 @@ description = "Home"
 paths = [
   "~",
   "/bits",
+  "/nix/store",
+  "/nix/var",
   "/opt/homebrew",
   "/usr/local",
 ]

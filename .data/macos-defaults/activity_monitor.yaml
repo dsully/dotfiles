@@ -1,8 +1,0 @@
----
-description: Activity Monitor
-data:
-  com.apple.ActivityMonitor:
-    OpenMainWindow: true
-    ShowCategory: 0
-    SortColumn: CPUUsage
-    SortDirection: 0

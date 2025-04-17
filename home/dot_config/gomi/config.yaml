@@ -1,0 +1,72 @@
+core:
+  trash:
+    home_fallback: true # If true, fallbacks to home trash when external trash fails
+
+    forbidden_paths:    # List of paths that cannot be moved to trash for safety
+      - "$HOME/.Trash"
+      - "$XDG_DATA_HOME/Trash"
+      - "/tmp/Trash"
+      - "/var/tmp/Trash"
+      - "/bin"
+      - "/sbin"
+      - "/lib"
+      - "/lib64"
+
+    strategy:
+      "xdg" # or "xdg" or "legacy"
+
+    gomi_dir:
+      ~/.gomi # Path to store trashed files. Can be changed to another location.
+      # Supports environment variable expansion like $HOME or ~.
+      # If empty, defaults to ~/.gomi.
+      # This config is only available on "legacy", "auto" trash strategy
+  restore:
+    confirm: false # If true, prompts for confirmation before restoring (yes/no)
+    verbose: true # If true, displays detailed restoration information
+
+ui:
+  density: spacious # or compact
+  preview:
+    syntax_highlight: true
+    colorscheme: nord # Available themes: https://xyproto.github.io/splash/docs/index.html
+    directory_command: ls -F -A --color=always
+  style:
+    list_view:
+      cursor: "#81a1c1"
+      selected: "#a3be8c"
+      indent_on_select: false
+    detail_view:
+      border: "#FFFFFF"
+      info_pane:
+        deleted_from:
+          fg: "#EEEEEE"
+          bg: "#1C1C1C"
+        deleted_at:
+          fg: "#EEEEEE"
+          bg: "#1C1C1C"
+      preview_pane:
+        border: "#3C3C3C"
+        size:
+          fg: "#EEEEDD"
+          bg: "#3C3C3C"
+        scroll:
+          fg: "#EEEEDD"
+          bg: "#3C3C3C"
+  exit_message: bye! # Customizable exit message
+  paginator_type: dots # or arabic
+
+history:
+  include:
+    within_days: 100 # Only show files deleted in the last 100 days
+  exclude:
+    files:
+      - .DS_Store # Exclude .DS_Store files
+      - .git
+      - target
+    patterns:
+      - "^go\\..*" # Exclude files starting with "go."
+    globs:
+      - "*.jpg" # Exclude JPEG files
+    size:
+      min: 0KB # Exclude empty files
+      max: 10GB # Exclude files larger than 10GB

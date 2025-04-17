@@ -1,7 +1,0 @@
-#!{{ lookPath "fish" }}
-
-source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
-
-if type -q bat
-    bat cache --build >/dev/null
-end

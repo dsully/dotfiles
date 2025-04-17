@@ -46,6 +46,7 @@ extend-exclude = [
   aks = "aks"
   electricrain = "electricrain"
   iterm = "iterm"
+  noice = "noice"
   protols = "protols"
 
 [type.fish.extend-words]
@@ -53,7 +54,6 @@ doas = "doas"
 
 [type.lua.extend-words]
 enew = "enew"
-noice = "noice"
 vhyrro = "vhyrro"
 "}," = "},"
 
