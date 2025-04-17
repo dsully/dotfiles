@@ -24,9 +24,6 @@ if status is-interactive
 
         set -gx DYLD_LIBRARY_PATH $HOMEBREW_PREFIX/lib
 
-        # https://github.com/Homebrew/homebrew-command-not-found
-        builtin source $HOMEBREW_PREFIX/Library/Taps/homebrew/homebrew-command-not-found/handler.fish 2>/dev/null
-
         fish_add_path --append -g --move $HOMEBREW_PREFIX/{,s}bin
         fish_add_path -g --move $HOMEBREW_PREFIX/opt/curl/bin
         fish_add_path -g --move $HOMEBREW_PREFIX/opt/unzip/bin
