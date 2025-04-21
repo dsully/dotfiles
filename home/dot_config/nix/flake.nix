@@ -40,17 +40,9 @@
     # dsully.url = "github:dsully/nur";
     dsully.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Homebrew + Declarative tap management
-    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
-
-    homebrew-core.url = "github:homebrew/homebrew-core";
-    homebrew-core.flake = false;
-
-    homebrew-cask.url = "github:homebrew/homebrew-cask";
-    homebrew-cask.flake = false;
-
     # emmylua-analyzer.url = "github:CppCXY/emmylua-analyzer-rust";
     # emmylua-analyzer.inputs.nixpkgs.follows = "nixpkgs";
+    morlana.url = "github:ryanccn/morlana";
   };
 
   # The `outputs` function will return all the build results of the flake.
@@ -58,41 +50,105 @@
   # parameters in `outputs` are defined in `inputs` and can be referenced by their names.
   # However, `self` is an exception, this special parameter points to the `outputs` itself (self-reference)
   # The `@` syntax here is used to alias the attribute set of the inputs's parameter, making it convenient to use inside the function.
-  outputs = inputs @ {nixpkgs, ...}: let
-    # username = "dsully";
-    # useremail = "dsully@users.noreply.github.com";
-    # supportedSystems = [
-    #   "aarch64-darwin"
-    #   "x86_64-linux"
-    # ];
-    globals = {
-      # FIXME
-      hostname = "jarvis";
-      user = "dsully"; # builtins.getEnv "USER";
-    };
-
-    overlays = [
+  outputs = inputs @ {
+    nixpkgs,
+    nix-darwin,
+    home-manager,
+    ...
+  }: let
+    # Common overlays for all systems
+    commonOverlays = [
       inputs.neovim-nightly-overlay.overlays.default
       inputs.nur.overlays.default
       inputs.dsully.overlays.default
       inputs.rust-overlay.overlays.default
-
-      # Until upstream has merged my PR.
-      (_final: prev: {
-        cargo-clone = prev.cargo-clone.overrideAttrs (oldAttrs: {
-          buildInputs = (oldAttrs.buildInputs or []) ++ [prev.zlib];
-        });
-      })
+      inputs.morlana.overlays.default
     ];
 
-    mkSystem = import ./lib/mksystem.nix {
-      inherit nixpkgs overlays inputs;
-    };
+    # Default username (can be overridden per host)
+    defaultUserName = "dsully";
+
+    # Generic function to create system configurations
+    mkSystem = {
+      system,
+      userName ? defaultUserName,
+      extraModules ? [],
+      extraOverlays ? [],
+    }: hostName: let
+      isDarwin = builtins.match ".*-darwin" system != null;
+
+      # Select the appropriate system function based on isDarwin
+      systemFunc =
+        if isDarwin
+        then inputs.nix-darwin.lib.darwinSystem
+        else nixpkgs.lib.nixosSystem;
+
+      # Select the appropriate home-manager module based on isDarwin
+      hmModule =
+        if isDarwin
+        then home-manager.darwinModules.home-manager
+        else home-manager.nixosModules.home-manager;
+
+      # Select the appropriate OS-specific user config
+      osConfig =
+        ./users/${userName}/${
+          if isDarwin
+          then "darwin"
+          else "nixos"
+        }.nix;
+    in
+      systemFunc {
+        inherit system;
+
+        specialArgs = {
+          inherit system userName hostName inputs isDarwin;
+        };
+
+        modules =
+          [
+            {nixpkgs.overlays = commonOverlays ++ extraOverlays;}
+            ./lib/nix-core.nix
+            ./lib/packages.nix
+
+            ./machines/${hostName}.nix
+
+            osConfig
+            hmModule
+            {
+              home-manager = {
+                users.${userName} = import ./users/${userName}/home-manager.nix {
+                  inherit inputs;
+                };
+              };
+            }
+          ]
+          ++ extraModules;
+      };
+
+    mkDarwin = args: hostName:
+      mkSystem (args // {system = args.system or "aarch64-darwin";}) hostName;
+
+    mkNixOS = args: hostName:
+      mkSystem (args // {system = args.system or "x86_64-linux";}) hostName;
+
+    mkDarwinConfigurations = hosts:
+      builtins.listToAttrs (map
+        (hostName: {
+          name = hostName;
+          value = mkDarwin {} hostName;
+        })
+        hosts);
+
+    mkNixOSConfigurations = hosts:
+      builtins.listToAttrs (map
+        (hostName: {
+          name = hostName;
+          value = mkNixOS {} hostName;
+        })
+        hosts);
   in {
-    darwinConfigurations.jarvis = mkSystem "jarvis" {
-      system = "aarch64-darwin";
-      inherit (globals) user;
-      darwin = true;
-    };
+    darwinConfigurations = mkDarwinConfigurations ["jarvis"];
+
+    nixosConfigurations = mkNixOSConfigurations ["server" "zap"];
   };
 }

@@ -32,10 +32,12 @@
         deadnix
         flake-checker
         # nix-du
+        nh
         nix-init
         nix-tree
         nix-update
         nixpkgs-lint
+        nix-output-monitor
         statix
       ];
 
@@ -62,7 +64,7 @@
         cargo-wizard
 
         rust-bin.stable.latest.default
-        rust-bin.nightly.latest.default
+        # rust-bin.nightly.latest.default
 
         # (fenix.stable.withComponents [
         #   "cargo"
@@ -259,6 +261,7 @@
 
       macos = lib.optionals stdenv.isDarwin [
         cachix
+        morlana
         # mas
       ];
 
@@ -285,12 +288,4 @@
   programs = {
     fish.enable = true;
   };
-
-  # programs.neovim = {
-  #   enable = true;
-  #   viAlias = true;
-  #   vimAlias = true;
-  #   # package = pkgs.neovim-nightly;
-  #   # package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
-  # };
 }

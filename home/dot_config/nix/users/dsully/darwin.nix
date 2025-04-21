@@ -1,6 +1,6 @@
 {
-  hostname,
-  user,
+  hostName,
+  userName,
   ...
 }: let
   icon_view_settings = {
@@ -36,10 +36,6 @@
     UserPreferences = 1;
   };
 in {
-  # nixpkgs.overlays = [];
-  # nixpkgs.overlays =
-  #   import ../../lib/overlays.nix;
-
   imports = [
     ./darwin/homebrew.nix
   ];
@@ -50,8 +46,8 @@ in {
   '';
 
   networking = {
-    computerName = hostname;
-    hostName = hostname;
+    computerName = hostName;
+    inherit hostName;
   };
 
   system = {
@@ -66,7 +62,6 @@ in {
     defaults = {
       NSGlobalDomain = {
         "com.apple.sound.beep.volume" = 0.5;
-
         "com.apple.mouse.tapBehavior" = 1;
       };
 
@@ -553,7 +548,7 @@ in {
         LSQuarantine = false;
       };
 
-      smb.NetBIOSName = hostname;
+      smb.NetBIOSName = hostName;
     };
 
     keyboard = {
@@ -567,17 +562,6 @@ in {
     reattach = true;
   };
 
-  # services.nextdns = {
-  #   enable = true;
-  #   arguments = [
-  #     "-auto-activate"
-  #     "-cache-size 10MB"
-  #     "-forwarder sully.org=10.0.0.1"
-  #     "-profile b89969"
-  #     "-report-client-info"
-  #   ];
-  # };
-
   # The user should already exist, but we need to set this up so Nix knows
   # what our home directory is (https://github.com/LnL7/nix-darwin/issues/423).
   # users.users.dsully = {
@@ -586,5 +570,5 @@ in {
   #   ignoreShellProgramCheck = true;
   # };
 
-  users.users.${user}.home = "/Users/${user}";
+  users.users.${userName}.home = "/Users/${userName}";
 }
