@@ -32,6 +32,7 @@
     casks = [
       "1password"
       "1password-cli"
+      "adguard"
       "android-platform-tools"
       "anylist"
       "backblaze"
@@ -95,12 +96,15 @@
     # For details, see https://github.com/mas-cli/mas
     masApps = {
       "1Password for Safari" = 1569813296;
+      "Acidity" = 6472630023;
       "AirPlayable" = 6475483628;
       "AllMyBatteries" = 1621263412;
       "Amphetamine" = 937984704;
+      "Anybox" = 1593408455;
       "AutoMounter" = 1160435653;
       "AVR Control" = 1059512196;
       "Black Out" = 1319884285;
+      "Bonjourr Startpage" = 1615431236;
       "Book Tracker" = 1496543317;
       "Brother P-touch Editor" = 1453365242;
       "CleanMyKeyboard" = 6468120888;
@@ -114,7 +118,7 @@
       "Discovery" = 1381004916;
       "DoubleMemory" = 6737529034;
       "Draw Things" = 6444050820;
-      "File Icons for" = 1631366167;
+      "File Icons for GitHub and GitLab" = 1631366167;
       "FilmNoir" = 1528417240;
       "Flighty" = 1358823008;
       "Globetrotter" = 6469319235;
@@ -131,14 +135,14 @@
       "Marked 2" = 890031187;
       "Mela" = 1568924476;
       "MetaImage" = 1397099749;
-      # "Noir" = 1592917505;
-      "Paprika Recipe Manager" = 1303222628;
+      "Paprika Recipe Manager 3" = 1303222628;
       "Parcel" = 639968404;
       "Patterns" = 429449079;
       "PDF Expert" = 1055273043;
       "Picview" = 6452016140;
       "Play" = 1596506190;
       "Prime Video" = 545519333;
+      "Protego" = 6737959724;
       "QR Studio" = 6740007834;
       "Radiance" = 1573366225;
       "Reeder" = 1529448980;
@@ -153,6 +157,7 @@
       "Slack" = 803453959;
       "SmugMug" = 1115348888;
       "Sogni" = 6450021857;
+      "Sortio" = 6737292062;
       "Starship" = 1530665887;
       "StopTheMadness Pro" = 6471380298;
       "Subscriptions" = 1577082754;
@@ -161,6 +166,7 @@
       "Taska" = 6741809383;
       "TestFlight" = 899247664;
       "Text Lens" = 6743369285;
+      # "Toast" = 1465707487;
       "TrashMe 3" = 1490879410;
       "Tripsy" = 1429967544;
       "Tuneful" = 6739804295;
@@ -170,7 +176,6 @@
       "Wipr" = 1662217862;
       "WordService" = 899972312;
       "Yoink" = 457622435;
-      # Xcode = 497799835;
       "Zero Loss Compress" = 6738362427;
     };
 

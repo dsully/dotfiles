@@ -144,7 +144,7 @@
         iperf3
         ipmitool
         mtr
-        nextdns
+        # nextdns
         nur.repos.caarlos0.xdg-open-svc
         q
         sniffnet
