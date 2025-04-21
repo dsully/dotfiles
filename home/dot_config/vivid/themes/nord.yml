@@ -98,21 +98,10 @@ core:
     font-style: bold
 
 text:
-  special:
-    foreground: snow-storm-nord6
+  foreground: snow-storm-nord6
 
   todo:
-    foreground: snow-storm-nord6
     font-style: bold
-
-  licenses:
-    foreground: snow-storm-nord6
-
-  configuration:
-    foreground: snow-storm-nord6
-
-  other:
-    foreground: snow-storm-nord6
 
 markup:
   foreground: snow-storm-nord6
@@ -121,17 +110,7 @@ programming:
   foreground: snow-storm-nord6
 
 media:
-  image:
-    foreground: aurora-nord14
-
-  audio:
-    foreground: aurora-nord14
-
-  video:
-    foreground: aurora-nord14
-
-  fonts:
-    foreground: aurora-nord14
+  foreground: aurora-nord14
 
 office:
   foreground: aurora-nord14
