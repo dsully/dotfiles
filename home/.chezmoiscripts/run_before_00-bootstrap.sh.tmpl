@@ -48,14 +48,6 @@ install_homebrew() {
     fi
 }
 
-install_nix() {
-    if ! command_exists nix; then
-        start "Installing Nix.."
-
-        curl -sSf -L https://install.lix.systems/lix | sh -s -- install
-    fi
-}
-
 install_package() {
     package="$1"
 
@@ -65,23 +57,9 @@ install_package() {
     fi
 }
 
-install_homebrew
-install_nix
-
 if has_brew; then
     install_package age
     install_package fish
-
-    # if [[ $CHEZMOI_OS == darwin ]]; then
-    #     install_package pam-reattach
-    #
-    #     export CHEZMOI_HOME="{{ .chezmoi.sourceDir }}/dot_config"
-    #
-    #     # Sonoma+ allows a sudo_local file in /etc/pam.d/
-    #     # sudo cp -f "${CHEZMOI_HOME}/system/etc/pam.d/sudo_local" /etc/pam.d/sudo_local
-    #
-    #     # install_package mas
-    # fi
 else
     printf "${red}✖ ${red_bg}${bold}${white} ERROR ${normal} Can't find Homebrew in the PATH.${normal}\n"
 fi

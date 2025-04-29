@@ -4,40 +4,6 @@
 
 source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
 
-ensure_homebrew
-
-set fish $HOMEBREW_PREFIX/bin/fish
-set username {{ quote .chezmoi.username }}
-
-function getshell
-    if is_macos
-        dscl . read "/Users/$username" UserShell | string replace -r '^UserShell: (.*)' '$1'
-    else
-        getent passwd $username | string replace -r '.*:([^:]+)$' '$1'
-    end
-end
-
-function setshell -a shell
-    if is_macos
-        command sudo dscl . create "/Users/$username" UserShell $shell
-    else
-        command sudo chsh -s $shell $username
-    end
-end
-
-if test (getshell) != $fish
-    start "Setting up Fish 🐠"
-    ask_sudo
-    start "Changing default shell to fish"
-
-    if not string match -eq (status fish-path) </etc/shells
-        echo "Adding $fish to /etc/shells..."
-        printf '%s\n' "$fish" | command sudo tee -a /etc/shells >/dev/null
-    end
-
-    setshell $fish
-end
-
 if type -q fisher; and test -s $HOME/.config/fish/fish_plugins
 
     # Set fisher install to be outside of ~/.config/fish

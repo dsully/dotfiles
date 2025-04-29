@@ -6,31 +6,6 @@ source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
 
 task "Cleaning up..."
 
-if is_macos
-    set APPS /Applications/GarageBand.app
-    set HAS_APP false
-
-    for app in $APPS
-        if test -e $app
-            set HAS_APP true
-            break
-        end
-    end
-
-    if test $HAS_APP = true
-        ask_sudo
-        start "Removing unwanted apps.."
-
-        for app in $APPS
-            start "Removing $app"
-            ask_sudo rm -rf $app
-        end
-    end
-end
-
-# Clean up bootstrapped executables.
-/bin/rm -rf "$HOME/.local/bin/chezmoi"
-
 /bin/rm -rf "$HOME/.bash*"
 /bin/rm -rf "$HOME/.sudo_as_admin_successful"
 

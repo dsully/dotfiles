@@ -23,11 +23,7 @@
 {{/* */}}
 {{/* Boolean settings. */}}
 {{- if not $ephemeral -}}
-{{-   if regexMatch "^dsully-" $hostname -}}
-{{-     $work = true -}}
-{{-   else if regexMatch "\\.biz$" $hostname -}}
-{{-     $work = true -}}
-{{-   else if regexMatch "\\.corp\\." $hostname -}}
+{{-   if (stat (joinPath .chezmoi.homeDir ".config/work")) -}}
 {{-     $work = true -}}
 {{-   else if eq $hostname "jarvis" "server" "zap" -}}
 {{-     $personal = true -}}

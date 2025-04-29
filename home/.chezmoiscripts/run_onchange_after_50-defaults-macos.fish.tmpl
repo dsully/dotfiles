@@ -1,31 +1,5 @@
 #!{{ lookPath "fish" }}
 
-# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/accessibility.yaml") | sha256sum }}
-# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/activity_monitor.yaml") | sha256sum }}
-# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/audio.yaml") | sha256sum }}
-# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/calendar.yaml") | sha256sum }}
-# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/contacts.yaml") | sha256sum }}
-# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/displays.yaml") | sha256sum }}
-# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/dock.yaml") | sha256sum }}
-# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/finder.yaml") | sha256sum }}
-# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/globals.yaml") | sha256sum }}
-# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/google-chrome.yaml") | sha256sum }}
-# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/keyboard.yaml") | sha256sum }}
-# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/mac-app-store.yaml") | sha256sum }}
-# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/mail.yaml") | sha256sum }}
-# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/menu-bar.yaml") | sha256sum }}
-# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/messages.yaml") | sha256sum }}
-# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/photos.yaml") | sha256sum }}
-# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/safari.yaml") | sha256sum }}
-# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/security.yaml") | sha256sum }}
-# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/siri.yaml") | sha256sum }}
-# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/spotlight.yaml") | sha256sum }}
-# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/terminal.yaml") | sha256sum }}
-# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/text-edit.yaml") | sha256sum }}
-# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/time-machine.yaml") | sha256sum }}
-# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/trackpad.yaml") | sha256sum }}
-# hash: {{ include (joinPath .chezmoi.workingTree ".data/macos-defaults/xcode.yaml") | sha256sum }}
-
 source "{{ .chezmoi.sourceDir }}/.chezmoiscripts/.00_helpers.fish"
 
 function system
@@ -47,11 +21,6 @@ function system
     # Disable Time Machine
     ask_sudo /usr/bin/tmutil disable
 
-    # Hide the export partition on work machines.
-    if test -d /export
-        ask_sudo /usr/bin/setfile -a V /export
-    end
-
     # Show the ~/Library folder
     chflags nohidden ~/Library
 
@@ -62,20 +31,20 @@ function system
     ask_sudo spctl --master-enable
     ask_sudo spctl --enable
 
-    sub_task "Disable Java"
+    #sub_task "Disable Java"
 
     # Remove Java preference pane which is just a symlink into Internet-Plugins
-    ask_sudo rm -f /Library/PreferencePanes/JavaControlPanel.prefPane
+    #ask_sudo rm -f /Library/PreferencePanes/JavaControlPanel.prefPane
 
     # Remove Application support that is just symlinks into Internet-Plugins +
     # highest installed Oracle Java version in a file for Preference Pane checks
     # (that we just removed). Check carefully if you have anything else. I had
     # just Java subdirectory under Oracle and just the symlinks + file as
     # described above, so I could remove the whole Oracle directory.
-    ask_sudo rm -rf /Library/Application\ Support/Oracle
+    #ask_sudo rm -rf /Library/Application\ Support/Oracle
 
     # Remove the plugin itself
-    ask_sudo rm -rf /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin
+    # ask_sudo rm -rf /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin
 
     # Disable Chrome auto-updating.
     ask_sudo defaults write /Library/Preferences/com.google.Keystone.plist AutoUpdate -bool false
@@ -122,15 +91,9 @@ if is_macos
     # (crontab -l || true; echo "# iCal Sucks\n@hourly /usr/bin/pkill -9 exchangesyncd") | crontab
 
     # Mount point for SMB
+    {{ if not .chezmoi.work }}
     mkdir -p $HOME/Mounts/bits
-
-    task "Setting macOS defaults"
-
-    if type -q macos-defaults
-        macos-defaults apply {{ (joinPath .chezmoi.workingTree ".data/macos-defaults/") }}
-    end
-
-    killall SystemUIServer >/dev/null 2>&1
+    {{ end }}
 
     # Dock clean up.
     find "$HOME/Library/Application Support/Dock" -name "*.db" -maxdepth 1 -delete

@@ -22,7 +22,7 @@ if is_macos
 
         if test -f $plist
 
-            if command launchctl list localhost.$agent >/dev/null 2>&1
+            if launchctl list localhost.$agent >/dev/null 2>&1
                 command launchctl unload -w $plist
             end
 
