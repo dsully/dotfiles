@@ -35,6 +35,7 @@
 .config/libvirt
 .config/lolcate/*/db.lz4
 .config/matplotlib
+.config/nix
 .config/op
 .config/syncthing
 .config/uv/uv-receipt.json

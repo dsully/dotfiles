@@ -1,2 +1,0 @@
-Cmnd_Alias NEXTDNS= /opt/homebrew/bin/nextdns
-%admin ALL=(ALL) NOPASSWD: NEXTDNS

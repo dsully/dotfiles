@@ -12,7 +12,7 @@ add_newline = false
 command_timeout = 1000
 
 format = '''
-${custom.username}${custom_sudo}($hostname)\[$directory\]( \($golang$lua$nodejs$python$rust$zig$git_branch$git_status\))( $status)
+${custom.username}${custom_sudo}($hostname)\[$directory\]( \($golang$lua$nodejs$python$rust$zig$git_branch$git_status\))( $status)$shlvl
 $character'''
 
 # Replace the '❯' symbol in the prompt with '➜'
@@ -70,6 +70,14 @@ format = "[$output](red bold)@"
 ignore_timeout = true
 style = "bold red"
 when = "test $USER != 'dsully'"
+
+[shlvl]
+disabled = false
+symbol = "❯"
+format = "[$symbol]($style)"
+repeat = true
+repeat_offset = 1
+threshold = 0
 
 [directory]
 fish_style_pwd_dir_length = 1
