@@ -91,7 +91,7 @@ if is_macos
     # (crontab -l || true; echo "# iCal Sucks\n@hourly /usr/bin/pkill -9 exchangesyncd") | crontab
 
     # Mount point for SMB
-    {{ if not .chezmoi.work }}
+    {{ if not .flags.work }}
     mkdir -p $HOME/Mounts/bits
     {{ end }}
 
