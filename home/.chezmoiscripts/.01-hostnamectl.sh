@@ -12,7 +12,7 @@ if [ "$OS" = "Darwin" ]; then
         CHASSIS=desktop
     fi
 
-    HOSTNAME=$(scutil --get ComputerName | cut -d'.' -f1)
+    HOSTNAME=$(/usr/sbin/scutil --get ComputerName | cut -d'.' -f1)
 
     echo "{ \"Chassis\": \"$CHASSIS\", \"Hostname\": \"$HOSTNAME\"}"
 
