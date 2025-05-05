@@ -37,6 +37,10 @@ set -gx TREE_SITTER_DIR $XDG_CONFIG_HOME/tree-sitter
 # Silence direnv logging. Hook is invoked via vendor_conf.d/
 set -gx DIRENV_LOG_FORMAT ""
 
+{{- if .flags.work -}}
+set -gx WORK 1
+{{- end -}}
+
 abbr --add dc cd
 
 # Set `LS_COLORS` via https://github.com/sharkdp/vivid

@@ -1,9 +1,0 @@
-{{- if .flags.work -}}
-# vim:ft=fish
-function di -d "Gradle Dependency Insights"
-
-    set product (basename (string trim -r / (pwd)))
-
-    ./gradlew ":$product:dependencyInsight" --configuration python --dependency $argv[1]
-end
-{{- end -}}

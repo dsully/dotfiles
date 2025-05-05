@@ -1,5 +1,4 @@
 # vim:ft=gotmpl
-**/.dmypy.json
 **/.mypy_cache
 .1password/
 .actrc
@@ -13,7 +12,6 @@
 .bwrc-remote
 .cache/
 .cargo/
-.cfg2-cache
 .checkip/
 .config/auth0/
 .config/beets/library.db
@@ -44,15 +42,12 @@
 .cups/
 .cursor-tutor/
 .cursor/
-.datavault/
 .docker/
 .dotnet/
 .erg/
-.fabric*
 .fonts/
 .go
 .gnupg
-.gradle/
 .hushlogin
 .ipython
 .jenv/
