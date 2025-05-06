@@ -5,4 +5,4 @@ strict_env = true
 warn_timeout = "10s"
 
 [whitelist]
-prefix = [ "~/dev/home" ]
+prefix = [ "~/dev/home", "~/dev/work" ]

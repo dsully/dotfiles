@@ -13,8 +13,6 @@
 .DS_Store
 .cache/
 .direnv/
-.dmypy.json
-.envrc
 .mypy_cache
 .node_repl_history
 .pytest_cache/
