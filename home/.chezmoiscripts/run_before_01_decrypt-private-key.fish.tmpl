@@ -9,7 +9,11 @@ has_brew
 set CHEZMOI_DST "$HOME/.config/chezmoi"
 set CHEZMOI_KEY "$CHEZMOI_DST/key.txt"
 set DOAS_CONF "/etc/doas.conf"
-set AGE $HOMEBREW_PREFIX/bin/age
+set AGE /run/current-system/sw/bin/age
+
+if test -x $HOMEBREW_PREFIX/bin/age
+    set AGE $HOMEBREW_PREFIX/bin/age
+end
 
 if not set -q CHEZMOI_WORKING_TREE
     set CHEZMOI_WORKING_TREE "{{ .chezmoi.sourceDir }}/.."
@@ -18,7 +22,7 @@ end
 # {{ $key_hash := include (joinPath .chezmoi.workingTree ".data/key.txt.age") | sha256sum }}
 # {{ $doas_hash := include (joinPath .chezmoi.workingTree ".data/doas.conf.age") | sha256sum }}
 
-if not set -q chezmoi_key_hash; or test "$chezmoi_key_hash" != {{ $key_hash }}
+if not set -q chezmoi_key_hash; or test "$chezmoi_key_hash" != {{ $key_hash }}; or not test -f $CHEZMOI_KEY
     start "Decrytping chezmoi key."
 
     mkdir -p $CHEZMOI_DST
