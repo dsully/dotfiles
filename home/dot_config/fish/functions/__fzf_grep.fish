@@ -35,7 +35,7 @@ function __fzf_grep --description 'Ripgrep and open files with fzf'
     set -l filenames
 
     for element in $selected_files
-        set -l parts (string split -f 1 -f 2 -f 3 -- ':' $element)
+        set -l parts (string split -f 1,2,3 ':' $element)
         set -l file $parts[1]
         set -l line $parts[2]
         set -l column $parts[3]
