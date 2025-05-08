@@ -1,7 +1,7 @@
-fish_add_path -g "/etc/profiles/per-user/$USER/bin/"
-fish_add_path -g "$HOME/.nix-profile/bin"
-fish_add_path -g "/run/current-system/sw/bin/"
-fish_add_path -g "/run/wrappers/bin"
+fish_add_path -a -g "/etc/profiles/per-user/$USER/bin/"
+fish_add_path -a -g "$HOME/.nix-profile/bin"
+fish_add_path -a -g "/run/current-system/sw/bin/"
+fish_add_path -a -g "/run/wrappers/bin"
 
 set -gx NIX_CONFIG "access-tokens = github.com=$GITHUB_API_TOKEN"
 
