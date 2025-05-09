@@ -21,6 +21,9 @@ function cat --wraps=bat --description 'Use bat instead of cat'
     else if contains $ext $markdown_extensions; and type -q glow
         command glow --pager $argv[1]
 
+    else if contains $ext ipynb; and type -q nbcat
+        command nbcat $argv
+
     else if contains $ext $image_extensions
         viu $argv
     else
