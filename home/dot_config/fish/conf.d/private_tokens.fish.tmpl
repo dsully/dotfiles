@@ -1,17 +1,27 @@
 {{- if .flags.decrypt -}}
+{{- if .flags.work -}}
+set -gx ANTHROPIC_API_KEY {{ .anthropic.work }}
+set -gx ARTIFACTORY_TOKEN {{ .artifactory }}
+set -gx GEMINI_API_KEY {{ .google.gemini.work }}
+set -gx GITHUB_API_TOKEN {{ .github.tokens.work }}
+set -gx OLLAMA_URL {{ .ollama.work }}
+{{- end -}}
+{{- if .flags.personal -}}
+set -gx ANTHROPIC_API_KEY {{ .anthropic.home }}
 set -gx CLOUDFLARE_API_TOKEN {{ .cloudflare.api_token }}
-set -gx GITHUB_API_TOKEN {{ .github.tokens.personal }}
+set -gx GEMINI_API_KEY {{ .google.gemini.home }}
+set -gx GITHUB_API_TOKEN {{ .github.tokens.home }}
 set -gx HF_TOKEN {{ .huggingface.token }}
-set -gx OPENAI_KEY {{ .openai.token }}
-set -gx ANTHROPIC_API_KEY {{ .anthropic.token }}
-set -gx GEMINI_API_KEY {{ .google.gemini.token }}
-set -gx OLLAMA_URL {{ .ollama.url }}
+set -gx OLLAMA_URL {{ .ollama.home }}
+set -gx OPENAI_KEY {{ .openai.home }}
 
+set -gx OPENAI_API_KEY $OPENAI_KEY
+{{- end }}
+
+set -gx CACHIX_AUTH_TOKEN {{ .cachix.token }}
 set -gx OP_ACCOUNT {{ .onepassword.account }}
 set -gx OP_SERVICE_ACCOUNT_TOKEN {{ .onepassword.service_token }}
 
-set -gx NIX_CONFIG "access-tokens = github.com=$GITHUB_API_TOKEN"
-
 set -gx GITHUB_TOKEN $GITHUB_API_TOKEN
-set -gx OPENAI_API_KEY $OPENAI_KEY
+set -gx NIX_CONFIG "access-tokens = github.com=$GITHUB_API_TOKEN"
 {{- end -}}
