@@ -1,3 +1,8 @@
 function lf --wraps=pytest
-    command pytest -n 0 --lf $argv
+
+    if type -q pytest
+        command pytest -n 0 --lf $argv
+    else
+        echo "pytest not found"
+    end
 end
