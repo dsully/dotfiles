@@ -2,18 +2,23 @@
 **/.mypy_cache
 .1password/
 .actrc
+.aider
 .android
 .authncli
 .bash_history
 .bash_sessions
 .bashrc
+.boltai
 .buf/
 .bw/
 .bwrc-remote
 .cache/
 .cargo/
 .checkip/
+.claude
+.claude.json
 .config/auth0/
+.config/bat/config
 .config/beets/library.db
 .config/beets/state.pickle
 .config/btop/btop.log
@@ -28,12 +33,14 @@
 .config/fish/fish_variables
 .config/gh/hosts.yml
 .config/ghostty/config.default
+.config/git/config
 .config/github-copilot/versions.json
 .config/gitrel/state.json
 .config/libvirt
 .config/lolcate/*/db.lz4
 .config/matplotlib
 .config/nix
+.config/nvim
 .config/op
 .config/syncthing
 .config/uv/uv-receipt.json
@@ -55,19 +62,23 @@
 .lemminx/
 .lesshst
 .lldb/
+.lmstudio
+.lmstudio-home-pointer
 # For pbcopy, etc on Linux below.
 .local/*
 !.local/bin
 .local/bin/*
 .luarocks/
 .matplotlib/
-.mint
 .mysql_history
+.nix-profile
 .node_repl_history/
 node_modules/
 .npm/
+.ollama
 .oracle_jre_usage/
 .orbstack/
+.pkl
 .prettierd/
 .pyhistory
 .python_history
@@ -84,7 +95,6 @@ node_modules/
 .ssh/id_*
 .ssh/*key*
 .ssh/known_*
-.ssh/manage-ssh/
 .sudo_as_admin_successful
 .supermaven/
 .terminfo/
@@ -98,6 +108,9 @@ node_modules/
 .xargo/
 .yarn/
 .yarnrc
+.zcompdump
+.zsh_history
+.zshrc
 dev
 key.txt.age
 
@@ -126,6 +139,7 @@ Movies/
 Music/
 Pictures/
 Public/
+Sites/
 Stuff/
 Virtual Machines.localized
 {{- end }}
@@ -148,8 +162,4 @@ Library/
 {{- if eq .chezmoi.hostname "server" }}
 .scrypted/
 .stash/
-{{- end }}
-
-{{- if (and (eq .chezmoi.os "darwin") (.flags.work)) -}}
-.ssh/config
 {{- end }}

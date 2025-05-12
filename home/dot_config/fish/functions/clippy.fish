@@ -1,5 +1,5 @@
 function clippy --wraps="cargo clippy" --description "Run clippy"
-    command cargo clippy --all-features --all-targets $argv -- \
+    command cargo clippy $argv -- \
         --no-deps \
         -Wclippy::complexity \
         -Wclippy::correctness \
