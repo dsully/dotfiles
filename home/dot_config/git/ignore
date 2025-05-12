@@ -1,6 +1,7 @@
 __pypackages__/
 .aider*
 .cache/
+.ccls-cache
 .direnv/
 .dmypy.json
 .DS_Store
