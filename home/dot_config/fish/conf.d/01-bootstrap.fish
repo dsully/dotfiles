@@ -54,4 +54,4 @@ complete -f -c git -n '__fish_git_using_command checkout' \
     -d 'Unique Remote Branch'
 
 # Up the open file limit.
-ulimit -n 8192
+ulimit -n unlimited
