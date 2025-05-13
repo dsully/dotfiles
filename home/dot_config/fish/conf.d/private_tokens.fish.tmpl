@@ -23,5 +23,5 @@ set -gx OP_ACCOUNT {{ .onepassword.account }}
 set -gx OP_SERVICE_ACCOUNT_TOKEN {{ .onepassword.service_token }}
 
 set -gx GITHUB_TOKEN $GITHUB_API_TOKEN
-set -gx NIX_CONFIG "access-tokens = github.com=$GITHUB_API_TOKEN"
+set -gx NIX_CONFIG "access-tokens = github.com={{ .github.tokens.home }}"
 {{- end -}}
