@@ -22,6 +22,7 @@ __pypackages__/
 *.swo
 *.swp
 *.vscode
+build/
 htmlcov/
 Icon?
 mypy_cache/
