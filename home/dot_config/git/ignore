@@ -28,3 +28,6 @@ Icon?
 mypy_cache/
 target/
 Thumbs.db
+
+# Pkl language server.
+/.pkl-lsp/
