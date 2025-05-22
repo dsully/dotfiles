@@ -18,6 +18,7 @@
 --glob=!LICENSE
 --glob=!Library/*
 --glob=!Movies/*
+--glob=!build/*
 --glob=!coverage/*
 --glob=!dist/*
 --glob=!flake.lock
@@ -26,6 +27,7 @@
 --glob=!package-lock.json
 --glob=!target/
 --glob=!tmp/*
+--glob=!uv.lock
 --glob=!vendor/*
 --glob=!yarn.lock
 

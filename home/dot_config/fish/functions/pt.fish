@@ -2,7 +2,7 @@
 function pt --wraps=pytest
 
     if type -q pytest
-        command pytest -n 0 $argv
+        command pytest $argv
     else
         echo "pytest not found"
         return 1
