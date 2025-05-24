@@ -42,6 +42,7 @@
 .config/nix
 .config/nvim
 .config/op
+.config/schemas.json
 .config/syncthing
 .config/uv/uv-receipt.json
 .config/work
