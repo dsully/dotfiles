@@ -56,14 +56,21 @@ layout_pdm() {
 }
 
 layout_uv() {
-    VIRTUALENV=""
+    PYPROJECT_TOML="${PYPROJECT_TOML:-pyproject.toml}"
+    UV_LOCK="${UV_LOCK:-uv.lock}"
 
-    if [[ -d ".venv" ]]; then
-        VIRTUAL_ENV="$PWD/.venv"
+    if [ ! -f "$PYPROJECT_TOML" ]; then
+        log_status "No pyproject.toml found. Executing \`uv init\` to create a \`$PYPROJECT_TOML\` first."
+        uv init
     fi
 
-    PATH_add "$VIRTUAL_ENV/bin"
-    export VIRTUAL_ENV
+    if [ -d ".venv" ]; then
+        export VIRTUAL_ENV="$PWD/.venv"
 
-    watch_file uv.lock
+        PATH_add "$VIRTUAL_ENV/bin"
+    fi
+
+    if [ -f "$UV_LOCK" ]; then
+        watch_file uv.lock
+    fi
 }
