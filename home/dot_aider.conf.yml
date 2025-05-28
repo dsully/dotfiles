@@ -1,0 +1,5 @@
+analytics: false
+check-update: false
+show-model-warnings: false
+show-release-notes: false
+upgrade: false
