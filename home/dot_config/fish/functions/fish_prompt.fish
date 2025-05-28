@@ -20,7 +20,7 @@ function fish_prompt
     # Save last status
     set -l last_status $status
     set -l last_pipestatus $pipestatus
-    set -l pwd = (pwd)
+    set -l pwd (pwd)
 
     # Username (only if not dsully)
     if test "$USER" != dsully
