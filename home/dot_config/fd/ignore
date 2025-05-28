@@ -1,3 +1,8 @@
 .git/
+Cargo.lock
+flake.lock
+package-lock.json
 target/
+uv.lock
 vendor/
+yarn.lock
