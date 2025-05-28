@@ -1,5 +1,5 @@
 function clean_rm_flags
-    set cleaned
+    set -l cleaned
 
     for arg in $argv
         # Skip recursive and force flags in various forms
@@ -9,7 +9,9 @@ function clean_rm_flags
             # Handle other flags that might contain r or f
         else if string match -q -- "-*" $arg
             # Check if the flag contains 'r' or 'f'
-            set cleaned_flag (string replace -a "r" "" (string replace -a "f" "" $arg))
+            set cleaned_flag (string replace -r -a '[rf]' '' -- $arg)
+
+            # set cleaned_flag (string replace -a "r" "" (string replace -a "f" "" $arg))
 
             # If the cleaned flag is different from the original and not just a hyphen
             if test "$cleaned_flag" != "$arg" -a "$cleaned_flag" != -
@@ -26,6 +28,11 @@ function clean_rm_flags
             # Add non-flag arguments as is
             set -a cleaned $arg
         end
+    end
+
+    if test -z "$cleaned"
+        echo "Error: cleaned argv is empty! Original: [$argv]" >&2
+        exit 1
     end
 
     echo $cleaned
