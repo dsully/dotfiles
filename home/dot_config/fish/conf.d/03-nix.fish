@@ -1,4 +1,5 @@
 fish_add_path -g --move /run/current-system/sw/bin/
+fish_add_path -g --move /run/system-manager/sw/bin/
 fish_add_path -g --move /nix/var/nix/profiles/default/bin
 fish_add_path -g --move $XDG_STATE_HOME/nix/profile/bin
 
