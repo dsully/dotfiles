@@ -16,8 +16,8 @@ set -gx OPENAI_KEY {{ .openai.home }}
 set -gx OPENAI_API_KEY $OPENAI_KEY
 {{- end }}
 
-set -gx GITHUB_TOKEN_HOME {{ .github.tokens.work }}
-set -gx GITHUB_TOKEN_WORK {{ .github.tokens.home }}
+set -gx GITHUB_TOKEN_HOME {{ .github.tokens.home }}
+set -gx GITHUB_TOKEN_WORK {{ .github.tokens.work }}
 
 set -gx CACHIX_AUTH_TOKEN {{ .cachix.token }}
 set -gx OP_ACCOUNT {{ .onepassword.account }}
