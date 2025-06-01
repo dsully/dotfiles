@@ -42,7 +42,7 @@ function rm --wraps gomi
     if test "$OS" = Darwin
 
         for path in (clean_rm_flags $argv)
-            if test -e $path
+            if test -e $path; or test -L $path
                 command trash $path
             end
         end
