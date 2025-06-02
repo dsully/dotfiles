@@ -5,6 +5,7 @@
 .aider
 .android
 .authncli
+.aws
 .bash_history
 .bash_sessions
 .bashrc
@@ -88,6 +89,7 @@
 .ollama
 .oracle_jre_usage/
 .orbstack/
+.pex/
 .pkl
 .prettierd/
 .pyhistory
@@ -101,11 +103,7 @@
 .shiv
 .skipbuddy
 .sqlite_history
-.ssh/authorized*
-.ssh/config
-.ssh/id_*
-.ssh/*key*
-.ssh/known_*
+.ssh/
 .sudo_as_admin_successful
 .supermaven/
 .terminfo/
@@ -153,6 +151,7 @@ Box
 Desktop/
 Documents/
 Downloads/
+iCloud
 # https://stackoverflow.com/questions/987142/make-gitignore-ignore-everything-except-a-few-files
 Library/*
 !Library/LaunchAgents
@@ -166,6 +165,7 @@ Public/
 Sites/
 Stuff/
 Virtual Machines.localized
+src
 {{- end }}
 
 {{- if eq .chezmoi.os "linux" }}
