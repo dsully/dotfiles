@@ -104,7 +104,7 @@ function fish_prompt
             set -a icons "red:󰛥:1"
         end
 
-        if count *.ts >/dev/null 2>&1; or test -f package.json -o -f .node-version -o -f .nvmrc -o -d node_modules
+        if count *.ts >/dev/null 2>&1
             set -a icons "yellow::1"
         end
 
