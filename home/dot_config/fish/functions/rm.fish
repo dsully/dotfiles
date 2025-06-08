@@ -42,6 +42,10 @@ function rm --wraps gomi
     if test "$OS" = Darwin
 
         for path in (clean_rm_flags $argv)
+            if string match -q '*'
+                command trash $path
+            end
+
             if test -e $path; or test -L $path
                 command trash $path
             end
