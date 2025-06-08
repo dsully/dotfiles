@@ -68,6 +68,8 @@ layout_uv() {
         export VIRTUAL_ENV="$PWD/.venv"
 
         PATH_add "$VIRTUAL_ENV/bin"
+    else
+        unset VIRTUAL_ENV
     fi
 
     if [ -f "$UV_LOCK" ]; then
