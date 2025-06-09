@@ -65,10 +65,15 @@ icons:
 # == Ignore Globs ==
 # A list of globs to ignore when listing.
 ignore-globs:
+  - "*.egg-info"
+  - .git
+  - .mypy_cache
+  - .pytest_cache
+  - .ruff_cache
   - __breadboard__
   - __pycache__
   - __pypackages__
-  - .git
+  - build-results
 
 # == Indicators ==
 # Whether to add indicator characters to certain listed files.

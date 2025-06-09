@@ -16,3 +16,5 @@ end
 if test -f /nix/var/nix/profiles/default/share/fish/vendor_completions.d/nix.fish
     source /nix/var/nix/profiles/default/share/fish/vendor_completions.d/nix.fish
 end
+
+set -a fish_complete_path $XDG_STATE_HOME/nix/profile/share/fish/vendor_completions.d

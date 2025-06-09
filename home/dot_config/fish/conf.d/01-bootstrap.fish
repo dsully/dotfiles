@@ -38,14 +38,7 @@ set -gx TREE_SITTER_DIR $XDG_CONFIG_HOME/tree-sitter
 set -gx DIRENV_LOG_FORMAT ""
 
 abbr --add dc cd
-
-# Set `LS_COLORS` via https://github.com/sharkdp/vivid
-if status is-interactive
-
-    if not string length --quiet $LS_COLORS; and command -q vivid
-        set -Ux LS_COLORS (vivid generate nord)
-    end
-end
+abbr --add fgfg fg
 
 # Delete git remote branch tab completion.
 complete -f -c git -n '__fish_git_using_command checkout' \
