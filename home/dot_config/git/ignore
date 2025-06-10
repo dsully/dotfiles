@@ -31,3 +31,5 @@ Thumbs.db
 
 # Pkl language server.
 /.pkl-lsp/
+
+**/.claude/settings.local.json
