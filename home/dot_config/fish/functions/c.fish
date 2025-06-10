@@ -1,12 +1,35 @@
-function c --wraps='git clone' --description 'Wrap git clone.'
+function expand-slug --argument slug
+    set url $slug
 
-    set path (basename $argv[1] | sed 's/.git$//')
-    set count (count $argv)
+    # Handle github: prefix or plain owner/repo format
+    if string match -q "github:/*" $slug
 
-    if test $count -eq 2
-        set path $argv[2]
+        # Remove github: prefix and add https://github.com/
+        set url (string replace -r '^github:/+' 'https://github.com/' $slug)
+
+    else if string match -q -r '^[^/]+/[^/]+$' $slug
+        # Plain owner/repo format - add https://github.com/
+        set url "https://github.com/$url"
     end
 
-    command git clone $argv[1] $path
-    cd $path
+    echo $url
+end
+
+function repo-from-url --argument url --description="Extract just the repo name"
+    basename $url | sed "s|.git\$||"
+end
+
+function c --wraps='git clone' --description 'Wrap git clone.' --argument url _destination cloneargs
+
+    set url (expand-slug $url)
+
+    set destination (default $_destination (repo-from-url $url))
+
+    if test -e $destination
+        echo 'Already cloned. Attempting pull...'
+        cd $destination && git pull --rebase
+        return
+    end
+
+    git clone $cloneargs $url $destination && cd $destination
 end

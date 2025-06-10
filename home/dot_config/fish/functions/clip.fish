@@ -1,3 +1,3 @@
-function clip --description "Copy files to clipboard"
-    /bin/cat $argv | pbcopy
+function clip --description "Copy files to clipboard" --wraps cat
+    command cat $argv | fish_clipboard_copy
 end
