@@ -38,17 +38,11 @@ function clean_rm_flags
     echo $cleaned
 end
 
-function rm --wraps gomi
-    if test "$OS" = Darwin
+function rm --wraps rip
+    if type -q rip
 
-        for path in (clean_rm_flags $argv)
-            if string match -q '*'
-                command trash $path
-            end
-
-            if test -e $path; or test -L $path
-                command trash $path
-            end
+        for path in (string split " " (clean_rm_flags $argv))
+            command rip $path
         end
 
     else if type -q gomi
