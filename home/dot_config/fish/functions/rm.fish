@@ -2,6 +2,11 @@ function clean_rm_flags
     set -l cleaned
 
     for arg in $argv
+        if string match -q -- "--version" $arg
+            echo $arg
+            return
+        end
+
         # Skip recursive and force flags in various forms
         if string match -q -- -r $arg; or string match -q -- -f $arg; or string match -q -- -rf $arg; or string match -q -- -fr $arg
             continue
@@ -41,7 +46,7 @@ end
 function rm --wraps rip
     if type -q rip
 
-        for path in (string split " " (clean_rm_flags $argv))
+        for path in (string split " " -- (clean_rm_flags $argv))
             command rip $path
         end
 
