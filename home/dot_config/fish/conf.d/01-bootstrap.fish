@@ -34,9 +34,6 @@ set -gx HISTFILE $XDG_DATA_HOME/fish/fish_history
 set -gx RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/ripgrep/config
 set -gx TREE_SITTER_DIR $XDG_CONFIG_HOME/tree-sitter
 
-# Silence direnv logging. Hook is invoked via vendor_conf.d/
-set -gx DIRENV_LOG_FORMAT ""
-
 abbr --add dc cd
 abbr --add fgfg fg
 
