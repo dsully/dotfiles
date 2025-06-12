@@ -1,5 +1,5 @@
 function default --argument val default
-    if not string-empty $val
+    if test -n "$val"
         echo $val
     else
         echo $default
