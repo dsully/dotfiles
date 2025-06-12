@@ -10,6 +10,10 @@ function expand-slug --argument slug
     else if string match -q -r '^[^/]+/[^/]+$' $slug
         # Plain owner/repo format - add https://github.com/
         set url "https://github.com/$url"
+
+    else if string match -q "github.com/*" $url; and not string match -q "*://*" $url
+        # Handle github.com/owner/repo without protocol
+        set url "https://$url"
     end
 
     echo $url
