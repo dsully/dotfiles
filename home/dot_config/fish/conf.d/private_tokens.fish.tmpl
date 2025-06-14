@@ -5,6 +5,7 @@ set -gx ARTIFACTORY_TOKEN {{ .artifactory }}
 set -gx GEMINI_API_KEY {{ .google.gemini.work }}
 set -gx OLLAMA_URL {{ .ollama.work }}
 set -gx OPENAI_URL http://localhost:11211/v1/chat/completions
+set -gx GH_ENTERPRISE_TOKEN {{ .github.tokens.work }}
 {{- end -}}
 {{- if .flags.personal -}}
 set -gx ANTHROPIC_API_KEY {{ .anthropic.home }}
@@ -16,14 +17,12 @@ set -gx OPENAI_KEY {{ .openai.home }}
 set -gx OPENAI_API_KEY $OPENAI_KEY
 {{- end }}
 
-set -gx GITHUB_TOKEN_HOME {{ .github.tokens.home }}
-set -gx GITHUB_TOKEN_WORK {{ .github.tokens.work }}
-
 set -gx CACHIX_AUTH_TOKEN {{ .cachix.token }}
 set -gx OP_ACCOUNT {{ .onepassword.account }}
 
-set -gx GH_TOKEN $GITHUB_TOKEN_HOME
-set -gx GITHUB_TOKEN $GITHUB_TOKEN_HOME
-set -gx GITHUB_API_TOKEN $GITHUB_TOKEN
+set -gx GH_TOKEN {{ .github.tokens.home }}
+set -gx GITHUB_TOKEN {{ .github.tokens.home }}
+set -gx GITHUB_API_TOKEN {{ .github.tokens.home }}
+
 set -gx NIX_CONFIG "access-tokens = github.com={{ .github.tokens.home }}"
 {{- end -}}

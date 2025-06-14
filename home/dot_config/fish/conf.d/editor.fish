@@ -9,6 +9,8 @@ if status is-interactive
         abbr --add vim nvim
         abbr --add view 'nvim -R'
 
+        abbr --add lazy cd $XDG_DATA_HOME/nvim/lazy/
+
         set -gx EDITOR nvim
 
         fish_add_path -g $HOME/.local/share/nvim/mason/bin
