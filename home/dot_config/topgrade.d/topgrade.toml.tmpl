@@ -11,23 +11,19 @@ ignore_failures = [ "git_repos" ]
 
 # Run specific steps - same options as the command line flag
 only = [
-    "brew_formula",
 {{- if eq .chezmoi.os "darwin" }}
-    "brew_cask",
+  "brew_formula",
+  "brew_cask",
 {{- end }}
-    "cargo",
-    "custom_commands",
-    "github_cli_extensions",
-    "go",
-    "uv",
-    "volta_packages",
+  "custom_commands",
+  "github_cli_extensions",
 {{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "ubuntu")) }}
-    "deb_get",
+  "deb_get",
 {{- end }}
 {{- if eq .chezmoi.os "linux" }}
-    "system",
+  "system",
 {{- end }}
-    "git_repos",
+  "git_repos",
 ]
 
 # Do not ask to retry failed steps (default: false)
@@ -59,13 +55,14 @@ cleanup = true
 # Additional git repositories to pull
 repos = [
 {{- if eq .chezmoi.hostname "jarvis" }}
-    "{{- .chezmoi.homeDir -}}/src/*/",
-    "{{- .chezmoi.homeDir -}}/src/rust/*/",
-    "{{- .chezmoi.homeDir -}}/src/neovim/*/",
-    "{{- .chezmoi.homeDir -}}/src/neovim/dots/*/",
+  "{{- .chezmoi.homeDir -}}/src/*/",
+  "{{- .chezmoi.homeDir -}}/src/neovim/*/",
+  "{{- .chezmoi.homeDir -}}/src/neovim/dots/*/",
+  "{{- .chezmoi.homeDir -}}/src/nix/*/",
+  "{{- .chezmoi.homeDir -}}/src/rust/*/",
 {{- else if eq .chezmoi.hostname "server" }}
-    "/ai/apps/automatic/extensions/*",
-    "/ai/apps/stable-diffusion-webui/extensions/*",
+  "/ai/apps/automatic/extensions/*",
+  "/ai/apps/stable-diffusion-webui/extensions/*",
 {{- end }}
 ]
 
@@ -81,18 +78,10 @@ arguments = "--rebase --autostash"
 
 # Custom commands
 [commands]
-# {{ if lookPath "rtx" -}}
-# "RTX Plugins" = "rtx plugins update"
+# {{ if lookPath "fish" -}}
+# "Fish Update Completions" = "fish_update_completions"
+# "Fisher Update" = "fisher update >/dev/null 2>&1"
 # {{ end -}}
-
-{{ if lookPath "fish" -}}
-"Fish Update Completions" = "fish_update_completions"
-"Fisher Update" = "fisher update >/dev/null 2>&1"
-{{ end -}}
-
-{{ if lookPath "released" -}}
-"GitHub Tools" = "released update"
-{{ end }}
 
 [brew]
 greedy_cask = true
