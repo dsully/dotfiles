@@ -1,15 +1,8 @@
 # Brew is installed in different places depending on OS and architecture.
 if status is-interactive
 
-    if not set -q HOMEBREW_PREFIX
-        if test -d /opt/homebrew
-            set -Ux HOMEBREW_PREFIX /opt/homebrew
-        else if test -d /home/linuxbrew/.linuxbrew
-            set -Ux HOMEBREW_PREFIX /home/linuxbrew/.linuxbrew
-        end
-    end
-
-    if set -q HOMEBREW_PREFIX
+    if test -d /opt/homebrew
+        set -gx HOMEBREW_PREFIX /opt/homebrew
 
         # https://github.com/Homebrew/homebrew-cask/blob/master/USAGE.md
         set -gx HOMEBREW_BAT 1
@@ -25,8 +18,6 @@ if status is-interactive
         set -gx DYLD_LIBRARY_PATH $HOMEBREW_PREFIX/lib
 
         fish_add_path --append -g --move $HOMEBREW_PREFIX/{,s}bin
-        fish_add_path -g --move $HOMEBREW_PREFIX/opt/curl/bin
-        fish_add_path -g --move $HOMEBREW_PREFIX/opt/unzip/bin
 
         if not contains $HOMEBREW_PREFIX/share/info $INFOPATH
             set -gx INFOPATH $HOMEBREW_PREFIX/share/info $INFOPATH
