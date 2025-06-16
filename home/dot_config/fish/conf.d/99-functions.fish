@@ -18,3 +18,20 @@ function git_parent_branch
 
     echo $parent_branch_name
 end
+
+# cd helpers.
+function ..
+    cd ..
+end
+
+function ...
+    cd ../..
+end
+
+function ....
+    cd ../../..
+end
+
+function .....
+    cd ../../../..
+end
