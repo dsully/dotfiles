@@ -122,11 +122,13 @@ function fish_prompt
         end
 
         if test $icon_count -gt 0 -o $in_git_repo -eq 1
-            echo -n " ("
+            echo -n ' ('
+
+            set i 1
 
             # Display language icons
-            for i in (seq $icon_count)
-                set -l parts (string split ":" $icons[$i])
+            for icon in $icons
+                set -l parts (string split ":" $icon)
                 set -l color $parts[1]
                 set -l icon $parts[2]
                 set -l width $parts[3]
@@ -145,6 +147,8 @@ function fish_prompt
                 if test $i -lt $icon_count
                     echo -n " "
                 end
+
+                set i = math $i + 1
             end
 
             # Add space before git info if we have language icons and git
@@ -161,7 +165,7 @@ function fish_prompt
             set -g ___fish_git_prompt_char_stateseparator ""
             fish_git_prompt "%s"
 
-            echo -n ")"
+            echo -n ')'
         end
     end
 
