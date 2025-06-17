@@ -16,7 +16,7 @@ function install_ubuntu_packages -a release
         set -a packages openjdk-21-jre-headless
     end
 
-    if not test -z $packages
+    if not test -z "$packages"
         ask_sudo
 
         start "Installing Ubuntu packages"

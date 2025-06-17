@@ -24,10 +24,6 @@ has_brew() {
     else
         if [[ -x /opt/homebrew/bin/brew ]]; then
             BREW=/opt/homebrew/bin/brew
-        elif [[ -x /usr/local/bin/brew ]]; then
-            BREW=/usr/local/bin/brew
-        elif [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
-            BREW=/home/linuxbrew/.linuxbrew/bin/brew
         else
             return 1
         fi

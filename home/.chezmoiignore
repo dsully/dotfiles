@@ -132,8 +132,6 @@ node_modules/
 .Box*
 .Trash/
 .config/cni/
-.config/fish/conf.d/vessel.fish
-.config/fish/conf.d/work.fish
 .config/genai*
 .config/helm
 .config/libvirt/

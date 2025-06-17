@@ -1,7 +1,7 @@
-fish_add_path -g --move /run/current-system/sw/bin/
-fish_add_path -g --move /run/system-manager/sw/bin/
-fish_add_path -g --move /nix/var/nix/profiles/default/bin
-fish_add_path -g --move $XDG_STATE_HOME/nix/profile/bin
+fish_add_path -g --move /run/current-system/sw/bin \
+    /run/system-manager/sw/bin \
+    /nix/var/nix/profiles/default/bin \
+    $XDG_STATE_HOME/nix/profile/bin
 
 # Set $NIX_SSL_CERT_FILE so that Nixpkgs applications like curl work.
 if not set -q NIX_SSL_CERT_FILE
@@ -13,5 +13,16 @@ if not set -q NIX_SSL_CERT_FILE
     end
 end
 
-set -a fish_complete_path $XDG_STATE_HOME/nix/profile/share/fish/vendor_completions.d
-set -a fish_complete_path /nix/var/nix/profiles/default/share/fish/vendor_completions.d
+if test -d $XDG_STATE_HOME/nix/profile/share/fish
+    set -p fish_complete_path "$XDG_STATE_HOME/nix/profile/share/fish/vendor_completions.d"
+    set -p fish_function_path "$XDG_STATE_HOME/nix/profile/share/fish/vendor_functions.d"
+
+    # Bootstrap fishPlugins.git, as it checks for $fisher_path which doesn't exiset.
+    if functions --query __git.init
+        __git.init
+    end
+end
+
+if test -d /nix/var/nix/profiles/default/share/fish/vendor_completions.d
+    set -a fish_complete_path /nix/var/nix/profiles/default/share/fish/vendor_completions.d
+end

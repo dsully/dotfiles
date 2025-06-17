@@ -17,13 +17,21 @@ set -g fish_greeting ""
 
 fish_add_path -g $XDG_BIN_HOME
 
+# Pull in files from the cache directory.
+set -a fish_complete_path $XDG_CACHE_HOME/fish/completions $XDG_CACHE_HOME/fish/generated_completions
+set -a fish_function_path $XDG_CACHE_HOME/fish/functions
+
+if test -d $XDG_CACHE_HOME/fish/conf.d
+
+    for file in $XDG_CACHE_HOME/fish/conf.d/*.fish
+        if test -f $file
+            source $file
+        end
+    end
+end
+
 # $XDG_CONFIG_HOME/fish/themes/nordish.fish
 fish_config theme choose Nordish
-
-# Set fisher and auto-generated .fish files to be outside of ~/.config/fish
-# This will get picked up by $__fish_vendor_*
-set -gx fish_cache $XDG_CACHE_HOME/fish
-set -gx fisher_path $fish_cache
 
 # Turn on vi keybindings
 # This doesn't work with "magic enter"
