@@ -148,7 +148,7 @@ function fish_prompt
                     echo -n " "
                 end
 
-                set i = math $i + 1
+                set i (math $i + 1)
             end
 
             # Add space before git info if we have language icons and git
