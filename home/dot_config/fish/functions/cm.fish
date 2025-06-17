@@ -11,7 +11,10 @@ function cm --wraps=chezmoi
 
     else if set -q argv[1]; and test $argv[1] = rm
         command chezmoi --force destroy $argv[2..-1]
-    else
+
+    else if set -q argv[1]; and test $argv[1] = unmanaged
         command chezmoi $argv 2>&1 | string replace -a $RPWD "."
+    else
+        command chezmoi $argv
     end
 end
