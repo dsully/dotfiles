@@ -151,11 +151,7 @@ Desktop/
 Documents/
 Downloads/
 iCloud
-# https://stackoverflow.com/questions/987142/make-gitignore-ignore-everything-except-a-few-files
-Library/*
-!Library/LaunchAgents
-Library/LaunchAgents/*
-!Library/LaunchAgents/localhost.*
+Library/
 Mounts/
 Movies/
 Music/
@@ -173,7 +169,6 @@ src
 .config/systemd/user/multi-user.target.wants
 .config/vopono/locks/
 .config/vopono/mv/
-Library/
 !.local/bin/pbcopy
 !.local/bin/pbpaste
 !.local/bin/xdg-open
