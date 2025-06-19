@@ -2,7 +2,7 @@ function clean_rm_flags
     set -l cleaned
 
     for arg in $argv
-        if string match -q -- "--version" $arg
+        if string match -q -- --version $arg
             echo $arg
             return
         end
@@ -46,9 +46,7 @@ end
 function rm --wraps rip
     if type -q rip
 
-        for path in (string split " " -- (clean_rm_flags $argv))
-            command rip $path
-        end
+        command rip (clean_rm_flags $argv)
 
     else if type -q gomi
 
