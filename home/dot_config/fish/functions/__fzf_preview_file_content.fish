@@ -33,9 +33,6 @@ function __fzf_preview_file_content --description 'Preview file content'
             set mime (command file -b --mime-type $path)
 
             switch $mime[1]
-                case "text/*"
-                    command bat $bat_args $path
-
                 case application/json
                     command bat $bat_args -l json $path
 
@@ -47,8 +44,7 @@ function __fzf_preview_file_content --description 'Preview file content'
                     command 7z l $path | command tail -n +12
 
                 case "*"
-                    command file -b $argv
-                    echo "($mime[1])"
+                    command bat $bat_args $path
             end
     end
 end
