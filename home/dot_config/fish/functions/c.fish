@@ -1,6 +1,11 @@
 function expand-slug --argument slug
     set url $slug
 
+    if string match -q -r '^git@' $url
+        echo $url
+        return
+    end
+
     # Handle github: prefix or plain owner/repo format
     if string match -q "github:/*" $slug
 
