@@ -1,6 +1,6 @@
 {{- if .flags.decrypt -}}
 {{- if .flags.work -}}
-set -gx ANTHROPIC_API_KEY {{ .anthropic.work }}
+# set -gx ANTHROPIC_API_KEY {{ .anthropic.work }}
 set -gx ARTIFACTORY_TOKEN {{ .artifactory }}
 set -gx GEMINI_API_KEY {{ .google.gemini.work }}
 set -gx OLLAMA_URL {{ .ollama.work }}
