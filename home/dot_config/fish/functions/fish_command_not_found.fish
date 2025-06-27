@@ -1,6 +1,8 @@
 function fish_command_not_found
     # Get packages from nix-locate
-    set -l pkgs (command nix-locate --minimal --no-group --type x --type s --top-level --whole-name --at-root /bin/$argv[1] 2>/dev/null | string replace '.out' '' | sort -u)
+    set NIX_LOCATE $XDG_STATE_HOME/nix/profile/bin/nix-locate
+
+    set -l pkgs (command $NIX_LOCATE --minimal --no-group --type x --type s --top-level --whole-name --at-root /bin/$argv[1] 2>/dev/null | string replace '.out' '' | sort -u)
 
     # Display command not found message
     set -l program (set_color $fish_color_error; printf $argv[1]; set_color $fish_color_normal)
