@@ -35,7 +35,7 @@
 .config/dlv/
 .config/fish/fish_history
 .config/fish/fish_variables
-.config/gh/hosts.yml
+.config/gh/
 .config/ghostty/
 .config/git/
 .config/github-copilot/versions.json

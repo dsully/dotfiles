@@ -15,8 +15,6 @@ only = [
   "brew_formula",
   "brew_cask",
 {{- end }}
-  "custom_commands",
-  "github_cli_extensions",
 {{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "ubuntu")) }}
   "deb_get",
 {{- end }}
