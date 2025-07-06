@@ -10,21 +10,20 @@
 --pretty
 
 # Ignores
---glob=!.cache/*
---glob=!**/.git/*
---glob=!**/.venv/*
 --glob=!**/node_modules/*
---glob=!**/venv/*
 --glob=!*hammerspoon*
---glob=!build/*
+--glob=!.cache/*
+--glob=!.git/*
+--glob=!.venv/*
 --glob=!Cargo.lock
+--glob=!LICENSE
+--glob=!Library/*
+--glob=!Movies/*
+--glob=!build/*
 --glob=!coverage/*
 --glob=!dist/*
 --glob=!flake.lock
---glob=!Library/*
---glob=!LICENSE
 --glob=!log/*
---glob=!Movies/*
 --glob=!node_modules/
 --glob=!package-lock.json
 --glob=!target/
