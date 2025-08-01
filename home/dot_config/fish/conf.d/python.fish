@@ -10,4 +10,6 @@ if status is-interactive
     set -gx POETRY_DATA_DIR $XDG_DATA_HOME/poetry
 
     set -gx PYTHONDONTWRITEBYTECODE 1
+
+    set -gx PTPYTHON_CONFIG_HOME $XDG_CONFIG_HOME/ptpython
 end
