@@ -1,4 +1,4 @@
-# vim:ft=gotmpl
+# vim:ft=gitignore.gotmpl
 **/.mypy_cache
 .1password/
 .actrc
@@ -7,6 +7,7 @@
 .authncli
 .aws
 .bash_history
+.bash_profile
 .bash_sessions
 .bashrc
 .boltai
@@ -46,6 +47,8 @@
 .config/nix
 .config/nvim
 .config/op
+.config/opencode/config.json
+.config/opencode/providers
 .config/pip
 .config/s3rs
 .config/schemas.json
@@ -63,6 +66,7 @@
 .fonts/
 .go
 .gnupg
+.gradle/
 .hushlogin
 .ipython
 .jenv/
@@ -86,12 +90,14 @@
 .nix-profile
 .node_repl_history/
 .npm/
+.npmrc
 .ollama
 .oracle_jre_usage/
 .orbstack/
 .pex/
 .pkl
 .prettierd/
+.profile
 .pyhistory
 .pypirc
 .python_history
@@ -100,7 +106,6 @@
 .rustup/
 !.rye/config.toml
 .rye/*/
-.shiv
 .skipbuddy
 .sqlite_history
 .ssh/
@@ -113,6 +118,7 @@
 .volta/
 .vscode-cli/
 .vscode/
+.werf/
 .wget-hsts
 .xargo/
 .yarn/
