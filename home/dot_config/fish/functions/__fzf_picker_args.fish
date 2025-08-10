@@ -17,8 +17,8 @@ function __fzf_picker_args
         --layout=reverse-list \
         --margin=5% \
         --multi \
-        --no-clear \
         --no-scrollbar \
         --preview-window 'up,50%,wrap,border-bottom,+{2}/3' \
         --select-1
+        # --no-clear \
 end

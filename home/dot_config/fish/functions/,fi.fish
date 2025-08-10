@@ -1,7 +1,7 @@
-function ,fk --description 'Kill a process by name'
+function ,fi --description 'Inspect a process using lsof'
     __fzf_picker_args
 
     procs --no-header --color always $argv | fzf $PICKER_ARGS --nth=8 | awk '{print $1}' | while read -l pid
-        command kill $pid
+        command lsof -p $pid
     end
 end

@@ -163,7 +163,7 @@ function fish_prompt
             set -g __fish_git_prompt_color_branch white --bold
             set -g __fish_git_prompt_show_informative_status 0
             set -g ___fish_git_prompt_char_stateseparator ""
-            fish_git_prompt "%s"
+            fish_git_prompt " %s"
 
             echo -n ')'
         end

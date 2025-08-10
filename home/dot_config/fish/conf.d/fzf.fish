@@ -20,36 +20,12 @@ set -gx FZF_ALT_C_COMMAND "fd --type d $FD_OPTIONS"
 set -gx FZF_CTRL_T_COMMAND "fd --type f $FD_OPTIONS"
 
 # Set up magic enter functions: https://kau.sh/blog/magic-enter-shell/
-function __magic_enter_ff
+function __magic_enter
     set -l cmd (commandline)
     commandline -f repaint
 
     if test -z "$cmd"
-        commandline -r (,ff)
-        commandline -f suppress-autosuggestion
-    end
-
-    commandline -f execute
-end
-
-function __magic_enter_fg
-    set -l cmd (commandline)
-    commandline -f repaint
-
-    if test -z "$cmd"
-        commandline -r (,fg)
-        commandline -f suppress-autosuggestion
-    end
-
-    commandline -f execute
-end
-
-function __magic_enter_fr
-    set -l cmd (commandline)
-    commandline -f repaint
-
-    if test -z "$cmd"
-        commandline -r (,fr)
+        commandline -r $argv[1]
         commandline -f suppress-autosuggestion
     end
 
@@ -57,13 +33,33 @@ function __magic_enter_fr
 end
 
 if status is-interactive
-
     if command -q fzf
         command fzf --fish | source
 
-        bind 'comma,f,f' __magic_enter_ff
-        bind 'comma,f,g' __magic_enter_fg
-        bind 'comma,f,r' __magic_enter_fr
+        # Define magic enter bindings as key-command pairs
+        set -l magic_bindings \
+            'comma,f,e' ',fe' \
+            'comma,f,f' ',ff' \
+            'comma,f,g' ',fg' \
+            'comma,f,i' ',fi' \
+            'comma,f,j' ',fj' \
+            'comma,f,k' ',fk' \
+            'comma,f,p' ',fp' \
+            'comma,f,r' ',fr'
 
+        # Create bindings dynamically
+        for i in (seq 1 2 (count $magic_bindings))
+            set -l key $magic_bindings[$i]
+            set -l command $magic_bindings[(math $i + 1)]
+
+            # Create a unique function name for each binding
+            set -l func_name "__magic_enter_"(string replace -a ',' '_' $key)
+
+            # Define the function dynamically
+            eval "function $func_name; __magic_enter '$command'; end"
+
+            # Bind the key to the function
+            bind $key $func_name
+        end
     end
 end
