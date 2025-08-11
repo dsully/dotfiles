@@ -25,7 +25,7 @@ function __magic_enter
     commandline -f repaint
 
     if test -z "$cmd"
-        commandline -r $argv[1]
+        commandline -r ($argv[1])
         commandline -f suppress-autosuggestion
     end
 
