@@ -5,7 +5,7 @@ Description=Run Stash at startup
 After=network.target
 
 [Service]
-Environment="PATH=/home/linuxbrew/.linuxbrew/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 Type=simple
 ExecStart=/home/dsully/.stash/bin/stash --nobrowser --config /home/dsully/.stash/config.yml
 Restart=on-failure
