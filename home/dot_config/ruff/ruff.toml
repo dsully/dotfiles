@@ -1,4 +1,7 @@
 line-length = 160
+unsafe-fixes = true
+fix = true
+
 [lint]
 extend-select = [
   "A",
@@ -31,12 +34,14 @@ extend-select = [
   "G202",
   "ASYNC",
 ]
-ignore = [ "B904", "E501", "ISC001", "RET501", "TRY003" ]
+ignore = ["B904", "E501", "ISC001", "RET501", "TRY003"]
+fixable = ["ALL"]
+unfixable = []
 
-  [lint.isort]
-  case-sensitive = true
-  combine-as-imports = true
-  detect-same-package = true
-  force-wrap-aliases = true
-  lines-between-types = 1
-  required-imports = [ "from __future__ import annotations" ]
+[lint.isort]
+case-sensitive = true
+combine-as-imports = true
+detect-same-package = true
+force-wrap-aliases = true
+lines-between-types = 1
+required-imports = ["from __future__ import annotations"]
