@@ -4,10 +4,8 @@ function rm --wraps rip
 
     if type -q trash
         set cmd trash
-    elif type -q rip
+    else if type -q rip
         set cmd rip
-    else if type -q gomi
-        set cmd gomi
     end
 
     if string match -q -- /bin/rm $cmd
