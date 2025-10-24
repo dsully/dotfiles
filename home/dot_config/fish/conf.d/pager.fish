@@ -1,11 +1,11 @@
 if status is-interactive
 
-    if command -q moar
-        set -gx PAGER moar
-        set -gx MOAR "-statusbar bold -no-linenumbers -no-clear-on-exit -style nord -colors 16M -wrap -quit-if-one-screen"
+    if command -q moor
+        set -gx PAGER moor
+        set -gx MOOR "-statusbar bold -no-linenumbers -no-clear-on-exit -style nord -colors 16M -wrap -quit-if-one-screen"
 
         if command -q bat
-            set -gx BAT_PAGER 'moar -no-linenumbers -quit-if-one-screen'
+            set -gx BAT_PAGER 'moor -no-linenumbers -quit-if-one-screen'
         end
 
     else if command -q ov
