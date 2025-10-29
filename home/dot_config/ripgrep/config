@@ -6,6 +6,8 @@
 # Include dot files.
 --hidden
 
+--glob=!.git/*
+
 --no-binary
 --pretty
 
