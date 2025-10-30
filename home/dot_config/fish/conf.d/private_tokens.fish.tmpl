@@ -9,7 +9,7 @@ set -gx GH_ENTERPRISE_TOKEN {{ .github.tokens.work }}
 {{- end -}}
 {{- if .flags.personal -}}
 set -gx ANTHROPIC_API_KEY {{ .anthropic.home }}
-set -gx CLAUDE_CODE_OAUTH_TOKEN {{ .anthropic.home }}
+set -gx ANTHROPIC_OAUTH_API_KEY {{ .anthropic.home }}
 set -gx CLOUDFLARE_API_TOKEN {{ .cloudflare.api_token }}
 set -gx GEMINI_API_KEY {{ .google.gemini.home }}
 set -gx HF_TOKEN {{ .huggingface.token }}
