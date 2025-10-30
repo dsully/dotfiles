@@ -174,9 +174,6 @@ src
 .config/systemd/user/multi-user.target.wants
 .config/vopono/locks/
 .config/vopono/mv/
-!.local/bin/pbcopy
-!.local/bin/pbpaste
-!.local/bin/xdg-open
 .mullvad-expiry
 .nv/
 .selected_editor
