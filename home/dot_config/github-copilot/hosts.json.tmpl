@@ -1,8 +1,0 @@
-{{- if .flags.decrypt -}}
-{
-  "github.com": {
-    "user": "{{ .github.home.username }}",
-    "oauth_token": "{{- .github.tokens.copilot -}}"
-  }
-}
-{{- end -}}
