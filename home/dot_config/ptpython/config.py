@@ -10,6 +10,9 @@ from pprint import pprint  # noqa: F401
 from icecream import ic  # noqa: F401
 from ptpython.layout import CompletionVisualisation
 from ptpython.repl import embed
+from rich.traceback import install
+
+install(show_locals=True)
 
 __all__ = ["configure"]
 

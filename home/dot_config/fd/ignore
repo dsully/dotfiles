@@ -1,4 +1,5 @@
 .git/
+.venv/
 Cargo.lock
 flake.lock
 package-lock.json

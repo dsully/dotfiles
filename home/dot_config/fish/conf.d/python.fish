@@ -12,4 +12,6 @@ if status is-interactive
     set -gx PYTHONDONTWRITEBYTECODE 1
 
     set -gx PTPYTHON_CONFIG_HOME $XDG_CONFIG_HOME/ptpython
+
+    set -gx VIRTUAL_ENV_DISABLE_PROMPT 1
 end

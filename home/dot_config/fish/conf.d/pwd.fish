@@ -7,4 +7,6 @@ function auto_pwd --on-variable PWD
     if test -d "$PWD/.git" && type -q devmoji-log
         devmoji-log
     end
+
+    __python_virtualenv
 end
