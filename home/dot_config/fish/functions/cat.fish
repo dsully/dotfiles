@@ -10,7 +10,6 @@ function cat --wraps=bat --description 'Use bat instead of cat'
     # https://github.com/wez/wezterm/blob/main/docs/imgcat.md
     set -f image_extensions png jpg jpeg gif bmp tiff webp
     set -f markdown_extensions md markdown mkd
-    set -f structured_extensions json yaml yml
 
     # Escape --version and similar.
     set -f ext (string split "." -- $argv[1])[-1]
@@ -24,9 +23,11 @@ function cat --wraps=bat --description 'Use bat instead of cat'
     else if contains $ext ipynb; and type -q nbcat
         command nbcat $argv
 
-    else if contains $ext $image_extensions
+    else if contains $ext $image_extensions; and type -q viu
         viu $argv
-    else
+    else if type -q bat
         command bat $argv
+    else
+        command cat $argv
     end
 end
