@@ -1,6 +1,0 @@
-{{- if and .flags.decrypt (eq .chezmoi.hostname "server") -}}
-{
-  "token": "{{- .discogs.token -}}",
-  "secret": "{{- .discogs.secret -}}"
-}
-{{- end -}}
