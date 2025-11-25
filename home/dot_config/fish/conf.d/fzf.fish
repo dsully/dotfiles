@@ -19,6 +19,14 @@ set -gx FZF_DEFAULT_COMMAND "fd --type f --type l $FD_OPTIONS"
 set -gx FZF_ALT_C_COMMAND "fd --type d $FD_OPTIONS"
 set -gx FZF_CTRL_T_COMMAND "fd --type f $FD_OPTIONS"
 
+set -gx _ZO_FZF_OPTS $FZF_DEFAULT_OPTS \
+    --bind=ctrl-z:ignore \
+    --exit-0 \
+    --info=default \
+    --layout=reverse-list \
+    --no-sort \
+    --select-1
+
 # Set up magic enter functions: https://kau.sh/blog/magic-enter-shell/
 function __magic_enter
     set -l cmd (commandline)

@@ -13,8 +13,6 @@ if status is-interactive
 
         set -gx EDITOR nvim
 
-        fish_add_path -g $HOME/.local/share/nvim/mason/bin
-
         if test -f $XDG_CONFIG_HOME/emmyrc.json
             set -gx EMMYLUALS_CONFIG $XDG_CONFIG_HOME/emmyrc.json
         end

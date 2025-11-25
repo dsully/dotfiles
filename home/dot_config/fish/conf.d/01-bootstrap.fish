@@ -18,17 +18,17 @@ set -g fish_greeting ""
 fish_add_path -g $XDG_BIN_HOME
 
 # Pull in files from the cache directory.
-set -a fish_complete_path $XDG_CACHE_HOME/fish/completions $XDG_CACHE_HOME/fish/generated_completions
-set -a fish_function_path $XDG_CACHE_HOME/fish/functions
+# set -a fish_complete_path $XDG_CACHE_HOME/fish/completions $XDG_CACHE_HOME/fish/generated_completions
+# set -a fish_function_path $XDG_CACHE_HOME/fish/functions
 
-if test -d $XDG_CACHE_HOME/fish/conf.d
-
-    for file in $XDG_CACHE_HOME/fish/conf.d/*.fish
-        if test -f $file
-            source $file
-        end
-    end
-end
+# if test -d $XDG_CACHE_HOME/fish/conf.d
+#
+#     for file in $XDG_CACHE_HOME/fish/conf.d/*.fish
+#         if test -f $file
+#             source $file
+#         end
+#     end
+# end
 
 # $XDG_CONFIG_HOME/fish/themes/nordish.fish
 fish_config theme choose Nordish
@@ -46,10 +46,10 @@ abbr --add dc cd
 abbr --add fgfg fg
 
 # Delete git remote branch tab completion.
-complete -f -c git -n '__fish_git_using_command checkout' \
-    -n 'not contains -- -- (commandline -opc)' \
-    -ka '(__fish_git_unique_remote_branches)' \
-    -d 'Unique Remote Branch'
+# complete -f -c git -n '__fish_git_using_command checkout' \
+#     -n 'not contains -- -- (commandline -opc)' \
+#     -ka '(__fish_git_unique_remote_branches)' \
+#     -d 'Unique Remote Branch'
 
 # Up the open file limit.
 if test "$OS" = Darwin
