@@ -31,21 +31,6 @@ function system
     ask_sudo spctl --master-enable
     ask_sudo spctl --enable
 
-    #sub_task "Disable Java"
-
-    # Remove Java preference pane which is just a symlink into Internet-Plugins
-    #ask_sudo rm -f /Library/PreferencePanes/JavaControlPanel.prefPane
-
-    # Remove Application support that is just symlinks into Internet-Plugins +
-    # highest installed Oracle Java version in a file for Preference Pane checks
-    # (that we just removed). Check carefully if you have anything else. I had
-    # just Java subdirectory under Oracle and just the symlinks + file as
-    # described above, so I could remove the whole Oracle directory.
-    #ask_sudo rm -rf /Library/Application\ Support/Oracle
-
-    # Remove the plugin itself
-    # ask_sudo rm -rf /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin
-
     # Disable Chrome auto-updating.
     ask_sudo defaults write /Library/Preferences/com.google.Keystone.plist AutoUpdate -bool false
 
@@ -85,11 +70,6 @@ function system
 end
 
 if is_macos
-    # TODO: Move to launchd?
-    # (crontab -l || true; echo "0 * * * * ~/.cargo/bin/lolcate --all --update > /dev/null 2>&1") | crontab
-    # (crontab -l || true; echo "# iCal Sucks\n@hourly /usr/bin/pkill -9 CalendarAgent") | crontab
-    # (crontab -l || true; echo "# iCal Sucks\n@hourly /usr/bin/pkill -9 exchangesyncd") | crontab
-
     # Mount point for SMB
     {{ if not .flags.work }}
     mkdir -p $HOME/Mounts/bits
